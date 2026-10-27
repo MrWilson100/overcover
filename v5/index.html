@@ -163,6 +163,27 @@ footer strong{color:var(--text)}
   #see-it-in-action .sia-label p{font-size:.78rem}
   #see-it-in-action .tc-cfg{font-size:.62rem}
 }
+/* ===== V5 underside orbit view + Velcro placement playback (inside #velcro) ===== */
+#velcro .uc-figure{margin-top:1.4rem;padding:.8rem .8rem .7rem}
+#velcro .uc-head{padding:.2rem .3rem .8rem}
+#velcro .uc-head .kicker{margin:0}
+#velcro .uc-head h3{margin:.25rem 0 .4rem;font-size:1.15rem;color:var(--text)}
+#velcro .uc-head p.uc-intro{margin:0;color:#cdd6e0;font-size:.92rem;line-height:1.55}
+#velcro .uc-stage{touch-action:none}
+#velcro .uc-figure figcaption.uc-cap{display:grid;gap:.6rem;padding:.6rem .2rem 0}
+#velcro .uc-row{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:space-between;align-items:center}
+#velcro .uc-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;list-style:none;margin:0;padding:0}
+#velcro .uc-steps button{width:100%;text-align:left;font:inherit;font-size:.8rem;line-height:1.3;padding:.45rem .6rem;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer}
+#velcro .uc-steps button b{font-family:var(--mono);color:var(--amber);margin-right:.35rem}
+#velcro .uc-steps button.is-done{color:#cdd6e0;border-color:rgba(255,181,71,.38)}
+#velcro .uc-steps button[aria-current="step"]{color:var(--amber);border-color:var(--amber);background:rgba(255,181,71,.14)}
+#velcro .uc-status{margin:0}
+#velcro .uc-status b{color:var(--amber)}
+#velcro .uc-tag{transition:opacity .25s ease,border-style 0s}
+#velcro .uc-tag.is-off{border-style:dashed}
+#velcro .uc-tag.is-on{background:rgba(26,16,4,.9)}
+#velcro .uc-tag.is-stuck{color:#5fe0b5}
+@media (max-width:760px){#velcro .uc-steps{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -281,6 +302,48 @@ footer strong{color:var(--text)}
       <article class="note"><span class="id">RIGHT SIDE</span><h3>Right run</h3><p>A mirror of the left run, from the right hub to the back curve. The front stays open and bare, so nothing catches when you step in.</p></article>
       <article class="note"><span class="id">PLACE ANYWHERE</span><h3>Sticks wherever you set it</h3><p>Set the canopy where you want it, press along the rib and it stays put. To move it, peel it up, reposition and press down again. Nothing goes inside the footprint, so a bed fits.</p></article>
     </div>
+    <!-- ===== Underside orbit view + Velcro placement playback ===== -->
+    <figure class="demo uc-figure" id="velcro-underside" aria-labelledby="uc-title">
+      <div class="uc-head">
+        <p class="kicker">Interactive 3D · underside orbit view · Velcro placement playback</p>
+        <h3 id="uc-title">Where the three strips sit under the bottom rib</h3>
+        <p class="uc-intro">Drag the model <strong>upward</strong> (or press <strong>View underside</strong>) to look up at the underside of the canopy's bottom rib. The tags stay on the <strong style="color:#ffb547">left side</strong>, <strong style="color:#ffb547">right side</strong> and <strong style="color:#ffb547">curved back</strong> runs as you rotate. Use the playback bar to place the strips one at a time (left, then right, then curved back), then press the canopy down onto the floor so the strips engage. Large SKU, schematic; strip segments follow the strip schedule (3 per side, 4 around the back) with the front entry left bare.</p>
+      </div>
+      <div class="sia-stage uc-stage" id="ucStage">
+        <canvas id="ucCanvas" role="img" aria-label="Rotatable 3D model of the OverCover V5 canopy and its U-shaped bottom rib, which can be orbited below the floor to show the rib's underside. Three runs of amber Velcro hook strips sit under the bottom rib: the left side, the right side and the curved back. The front of the rib is open and bare. A playback bar places the left, right and curved-back strips one at a time, then lowers the canopy so the strips press onto the floor."></canvas>
+        <span class="tc-dim arc uc-tag is-off" id="ucTagL" aria-hidden="true">Velcro · left side</span>
+        <span class="tc-dim arc uc-tag is-off" id="ucTagR" aria-hidden="true">Velcro · right side</span>
+        <span class="tc-dim arc uc-tag is-off" id="ucTagB" aria-hidden="true">Velcro · curved back</span>
+        <span class="tc-dim span uc-tag" id="ucTagF" aria-hidden="true">Front · open entry, no strips</span>
+        <span class="sia-badge" id="ucHint" aria-hidden="true">Drag up ↑ to see the underside</span>
+        <span class="tc-cfg" id="ucViewTag" aria-hidden="true">TOP-SIDE VIEW</span>
+        <div class="sia-fallback" id="ucFallback" hidden>This 3D view needs WebGL and the Three.js library. The playback bar below still steps through the placement order: left strip, right strip, curved back strip, then press down onto the floor.</div>
+      </div>
+      <figcaption class="uc-cap">
+        <div class="uc-row">
+          <span class="controls" role="group" aria-label="Velcro placement playback">
+            <button class="btn" type="button" id="ucBack" aria-label="Step back">⏮ Step back</button>
+            <button class="btn primary" type="button" id="ucAuto" aria-pressed="false">▶ Autoplay</button>
+            <button class="btn" type="button" id="ucFwd" aria-label="Step forward">Step forward ⏭</button>
+          </span>
+          <span class="controls" role="group" aria-label="Underside view camera">
+            <button class="btn" type="button" data-uc-view="34" aria-pressed="true">3/4 view</button>
+            <button class="btn" type="button" data-uc-view="under" aria-pressed="false">View underside</button>
+            <button class="btn" type="button" data-uc-view="side" aria-pressed="false">Side</button>
+            <button class="btn" type="button" data-uc-view="top" aria-pressed="false">Top</button>
+          </span>
+        </div>
+        <ol class="uc-steps" id="ucSteps" aria-label="Placement steps">
+          <li><button type="button" data-uc-step="0"><b>0</b>Bare bottom rib</button></li>
+          <li><button type="button" data-uc-step="1"><b>1</b>Left strip on</button></li>
+          <li><button type="button" data-uc-step="2"><b>2</b>Right strip on</button></li>
+          <li><button type="button" data-uc-step="3"><b>3</b>Curved back strip on</button></li>
+          <li><button type="button" data-uc-step="4"><b>4</b>Press down: engaged to floor</button></li>
+        </ol>
+        <p class="tc-readout uc-status" id="ucStatus" aria-live="polite"></p>
+      </figcaption>
+    </figure>
+
   </div>
 </section>
 
@@ -1451,6 +1514,245 @@ var OC = (function(){
     if (!onScreen || document.hidden) return;
     update(dt);
     renderer.render(scene, camera);
+  }
+  update(0.016); renderer.render(scene, camera);
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+/* ===== OverCover V5: underside orbit view + Velcro placement playback (Velcro section). Separate scene; does not touch the main Play setup demo. ===== */
+(function(){
+  var stage = document.getElementById('ucStage'), canvas = document.getElementById('ucCanvas');
+  if (!stage || !canvas) return;
+  function $(id){ return document.getElementById(id); }
+  var backBtn = $('ucBack'), fwdBtn = $('ucFwd'), autoBtn = $('ucAuto'), statusEl = $('ucStatus'), hint = $('ucHint'), viewTag = $('ucViewTag');
+  var stepBtns = document.querySelectorAll('[data-uc-step]'), viewBtns = document.querySelectorAll('[data-uc-view]');
+  var tags = {left: $('ucTagL'), right: $('ucTagR'), back: $('ucTagB'), front: $('ucTagF')};
+  var NAMES = {left: 'left side', right: 'right side', back: 'curved back'};
+
+  /* ---------- playback state (works even without WebGL) ---------- */
+  var STEPS = [
+    {t: 'Ready: bare bottom rib', d: 'The canopy is held just above the floor. The underside of the bottom rib shows only its sewn loop tape. No strips are on yet.'},
+    {t: 'Step 1 of 4 \u00b7 Left strip onto the bottom rib', d: 'Left run: hook strips go on under the left straight of the bottom rib, from the left hub back to where the curve starts.'},
+    {t: 'Step 2 of 4 \u00b7 Right strip onto the bottom rib', d: 'Right run: a mirror of the left, from the right hub back to the curve. The front entry stays bare.'},
+    {t: 'Step 3 of 4 \u00b7 Curved back strip onto the bottom rib', d: 'Curved back run: short segments follow the back curve; the gaps let the run bend without wrinkling.'},
+    {t: 'Step 4 of 4 \u00b7 Canopy presses down onto the floor', d: 'The canopy is lowered and pressed along the rib. All three runs engage: hook to the rib\u2019s loop tape, adhesive to the floor (glowing bands).'}
+  ];
+  var step = 0, auto = false, autoT = 0, AUTO_DT = 1.8, AUTO_HOLD = 3.2;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function renderUI(){
+    var s = STEPS[step];
+    statusEl.innerHTML = '<b>' + s.t + '.</b> ' + s.d;
+    stepBtns.forEach(function(b){ var k = +b.getAttribute('data-uc-step'); if (k === step) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); b.classList.toggle('is-done', k < step); });
+    backBtn.disabled = step === 0 && !auto; fwdBtn.disabled = step === 4 && !auto;
+    autoBtn.textContent = auto ? '\u275A\u275A Pause autoplay' : '\u25B6 Autoplay'; autoBtn.setAttribute('aria-pressed', auto ? 'true' : 'false');
+  }
+  function setAuto(on){ auto = on; autoT = 0; renderUI(); }
+  function go(k){ step = Math.max(0, Math.min(4, k)); autoT = 0; renderUI(); }
+  backBtn.addEventListener('click', function(){ setAuto(false); go(step - 1); });
+  fwdBtn.addEventListener('click', function(){ setAuto(false); go(step + 1); });
+  autoBtn.addEventListener('click', function(){ if (!auto && step === 4) go(0); setAuto(!auto); });
+  stepBtns.forEach(function(b){ b.addEventListener('click', function(){ setAuto(false); go(+b.getAttribute('data-uc-step')); }); });
+  function tickAuto(dt){
+    if (!auto) return;
+    autoT += dt;
+    if (autoT >= (step === 4 ? AUTO_HOLD : AUTO_DT)) { autoT = 0; step = step === 4 ? 0 : step + 1; renderUI(); }
+  }
+  renderUI();
+
+  /* ---------- 3D ---------- */
+  var fb = $('ucFallback');
+  function fail(){
+    if (fb) fb.hidden = false; canvas.style.display = 'none';
+    Object.keys(tags).forEach(function(k){ if (tags[k]) tags[k].style.display = 'none'; }); if (hint) hint.style.display = 'none'; if (viewTag) viewTag.style.display = 'none';
+    var last = performance.now(); (function loop(now){ requestAnimationFrame(loop); var dt = Math.min(0.05, (now - last) / 1000); last = now; tickAuto(dt); })(last);
+  }
+  if (typeof THREE === 'undefined') { fail(); return; }
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true}); } catch (e) { fail(); return; }
+  if (!renderer.getContext()) { fail(); return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x0d131a, 1);
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(36, 16 / 9, 0.5, 600);
+  var PI = Math.PI;
+  function sat01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function lerp(a, b, k){ return a + (b - a) * k; }
+  function damp(a, b, dt, r){ return a + (b - a) * (1 - Math.exp(-dt * r)); }
+
+  /* lights: key from above, fill from below so the rib underside reads clearly */
+  scene.add(new THREE.HemisphereLight(0xbfd6ff, 0x3a2a14, 0.7));
+  var key = new THREE.DirectionalLight(0xffe2bf, 0.85); key.position.set(35, 80, 55); scene.add(key);
+  var under = new THREE.DirectionalLight(0xfff0d8, 0.75); under.position.set(-20, -70, 30); scene.add(under);
+  var rim = new THREE.DirectionalLight(0x5cc8ff, 0.3); rim.position.set(-50, 30, -50); scene.add(rim);
+
+  /* floor: semi-transparent so the underside is visible from below */
+  var floorMat = new THREE.MeshBasicMaterial({color: 0x10171f, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false});
+  var floor = new THREE.Mesh(new THREE.CircleGeometry(80, 64), floorMat); floor.rotation.x = -PI / 2; floor.position.y = -0.02; floor.renderOrder = 0; scene.add(floor);
+  var grid = new THREE.GridHelper(150, 50, 0x2a3746, 0x18212c); grid.material.transparent = true; grid.material.opacity = 0.55; grid.material.depthWrite = false; scene.add(grid);
+
+  /* bottom rib path (Large SKU, schematic, inches): front hubs at z = +18, left/right straights, curved back. Front is open. */
+  var HW = 24, ZF = 18, ZS = -6, BR = 12, K = 0.6, RIB_Y = 0.5, RIB_R = 0.5;
+  function backPt(t){ return [-HW * Math.cos(t), ZS - BR * Math.sin(t)]; }
+  function polyLeft(z0, z1, n){ var p = []; for (var k = 0; k <= n; k++) p.push([-HW, lerp(z0, z1, k / n)]); return p; }
+  function polyRight(z0, z1, n){ var p = []; for (var k = 0; k <= n; k++) p.push([HW, lerp(z0, z1, k / n)]); return p; }
+  function polyBack(t0, t1, n){ var p = []; for (var k = 0; k <= n; k++) p.push(backPt(lerp(t0, t1, k / n))); return p; }
+  var ribPath = polyLeft(ZF, ZS, 12).concat(polyBack(0, PI, 48).slice(1), polyRight(ZS, ZF, 12).slice(1));
+
+  var canopy = new THREE.Group(); scene.add(canopy);   // everything that lifts / presses down
+  var ribMat = new THREE.MeshStandardMaterial({color: 0xe8eef5, roughness: 0.3, metalness: 0.6});
+  var ribGeo = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(ribPath.map(function(p){ return new THREE.Vector3(p[0], RIB_Y, p[1]); }), false, 'centripetal'), 240, RIB_R, 8, false);
+  canopy.add(new THREE.Mesh(ribGeo, ribMat));
+  /* loop-tape flange under the rib (always there) */
+  function ribbon(pts, width, y, m){
+    var n = pts.length, pos = new Float32Array(n * 6), idx = [];
+    for (var k = 0; k < n; k++) {
+      var a = pts[Math.max(0, k - 1)], b = pts[Math.min(n - 1, k + 1)], tx = b[0] - a[0], tz = b[1] - a[1], l = Math.hypot(tx, tz) || 1, nx = tz / l, nz = -tx / l;
+      pos.set([pts[k][0] - nx * width / 2, y, pts[k][1] - nz * width / 2, pts[k][0] + nx * width / 2, y, pts[k][1] + nz * width / 2], k * 6);
+      if (k < n - 1) idx.push(2 * k, 2 * k + 1, 2 * k + 2, 2 * k + 1, 2 * k + 3, 2 * k + 2);
+    }
+    var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
+    var x = new THREE.Mesh(g, m); x.renderOrder = 3; return x;
+  }
+  var loopMat = new THREE.MeshStandardMaterial({color: 0x8a6a3a, roughness: 1, side: THREE.DoubleSide});
+  canopy.add(ribbon(ribPath, 2.0, RIB_Y - RIB_R - 0.02, loopMat));
+  /* hubs */
+  [-1, 1].forEach(function(s){ var h = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 0.9, 24), new THREE.MeshStandardMaterial({color: 0x2a3542, roughness: 0.4, metalness: 0.3})); h.rotation.z = PI / 2; h.position.set(s * (HW + 0.4), RIB_Y + 0.4, ZF); canopy.add(h); });
+
+  /* canopy shell: stroller-style, hoops hub to hub, raised to full extension (front hoop upright) */
+  var shellPath = ribPath, ROWS = 13, COLS = shellPath.length;
+  function shellPt(p, phi){ var d = ZF - p[1]; return [p[0], RIB_Y + d * K * Math.sin(phi), ZF - d * Math.cos(phi)]; }
+  var sPos = new Float32Array(ROWS * COLS * 3), sIdx = [];
+  for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) {
+    var q = shellPt(shellPath[c], (PI / 2) * r / (ROWS - 1)); sPos.set(q, (r * COLS + c) * 3);
+    if (r < ROWS - 1 && c < COLS - 1) { var a0 = r * COLS + c, b0 = a0 + COLS; sIdx.push(a0, b0, a0 + 1, b0, b0 + 1, a0 + 1); }
+  }
+  var shellGeo = new THREE.BufferGeometry(); shellGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3)); shellGeo.setIndex(sIdx); shellGeo.computeVertexNormals();
+  var fabricMat = new THREE.MeshStandardMaterial({color: 0xe8762a, roughness: 0.9, side: THREE.DoubleSide, transparent: true, opacity: 0.42, depthWrite: false});
+  var shell = new THREE.Mesh(shellGeo, fabricMat); shell.renderOrder = 2; canopy.add(shell);
+  var hoopMat = new THREE.MeshStandardMaterial({color: 0xe8eef5, roughness: 0.3, metalness: 0.6});
+  [PI / 6, PI / 3, PI / 2].forEach(function(phi, i){
+    var pts = []; for (var k = 0; k < COLS; k += 2) { var q2 = shellPt(shellPath[k], phi); pts.push(new THREE.Vector3(q2[0], q2[1], q2[2])); }
+    canopy.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 96, i === 2 ? 0.38 : 0.28, 6, false), hoopMat));
+  });
+
+  /* Velcro strip runs (segmented like the strip schedule): left 3, right 3, curved back 4. 1.5 in wide, under the bottom rib. */
+  function segs(run){
+    var out = [], k;
+    if (run === 'left' || run === 'right') {   // straight from front hub (z = ZF) back to the curve (z = ZS); 2 in setbacks, 1 in gaps
+      var z0 = ZF - 2, z1 = ZS + 0.5, L = (z0 - z1 - 2) / 3;
+      for (k = 0; k < 3; k++) { var a = z0 - k * (L + 1), b = a - L; out.push(run === 'left' ? polyLeft(a, b, 6) : polyRight(a, b, 6)); }
+    } else {
+      var t0 = 0.12, t1 = PI - 0.12, g = 0.05, Lt = (t1 - t0 - 3 * g) / 4;
+      for (k = 0; k < 4; k++) { var ta = t0 + k * (Lt + g); out.push(polyBack(ta, ta + Lt, 12)); }
+    }
+    return out;
+  }
+  var hookTex = (function(){ var c = document.createElement('canvas'); c.width = c.height = 64; var g = c.getContext('2d'); g.fillStyle = '#8a5512'; g.fillRect(0, 0, 64, 64); g.fillStyle = '#ffd590'; for (var a = 0; a < 64; a += 5) for (var b = 0; b < 64; b += 5) { g.beginPath(); g.arc(a + 2.5, b + 2.5, 1.3, 0, 7); g.fill(); } var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t; })();
+  var STRIP_Y = RIB_Y - RIB_R - 0.12;
+  var runs = {};
+  ['left', 'right', 'back'].forEach(function(run){
+    var m = new THREE.MeshStandardMaterial({color: 0xffc061, map: hookTex, roughness: 0.85, emissive: new THREE.Color(0xffb547), emissiveIntensity: 0.35, side: THREE.DoubleSide, transparent: true, opacity: 0});
+    var fm = new THREE.MeshBasicMaterial({color: 0xffb547, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false});
+    var grp = new THREE.Group(); canopy.add(grp);
+    var foot = new THREE.Group(); scene.add(foot);   // stuck-down band on the floor
+    segs(run).forEach(function(p){
+      var strip = ribbon(p, 1.5, 0, m); strip.renderOrder = 4; grp.add(strip);
+      // thin edge so the strip has visible thickness side-on
+      var e = ribbon(p, 1.5, -0.08, m); e.renderOrder = 4; grp.add(e);
+      var f = ribbon(p, 2.6, 0.03, fm); f.renderOrder = 1; foot.add(f);
+    });
+    var mid = segs(run), mp = run === 'back' ? backPt(PI / 2) : [run === 'left' ? -HW : HW, (ZF - 2 + ZS) / 2];
+    runs[run] = {grp: grp, mat: m, footMat: fm, foot: foot, show: 0, anchor: mp};
+  });
+
+  /* ---------- camera orbit: drag up to go below the floor and see the rib underside ---------- */
+  var VIEWS = {'34': [-0.62, 0.42], under: [-0.5, -0.95], side: [-PI / 2, 0.12], top: [-0.0001, 1.4]};
+  var cam = {az: -0.62, el: 0.42}, camT = {az: -0.62, el: 0.42}, look = new THREE.Vector3(0, 5, -2), hinted = false;
+  viewBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var v = VIEWS[b.getAttribute('data-uc-view')]; camT.az = v[0]; camT.el = v[1];
+      while (cam.az - camT.az > PI) cam.az -= 2 * PI; while (camT.az - cam.az > PI) cam.az += 2 * PI;
+      viewBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    });
+  });
+  var drag = null;
+  canvas.addEventListener('pointerdown', function(ev){ drag = {x: ev.clientX, y: ev.clientY, id: ev.pointerId}; try { canvas.setPointerCapture(ev.pointerId); } catch (e) {} if (hint && !hinted) { hinted = true; hint.style.opacity = '0'; } });
+  canvas.addEventListener('pointermove', function(ev){
+    if (!drag || ev.pointerId !== drag.id) return;
+    var dx = ev.clientX - drag.x, dy = ev.clientY - drag.y; drag.x = ev.clientX; drag.y = ev.clientY;
+    // drag up (dy < 0) lowers the camera below the floor so you look up at the rib underside
+    camT.az -= dx * 0.009; camT.el = Math.max(-1.35, Math.min(1.45, camT.el + dy * 0.007)); cam.az = camT.az; cam.el = camT.el;
+    viewBtns.forEach(function(x){ x.setAttribute('aria-pressed', 'false'); });
+  });
+  function endDrag(){ drag = null; }
+  canvas.addEventListener('pointerup', endDrag); canvas.addEventListener('pointercancel', endDrag); canvas.addEventListener('lostpointercapture', endDrag);
+
+  /* ---------- labels: projected every frame, clamped inside the stage so they stay readable ---------- */
+  var pv = new THREE.Vector3();
+  function place(el, x, y, z, parent, opacity){
+    if (!el) return; pv.set(x, y, z); if (parent) parent.localToWorld(pv); pv.project(camera);
+    var w = stage.clientWidth, h = stage.clientHeight, vis = pv.z < 1 && opacity > 0.01;
+    el.style.opacity = vis ? opacity.toFixed(2) : '0';
+    if (!vis) return;
+    var hw = el.offsetWidth / 2 + 6, hh = el.offsetHeight / 2 + 6;
+    var sx = Math.max(hw, Math.min(w - hw, (pv.x + 1) / 2 * w)), sy = Math.max(hh, Math.min(h - hh, (1 - pv.y) / 2 * h));
+    el.style.transform = 'translate(' + sx.toFixed(1) + 'px,' + sy.toFixed(1) + 'px) translate(-50%,-50%)';
+  }
+
+  /* ---------- per-frame ---------- */
+  var cur = {lift: 7, press: 0}, clock = 0, onScreen = false, started = false;
+  function update(dt){
+    clock += dt; tickAuto(dt);
+    var tLift = step >= 4 ? 0 : 7;
+    cur.lift = damp(cur.lift, tLift, dt, 6); cur.press = damp(cur.press, step >= 4 ? 1 : 0, dt, 5);
+    canopy.position.y = cur.lift;
+    var engaged = cur.press > 0.5 && cur.lift < 0.6;
+    ['left', 'right', 'back'].forEach(function(run, i){
+      var R = runs[run], on = step >= i + 1 ? 1 : 0;
+      R.show = damp(R.show, on, dt, 7);
+      R.mat.opacity = sat01(R.show * 1.4);
+      R.grp.visible = R.show > 0.01;
+      // each strip rises into place from just below the rib, then sits flush under it
+      R.grp.position.y = STRIP_Y - (1 - R.show) * 2.4;
+      var latest = step === i + 1;
+      R.mat.emissiveIntensity = 0.35 + (latest ? 0.35 + 0.25 * Math.sin(clock * 5) : 0) + (engaged ? 0.15 : 0);
+      R.footMat.opacity = sat01((cur.press - 0.4) / 0.6) * R.show * (0.55 + 0.15 * Math.sin(clock * 3));
+      R.foot.visible = R.footMat.opacity > 0.01;
+      var t = tags[run], state = step < i + 1 ? 'not placed yet' : engaged ? 'engaged to floor' : 'on bottom rib';
+      var txt = 'Velcro \u00b7 ' + NAMES[run] + ' \u00b7 ' + state;
+      if (t.textContent !== txt) t.textContent = txt;
+      t.classList.toggle('is-off', step < i + 1); t.classList.toggle('is-on', step >= i + 1 && !engaged); t.classList.toggle('is-stuck', step >= i + 1 && engaged);
+    });
+    // floor fades when the camera goes under it
+    cam.az = damp(cam.az, camT.az, dt, 3); cam.el = damp(cam.el, camT.el, dt, 3);
+    var below = cam.el < 0.02;
+    floorMat.opacity = damp(floorMat.opacity, below ? 0.16 : 0.92, dt, 6); grid.material.opacity = damp(grid.material.opacity, below ? 0.25 : 0.55, dt, 6);
+    var vt = below ? 'UNDERSIDE VIEW \u00b7 LOOKING UP AT THE BOTTOM RIB' : cam.el > 1.2 ? 'TOP VIEW' : 'TOP-SIDE VIEW';
+    if (viewTag.textContent !== vt) viewTag.textContent = vt;
+    var aspect = camera.aspect, kk = aspect < 1.3 ? Math.pow(1.3 / aspect, 0.8) : 1, dist = 106 * kk;
+    camera.position.set(look.x + Math.sin(cam.az) * Math.cos(cam.el) * dist, look.y + Math.sin(cam.el) * dist, look.z + Math.cos(cam.az) * Math.cos(cam.el) * dist);
+    camera.up.set(0, 1, 0); camera.lookAt(look); camera.updateMatrixWorld();
+    // labels: anchored just outside each run, at the strip, so they follow the model as it rotates
+    ['left', 'right', 'back'].forEach(function(run, i){
+      var R = runs[run], a = R.anchor, out = run === 'back' ? [0, -4] : [run === 'left' ? -4.5 : 4.5, 0];
+      place(tags[run], a[0] + out[0], STRIP_Y - 0.2, a[1] + out[1], canopy, step >= i + 1 ? 1 : 0.6);
+    });
+    place(tags.front, 0, 0.6, ZF + 3, null, 0.85);
+  }
+  function resize(){ var w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(stage); else window.addEventListener('resize', resize);
+  resize();
+  if (window.IntersectionObserver) new IntersectionObserver(function(en){
+    onScreen = en[0].isIntersecting;
+    if (onScreen && !started) { started = true; if (!reduce) setAuto(true); }
+  }, {threshold: 0.35}).observe(stage); else { onScreen = true; }
+  var last = performance.now();
+  function frame(now){
+    requestAnimationFrame(frame);
+    var dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (!onScreen || document.hidden) return;
+    update(dt); renderer.render(scene, camera);
   }
   update(0.016); renderer.render(scene, camera);
   requestAnimationFrame(frame);
