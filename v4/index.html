@@ -140,6 +140,29 @@ footer strong{color:var(--text)}
   *,*::before,*::after{animation-duration:0s!important;animation-iteration-count:1!important;transition:none!important}
   html{scroll-behavior:auto}
 }
+/* ===== 3D demo: V3 control pattern ported to V4 ===== */
+#see-it-in-action .tc-cap{display:block}
+#see-it-in-action .tc-slider{display:grid;grid-template-columns:minmax(14rem,auto) 1fr;gap:.8rem;align-items:center;font-size:.88rem;color:#cdd6e0}
+#see-it-in-action .tc-slider b{font-family:var(--mono);font-weight:600;font-size:.78rem;color:var(--amber);margin-left:.3rem}
+#see-it-in-action .tc-slider input{width:100%;accent-color:var(--amber);height:28px;margin:0;cursor:pointer}
+#see-it-in-action .tc-readout:empty{display:none}
+#see-it-in-action .sia-stage{touch-action:pan-y}
+#see-it-in-action .sia-label{position:absolute;left:14px;top:14px;max-width:min(440px,calc(100% - 28px));display:flex;gap:.7rem;align-items:flex-start;background:rgba(11,15,20,.8);border:1px solid rgba(255,181,71,.28);border-radius:12px;padding:.7rem .85rem;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transform:translateY(-6px);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+#see-it-in-action .sia-label.is-in{opacity:1;transform:none}
+#see-it-in-action .sia-tag{flex:none;font-family:var(--mono);font-size:.78rem;font-weight:700;color:#1a0e02;background:var(--amber);border-radius:7px;min-width:1.7rem;height:1.7rem;display:grid;place-items:center;padding:0 .35rem}
+#see-it-in-action .sia-label strong{display:block;font-size:1rem;line-height:1.25;color:var(--text)}
+#see-it-in-action .sia-label p{margin:.25rem 0 0;font-size:.84rem;line-height:1.45;color:#cdd6e0}
+#see-it-in-action .sia-progress{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.06)}
+#see-it-in-action .sia-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--orange))}
+#see-it-in-action .tc-dim.gh{font-size:.64rem;opacity:.85;border-style:dashed}
+#see-it-in-action .sia-figure figcaption{align-items:flex-start}
+#see-it-in-action .sia-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media (max-width:640px){
+  #see-it-in-action .tc-slider{grid-template-columns:1fr;gap:.2rem}
+  #see-it-in-action .sia-label{left:8px;top:8px;padding:.55rem .65rem}
+  #see-it-in-action .sia-label p{font-size:.78rem}
+  #see-it-in-action .tc-cfg{font-size:.62rem}
+}
 </style>
 </head>
 <body>
@@ -243,43 +266,63 @@ footer strong{color:var(--text)}
 <!-- ================= 3D ================= -->
 <section id="see-it-in-action" aria-labelledby="sia-title">
   <div class="wrap">
-    <p class="kicker">Interactive 3D · canopy + flat base panel · fixed sizes</p>
-    <h2 id="sia-title">3D modeling reference: pick a size</h2>
-    <p class="lead">Choose <strong>Small, Medium or Large</strong> to rebuild the model at that SKU's fixed geometry. The model shows the flat base panel with its hook strips (amber), the formed ribs, the hinge knuckle rows, the ridge tape, and a <span style="color:#5fe0b5">dashed clearance envelope</span> that is 20.0 in tall across the center panel chord. Labels show base span S, center chord C, wing length Wg and rib-centerline height h. The readout gives the inner-face headroom over the 20.0 in floor. <strong>Detach</strong> lifts the cover off the base to show the strip layout. Drag to rotate.</p>
+    <p class="kicker">Interactive 3D · stroller-fold canopy + sliding platform + floor hook-strip panel</p>
+    <h2 id="sia-title">3D build demo: setup, canopy locks and span</h2>
+    <p class="lead">Press <strong>Play setup</strong> to run the full sequence. Press it again to <strong>Pause</strong>, or drive the model with the three sliders. First the <strong>sliding platform</strong> runs out on its rails and the <strong>telescoping bottom rib</strong> opens to span S. Then <strong>three hook strips</strong> are placed on the flat panel under the bottom rib: <strong>left side, right side and curved back</strong>. The panel presses down onto the mating loop strips already stuck to the floor, so the unit can be fixed wherever it is needed. The three-panel canopy (two wing panels and a center dome, joined by hinge knuckles) swings up like a stroller canopy. It clicks into a <strong>midway lock</strong> and then a <strong>full-extension lock</strong>. Finally it releases, falls toward the back and <strong>collapses flat onto itself</strong>. The <strong>Span</strong> slider shows the house-profile height change. Wing length Wg and center chord C are fixed, so <span style="color:#ffb547">h = √(Wg² − ((S − C)/2)²)</span>: a wider span gives a lower arc and a narrower span gives a taller one. Dashed ghost curves mark the 24 in and 48 in extremes.</p>
     <figure class="demo sia-figure">
       <div class="sia-stage" id="siaStage">
-        <canvas id="siaCanvas" role="img" aria-label="Interactive 3D model of an OverCover V4 canopy on its flat base panel. A three-panel house-profile canopy (two straight side wing panels and a lightly crowned center dome joined by hinge knuckle rows) is held by formed steel ribs and closed at the back by a gable panel. Amber hook strips sit around the base perimeter. A dashed box under the center panel shows the 20 inch clearance envelope. The size buttons switch between Small 24 in, Medium 36 in and Large 48 in base spans."></canvas>
-        <span class="sia-badge" aria-hidden="true">Drag to rotate</span>
-        <span class="tc-dim span" id="dimS" aria-hidden="true"></span>
-        <span class="tc-dim arc" id="dimH" aria-hidden="true"></span>
-        <span class="tc-dim wg" id="dimC" aria-hidden="true"></span>
-        <span class="tc-dim wg" id="dimW" aria-hidden="true"></span>
+        <canvas id="siaCanvas" role="img" aria-label="Interactive 3D model of the OverCover V4 canopy. A sliding platform with a telescoping bottom rib sets the base span. A thin flat panel lies under the bottom rib. Three hook strips (left side, right side and curved back) are placed on that panel and pressed onto mating loop strips on the floor. A five-rib three-panel canopy (left wing panel, center dome, right wing panel, joined by hinge knuckle rows) pivots on hubs at the front of the platform. It rises like a stroller canopy, locks at midway and at full extension, and folds back flat onto itself. Labels show span, center height and clearance."></canvas>
+        <div class="sia-label is-in" id="siaLabel" aria-hidden="true">
+          <span class="sia-tag" id="siaTag">1</span>
+          <div>
+            <strong id="siaTitle">OverCover kit: folded</strong>
+            <p id="siaDesc"></p>
+          </div>
+        </div>
+        <span class="sia-badge" id="siaBadge" aria-hidden="true">Drag to rotate</span>
+        <span class="tc-dim span" id="dimSpan" aria-hidden="true"></span>
+        <span class="tc-dim arc" id="dimArc" aria-hidden="true"></span>
         <span class="tc-dim clr" id="dimClr" aria-hidden="true"></span>
-        <span class="tc-cfg" id="tcCfg" aria-hidden="true">OVERCOVER V4 · LARGE</span>
-        <div class="sia-fallback" id="siaFallback" hidden>This 3D model needs WebGL and the Three.js library. The geometry section below shows the same profiles as 2D drawings.</div>
+        <span class="tc-dim span" id="dimExt" aria-hidden="true" style="color:#9fd0ff"></span>
+        <span class="tc-dim gh arc" id="dimGhostN" aria-hidden="true">S 24 in · h 24.8 in</span>
+        <span class="tc-dim gh span" id="dimGhostW" aria-hidden="true">S 48 in · h 20.0 in</span>
+        <span class="tc-cfg" id="tcCfg" aria-hidden="true">OVERCOVER · S 36 IN</span>
+        <div class="sia-progress" aria-hidden="true"><span id="siaBar"></span></div>
+        <div class="sia-fallback" id="siaFallback" hidden>This 3D demo needs WebGL and the Three.js library. The geometry and attachment sections below describe the same canopy, platform and hook-strip panel.</div>
       </div>
-      <figcaption>
+      <figcaption class="tc-cap">
         <div class="tc-controls">
           <div class="tc-row">
-            <span class="controls" role="group" aria-label="Size">
-              <span class="tc-lbl">Size:</span>
-              <button class="btn" type="button" data-size="S" aria-pressed="false">Small · S 24 in</button>
-              <button class="btn" type="button" data-size="M" aria-pressed="false">Medium · S 36 in</button>
-              <button class="btn" type="button" data-size="L" aria-pressed="true">Large · S 48 in</button>
+            <span class="controls" role="group" aria-label="Demo">
+              <button class="btn primary" type="button" id="tcPlay" aria-pressed="false">▶ Play setup</button>
+              <button class="btn" type="button" id="tcSeeThru" aria-pressed="false">See-through fabric</button>
             </span>
             <span class="controls" role="group" aria-label="Camera view">
-              <button class="btn" type="button" data-view="34" aria-pressed="true">3/4</button>
-              <button class="btn" type="button" data-view="front" aria-pressed="false">Front</button>
-              <button class="btn" type="button" data-view="side" aria-pressed="false">Side</button>
-              <button class="btn" type="button" data-view="top" aria-pressed="false">Top</button>
+              <button class="btn" type="button" data-tc-view="34" aria-pressed="true">3/4 view</button>
+              <button class="btn" type="button" data-tc-view="front" aria-pressed="false">Front</button>
+              <button class="btn" type="button" data-tc-view="side" aria-pressed="false">Side</button>
+              <button class="btn" type="button" data-tc-view="top" aria-pressed="false">Top</button>
             </span>
           </div>
+          <label class="tc-slider" for="tcSides"><span>Sliding platform + hook strips <b id="tcSidesOut">0%</b></span>
+            <input id="tcSides" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
+          </label>
+          <label class="tc-slider" for="tcCanopy"><span>Canopy <b id="tcCanopyOut">folded flat</b></span>
+            <input id="tcCanopy" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
+          </label>
+          <label class="tc-slider" for="tcSpan"><span>Span S (telescoping bottom rib) <b id="tcSpanOut">36.0 in · h 23.3 in</b></span>
+            <input id="tcSpan" type="range" min="24" max="48" step="1" value="36" aria-describedby="tcReadout">
+          </label>
           <div class="tc-row">
-            <span class="controls" role="group" aria-label="Display">
-              <button class="btn" type="button" id="tcSee" aria-pressed="true">See-through fabric</button>
-              <button class="btn" type="button" id="tcDetach" aria-pressed="false">Detach cover (wash)</button>
+            <span class="controls" role="group" aria-label="Span setting">
+              <span class="tc-lbl">Span:</span>
+              <button class="btn" type="button" data-tc-ext="condensed" aria-pressed="false">Condensed 24 in · tall arc</button>
+              <button class="btn" type="button" data-tc-ext="standard" aria-pressed="true">Standard 36 in</button>
+              <button class="btn" type="button" data-tc-ext="extended" aria-pressed="false">Extended 48 in · low arc</button>
+            </span>
+            <span class="controls" role="group" aria-label="Inverse arc demo">
+              <button class="btn" type="button" id="tcFlex" aria-pressed="false">↔ Extend / condense demo</button>
               <button class="btn" type="button" id="tcDims" aria-pressed="true">Measurements</button>
-              <button class="btn" type="button" id="tcClr" aria-pressed="true">Clearance envelope</button>
             </span>
           </div>
           <p class="tc-readout" id="tcReadout" aria-live="polite"></p>
@@ -287,16 +330,28 @@ footer strong{color:var(--text)}
       </figcaption>
     </figure>
     <ul class="sia-key" aria-label="Color key">
-      <li><i style="background:#3b4450;border:1px solid #56708a"></i>Flat base panel</li>
-      <li><i style="background:#ffb547"></i>Hook strips, hook side up (adhesive)</li>
-      <li><i style="background:#ffe2ad"></i>Loop flange on canopy hem</li>
-      <li><i style="background:#e8762a"></i>Wing panels (darker) / center dome (lighter)</li>
-      <li><i style="background:#e8eef5"></i>0.250 in formed steel ribs</li>
-      <li><i style="background:#ffd08a"></i>Hinge knuckle rows</li>
-      <li><i style="background:#c7a0ff"></i>Ridge tape across center panel</li>
-      <li><i style="background:transparent;border:1px dashed #5fe0b5"></i>20.0 in clearance envelope</li>
-      <li><i style="background:transparent;border:1px dashed #9aa8b8"></i>Load zone (reference only, not supplied)</li>
+      <li><i style="background:#cfd6de"></i>Sliding platform rails + sleds</li>
+      <li><i style="background:#e8eef5"></i>Telescoping bottom rib + canopy ribs</li>
+      <li><i style="background:#3b4450;border:1px solid #56708a"></i>Flat panel under the bottom rib</li>
+      <li><i style="background:#ffb547"></i>Hook strips ×3 (left, right, curved back)</li>
+      <li><i style="background:#f3e3c4"></i>Mating loop strips stuck to the floor</li>
+      <li><i style="background:#2a3542;border:1px solid #ffb547"></i>Hinge hubs (mint at a lock position)</li>
+      <li><i style="background:#ffd08a"></i>Hinge knuckles (panel seams)</li>
+      <li><i style="background:#e8762a"></i>Cover: wing panels darker, center dome lighter</li>
+      <li><i style="background:#5cc8ff"></i>Span S</li>
+      <li><i style="background:#ffb547"></i>Center height h</li>
+      <li><i style="background:#5fe0b5"></i>Inner-face clearance</li>
     </ul>
+    <ol class="sia-sr">
+      <li>The kit arrives folded: the sliding platform is retracted and the canopy lies flat at the back. Three loop strips are already stuck to the floor where the unit will sit.</li>
+      <li>The sliding platform runs out on its rails, and the telescoping bottom rib opens to the selected span S.</li>
+      <li>Three hook strips are placed on the flat panel under the bottom rib: one on the left side, one on the right side and one along the curved back.</li>
+      <li>The panel presses down so the hook strips mate with the loop strips on the floor. The unit is now fixed in place and can be peeled up and moved.</li>
+      <li>The canopy swings up from the back like a stroller canopy and clicks into the midway lock.</li>
+      <li>It continues to full extension and locks with the front rib upright. Left, right and back are closed; the front is open.</li>
+      <li>Span 48 in gives a center height of 20.0 in. Span 24 in gives 24.8 in. The wing length and center chord stay the same.</li>
+      <li>The locks release. The canopy falls toward the back and collapses flat onto itself, then rises again to the full lock.</li>
+    </ol>
   </div>
 </section>
 
@@ -823,203 +878,525 @@ var OC = (function(){
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
 <script>
-/* ===== Three.js r128 interactive model, 1 unit = 1 in ===== */
+/* ===== OverCover V4 3D build demo: Three.js r128 stroller-fold canopy, sliding platform, floor hook-strip panel (scoped to #see-it-in-action) ===== */
 (function(){
-  var stage = document.getElementById('siaStage'), canvas = document.getElementById('siaCanvas');
-  var fb = document.getElementById('siaFallback');
-  function fail(){ if (fb) fb.hidden = false; }
+  var stage = document.getElementById('siaStage');
+  var canvas = document.getElementById('siaCanvas');
   if (!stage || !canvas) return;
+  var fallback = document.getElementById('siaFallback');
+  function fail(){ if (fallback) fallback.hidden = false; canvas.style.display = 'none'; var l = document.getElementById('siaLabel'); if (l) l.style.display = 'none'; }
   if (typeof THREE === 'undefined') { fail(); return; }
   var renderer;
-  try { renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:false}); }
-  catch(e){ fail(); return; }
+  try { renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true}); } catch (e) { fail(); return; }
+  if (!renderer.getContext()) { fail(); return; }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setClearColor(0x0d131a, 1);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
   var scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x0d131a, 160, 320);
-  var camera = new THREE.PerspectiveCamera(35, 16/9, 0.5, 1000);
-  scene.add(new THREE.HemisphereLight(0xdfe9f5, 0x1a1208, 0.75));
-  var dl = new THREE.DirectionalLight(0xffffff, 0.75); dl.position.set(40, 80, 60); scene.add(dl);
-  var dl2 = new THREE.DirectionalLight(0xffb070, 0.25); dl2.position.set(-60, 30, -40); scene.add(dl2);
-  var grid = new THREE.GridHelper(140, 28, 0x24313f, 0x18222e); grid.position.y = -0.25; scene.add(grid);
+  scene.fog = new THREE.Fog(0x0d131a, 140, 280);
+  var camera = new THREE.PerspectiveCamera(36, 16/9, 0.5, 600);
 
-  var state = {size:'L', see:true, detach:false, dims:true, clr:true, lift:0,
-    az:0.62, el:0.38, dist:120, tAz:0.62, tEl:0.38, tDist:120, auto:true};
-  var root = null, cover = null, clrGroup = null, fabricMats = [], G = null, P = null;
-  var labels = {S:document.getElementById('dimS'), H:document.getElementById('dimH'), C:document.getElementById('dimC'),
-    W:document.getElementById('dimW'), CL:document.getElementById('dimClr')};
-  var anchors = {};
-  var cfg = document.getElementById('tcCfg'), readout = document.getElementById('tcReadout');
-
-  function disposeTree(o){ o.traverse(function(c){ if (c.geometry) c.geometry.dispose(); if (c.material){ (Array.isArray(c.material) ? c.material : [c.material]).forEach(function(m){ m.dispose(); }); } }); }
-  function box(w, h, d, mat, x, y, z){ var m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); m.position.set(x, y, z); return m; }
-  function dashedLines(pairs, color, dash){
-    var arr = []; pairs.forEach(function(p){ arr.push(p[0][0], p[0][1], p[0][2], p[1][0], p[1][1], p[1][2]); });
-    var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(arr, 3));
-    var l = new THREE.LineSegments(g, new THREE.LineDashedMaterial({color:color, dashSize:dash, gapSize:dash*0.7, transparent:true, opacity:0.95}));
-    l.computeLineDistances(); return l;
-  }
-  function panelGeo(pts, i0, i1, D){
-    var pos = [], idx = [], n = i1 - i0 + 1;
-    for (var i=0;i<n;i++){ var p = pts[i0 + i]; pos.push(p[0], p[1], -D/2, p[0], p[1], D/2); }
-    for (var j=0;j<n-1;j++){ var a = j*2; idx.push(a, a+1, a+2, a+1, a+3, a+2); }
-    var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); return g;
-  }
-  function offsetPts(pts, d){ /* offset outward (normal pointing away from interior) */
-    var out = [];
-    for (var i=0;i<pts.length;i++){
-      var a = pts[Math.max(0, i-1)], b = pts[Math.min(pts.length-1, i+1)];
-      var tx = b[0]-a[0], ty = b[1]-a[1], L = Math.sqrt(tx*tx + ty*ty) || 1;
-      out.push([pts[i][0] - ty/L*d, pts[i][1] + tx/L*d]);
-    }
-    return out;
-  }
-
-  function build(k){
-    if (root){ scene.remove(root); disposeTree(root); }
-    fabricMats = [];
-    P = OC.profile(k, 12); G = P.G; var g = G.g, D = g.D, S = g.S;
-    root = new THREE.Group(); cover = new THREE.Group(); clrGroup = new THREE.Group();
-    root.add(cover); root.add(clrGroup); scene.add(root);
-    /* base panel */
-    root.add(box(S, 0.236, D, new THREE.MeshStandardMaterial({color:0x3b4450, roughness:0.85, metalness:0.05}), 0, -0.118, 0));
-    var hookMat = new THREE.MeshStandardMaterial({color:0xffb547, roughness:0.6, emissive:0x3a2200});
-    OC.strips(k).forEach(function(r){ root.add(box(r[2]-r[0], 0.08, r[3]-r[1], hookMat, (r[0]+r[2])/2, 0.04, (r[1]+r[3])/2)); });
-    /* load zone */
-    var bx = S/2 - 2.5, bz = D/2 - 2.5, by = 0.03;
-    root.add(dashedLines([[[-bx,by,-bz],[bx,by,-bz]],[[bx,by,-bz],[bx,by,bz]],[[bx,by,bz],[-bx,by,bz]],[[-bx,by,bz],[-bx,by,-bz]]], 0x9aa8b8, 1.2));
-    /* clearance envelope */
-    var cx = g.C/2, y0 = 0.24, y1 = 20.24, z0 = -D/2 + 1, z1 = D/2 - 1, E = [];
-    var corners = [[-cx,y0],[cx,y0],[cx,y1],[-cx,y1]];
-    for (var i=0;i<4;i++){ var a = corners[i], b = corners[(i+1)%4];
-      E.push([[a[0],a[1],z0],[b[0],b[1],z0]]); E.push([[a[0],a[1],z1],[b[0],b[1],z1]]); E.push([[a[0],a[1],z0],[a[0],a[1],z1]]); }
-    clrGroup.add(dashedLines(E, 0x5fe0b5, 0.9));
-    var clrFill = new THREE.Mesh(new THREE.BoxGeometry(g.C, 20, D - 2), new THREE.MeshBasicMaterial({color:0x5fe0b5, transparent:true, opacity:0.05, depthWrite:false}));
-    clrFill.position.set(0, 10.24, 0); clrGroup.add(clrFill);
-    /* cover: fabric (inner face of fabric sits outside rib) */
-    var pts = offsetPts(P.pts, 0.35);
-    var wingMat = new THREE.MeshStandardMaterial({color:0xc85a1c, roughness:0.9, side:THREE.DoubleSide, transparent:true, opacity:0.55, depthWrite:false});
-    var domeMat = new THREE.MeshStandardMaterial({color:0xff9a3c, roughness:0.9, side:THREE.DoubleSide, transparent:true, opacity:0.55, depthWrite:false});
-    var gabMat = new THREE.MeshStandardMaterial({color:0xa94a16, roughness:0.95, side:THREE.DoubleSide, transparent:true, opacity:0.5, depthWrite:false});
-    fabricMats = [wingMat, domeMat, gabMat];
-    cover.add(new THREE.Mesh(panelGeo(pts, 0, P.kL, D), wingMat));
-    cover.add(new THREE.Mesh(panelGeo(pts, P.kL, P.kR, D), domeMat));
-    cover.add(new THREE.Mesh(panelGeo(pts, P.kR, pts.length-1, D), wingMat));
-    var shp = new THREE.Shape(); shp.moveTo(pts[0][0], 0.2);
-    pts.forEach(function(p){ shp.lineTo(p[0], Math.max(p[1], 0.2)); }); shp.lineTo(pts[0][0], 0.2);
-    var gab = new THREE.Mesh(new THREE.ShapeGeometry(shp), gabMat); gab.position.z = -D/2; cover.add(gab);
-    /* loop flange (left, right, back) */
-    var flMat = new THREE.MeshStandardMaterial({color:0xffe2ad, roughness:0.9});
-    cover.add(box(2.0, 0.08, D, flMat, -S/2 + 1.0, 0.12, 0));
-    cover.add(box(2.0, 0.08, D, flMat,  S/2 - 1.0, 0.12, 0));
-    cover.add(box(S - 4, 0.08, 2.0, flMat, 0, 0.12, -D/2 + 1.0));
-    /* ribs */
-    var ribMat = new THREE.MeshStandardMaterial({color:0xe8eef5, roughness:0.35, metalness:0.6});
-    var capMat = new THREE.MeshStandardMaterial({color:0x1b1f24, roughness:0.6});
-    G.stations.forEach(function(z){
-      var v = P.pts.map(function(p){ return new THREE.Vector3(p[0], p[1], z); });
-      var curve = new THREE.CatmullRomCurve3(v, false, 'catmullrom', 0.0);
-      cover.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 160, 0.16, 8, false), ribMat));
-      [-1, 1].forEach(function(sgn){ var c = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 1.25, 12), capMat);
-        var ux = Math.cos(G.th)*0.625, uy = Math.sin(G.th)*0.625;
-        c.position.set(sgn < 0 ? -S/2 + ux : S/2 - ux, uy, z); c.rotation.z = sgn*(Math.PI/2 - G.th); cover.add(c); });
+  /* ---------- helpers ---------- */
+  var PI = Math.PI, i;
+  function sat01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function sstep(a, b, x){ x = sat01((x - a) / (b - a)); return x * x * (3 - 2 * x); }
+  function lerp(a, b, k){ return a + (b - a) * k; }
+  function mat(color, o){
+    o = o || {};
+    return new THREE.MeshStandardMaterial({
+      color: color, roughness: o.r != null ? o.r : 0.75, metalness: o.m || 0,
+      transparent: (o.o != null && o.o < 1), opacity: o.o != null ? o.o : 1,
+      side: o.side || THREE.FrontSide, map: o.map || null,
+      emissive: o.e != null ? o.e : 0x000000, emissiveIntensity: o.ei || 0
     });
-    /* knuckles: groups of 3 between stations */
-    var kMat = new THREE.MeshStandardMaterial({color:0xffd08a, roughness:0.5});
-    var kp = offsetPts(P.pts, 0.45);
-    [P.kL, P.kR].forEach(function(i){
-      for (var s=0;s<G.stations.length-1;s++){
-        var zm = (G.stations[s] + G.stations[s+1])/2;
-        for (var q=-1;q<=1;q++){ var kn = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.19, 0.75, 12), kMat);
-          kn.rotation.x = Math.PI/2; kn.position.set(kp[i][0], kp[i][1], zm + q*2.0); cover.add(kn); }
+  }
+  function mesh(geo, m, cast){ var x = new THREE.Mesh(geo, m); x.castShadow = cast !== false; x.receiveShadow = true; return x; }
+  function dotTex(bg, dot, step, rad){
+    var c = document.createElement('canvas'); c.width = c.height = 64;
+    var g = c.getContext('2d'); g.fillStyle = bg; g.fillRect(0, 0, 64, 64); g.fillStyle = dot;
+    for (var a = 0; a < 64; a += step) for (var b = 0; b < 64; b += step) {
+      g.beginPath(); g.arc(a + step / 2 + ((b / step) % 2) * step / 4, b + step / 2, rad, 0, 7); g.fill();
+    }
+    var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+  }
+  function quiltTex(){
+    var c = document.createElement('canvas'); c.width = c.height = 128;
+    var g = c.getContext('2d'); g.fillStyle = '#e8762a'; g.fillRect(0, 0, 128, 128);
+    g.strokeStyle = 'rgba(255,214,150,.55)'; g.lineWidth = 2; g.setLineDash([6, 5]);
+    g.beginPath(); g.moveTo(0, 0); g.lineTo(128, 128); g.moveTo(128, 0); g.lineTo(0, 128); g.stroke();
+    g.setLineDash([]); g.strokeStyle = 'rgba(120,40,0,.25)'; g.lineWidth = 1;
+    g.beginPath(); g.moveTo(0, 64); g.lineTo(64, 0); g.lineTo(128, 64); g.lineTo(64, 128); g.closePath(); g.stroke();
+    var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(14, 5); return t;
+  }
+  function shapeFromXZ(pts){ var s = new THREE.Shape(); s.moveTo(pts[0][0], -pts[0][1]); for (var k = 1; k < pts.length; k++) s.lineTo(pts[k][0], -pts[k][1]); s.closePath(); return s; }
+  function slabGeo(pts, h){ var g = new THREE.ExtrudeGeometry(shapeFromXZ(pts), {depth: h, bevelEnabled: false, steps: 1}); g.rotateX(-PI / 2); return g; }
+  var SPH = new THREE.SphereGeometry(1, 24, 16);
+
+  /* ---------- design constants (inches) ---------- */
+  // V4 house profile, Large reference: center chord C, wing length Wg, base span S (24-48 in), h = sqrt(Wg^2 - ((S - C)/2)^2)
+  var G = {C: 18, WG: 25, CROWN: 0.5, ZH: 12, Y0: 0.9, PANEL_T: 0.25, STRIP_T: 0.12, BAND: 2.2, SFOLD: 20};
+  function hOf(S){ var a = (S - G.C) / 2; return Math.sqrt(Math.max(0, G.WG * G.WG - a * a)); }
+  var NL = 28, NC = 40, HN = 2 * NL + NC, COLS = HN + 1, SEAM1 = NL, SEAM2 = NL + NC;
+  // rib profile as [x, v]: v = vertical reach when the rib stands upright (= depth behind the hub when folded flat)
+  function profile(S){
+    var h = hOf(S), pts = [], k;
+    for (k = 0; k <= NL; k++) { var f = k / NL; pts.push([lerp(-S / 2, -G.C / 2, f), h * f]); }
+    for (k = 1; k <= NC; k++) { var u = -1 + 2 * k / NC; pts.push([u * G.C / 2, h + G.CROWN * (1 - u * u)]); }
+    for (k = NL - 1; k >= 0; k--) { var f2 = k / NL; pts.push([lerp(S / 2, G.C / 2, f2), h * f2]); }
+    for (var it = 0; it < 3; it++) {   // R 1.5 in formed bends at the knuckle lines
+      var q = pts.map(function(p){ return p.slice(); });
+      for (k = 1; k < HN; k++) { q[k][0] = (pts[k - 1][0] + 2 * pts[k][0] + pts[k + 1][0]) / 4; q[k][1] = (pts[k - 1][1] + 2 * pts[k][1] + pts[k + 1][1]) / 4; }
+      pts = q;
+    }
+    return pts;
+  }
+  // stroller fold: every rib pivots about the common hub axis at the front of the platform
+  function ribPt(p, phi, out){ out.x = p[0]; out.y = G.Y0 + p[1] * Math.sin(phi); out.z = G.ZH - p[1] * Math.cos(phi); return out; }
+  // plan path of the bottom rib (rib 0 lying flat): left side -> curved back -> right side
+  function planPath(S){
+    var pr = profile(S), path = [[-S / 2, G.ZH + 3]];
+    pr.forEach(function(p){ path.push([p[0], G.ZH - p[1]]); });
+    path.push([S / 2, G.ZH + 3]);
+    for (var it = 0; it < 8; it++) {   // the panel and the back strip follow a softened curve
+      var q = path.map(function(p){ return p.slice(); });
+      for (var k = 2; k < path.length - 2; k++) { q[k][0] = (path[k - 1][0] + 2 * path[k][0] + path[k + 1][0]) / 4; q[k][1] = (path[k - 1][1] + 2 * path[k][1] + path[k + 1][1]) / 4; }
+      path = q;
+    }
+    return path;
+  }
+  function bandOutline(path, a, b, w){
+    var L = [], R = [];
+    for (var k = a; k <= b; k++) {
+      var p0 = path[Math.max(0, k - 1)], p1 = path[Math.min(path.length - 1, k + 1)], dx = p1[0] - p0[0], dz = p1[1] - p0[1], n = Math.hypot(dx, dz) || 1;
+      var nx = -dz / n, nz = dx / n;
+      L.push([path[k][0] + nx * w, path[k][1] + nz * w]); R.push([path[k][0] - nx * w, path[k][1] - nz * w]);
+    }
+    return L.concat(R.reverse());
+  }
+  // the three hook strips: path index ranges (path index = profile index + 1)
+  var STRIPS = [{name: 'left', a: 3, b: 20, dir: [-1, 0]}, {name: 'right', a: COLS - 19, b: COLS - 2, dir: [1, 0]}, {name: 'back', a: 24, b: COLS - 23, dir: [0, -1]}];
+
+  /* ---------- lights, floor ---------- */
+  scene.add(new THREE.HemisphereLight(0xbfd6ff, 0x1a1208, 0.62));
+  var key = new THREE.DirectionalLight(0xffe2bf, 0.95);
+  key.position.set(35, 80, 55); key.castShadow = true; key.shadow.mapSize.set(1024, 1024);
+  var sc = key.shadow.camera; sc.left = -55; sc.right = 55; sc.top = 55; sc.bottom = -55; sc.near = 10; sc.far = 220;
+  key.shadow.bias = -0.0008; scene.add(key);
+  var rimL = new THREE.DirectionalLight(0x5cc8ff, 0.35); rimL.position.set(-50, 30, -50); scene.add(rimL);
+  var warm = new THREE.PointLight(0xff7a1a, 0.0, 40, 2); scene.add(warm);
+  var floor = mesh(new THREE.CircleGeometry(170, 64), mat(0x10171f, {r: 1}), false);
+  floor.rotation.x = -PI / 2; floor.position.y = -0.02; scene.add(floor);
+  var grid = new THREE.GridHelper(260, 65, 0x1d2734, 0x161e28); grid.position.y = 0;
+  grid.material.transparent = true; grid.material.opacity = 0.5; scene.add(grid);
+
+  var hookTex = dotTex('#c98a2c', '#ffd08a', 8, 2.4); hookTex.repeat.set(0.4, 0.4);
+  var loopTex = dotTex('#d9c7a2', '#f6ead2', 6, 2.0); loopTex.repeat.set(0.5, 0.5);
+
+  /* ---------- the unit (lifted while hook strips are placed, then pressed to the floor) ---------- */
+  var unit = new THREE.Group(); scene.add(unit);
+  var panelMat = mat(0x3b4450, {r: 0.7, o: 0.999}), hookMat = mat(0xffffff, {map: hookTex, r: 1, e: 0xffb547, ei: 0.1}), loopMat = mat(0xffffff, {map: loopTex, r: 1, e: 0xffd08a, ei: 0, o: 0.9});
+  var panelMesh = null, stripMeshes = [], padMeshes = [], panelKey = '', padKey = '';
+  var stripGroups = STRIPS.map(function(){ var g = new THREE.Group(); unit.add(g); return g; });
+  function disposeMesh(m){ if (m) { if (m.parent) m.parent.remove(m); m.geometry.dispose(); } }
+  function buildPanel(S){
+    var path = planPath(S);
+    disposeMesh(panelMesh);
+    panelMesh = mesh(slabGeo(bandOutline(path, 0, path.length - 1, G.BAND), G.PANEL_T), panelMat); unit.add(panelMesh);
+    STRIPS.forEach(function(st, k){
+      disposeMesh(stripMeshes[k]);
+      var m = mesh(slabGeo(bandOutline(path, st.a, st.b, G.BAND * 0.62), G.STRIP_T), hookMat); m.position.y = -G.STRIP_T;
+      stripGroups[k].add(m); stripMeshes[k] = m;
+    });
+  }
+  function buildPads(S){   // mating loop strips already stuck to the floor
+    var path = planPath(S);
+    STRIPS.forEach(function(st, k){
+      disposeMesh(padMeshes[k]);
+      var m = mesh(slabGeo(bandOutline(path, st.a, st.b, G.BAND * 0.72), 0.04), loopMat, false); m.position.y = 0.005; m.renderOrder = 2;
+      scene.add(m); padMeshes[k] = m;
+    });
+  }
+
+  /* ---------- sliding platform: two sleds on telescoping rails ---------- */
+  var railMat = mat(0xcfd6de, {r: 0.3, m: 0.7}), railInMat = mat(0xe8eef5, {r: 0.25, m: 0.8}), sledMat = mat(0x56708a, {r: 0.5, m: 0.05});
+  var leverMat = mat(0xffb547, {r: 0.5, e: 0xffb547, ei: 0.15});
+  var toothGeo = new THREE.BoxGeometry(0.5, 0.12, 0.12), dummy = new THREE.Object3D();
+  var RAILZ = [G.ZH + 1.6, G.ZH - 4.2], OUTER_HALF = 5;
+  var rails = RAILZ.map(function(z){
+    var outer = mesh(new THREE.CylinderGeometry(0.46, 0.46, 2 * OUTER_HALF, 14), railMat); outer.rotation.z = PI / 2; outer.position.set(0, 0.46, z); unit.add(outer);
+    var ins = [-1, 1].map(function(s){ var m = mesh(new THREE.CylinderGeometry(0.32, 0.32, 1, 12), railInMat); m.rotation.z = PI / 2; unit.add(m); return m; });
+    var teeth = new THREE.InstancedMesh(toothGeo, railMat, 48); unit.add(teeth);
+    return {z: z, ins: ins, teeth: teeth};
+  });
+  var sleds = [-1, 1].map(function(s){
+    var g = new THREE.Group();
+    var b = mesh(new THREE.BoxGeometry(4.2, 0.55, 9.5), sledMat); b.position.set(0, G.PANEL_T + 0.27, -1.4); g.add(b);
+    var lever = mesh(new THREE.BoxGeometry(1.1, 0.35, 2.2), leverMat); lever.position.set(s * 1.2, G.PANEL_T + 0.7, -3.8); g.add(lever);
+    var sock = mesh(new THREE.BoxGeometry(2.2, 1.0, 3.0), sledMat); sock.position.set(s * 0.9, G.PANEL_T + 0.9, 0); g.add(sock);
+    unit.add(g); return {g: g, s: s};
+  });
+  function placeRails(S){
+    var half = S / 2;
+    rails.forEach(function(r){
+      r.ins.forEach(function(m, j){ var s = j ? 1 : -1, a = OUTER_HALF - 1, b = half, len = Math.max(0.1, b - a); m.scale.y = len; m.position.set(s * (a + b) / 2, 0.46, r.z); });
+      for (var t = 0; t < 48; t++) {   // ratchet teeth every 1/2 in on the exposed inner tube
+        var d = OUTER_HALF + 0.5 * (t >> 1), s = (t & 1) ? 1 : -1, show = d < half - 0.6;
+        dummy.position.set(s * d, show ? 0.82 : -5, r.z); dummy.rotation.set(0, 0, 0); dummy.updateMatrix(); r.teeth.setMatrixAt(t, dummy.matrix);
       }
+      r.teeth.instanceMatrix.needsUpdate = true;
     });
-    /* ridge tape */
-    cover.add(box(1.0, 0.08, D - 1, new THREE.MeshStandardMaterial({color:0xc7a0ff, roughness:0.7}), 0, G.h + OC.CROWN + 0.42, 0.5));
-    /* dimension lines */
-    var dimMat = function(c){ return new THREE.LineBasicMaterial({color:c}); };
-    function line(a, b, c){ var gg = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(a[0],a[1],a[2]), new THREE.Vector3(b[0],b[1],b[2])]); return new THREE.Line(gg, dimMat(c)); }
-    var dims = new THREE.Group(); dims.name = 'dims';
-    var fz = D/2 + 3;
-    dims.add(line([-S/2, 0, fz], [S/2, 0, fz], 0x5cc8ff));
-    dims.add(line([-S/2, -0.5, fz], [-S/2, 0.5, fz], 0x5cc8ff)); dims.add(line([S/2, -0.5, fz], [S/2, 0.5, fz], 0x5cc8ff));
-    dims.add(line([0, 0, D/2 + 0.6], [0, G.h, D/2 + 0.6], 0xffb547));
-    root.add(dims);
-    anchors = {S:[0, -1.6, fz], H:[1.8, G.h*0.55, D/2 + 0.6], C:[0, G.h + 3.4, D/2], W:[S/2 - G.off/2 + 2.6, G.h/2, D/2], CL:[-g.C/2 - 0.4, 12, D/2 - 1]};
-    labels.S.textContent = 'S ' + g.S.toFixed(1) + ' in';
-    labels.H.textContent = 'h ' + G.h.toFixed(2) + ' in';
-    labels.C.textContent = 'C ' + g.C.toFixed(1) + ' in';
-    labels.W.textContent = 'Wg ' + g.W.toFixed(1) + ' in';
-    labels.CL.textContent = '20.0 in floor · clr ' + G.inner.toFixed(2);
-    cfg.textContent = 'OVERCOVER V4 · ' + g.name.toUpperCase();
-    var headroom = G.inner - 20;
-    readout.innerHTML = g.name.toUpperCase() + ' · base S ' + g.S.toFixed(1) + ' × D ' + g.D.toFixed(1) + ' in · center C ' + g.C.toFixed(1) +
-      ' · wings Wg ' + g.W.toFixed(1) + ' · arc L ' + G.L.toFixed(1) + ' in<br>h (rib CL) ' + G.h.toFixed(2) + ' in · θ ' + G.deg.toFixed(1) +
-      '° · inner-face clearance <b>' + G.inner.toFixed(2) + ' in</b> (+' + headroom.toFixed(2) + ' over 20.0 floor) · ' + g.n + ' ribs @ ' + G.pitch.toFixed(2) + ' in';
-    state.tDist = Math.max(S, D)*1.9 + 34;
-    applyToggles();
+    sleds.forEach(function(sd){ sd.g.position.set(sd.s * half, 0, G.ZH); });
   }
-  function applyToggles(){
-    fabricMats.forEach(function(m){ m.opacity = state.see ? 0.5 : 0.97; m.depthWrite = !state.see; m.needsUpdate = true; });
-    if (clrGroup) clrGroup.visible = state.clr;
-    var d = root && root.getObjectByName('dims'); if (d) d.visible = state.dims;
-  }
-  function views(v){
-    var m = {'34':[0.62,0.38], front:[0,0.12], side:[Math.PI/2,0.12], top:[0,1.45]}[v];
-    state.tAz = m[0]; state.tEl = m[1]; state.auto = false;
-  }
-  function press(sel, on){ Array.prototype.forEach.call(document.querySelectorAll(sel), function(b){ b.setAttribute('aria-pressed', on(b) ? 'true' : 'false'); }); }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-size]'), function(b){ b.addEventListener('click', function(){
-    state.size = b.getAttribute('data-size'); press('[data-size]', function(x){ return x === b; }); build(state.size); }); });
-  Array.prototype.forEach.call(document.querySelectorAll('[data-view]'), function(b){ b.addEventListener('click', function(){
-    press('[data-view]', function(x){ return x === b; }); views(b.getAttribute('data-view')); }); });
-  function toggle(id, key){ var b = document.getElementById(id); if (!b) return; b.addEventListener('click', function(){
-    state[key] = !state[key]; b.setAttribute('aria-pressed', state[key] ? 'true' : 'false'); applyToggles(); }); }
-  toggle('tcSee', 'see'); toggle('tcDetach', 'detach'); toggle('tcDims', 'dims'); toggle('tcClr', 'clr');
 
-  /* pointer orbit */
+  /* ---------- hubs ---------- */
+  var hubMat = mat(0x2a3542, {r: 0.4, m: 0.3}), hubRingMat = mat(0xffb547, {r: 0.4, e: 0xffb547, ei: 0.25});
+  var canopyG = new THREE.Group(); unit.add(canopyG);
+  var hubs = [-1, 1].map(function(s){
+    var h = new THREE.Group();
+    var disc = mesh(new THREE.CylinderGeometry(1.6, 1.6, 0.9, 28), hubMat); disc.rotation.z = PI / 2; h.add(disc);
+    var ring = mesh(new THREE.TorusGeometry(1.2, 0.22, 8, 28), hubRingMat, false); ring.rotation.y = PI / 2; ring.position.x = s * 0.5; h.add(ring);
+    var btn = mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.5, 16), mat(0x8e9aa8, {r: 0.4, m: 0.5})); btn.rotation.z = PI / 2; btn.position.x = s * 0.6; h.add(btn);
+    canopyG.add(h); return {g: h, s: s};
+  });
+
+  /* ---------- canopy: 5 ribs (rib 0 = bottom rib, lies flat on the panel) + three-panel fabric ---------- */
+  var NB = 5, SUB = 6, ROWS = (NB - 1) * SUB + 1;
+  var DEP = [0, 22.5, 45, 67.5, 90].map(function(d){ return d * PI / 180; });
+  var STOW = [0, 1.6, 3.2, 4.8, 6.4].map(function(d){ return d * PI / 180; });
+  var fabricMat = mat(0xffffff, {map: quiltTex(), r: 0.92, side: THREE.DoubleSide, o: 0.94}); fabricMat.vertexColors = true;
+  var fabGeo = new THREE.BufferGeometry();
+  var fPos = new Float32Array(ROWS * COLS * 3), fUv = new Float32Array(ROWS * COLS * 2), idx = [];
+  for (var rr = 0; rr < ROWS; rr++) for (var cc = 0; cc < COLS; cc++) {
+    fUv[(rr * COLS + cc) * 2] = cc / (COLS - 1); fUv[(rr * COLS + cc) * 2 + 1] = rr / (ROWS - 1);
+    if (rr < ROWS - 1 && cc < COLS - 1) { var a = rr * COLS + cc, b = a + COLS; idx.push(a, b, a + 1, b, b + 1, a + 1); }
+  }
+  fabGeo.setAttribute('position', new THREE.BufferAttribute(fPos, 3));
+  fabGeo.setAttribute('uv', new THREE.BufferAttribute(fUv, 2));
+  fabGeo.setIndex(idx);
+  var fCol = new Float32Array(ROWS * COLS * 3);
+  for (rr = 0; rr < ROWS; rr++) for (cc = 0; cc < COLS; cc++) { var dome = cc > SEAM1 && cc < SEAM2, sh = dome ? 1.0 : 0.8; fCol.set([sh, sh * (dome ? 1 : 0.97), sh * (dome ? 1 : 0.95)], (rr * COLS + cc) * 3); }
+  fabGeo.setAttribute('color', new THREE.BufferAttribute(fCol, 3));
+  var fabric = mesh(fabGeo, fabricMat); fabric.frustumCulled = false; canopyG.add(fabric);
+  var ribMat = mat(0xe8eef5, {r: 0.3, m: 0.6}), frontRibMat = mat(0xffffff, {r: 0.3, m: 0.5, e: 0xffb547, ei: 0});
+  var bows = []; for (i = 0; i < NB; i++) { var bm = mesh(new THREE.BufferGeometry(), i === NB - 1 ? frontRibMat : ribMat); canopyG.add(bm); bows.push(bm); }
+  var handle = mesh(new THREE.TorusGeometry(1.3, 0.28, 8, 20, PI), mat(0xffb547, {r: 0.5})); canopyG.add(handle);
+  var tmpV = new THREE.Vector3();
+  var knMat = mat(0xffd08a, {r: 0.35, m: 0.2, e: 0xffb547, ei: 0.2}), knuckles = [];
+  [SEAM1, SEAM2].forEach(function(col){ for (var j = 0; j < 8; j++) { var kn = mesh(SPH, knMat); kn.scale.set(0.55, 0.55, 0.55); canopyG.add(kn); knuckles.push({m: kn, col: col, j: j}); } });
+
+  /* ---------- measurement overlay ---------- */
+  var dimMat = {span: new THREE.LineBasicMaterial({color: 0x5cc8ff, depthTest: false, transparent: true}), arc: new THREE.LineBasicMaterial({color: 0xffb547, depthTest: false, transparent: true}), clr: new THREE.LineBasicMaterial({color: 0x5fe0b5, depthTest: false, transparent: true})};
+  function segLine(m, n){ var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(n * 6), 3)); var l = new THREE.LineSegments(g, m); l.renderOrder = 10; l.frustumCulled = false; unit.add(l); return l; }
+  var dimSpanL = segLine(dimMat.span, 3), dimArcL = segLine(dimMat.arc, 3), dimClrL = segLine(dimMat.clr, 3);
+  function setSegs(l, segs){ var a = l.geometry.attributes.position.array, k = 0; segs.forEach(function(s){ for (var j = 0; j < 6; j++) a[k++] = s[j]; }); l.geometry.attributes.position.needsUpdate = true; }
+  function ghostProfile(S, color){
+    var v = profile(S).map(function(q){ return new THREE.Vector3(q[0], G.Y0 + q[1], G.ZH + 0.9); });
+    var l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(v), new THREE.LineDashedMaterial({color: color, dashSize: 1.2, gapSize: 0.8, depthTest: false, transparent: true, opacity: 0.85}));
+    l.computeLineDistances(); l.renderOrder = 9; unit.add(l); return {line: l, top: G.Y0 + hOf(S) + G.CROWN};
+  }
+  var ghostN = ghostProfile(24, 0xffb547), ghostW = ghostProfile(48, 0x5cc8ff);
+  var dimEls = {span: document.getElementById('dimSpan'), arc: document.getElementById('dimArc'), clr: document.getElementById('dimClr'), gn: document.getElementById('dimGhostN'), gw: document.getElementById('dimGhostW')}, cfgEl = document.getElementById('tcCfg');
+  var projV = new THREE.Vector3();
+  function placeTag(el, x, y, z, show){
+    if (!el) return; projV.set(x, y, z); unit.localToWorld(projV); projV.project(camera);
+    var vis = show && projV.z < 1 && Math.abs(projV.x) < 1.1 && Math.abs(projV.y) < 1.1;
+    el.style.opacity = vis ? '1' : '0';
+    if (vis) el.style.transform = 'translate(' + ((projV.x + 1) / 2 * stage.clientWidth).toFixed(1) + 'px,' + ((1 - projV.y) / 2 * stage.clientHeight).toFixed(1) + 'px) translate(-50%,-50%)';
+  }
+  function fmt(v){ return v.toFixed(1) + ' in / ' + Math.round(v * 25.4) + ' mm'; }
+
+  /* warm-air motes (shown at full lock) */
+  var motes = [];
+  for (i = 0; i < 12; i++) {
+    var mm = mesh(new THREE.SphereGeometry(0.45, 10, 8), mat(0xffb547, {e: 0xff7a1a, ei: 0.9, o: 0}), false);
+    mm.userData = {x: -7 + (i * 37 % 15), z: -4 + (i * 23 % 11), off: i / 12};
+    scene.add(mm); motes.push(mm);
+  }
+
+  /* ---------- UI ---------- */
+  function $(id){ return document.getElementById(id); }
+  var sidesIn = $('tcSides'), canIn = $('tcCanopy'), sidesOut = $('tcSidesOut'), canOut = $('tcCanopyOut'), readout = $('tcReadout');
+  var playBtn = $('tcPlay'), seeBtn = $('tcSeeThru'), extEl = $('dimExt'), spanIn = $('tcSpan'), spanOut = $('tcSpanOut'), flexBtn = $('tcFlex'), dimsBtn = $('tcDims');
+  var labTag = $('siaTag'), labTitle = $('siaTitle'), labDesc = $('siaDesc'), label = $('siaLabel'), bar = $('siaBar'), badge = $('siaBadge');
+
+  /* ---------- state ---------- */
+  // base: 0..1 drives the sliding platform (0-0.55), the three hook strips (0.55-0.95) and the press to the floor (0.95-1)
+  var S = {base: 0, u: 0, seeThru: false, span: 36, flex: false, dims: true};
+  var spanCur = 36;
+  var cur = {base: 0, u: 0, S: G.SFOLD};
+  var ribPts = profile(G.SFOLD), ribKey = '';
+  var playing = false, pt = 0, onScreen = false, autoStarted = false, lastStep = -1;
+  function baseParts(b){
+    return {
+      plat: sstep(0, 0.55, b),
+      q: [sat01((b - 0.56) / 0.12), sat01((b - 0.70) / 0.12), sat01((b - 0.84) / 0.11)],
+      press: sstep(0.955, 1, b)
+    };
+  }
+  var LOCK_MID = 0.5, LOCK_FULL = 1;
+  function lockState(u){ return u > 0.985 ? 'full' : Math.abs(u - LOCK_MID) < 0.012 ? 'mid' : u < 0.015 ? 'flat' : ''; }
+
+  var STEPS = [
+    {t: 0,    tag: '1',  title: 'OverCover kit: folded', desc: 'The sliding platform is retracted and the canopy lies folded flat at the back. Three loop strips (cream) are already stuck to the floor where the unit will sit.'},
+    {t: 2.5,  tag: '2',  title: 'Slide out the platform', desc: 'The two sleds run out on telescoping ratchet rails, one click per \u00bd in, until the bottom rib reaches the selected span S.'},
+    {t: 7,    tag: '3',  title: 'Place the three hook strips', desc: 'Hook strips go on the flat panel under the bottom rib: first the left side, then the right side, then the curved back.'},
+    {t: 13,   tag: '4',  title: 'Press onto the floor strips', desc: 'The panel presses down and the three hook strips mate with the loop strips on the floor. The unit stays where it is placed and peels up to move.'},
+    {t: 16,   tag: '5',  title: 'Canopy up: midway lock', desc: 'Like a stroller canopy, the front rib swings up from the back and pulls the other ribs after it. Both hubs click into the midway detent.'},
+    {t: 21,   tag: '6',  title: 'Full extension lock', desc: 'The canopy continues until the front rib stands upright and the hubs click into the full-extension lock. Left, right and back are closed; the front is open.'},
+    {t: 25,   tag: '7',  title: 'Span 48 in \u2192 lower arc', desc: 'Same 25 in wings and 18 in center chord on a wider base. h = \u221a(25\u00b2 \u2212 15\u00b2) = 20.0 in, the clearance floor.'},
+    {t: 29,   tag: '8',  title: 'Span 24 in \u2192 taller arc', desc: 'Telescope the base in and the same panels stand steeper: h = \u221a(25\u00b2 \u2212 3\u00b2) = 24.8 in.'},
+    {t: 33.5, tag: '9',  title: 'Release: fold to the back', desc: 'Press both hub buttons. The canopy falls toward the back, passes the midway detent, and collapses flat onto itself on top of the bottom rib.'},
+    {t: 39.5, tag: '10', title: 'Raise and lock again', desc: 'One pull on the front handle brings the canopy back up through the midway lock to the full-extension lock.'}
+  ];
+  var TOTAL = 44;
+  function uAt(t){
+    if (t < 16.2) return 0;
+    if (t < 19.2) return lerp(0, 0.5, sstep(16.2, 19.2, t));
+    if (t < 21.2) return 0.5;
+    if (t < 24) return lerp(0.5, 1, sstep(21.2, 24, t));
+    if (t < 34) return 1;
+    if (t < 36) return lerp(1, 0.5, sstep(34, 36, t));
+    if (t < 37) return 0.5;
+    if (t < 39.3) return lerp(0.5, 0, sstep(37, 39.3, t));
+    if (t < 39.8) return 0;
+    if (t < 41.8) return lerp(0, 0.5, sstep(39.8, 41.8, t));
+    if (t < 42.3) return 0.5;
+    return lerp(0.5, 1, sstep(42.3, 43.8, t));
+  }
+  function baseAt(t){
+    if (t < 2.7) return 0;
+    if (t < 6.8) return lerp(0, 0.55, sstep(2.7, 6.8, t));
+    if (t < 7.2) return 0.55;
+    if (t < 12.8) return lerp(0.55, 0.95, (t - 7.2) / 5.6);
+    if (t < 13.4) return 0.95;
+    return lerp(0.95, 1, sstep(13.4, 15.2, t));
+  }
+  function flexSpan(t, base){
+    if (t < 25) return base;
+    if (t < 27.5) return lerp(base, 48, sstep(25, 27.5, t));
+    if (t < 29) return 48;
+    if (t < 31.5) return lerp(48, 24, sstep(29, 31.5, t));
+    if (t < 32.3) return 24;
+    return lerp(24, base, sstep(32.3, 33.5, t));
+  }
+  function setLabel(k){
+    if (k === lastStep) return; lastStep = k;
+    var st = STEPS[k];
+    labTag.textContent = st.tag; labTitle.textContent = st.title; labDesc.textContent = st.desc;
+    label.classList.remove('is-in'); void label.offsetWidth; label.classList.add('is-in');
+  }
+  function manualLabel(){
+    var bp = baseParts(S.base), ls = lockState(S.u);
+    if (S.u > 0.985 && spanCur >= 46) { setLabel(6); return; }
+    if (S.u > 0.985 && spanCur <= 26) { setLabel(7); return; }
+    var k = ls === 'full' ? 5 : S.u > 0.015 ? 4 : bp.press > 0.5 ? 3 : bp.q[0] > 0 ? 2 : bp.plat > 0.02 ? 1 : 0;
+    setLabel(k);
+  }
+  function syncInputs(){
+    var bp = baseParts(S.base), n = bp.q.filter(function(q){ return q >= 1; }).length;
+    sidesIn.value = Math.round(S.base * 100); canIn.value = Math.round(S.u * 100);
+    sidesOut.textContent = Math.round(bp.plat * 100) + '% out \u00b7 strips ' + n + '/3' + (bp.press > 0.98 ? ' \u00b7 pressed' : '');
+    var ls = lockState(S.u);
+    canOut.textContent = ls === 'flat' ? 'folded flat (back)' : ls === 'mid' ? 'midway lock' : ls === 'full' ? 'full lock \u00b7 front open' : Math.round(S.u * 90) + '\u00b0 up';
+    var sv = Math.round(spanCur); spanIn.value = sv; spanOut.textContent = sv.toFixed(1) + ' in \u00b7 h ' + hOf(sv).toFixed(1) + ' in';
+    document.querySelectorAll('[data-tc-ext]').forEach(function(x){ var s = {condensed: 24, standard: 36, extended: 48}[x.getAttribute('data-tc-ext')]; x.setAttribute('aria-pressed', sv === s ? 'true' : 'false'); });
+  }
+  function setPlayUI(on){ playBtn.textContent = on ? '\u275A\u275A Pause' : '\u25B6 Play setup'; playBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+  function stopPlay(){ playing = false; setPlayUI(false); }
+  function startPlay(){ playing = true; pt = 0; stopFlex(); setPlayUI(true); }
+  playBtn.addEventListener('click', function(){
+    if (playing) { stopPlay(); return; }                      // pause
+    if (pt >= TOTAL - 0.01 || pt === 0) startPlay();          // restart from the top
+    else { playing = true; stopFlex(); setPlayUI(true); }     // resume
+  });
+  // canopy detents: midway and full extension
+  function detent(v){ if (Math.abs(v - 50) <= 5) return 50; if (v >= 95) return 100; if (v <= 3) return 0; return v; }
+  sidesIn.addEventListener('input', function(){ stopPlay(); S.base = sidesIn.value / 100; pt = TOTAL; syncInputs(); manualLabel(); });
+  canIn.addEventListener('input', function(){ stopPlay(); S.u = detent(+canIn.value) / 100; pt = TOTAL; syncInputs(); manualLabel(); });
+  seeBtn.addEventListener('click', function(){ S.seeThru = !S.seeThru; seeBtn.setAttribute('aria-pressed', S.seeThru ? 'true' : 'false'); fabricMat.opacity = S.seeThru ? 0.38 : 0.94; fabricMat.depthWrite = !S.seeThru; });
+  function deployed(){ stopPlay(); S.base = 1; S.u = 1; pt = TOTAL; }
+  function setSpan(v){ S.span = v; spanCur = v; syncInputs(); manualLabel(); }
+  function stopFlex(){ S.flex = false; flexBtn.setAttribute('aria-pressed', 'false'); }
+  document.querySelectorAll('[data-tc-ext]').forEach(function(b){
+    b.addEventListener('click', function(){ stopFlex(); if (playing) stopPlay(); setSpan({condensed: 24, standard: 36, extended: 48}[b.getAttribute('data-tc-ext')]); pt = TOTAL; });
+  });
+  spanIn.addEventListener('input', function(){ stopFlex(); if (playing) stopPlay(); pt = TOTAL; setSpan(+spanIn.value); });
+  flexBtn.addEventListener('click', function(){ S.flex = !S.flex; flexBtn.setAttribute('aria-pressed', S.flex ? 'true' : 'false'); if (S.flex) { deployed(); S.flexT = 0; } else setSpan(Math.round(spanCur)); });
+  dimsBtn.addEventListener('click', function(){ S.dims = !S.dims; dimsBtn.setAttribute('aria-pressed', S.dims ? 'true' : 'false'); });
+
+  /* ---------- camera: drag to orbit + view presets ---------- */
+  var VIEWS = {'34': [-0.62, 0.42, 1], front: [0, 0.2, 1], side: [-PI / 2, 0.16, 1], top: [-0.0001, 1.38, 1.05]};
+  var cam = {az: -0.62, el: 0.42, zoom: 1}, camT = {az: -0.62, el: 0.42, zoom: 1}, camLook = new THREE.Vector3(0, 9, 0);
+  document.querySelectorAll('[data-tc-view]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var v = VIEWS[b.getAttribute('data-tc-view')]; camT.az = v[0]; camT.el = v[1]; camT.zoom = v[2];
+      while (cam.az - camT.az > PI) cam.az -= 2 * PI; while (camT.az - cam.az > PI) cam.az += 2 * PI;
+      document.querySelectorAll('[data-tc-view]').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    });
+  });
+  canvas.style.touchAction = 'pan-y';
   var drag = null;
-  stage.addEventListener('pointerdown', function(e){ drag = {x:e.clientX, y:e.clientY, az:state.tAz, el:state.tEl}; state.auto = false; try { stage.setPointerCapture(e.pointerId); } catch(_){}
-    press('[data-view]', function(){ return false; }); });
-  stage.addEventListener('pointermove', function(e){ if (!drag) return;
-    state.tAz = drag.az - (e.clientX - drag.x)*0.008;
-    state.tEl = Math.max(0.02, Math.min(1.5, drag.el + (e.clientY - drag.y)*0.006)); });
-  function end(){ drag = null; }
-  stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
+  canvas.addEventListener('pointerdown', function(ev){ drag = {x: ev.clientX, y: ev.clientY, id: ev.pointerId}; try { canvas.setPointerCapture(ev.pointerId); } catch (e) {} if (badge) badge.style.opacity = '0'; });
+  canvas.addEventListener('pointermove', function(ev){
+    if (!drag || ev.pointerId !== drag.id) return;
+    var dx = ev.clientX - drag.x, dy = ev.clientY - drag.y; drag.x = ev.clientX; drag.y = ev.clientY;
+    camT.az -= dx * 0.009; camT.el = Math.max(0.04, Math.min(1.45, camT.el + dy * 0.006)); cam.az = camT.az; cam.el = camT.el;
+    document.querySelectorAll('[data-tc-view]').forEach(function(x){ x.setAttribute('aria-pressed', 'false'); });
+  });
+  function endDrag(){ drag = null; }
+  canvas.addEventListener('pointerup', endDrag); canvas.addEventListener('pointercancel', endDrag); canvas.addEventListener('lostpointercapture', endDrag);
 
-  function resize(){ var w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
-    renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix(); }
-  window.addEventListener('resize', resize);
+  /* ---------- per-frame update ---------- */
+  var clock = 0, lastLock = 'flat', lockFlash = 0;
+  function damp(a, b, dt, r){ return a + (b - a) * (1 - Math.exp(-dt * r)); }
+  function update(dt){
+    clock += dt;
+    if (playing) {
+      pt = Math.min(TOTAL, pt + dt);
+      S.base = baseAt(pt); S.u = uAt(pt);
+      for (var k = STEPS.length - 1; k >= 0; k--) if (pt >= STEPS[k].t) { setLabel(k); break; }
+      bar.style.width = (100 * pt / TOTAL).toFixed(1) + '%';
+      spanCur = flexSpan(pt, S.span);
+      syncInputs();
+      if (pt >= TOTAL) stopPlay();
+    } else if (S.flex) {
+      S.flexT = (S.flexT || 0) + dt; spanCur = 36 - 12 * Math.cos(S.flexT * 0.6 + PI); syncInputs();
+      setLabel(spanCur > 42 ? 6 : spanCur < 30 ? 7 : 5);
+    } else if (pt >= TOTAL) { bar.style.width = '100%'; }
 
-  var visible = true;
-  if ('IntersectionObserver' in window){ new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }).observe(stage); }
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var v3 = new THREE.Vector3();
-  function placeLabels(){
-    var w = stage.clientWidth, h = stage.clientHeight;
-    for (var k in labels){ var el = labels[k], a = anchors[k]; if (!el || !a) continue;
-      var lift = (k === 'S' || k === 'CL') ? 0 : state.lift;
-      v3.set(a[0], a[1] + lift, a[2]); v3.project(camera);
-      var on = state.dims && v3.z < 1 && Math.abs(v3.x) < 1.1 && Math.abs(v3.y) < 1.1;
-      if (k === 'CL') on = state.clr && v3.z < 1;
-      el.style.opacity = on ? '1' : '0';
-      el.style.transform = 'translate(' + ((v3.x*0.5 + 0.5)*w).toFixed(0) + 'px,' + ((-v3.y*0.5 + 0.5)*h).toFixed(0) + 'px) translate(-50%,-50%)';
+    cur.base = playing ? S.base : damp(cur.base, S.base, dt, 6);
+    cur.u = playing ? S.u : damp(cur.u, S.u, dt, 7);
+    var bp = baseParts(cur.base);
+    // ratchet-stepped span (1/2 in clicks per side = 1 in of span)
+    var sT = G.SFOLD + Math.round((spanCur - G.SFOLD) * bp.plat);
+    if (S.flex || (playing && pt > 25 && pt < 33.6)) sT = lerp(G.SFOLD, spanCur, bp.plat);
+    cur.S = damp(cur.S, sT, dt, playing ? 14 : 9);
+    var Sx = cur.S, h = hOf(Sx);
+
+    // unit hovers while the strips go on, then presses onto the floor strips
+    var lift = 12 * (1 - bp.press);
+    unit.position.y = G.STRIP_T + lift;
+    panelMat.opacity = lerp(0.5, 1, bp.press); panelMat.transparent = bp.press < 0.99; panelMat.depthWrite = bp.press > 0.99;
+    var pk = Sx.toFixed(2);
+    if (pk !== panelKey) { panelKey = pk; buildPanel(Sx); }
+    var padK = String(Math.round(spanCur * 4) / 4);
+    if (padK !== padKey) { padKey = padK; buildPads(Math.round(spanCur * 4) / 4); }
+    STRIPS.forEach(function(st, k){
+      var q = bp.q[k], e = sstep(0, 1, q), g = stripGroups[k];
+      g.position.set(st.dir[0] * 16 * (1 - e), -lift * (1 - e) + Math.sin(PI * e) * 2.5, st.dir[1] * 16 * (1 - e));
+      g.visible = q > 0.001;
+    });
+    var seating = bp.press > 0.02 && bp.press < 1;
+    hookMat.emissiveIntensity = 0.1 + (bp.q.some(function(q){ return q > 0 && q < 1; }) ? 0.7 + 0.3 * Math.sin(clock * 6) : 0) + (seating ? 0.5 : 0);
+    loopMat.emissiveIntensity = seating ? 0.55 + 0.3 * Math.sin(clock * 6) : (bp.press < 0.01 ? 0.12 : 0);
+
+    placeRails(Sx);
+    leverMat.emissiveIntensity = Math.abs(sT - cur.S) > 0.05 ? 0.8 : 0.15;
+
+    // ribs
+    var rk = Sx.toFixed(3);
+    if (rk !== ribKey) { ribPts = profile(Sx); ribKey = rk; }
+    hubs.forEach(function(hb){ hb.g.position.set(hb.s * (Sx / 2 + 0.7), G.Y0, G.ZH); });
+    var ls = lockState(cur.u), locked = ls === 'full' || ls === 'mid';
+    if (ls !== lastLock) { if (locked) lockFlash = 1; lastLock = ls; }
+    lockFlash = Math.max(0, lockFlash - dt * 1.8);
+    hubRingMat.color.setHex(locked ? 0x5fe0b5 : 0xffb547); hubRingMat.emissive.setHex(locked ? 0x5fe0b5 : 0xffb547); hubRingMat.emissiveIntensity = (locked ? 0.7 : 0.25) + lockFlash * 1.2;
+    hubs.forEach(function(hb){ var s = 1 + lockFlash * 0.25; hb.g.scale.set(s, s, s); });
+    frontRibMat.emissiveIntensity = (!locked && cur.u > 0.015 && cur.u < 0.985) ? 0.35 : 0;
+
+    // stroller fold: the front rib leads, the fabric pulls the others up in turn; folding drops them back onto rib 0
+    var phiF = lerp(STOW[NB - 1], DEP[NB - 1], cur.u), ang = [];
+    for (var b = 0; b < NB; b++) ang.push(b === 0 ? 0 : Math.max(STOW[b], Math.min(DEP[b], phiF - (NB - 1 - b) * (DEP[1] - DEP[0]))));
+    ang[NB - 1] = phiF;
+    var p = 0;
+    for (var r = 0; r < ROWS; r++) {
+      var bi = Math.min(NB - 2, Math.floor(r / SUB)), f = (r - bi * SUB) / SUB, phi = lerp(ang[bi], ang[bi + 1], f), lift2 = r === 0 ? 0 : 0.14;
+      for (var c = 0; c < COLS; c++) { ribPt(ribPts[c], phi, tmpV); fPos[p++] = tmpV.x; fPos[p++] = tmpV.y + lift2 * (1 - cur.u); fPos[p++] = tmpV.z; }
     }
+    fabGeo.attributes.position.needsUpdate = true; fabGeo.computeVertexNormals(); fabGeo.computeBoundingSphere();
+    for (b = 0; b < NB; b++) {
+      var pts = [];
+      for (c = 0; c < COLS; c += 2) { ribPt(ribPts[c], ang[b], tmpV); pts.push(tmpV.clone()); }
+      bows[b].geometry.dispose();
+      bows[b].geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 72, b === NB - 1 ? 0.42 : b === 0 ? 0.38 : 0.3, 6, false);
+    }
+    ribPt(ribPts[HN / 2], phiF, tmpV);
+    handle.rotation.set(phiF - PI / 2, 0, 0); handle.position.copy(tmpV); handle.translateY(0.3);
+    knuckles.forEach(function(kn){ var rf = (kn.j + 0.5) / 8 * (ROWS - 1), bi2 = Math.min(NB - 2, Math.floor(rf / SUB)), f2 = (rf - bi2 * SUB) / SUB; ribPt(ribPts[kn.col], lerp(ang[bi2], ang[bi2 + 1], f2), tmpV); kn.m.position.set(tmpV.x, tmpV.y + 0.25, tmpV.z); });
+
+    // warm air retained at full lock
+    var heat = sstep(0.9, 1, cur.u) * bp.press, trapped = ls === 'full' ? 1 : 0;
+    var apexY = G.Y0 + h + G.CROWN;
+    warm.position.set(0, apexY * 0.5, G.ZH - h * 0.5); warm.intensity = heat * (0.4 + 0.55 * trapped + 0.15 * Math.sin(clock * 1.6));
+    motes.forEach(function(m){
+      var q = (clock * 0.16 + m.userData.off) % 1, top = trapped ? apexY - 2.5 : apexY + 20;
+      m.position.set(m.userData.x + Math.sin(clock + m.userData.off * 9) * 1.2, lerp(2, top, q), m.userData.z + G.ZH - h * 0.55);
+      m.material.opacity = heat * 0.85 * Math.sin(PI * q); m.visible = m.material.opacity > 0.02;
+    });
+
+    // measurements
+    var clr = h + 0.25, heightFloor = G.STRIP_T + G.Y0 + h + G.CROWN;
+    var showDims = S.dims && cur.u > 0.97 && bp.press > 0.97;
+    [dimSpanL, dimArcL, dimClrL, ghostN.line, ghostW.line].forEach(function(l){ l.visible = showDims; });
+    if (showDims) {
+      var zf = G.ZH + 3, hx = Sx / 2;
+      setSegs(dimSpanL, [[-hx, 0.6, zf, hx, 0.6, zf], [-hx, 0.1, zf, -hx, 2.4, zf], [hx, 0.1, zf, hx, 2.4, zf]]);
+      setSegs(dimArcL, [[-1.2, G.Y0, zf, -1.2, G.Y0 + h, zf], [-2.6, G.Y0 + h, zf, 0.2, G.Y0 + h, zf], [-2.6, G.Y0, zf, 0.2, G.Y0, zf]]);
+      setSegs(dimClrL, [[1.4, G.Y0, zf, 1.4, G.Y0 + clr, zf], [0.2, G.Y0, zf, 2.8, G.Y0, zf], [0.2, G.Y0 + clr, zf, 2.8, G.Y0 + clr, zf]]);
+      dimEls.span.innerHTML = 'Span S <b>' + fmt(Sx) + '</b>'; dimEls.arc.innerHTML = 'Center height h <b>' + fmt(h) + '</b>'; dimEls.clr.innerHTML = 'Inner-face clearance <b>' + fmt(clr) + '</b>';
+    }
+    placeTag(dimEls.span, 0, 3.2, G.ZH + 3, showDims);
+    placeTag(dimEls.arc, -1.2, G.Y0 + h * 0.72, G.ZH + 3, showDims);
+    placeTag(dimEls.clr, 1.4, G.Y0 + clr * 0.4, G.ZH + 3, showDims);
+    placeTag(dimEls.gn, 0, ghostN.top + 2.0, G.ZH + 0.9, showDims);
+    placeTag(dimEls.gw, 24 + 5, G.Y0 + 6, G.ZH + 0.9, showDims);
+    if (extEl) extEl.innerHTML = 'Sliding platform <b>' + Math.round(bp.plat * 100) + '%</b> \u00b7 S ' + Sx.toFixed(1) + ' in';
+    placeTag(extEl, -(Sx / 2 + 6), 2.2, G.ZH - 2, bp.plat > 0.02 && !showDims);
+    var cfg = 'OVERCOVER \u00b7 S ' + Sx.toFixed(0) + ' IN \u00b7 h ' + h.toFixed(1) + ' IN' + (ls === 'mid' ? ' \u00b7 MIDWAY LOCK' : ls === 'full' ? ' \u00b7 FULL LOCK' : ls === 'flat' ? ' \u00b7 FOLDED FLAT' : '');
+    if (cfgEl) { cfgEl.style.opacity = '1'; if (cfgEl.textContent !== cfg) cfgEl.textContent = cfg; }
+    var nStrips = bp.q.filter(function(q){ return q >= 1; }).length;
+    var txt = 'OverCover V4 \u00b7 C ' + G.C.toFixed(1) + ' in \u00b7 Wg ' + G.WG.toFixed(1) + ' in \u00b7 span S ' + fmt(Sx) + ' \u00b7 h = \u221a(Wg\u00b2 \u2212 ((S \u2212 C)/2)\u00b2) = ' + fmt(h) +
+      ' \u00b7 inner-face clearance ' + fmt(clr) + (clr >= 20 ? ' (\u2265 20.0 in floor \u2713)' : '') + ' \u00b7 apex ' + heightFloor.toFixed(1) + ' in above floor' +
+      ' \u00b7 sliding platform ' + Math.round(bp.plat * 100) + '% \u00b7 hook strips ' + nStrips + '/3 placed (left, right, curved back)' + (bp.press > 0.98 ? ', pressed to floor' : '') +
+      ' \u00b7 canopy ' + (ls === 'flat' ? 'folded flat at the back' : ls === 'mid' ? 'midway lock' : ls === 'full' ? 'full-extension lock, front open' : Math.round(cur.u * 90) + '\u00b0 up');
+    if (bp.press < 0.97 && cur.u > 0.03) txt += ' \u2014 \u26a0 press the hook strips onto the floor strips before raising the canopy.';
+    if (readout.textContent !== txt) readout.textContent = txt;
+
+    // camera
+    cam.az = damp(cam.az, camT.az, dt, 3); cam.el = damp(cam.el, camT.el, dt, 3); cam.zoom = damp(cam.zoom, camT.zoom, dt, 3);
+    var aspect = camera.aspect, kk = aspect < 1.3 ? Math.pow(1.3 / aspect, 0.8) : 1, dist = 80 * cam.zoom * kk;
+    camLook.set(0, 7, 2);
+    // during autoplay strip placement, dip the camera low so the underside of the panel is in view
+    var peek = (pt > 0 && pt < TOTAL) ? sstep(6.6, 7.8, pt) * (1 - sstep(12.8, 14.2, pt)) : 0, elE = lerp(cam.el, 0.0, peek), azE = cam.az + peek * 0.25;
+    camLook.y = lerp(7, 5.5, peek); dist *= 1 - 0.18 * peek;
+    camera.position.set(Math.sin(azE) * Math.cos(elE) * dist, camLook.y + Math.sin(elE) * dist, Math.cos(azE) * Math.cos(elE) * dist);
+    camera.lookAt(camLook);
   }
-  function frame(){
+
+  /* ---------- sizing / visibility / loop ---------- */
+  function resize(){
+    var w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(stage); else window.addEventListener('resize', resize);
+  resize();
+  if (window.IntersectionObserver) new IntersectionObserver(function(en){
+    onScreen = en[0].isIntersecting;
+    if (onScreen && !autoStarted) { autoStarted = true; startPlay(); }
+  }, {rootMargin: '0px', threshold: 0.35}).observe(stage); else { onScreen = true; autoStarted = true; startPlay(); }
+  setLabel(0); syncInputs();
+  var last = performance.now();
+  function frame(now){
     requestAnimationFrame(frame);
-    if (!visible) return;
-    if (state.auto && !reduce) state.tAz += 0.0022;
-    state.az += (state.tAz - state.az)*0.12; state.el += (state.tEl - state.el)*0.12; state.dist += (state.tDist - state.dist)*0.12;
-    var tgt = state.detach ? 7 : 0; state.lift += (tgt - state.lift)*0.1;
-    if (cover) cover.position.y = state.lift;
-    var ty = 9;
-    camera.position.set(Math.sin(state.az)*Math.cos(state.el)*state.dist, ty + Math.sin(state.el)*state.dist, Math.cos(state.az)*Math.cos(state.el)*state.dist);
-    camera.lookAt(0, ty, 0);
+    var dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (!onScreen || document.hidden) return;
+    update(dt);
     renderer.render(scene, camera);
-    placeLabels();
   }
-  try { build('L'); resize(); frame(); } catch(e){ fail(); }
+  update(0.016); renderer.render(scene, camera);
+  requestAnimationFrame(frame);
 })();
 </script>
 </body>
