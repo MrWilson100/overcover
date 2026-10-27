@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OverCover V4: Manufacturer Build Document (Rev D), Fixed-Size Three-Panel Canopy System</title>
-<meta name="description" content="OverCover V4 manufacturer build document, Revision D. Universal detachable canopy cover on a flat base panel, in three fixed sizes (Small, Medium, Large): three-panel house-profile arc with hinge knuckles, 0.250 in spring-steel ribs, flat base panel with peel-and-stick hook strips, geometry and clearance table, bill of materials, build sequence, tolerances, QC plan, failure modes and 3D modeling reference.">
+<meta name="description" content="OverCover V4 manufacturer build document, Revision D. Universal detachable canopy cover held by Velcro strips; the sliding base platform is optional (rugs and carpet only), in three fixed sizes (Small, Medium, Large): three-panel house-profile arc with hinge knuckles, 0.250 in spring-steel ribs, flat base panel with peel-and-stick hook strips, geometry and clearance table, bill of materials, build sequence, tolerances, QC plan, failure modes and 3D modeling reference.">
 <style>
 :root{
   --bg:#0b0f14; --bg2:#10161e; --card:#141c26; --card2:#18222e; --line:#243142;
@@ -173,6 +173,7 @@ footer strong{color:var(--text)}
     <nav aria-label="Primary">
       <ul>
         <li><a href="#system">System</a></li>
+        <li><a href="#platform-option">Optional platform</a></li>
         <li><a href="#see-it-in-action">3D model</a></li>
         <li><a href="#geometry">Geometry</a></li>
         <li><a href="#sizes">Sizes</a></li>
@@ -193,16 +194,18 @@ footer strong{color:var(--text)}
     <div>
       <span class="eyebrow">V4 · Manufacturer build document · Revision D</span>
       <h1 id="hero-title">OverCover V4</h1>
-      <p class="pitch">Fixed-size three-panel detachable canopy system, built in three sizes. It has a three-panel house-profile arc, spring-steel ribs, and a flat base panel with peel-and-stick hook strips.</p>
+      <p class="pitch">Fixed-size three-panel detachable canopy system, built in three sizes. It has a three-panel house-profile arc and spring-steel ribs. Velcro strips hold it down. The base platform is <strong>optional</strong>: it is only needed on rugs or carpet.</p>
       <ul class="chips" aria-label="Key build features">
         <li class="star">★ Three fixed sizes S / M / L (no telescoping rib)</li>
         <li>Two side wings + center dome, hinge knuckles</li>
         <li>0.250 in A229 / A228 spring-steel ribs</li>
-        <li>Flat base, hook-side-up adhesive strips</li>
+        <li>Velcro-only on hard floors (default)</li>
+        <li>Optional platform for rugs / carpet</li>
         <li>Hard floor: 20.0 in center clearance</li>
         <li>Summer mesh panel: separate item</li>
       </ul>
-      <p class="lead-mode"><strong>What you are building.</strong> Each SKU has a flat base panel with high-tack acrylic adhesive hook strips (hook up) around its perimeter. A canopy cover is built from a left wing panel, a center dome panel and a right wing panel, joined by two rows of hinge knuckles. Formed 0.250 in spring-steel ribs in lined channels hold the house profile. The canopy's bottom-edge loop tape presses onto the base hook strips, so the cover can be removed for washing. Rib length, panel widths and base span are <strong>fixed per size</strong>. Nothing adjusts in the field.</p>
+      <p class="lead-mode"><strong>Platform is optional.</strong> On <strong>hard floors</strong> (wood, tile, vinyl, sealed concrete), which is the default build, the canopy needs no platform. Velcro strips along the left, right and curved back of its bottom edge stick straight to the floor. On <strong>soft floors</strong> (rugs, carpet), Velcro has nothing firm to grip in the pile, so the canopy sits on the optional platform, which gives the strips a firm surface. The interior footprint is never covered.</p>
+      <p class="lead-mode"><strong>What you are building.</strong> Each SKU has an optional flat base panel (the platform, for soft floors) with high-tack acrylic adhesive hook strips (hook up) around its perimeter. A canopy cover is built from a left wing panel, a center dome panel and a right wing panel, joined by two rows of hinge knuckles. Formed 0.250 in spring-steel ribs in lined channels hold the house profile. The canopy's bottom-edge loop tape presses onto the base hook strips, so the cover can be removed for washing. Rib length, panel widths and base span are <strong>fixed per size</strong>. Nothing adjusts in the field.</p>
       <div class="cta">
         <a class="btn primary" href="#see-it-in-action">Open the 3D model</a>
         <a class="btn" href="#sizes">Size table</a>
@@ -253,9 +256,9 @@ footer strong{color:var(--text)}
   <div class="wrap">
     <p class="kicker">System overview · what ships per SKU</p>
     <h2 id="sys-title">Three subassemblies per size, one separate mesh item</h2>
-    <p class="lead">Each OverCover V4 SKU (Small, Medium, Large) ships with three subassemblies built for that size only. Parts are <strong>not interchangeable across sizes</strong>: the rib form, the panel pattern and the base strip layout are all sized to one fixed base span S. <strong>V4 has no telescoping rib, slide-under platform, ratchet rail or hub.</strong> The Large SKU is the reference geometry: a 68 in arc (18 in center + 2 × 25 in wings) over a 48 in span. Dimensions are inches, with millimetres where useful (1 in = 25.4 mm exactly).</p>
+    <p class="lead">Each OverCover V4 SKU (Small, Medium, Large) ships with three subassemblies built for that size only. Parts are <strong>not interchangeable across sizes</strong>: the rib form, the panel pattern and the base strip layout are all sized to one fixed base span S. <strong>V4 has no telescoping rib. The platform (Subassembly A) is optional and used only on rugs or carpet.</strong> The Large SKU is the reference geometry: a 68 in arc (18 in center + 2 × 25 in wings) over a 48 in span. Dimensions are inches, with millimetres where useful (1 in = 25.4 mm exactly).</p>
     <div class="sub-grid">
-      <article class="note"><span class="id">SUBASSEMBLY A</span><h3>Flat base panel</h3><p>A 6 mm corona-treated PP twin-wall panel (alternate: 0.125 in ABS) with sealed edges and anti-slip underside dots. High-tack acrylic adhesive hook strips are applied <strong>hook side up</strong> around the perimeter, with at least 2 strips per side.</p></article>
+      <article class="note"><span class="id">SUBASSEMBLY A · OPTIONAL</span><h3>Flat base panel (optional platform, soft floors)</h3><p><strong>Ship it only with the soft-floor (rug / carpet) kit.</strong> Hard-floor kits leave it out: their hook strips adhere straight to the floor under the canopy's loop flange. A 6 mm corona-treated PP twin-wall panel (alternate: 0.125 in ABS) with sealed edges and anti-slip underside dots. High-tack acrylic adhesive hook strips are applied <strong>hook side up</strong> around the perimeter, with at least 2 strips per side.</p></article>
       <article class="note"><span class="id">SUBASSEMBLY B</span><h3>Formed rib set</h3><p>0.250 in oil-tempered spring steel (ASTM A229; ASTM A228 music wire allowed), CNC-formed to the SKU's house profile with two <strong>R 1.5 in</strong> knuckle bends. Nylon-11 coated, with end caps retained by dual O-rings. 3 / 4 / 5 ribs for S / M / L.</p></article>
       <article class="note"><span class="id">SUBASSEMBLY C</span><h3>Three-panel canopy cover</h3><p>Left wing, center dome and right wing panels, joined by two rows of hinge knuckles, plus a back gable panel. Rib channels have UHMW liners and removal plackets. A ridge tape runs across the center panel. The bottom-edge flange carries <strong>sewn loop tape</strong>.</p></article>
       <article class="note"><span class="id">SEPARATE ITEM</span><h3>Summer mesh panel</h3><p>A complete three-panel cover plus gable in 3D spacer mesh, one per size. It uses the same pattern, knuckles, lined channels and loop flange. The ribs transfer from the standard cover, so the mesh item ships without ribs.</p></article>
@@ -263,15 +266,29 @@ footer strong{color:var(--text)}
   </div>
 </section>
 
+<!-- ================= OPTIONAL PLATFORM ================= -->
+<section id="platform-option" aria-labelledby="po-title">
+  <div class="wrap">
+    <p class="kicker">Optional platform · when to fit it</p>
+    <h2 id="po-title">The sliding platform is optional</h2>
+    <p class="lead">The OverCover canopy is held down by <strong>Velcro strips</strong> on the left, right and curved back of its bottom rib. The floor under them decides whether a platform is needed.</p>
+    <div class="rules">
+      <article class="note"><span class="id">DEFAULT · HARD FLOORS</span><h3>Velcro-only, no platform</h3><p>On wood, tile, vinyl, laminate or sealed concrete, the hook strips stick straight to the floor wherever the canopy is placed. No platform, nothing under the bed. This is the standard build.</p></article>
+      <article class="note"><span class="id">OPTIONAL · SOFT FLOORS</span><h3>Rugs and carpet: add the platform</h3><p>If the bed sits on a rug or carpet, the Velcro would only grab loose pile and would not hold. The optional platform gives the strips a firm surface. It is a low border frame with loop-tape rims that sits under the bottom rib, and it extends or retracts with the footprint.</p></article>
+      <article class="note"><span class="id">BOTH MODES</span><h3>Interior stays clear</h3><p>Neither mode puts a solid deck inside the footprint. The same canopy, ribs and stroller-style fold are used either way, so a hard-floor kit can be upgraded later by adding the platform.</p></article>
+    </div>
+  </div>
+</section>
+
 <!-- ================= 3D ================= -->
 <section id="see-it-in-action" aria-labelledby="sia-title">
   <div class="wrap">
-    <p class="kicker">Interactive 3D · canopy structure + perimeter half-moon wings · no bottom platform · clear interior</p>
+    <p class="kicker">Interactive 3D · stroller-style canopy · Velcro-only on hard floors · optional sliding platform for rugs and carpet · clear interior</p>
     <h2 id="sia-title">3D build demo: attachment and inverse arc</h2>
-    <p class="lead">Press <strong>Play setup</strong> to watch the setup sequence (press again to <strong>Pause</strong>), or drive it with the sliders. V4 has <strong>no bottom platform</strong>: the folded kit moves into place around the fixed <span style="color:#5fe0b5">dashed clear-interior outline</span>, the left, right and back half-moon wings extend out to the perimeter, and the canopy mounts on the side-wing hubs. Like a stroller canopy it swings up from the back, clicks into a <strong>midway detent</strong>, then locks at <strong>full extension</strong>; dragged back down it falls toward the back and folds flat onto itself. Nothing sits or crosses inside the outline, so the interior footprint stays empty. The <strong>Platform extension</strong> slider (or <strong>↔ Extend / condense</strong>) sets the wing extension per side and shows the inverse arc. The hoops are fixed-length, so <strong>extending the platform lowers and flattens the arc, and condensing it raises and tightens the arc</strong>. Live labels show the platform extension per side, the hub span, the arc height and the clearance. Dashed ghost curves mark the condensed maximum and the extended minimum.</p>
+    <p class="lead">Press <strong>Play setup</strong> to watch the setup sequence (press again to <strong>Pause</strong>), or drive it with the sliders. The sequence shows <strong>both ways to set up the canopy</strong>. First the default, <strong>Velcro-only (hard floors)</strong>: hook strips on the left, right and curved back of the canopy's bottom rib stick straight to the floor. Then the <strong>optional platform (soft floors)</strong>: a rug appears, and a border-frame platform made of half-moon wings with loop-tape rims slides in under the bottom rib so the Velcro has a firm surface to grip. Use the <strong>Floor</strong> buttons to switch between the two modes at any time. In both modes the <span style="color:#5fe0b5">dashed clear-interior outline</span> stays empty. Like a stroller canopy it swings up from the back, clicks into a <strong>midway detent</strong>, then locks at <strong>full extension</strong>. The third slider (or <strong>↔ Extend / condense</strong>) widens or narrows the footprint and shows the inverse arc. The hoops are fixed-length, so <strong>a wider footprint gives a lower, flatter arc, and a narrower one gives a taller, tighter arc</strong>. With the platform fitted, the border extends and retracts with the footprint.</p>
     <figure class="demo sia-figure">
       <div class="sia-stage" id="siaStage">
-        <canvas id="siaCanvas" role="img" aria-label="Interactive 3D model of the OverCover V4 canopy with no bottom platform. A dashed rounded-rectangle outline on the floor marks the clear interior footprint, which stays empty. Three half-moon wings sit around the outside of that outline on the left, right and back and extend outward. A five-hoop canopy with a three-panel cover (left wing panel, center dome, right wing panel, joined by rows of hinge knuckles) mounts on hubs at the front tips of the side wings, swings up from the back like a stroller canopy, clicks into a midway detent and locks with the front hoop upright at full extension. The hoops run left to right, hub to hub. The cover closes the left, right and back; only the front is open. The hoops are fixed length, so extending the wings gives a lower, flatter arc and condensing them gives a taller, tighter arc. Labels show extension per side, hub span, arc height and clear interior height."></canvas>
+        <canvas id="siaCanvas" role="img" aria-label="Interactive 3D model of the OverCover V4 canopy. The sliding platform is optional. In the default Velcro-only mode (hard floors), amber hook strips under the left, right and curved back of the canopy's bottom rib stick to the floor. In the optional-platform mode (rugs and carpet), a rug appears and half-moon border wings with loop-tape rims slide in under the bottom rib so the Velcro has a firm surface. A dashed rounded-rectangle outline on the floor marks the clear interior footprint, which stays empty. A five-hoop canopy with a three-panel cover (left wing panel, center dome, right wing panel, joined by rows of hinge knuckles) mounts on hubs at the front ends of the bottom rib, swings up from the back like a stroller canopy, clicks into a midway detent and locks with the front hoop upright at full extension. The hoops run left to right, hub to hub. The cover closes the left, right and back; only the front is open. The hoops are fixed length, so widening the footprint gives a lower, flatter arc and narrowing it gives a taller, tighter arc. Labels show extension per side, hub span, arc height and clear interior height."></canvas>
         <div class="sia-label is-in" id="siaLabel" aria-hidden="true">
           <span class="sia-tag" id="siaTag">1</span>
           <div>
@@ -286,6 +303,9 @@ footer strong{color:var(--text)}
         <span class="tc-dim span" id="dimExt" aria-hidden="true" style="color:#9fd0ff"></span>
         <span class="tc-dim gh arc" id="dimGhostN" aria-hidden="true">condensed max 28.8 in / 731 mm</span>
         <span class="tc-dim gh span" id="dimGhostW" aria-hidden="true">extended min 24.3 in / 617 mm</span>
+        <span class="tc-dim arc" id="velL" aria-hidden="true">Velcro · left side</span>
+        <span class="tc-dim arc" id="velB" aria-hidden="true">Velcro · curved back</span>
+        <span class="tc-dim arc" id="velR" aria-hidden="true">Velcro · right side</span>
         <span class="tc-cfg" id="tcCfg" aria-hidden="true">OVERCOVER · STANDARD</span>
         <div class="sia-progress" aria-hidden="true"><span id="siaBar"></span></div>
         <div class="sia-fallback" id="siaFallback" hidden>This 3D demo needs WebGL and the Three.js library. The sections below describe the same canopy.</div>
@@ -297,6 +317,11 @@ footer strong{color:var(--text)}
               <button class="btn primary" type="button" id="tcPlay" aria-pressed="false">▶ Play setup</button>
               <button class="btn" type="button" id="tcSeeThru" aria-pressed="false">See-through fabric</button>
             </span>
+            <span class="controls" role="group" aria-label="Floor type and optional platform">
+              <span class="tc-lbl">Floor:</span>
+              <button class="btn" type="button" data-tc-plat="off" aria-pressed="true">Hard floor · Velcro-only</button>
+              <button class="btn" type="button" data-tc-plat="on" aria-pressed="false">Rug / carpet · + optional platform</button>
+            </span>
             <span class="controls" role="group" aria-label="Camera view">
               <button class="btn" type="button" data-tc-view="34" aria-pressed="true">3/4 view</button>
               <button class="btn" type="button" data-tc-view="front" aria-pressed="false">Front</button>
@@ -304,18 +329,18 @@ footer strong{color:var(--text)}
               <button class="btn" type="button" data-tc-view="top" aria-pressed="false">Top</button>
             </span>
           </div>
-          <label class="tc-slider" for="tcSides"><span>Half-moon wings <b id="tcSidesOut">0%</b></span>
+          <label class="tc-slider" for="tcSides"><span><span id="tcSidesName">Base rib (left, right, curved back)</span> <b id="tcSidesOut">0%</b></span>
             <input id="tcSides" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
           </label>
           <label class="tc-slider" for="tcCanopy"><span>Canopy <b id="tcCanopyOut">folded</b></span>
             <input id="tcCanopy" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
           </label>
-          <label class="tc-slider" for="tcSpan"><span>Platform extension <b id="tcSpanOut">8.0 in per side · 26.4 in span</b></span>
+          <label class="tc-slider" for="tcSpan"><span><span id="tcSpanName">Footprint width</span> <b id="tcSpanOut">8.0 in per side · 26.4 in span</b></span>
             <input id="tcSpan" type="range" min="0" max="8" step="1" value="4" aria-describedby="tcReadout">
           </label>
           <div class="tc-row">
-            <span class="controls" role="group" aria-label="Platform setting">
-              <span class="tc-lbl">Platform:</span>
+            <span class="controls" role="group" aria-label="Footprint setting">
+              <span class="tc-lbl">Footprint:</span>
               <button class="btn" type="button" data-tc-ext="condensed" aria-pressed="false">Condensed 6.0 in/side · tall arc</button>
               <button class="btn" type="button" data-tc-ext="standard" aria-pressed="true">Standard 8.0 in/side</button>
               <button class="btn" type="button" data-tc-ext="extended" aria-pressed="false">Extended 10.0 in/side · low arc</button>
@@ -331,27 +356,32 @@ footer strong{color:var(--text)}
     </figure>
     <ul class="sia-key" aria-label="Color key">
             <li><i style="background:transparent;border:1px dashed #5fe0b5"></i>Clear interior footprint (outline only, kept empty)</li>
-      <li><i style="background:#56708a"></i>Half-moon wings (left, right, back)</li>
-            <li><i style="background:#ffcf7a"></i>Loop tape on wing upper rim</li>
+      <li><i style="background:#ffb547"></i>Velcro hook strips under the bottom rib (left, right, curved back); glowing band on the floor = stuck down</li>
+      <li><i style="background:#56708a"></i>Optional platform: half-moon border wings (soft floors only)</li>
+      <li><i style="background:#ffcf7a"></i>Loop tape on the platform's upper rim (where the Velcro lands)</li>
+      <li><i style="background:#5a463b"></i>Rug / carpet (shown in optional-platform mode)</li>
       <li><i style="background:#e8eef5"></i>Fixed-length hoops</li>
       <li><i style="background:#2a3542;border:1px solid #ffb547"></i>Hinge hubs (mint at midway detent and full lock)</li>
       <li><i style="background:#ffd08a"></i>Hinge knuckles (panel seams)</li>
       <li><i style="background:#e8762a"></i>Insulated cover: wing panels darker, dome lighter</li>
-      <li><i style="background:#9fd0ff"></i>Platform extension per side (wing travel)</li>
+      <li><i style="background:#9fd0ff"></i>Footprint / platform extension per side</li>
       <li><i style="background:#5cc8ff"></i>Hub span</li>
       <li><i style="background:#ffb547"></i>Arc height (floor to front-hoop apex)</li>
       <li><i style="background:#5fe0b5"></i>Clear interior height above floor</li>
     </ul>
     <ol class="sia-sr">
-      <li>The kit: three folded half-moon wings and a folded canopy. There is no bottom platform. A dashed outline marks the clear interior footprint, which stays empty.</li>
-      <li>The folded kit moves into place around the outline. Nothing is placed inside it.</li>
-      <li>The left, right and back half-moon wings extend outward in half-inch clicks until each wing sits outside the outline.</li>
-      <li>The canopy hubs snap onto sockets at the front tips of the side wings. The front hoop swings up from the back like a stroller canopy and clicks into the midway detent, then the other hoops follow.</li>
+      <li>The kit is a folded canopy. By default there is no platform. A dashed outline marks the clear interior footprint, which stays empty.</li>
+      <li>The folded canopy moves into place around the outline. Nothing is placed inside it.</li>
+      <li>The bottom rib opens out to the left, right and curved back until it sits outside the outline.</li>
+      <li>The front hoop swings up from the back like a stroller canopy and clicks into the midway detent, then the other hoops follow.</li>
       <li>Spring pins lock both hubs at full extension with the front hoop upright. Left, right and back are closed; only the front is open.</li>
-      <li>The cover's hook-tape bottom edge presses onto the loop tape on the wing upper rims.</li>
-      <li>Warm air is retained under the closed sides.</li>
-      <li>Extended to the end-stop, 10.0 inches per side: hub span 30.4 inches, arc height drops to 24.3 inches.</li>
+      <li>Velcro hook strips attach under the bottom rib on the left side, the right side and the curved back.</li>
+      <li>Velcro-only, hard floors: the strips stick straight to the floor. No platform is needed.</li>
+      <li>Soft floors: a rug or carpet appears. Carpet pile gives the Velcro nothing firm to grip.</li>
+      <li>Optional platform: a border frame of half-moon wings with loop-tape rims slides in under the bottom rib. The Velcro lands on the rims, and the interior stays empty.</li>
+      <li>Extended to 10.0 inches per side: hub span 30.4 inches, arc height drops to 24.3 inches. The platform border extends with it.</li>
       <li>Condensed to 6.0 inches per side: hub span 22.4 inches, the same hoops rise to an arc height of 28.8 inches.</li>
+      <li>The platform is optional: use it on rugs or carpet and leave it out on hard floors.</li>
     </ol>
   </div>
 </section>
@@ -446,8 +476,9 @@ footer strong{color:var(--text)}
 <!-- ================= ATTACH ================= -->
 <section id="attach" aria-labelledby="att-title">
   <div class="wrap">
-    <p class="kicker">Canopy-to-base interface · peel-and-stick hook strips</p>
+    <p class="kicker">Canopy-to-base interface · peel-and-stick hook strips · base panel optional (soft floors)</p>
     <h2 id="att-title">Flat base panel: hook side up, loop on the canopy hem</h2>
+    <p class="callout"><strong>Hard floors (default, no platform):</strong> the same hook strips stick straight to the floor along the left, right and curved back of the canopy's bottom rib, and the loop flange presses onto them. The base panel below is the <strong>optional platform</strong>. Fit it only when the bed sits on a rug or carpet, where Velcro cannot grip the pile.</p>
     <p class="lead">The base panel is a flat sheet. The load rests on its top face; the load is not supplied. <strong>Peel-and-stick hook strips</strong> with a high-tack acrylic adhesive go around the perimeter of the top face, <strong>hook side up</strong>. The canopy's bottom edge is a 2.0 in inward-turned flange carrying <strong>sewn loop tape</strong>. That flange lies flat on the strips, so the cover detaches for washing and the base stays put. V3's slide-under platform, half-moon wings, ratchet rails and hubs are all deleted.</p>
     <div class="feature" style="margin-bottom:1.6rem">
       <figure class="demo">
@@ -737,7 +768,7 @@ footer strong{color:var(--text)}
         </tbody>
       </table>
     </div>
-    <div class="callout warn" style="margin-top:1.2rem"><strong>Changes vs V3 (Rev C → Rev D):</strong> The slide-under platform, half-moon wings, telescoping ratchet rails and hinge hubs are deleted. So is the five-hoop frame: 8.5 mm fiberglass hoops, the rear hoops' shock-corded slip joints (the telescoping rib), and the 2.0 mm wire shaping ribs. There are three fixed sizes, each with its own formed rib set in 0.250 in A229/A228 spring steel (FRP 0.312 in segmented alternate). The attachment is now a flat base panel with adhesive hook strips (hook up) and a sewn loop flange. A ridge tape runs across the center panel. Lined channels with removal plackets and keeper O-ring foot caps are added. The variable-span inverse arc is replaced by a fixed-span house profile with a 20.0 in clearance floor checked per size.</div>
+    <div class="callout warn" style="margin-top:1.2rem"><strong>Changes vs V3 (Rev C → Rev D):</strong> The platform is no longer standard. It becomes an <strong>optional</strong> part (Subassembly A) for rugs and carpet only, and hard-floor kits are Velcro-only. The telescoping ratchet rails are deleted. So is the five-hoop frame: 8.5 mm fiberglass hoops, the rear hoops' shock-corded slip joints (the telescoping rib), and the 2.0 mm wire shaping ribs. There are three fixed sizes, each with its own formed rib set in 0.250 in A229/A228 spring steel (FRP 0.312 in segmented alternate). The attachment is now a flat base panel with adhesive hook strips (hook up) and a sewn loop flange. A ridge tape runs across the center panel. Lined channels with removal plackets and keeper O-ring foot caps are added. The variable-span inverse arc is replaced by a fixed-span house profile with a 20.0 in clearance floor checked per size.</div>
   </div>
 </section>
 </main>
@@ -879,7 +910,7 @@ var OC = (function(){
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-/* ===== OverCover V4 3D build demo: same scene and motion as V3, minus the bottom platform; interior footprint kept empty (scoped to #see-it-in-action) ===== */
+/* ===== OverCover V4 3D build demo: same stroller canopy and motion as V3. The sliding platform is OPTIONAL (soft floors); by default the canopy's bottom rib carries Velcro strips (left, right, curved back) that stick straight to a hard floor. Interior footprint kept empty (scoped to #see-it-in-action) ===== */
 (function(){
   var stage = document.getElementById('siaStage');
   var canvas = document.getElementById('siaCanvas');
@@ -1007,10 +1038,22 @@ var OC = (function(){
   grid.material.transparent = true; grid.material.opacity = 0.5; scene.add(grid);
 
   var loopTex = dotTex('#c98a2c', '#ffd08a', 8, 2.4); loopTex.repeat.set(40, 1);
+  var PLATFORM_OPTION = true;   // V4: the sliding platform is optional (rugs / carpet). Default is Velcro-only (hard floors).
+  var hookTex = dotTex('#8a5512', '#ffd590', 5, 1.4); hookTex.repeat.set(1, 1);
+  /* rug / carpet patch: only shown in the optional-platform (soft floor) mode */
+  function rugTex(){
+    var c = document.createElement('canvas'); c.width = c.height = 128; var x = c.getContext('2d');
+    x.fillStyle = '#3d332d'; x.fillRect(0, 0, 128, 128);
+    for (var k = 0; k < 2600; k++) { var v = 60 + (k * 53 % 47); x.fillStyle = 'rgba(' + (v + 38) + ',' + (v + 20) + ',' + v + ',.5)'; x.fillRect((k * 37) % 128, (k * 91 + (k >> 4)) % 128, 1.6, 1.6); }
+    var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(6, 5); return t;
+  }
+  var rugMat = mat(0xffffff, {map: rugTex(), r: 1, o: 0}); rugMat.depthWrite = false;
+  var rugGeo = new THREE.ShapeGeometry(shapeFromXZ(roundRect(34, 28, 5, 6))); rugGeo.rotateX(-PI / 2);
+  var rug = mesh(rugGeo, rugMat, false); rug.position.set(0, 0.03, 0); rug.renderOrder = 1; rug.visible = false; scene.add(rug);
 
   function clearGroup(g){ while (g.children.length) { var c = g.children.pop(); c.traverse(function(o){ if (o.geometry) o.geometry.dispose(); }); } }
 
-  /* ---------- kit group (moves in from the front). V4: NO bottom platform / center plate. ---------- */
+  /* ---------- kit group (moves in from the front). No solid deck or center plate: the interior stays empty. ---------- */
   var plat = new THREE.Group(); scene.add(plat);
   /* ---------- clear interior footprint: flat dashed outline only; nothing is modeled inside it ---------- */
   var zoneMat = new THREE.LineDashedMaterial({color: 0x5fe0b5, dashSize: 1.1, gapSize: 0.7, transparent: true, opacity: 0.9, depthTest: false});
@@ -1024,7 +1067,9 @@ var OC = (function(){
   }
   var wingMat = mat(0x56708a, {r: 0.5, m: 0.05}), loopMat = mat(0xffffff, {map: loopTex, r: 1, e: 0xffb547, ei: 0});
   var leverMat = mat(0xffb547, {r: 0.5, e: 0xffb547, ei: 0.15});
-  // half-moon wing: local x outward from the chord (0), z along the platform side
+  // optional platform parts fade / slide in and out
+  wingMat.transparent = loopMat.transparent = leverMat.transparent = true;
+  // optional platform = half-moon border wings: local x outward from the chord (0), z along the side
   function halfMoon(len, bulge, tongue, n){
     var pts = [], k, m = 40;
     for (k = 0; k <= m; k++) { var t = -1 + 2 * k / m; pts.push([bulge * sup(t, G.N), t * len / 2]); }
@@ -1035,7 +1080,7 @@ var OC = (function(){
   var wings = [];
   function makeWing(kind, s){
     var w = new THREE.Group(), side = kind === 'side', L = side ? G.WING_L : G.BACK_L, B = side ? G.WING_B : G.BACK_B;
-    var outline = halfMoon(L, B, 0);   // V4: no inward tongue, wing stays outside the clear interior
+    var outline = halfMoon(L, B, 0);   // no inward tongue: the wing border stays outside the clear interior
     var inner = new THREE.Group(); w.add(inner);
     // orient: side wings bulge along ±x; the back wing bulges along -z
     var g = slabGeo(outline, 0.42);
@@ -1057,7 +1102,8 @@ var OC = (function(){
   /* ---------- hubs ---------- */
   var hubMat = mat(0x2a3542, {r: 0.4, m: 0.3}), hubRingMat = mat(0xffb547, {r: 0.4, e: 0xffb547, ei: 0.25});
   var canopyG = new THREE.Group(); plat.add(canopyG);
-  var sockets = [-1, 1].map(function(s){ var f = mesh(new THREE.BoxGeometry(2.4, 0.7, 3.4), wingMat); plat.add(f); return {g: f, s: s}; });
+  var sockMat = mat(0x56708a, {r: 0.5, m: 0.05});   // hub feet (always present)
+  var sockets = [-1, 1].map(function(s){ var f = mesh(new THREE.BoxGeometry(2.4, 0.7, 3.4), sockMat); plat.add(f); return {g: f, s: s}; });
   var hubs = [-1, 1].map(function(s){
     var h = new THREE.Group();
     var disc = mesh(new THREE.CylinderGeometry(1.7, 1.7, 0.9, 28), hubMat); disc.rotation.z = PI / 2; h.add(disc);
@@ -1093,6 +1139,29 @@ var OC = (function(){
   var knMat = mat(0xffd08a, {r: 0.35, m: 0.2, e: 0xffb547, ei: 0.2}), knuckles = [];
   [SEAM1, SEAM2].forEach(function(col){ for (var j = 0; j < 8; j++) { var kn = mesh(SPH, knMat); kn.scale.set(0.55, 0.55, 0.55); canopyG.add(kn); knuckles.push({m: kn, col: col, j: j}); } });
 
+  /* ---------- Velcro hook strips under the canopy's bottom rib: left side, curved back, right side ---------- */
+  var VSEG = [[0, 28, 'left'], [33, 63, 'back'], [68, HN, 'right']];
+  function ribbon(parent, m){
+    var n = 0; VSEG.forEach(function(sg){ n += sg[1] - sg[0] + 1; });
+    var g = new THREE.BufferGeometry(), pos = new Float32Array(n * 6), uv = new Float32Array(n * 4), id = [], o = 0;
+    VSEG.forEach(function(sg){ for (var k = sg[0]; k <= sg[1]; k++, o++) { var u = (k - sg[0]) * 0.5; uv.set([u, 0, u, 1], o * 4); if (k < sg[1]) id.push(2 * o, 2 * o + 1, 2 * o + 2, 2 * o + 1, 2 * o + 3, 2 * o + 2); } });
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(id);
+    var x = new THREE.Mesh(g, m); x.frustumCulled = false; x.renderOrder = 3; parent.add(x); return x;
+  }
+  function setRibbon(r, fn){
+    var a = r.geometry.attributes.position.array, o = 0;
+    VSEG.forEach(function(sg){ for (var k = sg[0]; k <= sg[1]; k++, o++) { var v = fn(k); for (var j = 0; j < 6; j++) a[o * 6 + j] = v[j]; } });
+    r.geometry.attributes.position.needsUpdate = true; r.geometry.computeVertexNormals();
+  }
+  function hoopNormal(k){ var a = hoopPts[Math.max(0, k - 1)], b = hoopPts[Math.min(HN, k + 1)], tx = b[0] - a[0], tz = b[1] - a[1], l = Math.hypot(tx, tz) || 1; return [tz / l, -tx / l]; }
+  var hookMat = new THREE.MeshStandardMaterial({color: 0xffffff, map: hookTex, roughness: 0.85, emissive: new THREE.Color(0xffb547), emissiveIntensity: 0.25, side: THREE.DoubleSide, transparent: true, opacity: 0});
+  var footMat = new THREE.MeshBasicMaterial({color: 0xffb547, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false});
+  var vBand = ribbon(canopyG, hookMat), vFoot = ribbon(plat, footMat);
+  // optional platform border frame: a loop-tape rim band under the bottom rib (left, curved back, right), never a solid deck
+  var frameMat = new THREE.MeshStandardMaterial({color: 0xffcf7a, map: loopTex, roughness: 0.95, emissive: new THREE.Color(0xffb547), emissiveIntensity: 0.12, side: THREE.DoubleSide, transparent: true, opacity: 0});
+  var pFrame = ribbon(plat, frameMat); pFrame.visible = false;
+  var velEls = {left: document.getElementById('velL'), back: document.getElementById('velB'), right: document.getElementById('velR')};
+
   /* ---------- inverse-arc measurement overlay ---------- */
   var dimMat = {span: new THREE.LineBasicMaterial({color: 0x5cc8ff, depthTest: false, transparent: true}), arc: new THREE.LineBasicMaterial({color: 0xffb547, depthTest: false, transparent: true}), clr: new THREE.LineBasicMaterial({color: 0x5fe0b5, depthTest: false, transparent: true})};
   function segLine(m, n){ var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(n * 6), 3)); var l = new THREE.LineSegments(g, m); l.renderOrder = 10; l.frustumCulled = false; plat.add(l); return l; }
@@ -1116,56 +1185,57 @@ var OC = (function(){
   }
   function fmt(v){ return v.toFixed(1) + ' in / ' + Math.round(v * 25.4) + ' mm'; }
 
-  /* heat motes */
-  var motes = [];
-  for (i = 0; i < 12; i++) {
-    var mm = mesh(new THREE.SphereGeometry(0.45, 10, 8), mat(0xffb547, {e: 0xff7a1a, ei: 0.9, o: 0}), false);
-    mm.userData = {x: -7 + (i * 37 % 15), z: -6 + (i * 23 % 11), off: i / 12};
-    scene.add(mm); motes.push(mm);
-  }
-
   /* ---------- UI ---------- */
   function $(id){ return document.getElementById(id); }
   var sidesIn = $('tcSides'), canIn = $('tcCanopy'), sidesOut = $('tcSidesOut'), canOut = $('tcCanopyOut'), readout = $('tcReadout');
   var playBtn = $('tcPlay'), seeBtn = $('tcSeeThru'), extEl = $('dimExt'), spanIn = $('tcSpan'), spanOut = $('tcSpanOut'), flexBtn = $('tcFlex'), dimsBtn = $('tcDims');
+  var platBtns = document.querySelectorAll('[data-tc-plat]'), sidesName = $('tcSidesName'), spanName = $('tcSpanName');
   var labTag = $('siaTag'), labTitle = $('siaTitle'), labDesc = $('siaDesc'), label = $('siaLabel'), bar = $('siaBar'), badge = $('siaBadge');
 
   /* ---------- state ---------- */
-  var S = {slide: 0, e: 0, u: 0, attach: 0, seeThru: false, span: 4, flex: false, dims: true};
+  var S = {slide: 0, e: 0, u: 0, attach: 0, seeThru: false, span: 4, flex: false, dims: true, platOn: false, velcro: 0, stick: 0, plat: 0, rug: 0};
   var spanCur = 4, zoneKey = '34x26';
   function zoneFor(step){ return {W: 30 + step, D: 24 + step / 2}; }
-  var cur = {xs: G.XS0, zb: G.ZB0, slide: 0, u: 0, attach: 0, W: 34, D: 26};
-  var REF = 0;   // V4: no platform or deck; clearance is measured from the floor
+  var cur = {xs: G.XS0, zb: G.ZB0, slide: 0, u: 0, attach: 0, W: 34, D: 26, plat: 0, rug: 0, velcro: 0, stick: 0};
+  var REF = 0;   // no solid deck in either mode; clearance is measured from the floor
   buildZone(34, 26);
   var hoopPts = computeHoop(cur.xs, cur.zb), hoopKey = '';
   var playing = false, pt = 0, onScreen = false, autoStarted = false, lastStep = -1;
 
   var STEPS = [
-    {t: 0,  d: 2.5, tag: '1', title: 'OverCover kit: folded wings + canopy', desc: 'Three half-moon wings retracted and the canopy folded flat at the back. There is no bottom platform. The dashed outline is the clear interior footprint and stays empty.'},
-    {t: 2.5, d: 4, tag: '2', title: 'Move the folded kit into place', desc: 'The folded kit moves in from the front and centers on the outline. No platform or plate goes under or inside the outline.'},
-    {t: 6.5, d: 5, tag: '3', title: 'Extend the half-moon wings', desc: 'Left, right, and back wings run outward, one click per \u00bd in, until each wing sits fully outside the outline. Nothing crosses the interior.'},
-    {t: 11.5, d: 5.5, tag: '4', title: 'Mount and raise the OverCover canopy', desc: 'The canopy hubs snap onto sockets at the front tips of the side wings. Like a stroller canopy, the front hoop swings up from the back, clicks into the midway detent at 45\u00b0, then continues; fabric tension lifts the other hoops in turn.'},
-    {t: 17, d: 2, tag: '5', title: 'Click: hubs lock at full extension', desc: 'Spring pins in both hubs drop into their full-extension notches. Left, right, and back are closed. Only the front is open.'},
-    {t: 19, d: 4, tag: '6', title: 'Velcro: hook hem onto loop rim', desc: 'Hook tape on the canopy bottom edge presses onto loop tape on the wings\u2019 upper rims (glowing). Peel it off the same way to wash the canopy.'},
-    {t: 23, d: 5, tag: '7', title: 'Warm air is retained', desc: 'With three sides closed down to the wing rims, rising warm air pools under the canopy. The open front vents stale air.'},
-    {t: 28, d: 4, tag: '8', title: 'Extended \u2192 lower, flatter arc', desc: 'Same fixed-length ribs, wider hub span. At the end-stop (10.0 in per side, 30.4 in span) the arc drops to 24.3 in, the design floor.'},
-    {t: 32, d: 5.5, tag: '9', title: 'Condensed \u2192 taller, tighter arc', desc: 'Retract to 6.0 in per side (22.4 in span) and the same ribs rise to 28.8 in. Pinned hub sockets, a fixed-length ridge tape, and length-matched rib channels guide the return.'}
+    {id: 'kit',   t: 0,    d: 2.5, tag: '1',  title: 'OverCover kit: folded canopy (Velcro-only by default)', desc: 'The canopy is folded flat at the back. The default build has no platform: on hard floors the canopy\u2019s own Velcro strips hold it down. The dashed outline is the clear interior footprint and stays empty.'},
+    {id: 'move',  t: 2.5,  d: 4,   tag: '2',  title: 'Move the folded canopy into place', desc: 'The folded canopy moves in from the front and centers on the outline. Nothing goes under or inside the outline.'},
+    {id: 'open',  t: 6.5,  d: 5,   tag: '3',  title: 'Open the bottom rib to its footprint', desc: 'The bottom rib opens out to the left, right and curved back, in \u00bd in clicks, until it sits fully outside the outline.'},
+    {id: 'raise', t: 11.5, d: 5.5, tag: '4',  title: 'Raise the OverCover canopy', desc: 'Like a stroller canopy, the front hoop swings up from the back, clicks into the midway detent at 45\u00b0, then continues; fabric tension lifts the other hoops in turn.'},
+    {id: 'lock',  t: 17,   d: 2,   tag: '5',  title: 'Click: hubs lock at full extension', desc: 'Spring pins in both hubs drop into their full-extension notches. Left, right, and back are closed. Only the front is open.'},
+    {id: 'strip', t: 19,   d: 3,   tag: '6',  title: 'Velcro strips on the bottom rib', desc: 'Hook strips attach under the canopy\u2019s bottom rib on the left side, the right side and the curved back.'},
+    {id: 'stick', t: 22,   d: 3,   tag: '7',  title: 'Velcro-only (hard floors): stuck to the floor', desc: 'On wood, tile or vinyl the strips stick straight to the floor. No platform needed. This is the default build.'},
+    {id: 'rug',   t: 25,   d: 2.5, tag: '8',  title: 'Soft floor? Rug or carpet', desc: 'Velcro has nothing firm to grip on carpet pile, so the strips would not hold. This is the one case for the optional platform.'},
+    {id: 'plat',  t: 27.5, d: 5,   tag: '9',  title: 'Optional platform (soft floors) slides in', desc: 'The optional sliding platform is a border frame, not a solid deck: half-moon wings with loop-tape rims slide in under the left, right and back of the bottom rib. The Velcro lands on that firm rim. The interior stays empty.'},
+    {id: 'ext',   t: 32.5, d: 4,   tag: '10', title: 'Extended \u2192 lower, flatter arc', desc: 'Same fixed-length ribs, wider hub span. At the end-stop (10.0 in per side, 30.4 in span) the arc drops to 24.3 in, the design floor. The platform border extends with it.'},
+    {id: 'con',   t: 36.5, d: 5.5, tag: '11', title: 'Condensed \u2192 taller, tighter arc', desc: 'Retract to 6.0 in per side (22.4 in span) and the same ribs rise to 28.8 in. The platform border retracts with it.'},
+    {id: 'opt',   t: 42,   d: 3.5, tag: '12', title: 'Platform is optional', desc: 'Use it on rugs or carpet. On hard floors leave it out: the Velcro strips alone hold the canopy. Pick either mode with the Floor buttons below.'}
   ];
-  var TOTAL = 37.5;
+  var TOTAL = 45.5, STICK = [22, 25], SEAT = [30.5, 32.5];
   function flexSpan(t, base){
-    if (t < 28) return base;
-    if (t < 30.5) return lerp(base, 8, sstep(28, 30.5, t));
-    if (t < 32) return 8;
-    if (t < 34.5) return lerp(8, 0, sstep(32, 34.5, t));
-    if (t < 35.8) return 0;
-    return lerp(0, base, sstep(35.8, 37.3, t));
+    if (t < 32.5) return base;
+    if (t < 35) return lerp(base, 8, sstep(32.5, 35, t));
+    if (t < 36.5) return 8;
+    if (t < 39) return lerp(8, 0, sstep(36.5, 39, t));
+    if (t < 40.3) return 0;
+    return lerp(0, base, sstep(40.3, 41.8, t));
   }
   function stateAt(t){
+    var back = sstep(42.2, 44, t), want = S.platOn ? 1 : 0;
     return {
       slide: sstep(2.7, 6.2, t),
       e: sstep(6.8, 11.0, t),
       attach: sstep(11.3, 12.5, t),
-      u: t < 14.6 ? 0.5 * sstep(12.7, 14.6, t) : 0.5 + 0.5 * sstep(15.2, 17.0, t)   // pause at the midway detent
+      u: t < 14.6 ? 0.5 * sstep(12.7, 14.6, t) : 0.5 + 0.5 * sstep(15.2, 17.0, t),   // pause at the midway detent
+      velcro: sstep(19.3, 21.3, t),
+      stick: sstep(22.2, 23.2, t),
+      rug: t < 42.2 ? sstep(25.3, 26.8, t) : lerp(1, want, back),
+      plat: t < 42.2 ? sstep(27.8, 30.5, t) : lerp(1, want, back)
     };
   }
   function setLabel(k){
@@ -1174,11 +1244,12 @@ var OC = (function(){
     labTag.textContent = st.tag; labTitle.textContent = st.title; labDesc.textContent = st.desc;
     label.classList.remove('is-in'); void label.offsetWidth; label.classList.add('is-in');
   }
+  function stepIx(id){ for (var k = 0; k < STEPS.length; k++) if (STEPS[k].id === id) return k; return 0; }
   function manualLabel(){
-    if (S.u > 0.97 && S.span >= 7) { setLabel(7); return; }
-    if (S.u > 0.97 && S.span <= 1) { setLabel(8); return; }
-    var k = S.u > 0.97 ? 4 : S.u > 0.02 ? 3 : S.e > 0.02 ? 2 : S.slide > 0.5 ? 1 : 0;
-    setLabel(k);
+    if (S.u > 0.97 && S.span >= 7) { setLabel(stepIx('ext')); return; }
+    if (S.u > 0.97 && S.span <= 1) { setLabel(stepIx('con')); return; }
+    if (S.u > 0.97) { setLabel(stepIx(S.platOn ? 'plat' : 'stick')); return; }
+    setLabel(stepIx(S.u > 0.02 ? 'raise' : S.e > 0.02 ? 'open' : S.slide > 0.5 ? 'move' : 'kit'));
   }
   function syncInputs(){
     sidesIn.value = Math.round(S.e * 100); canIn.value = Math.round(S.u * 100);
@@ -1186,6 +1257,10 @@ var OC = (function(){
     canOut.textContent = S.u < 0.02 ? 'folded at back' : S.u > 0.98 ? 'locked · front open' : Math.abs(S.u - 0.5) < 0.015 ? 'midway detent · 45°' : Math.round(S.u * 90) + '° up';
     spanIn.value = Math.round(spanCur); var st0 = Math.round(spanCur); spanOut.textContent = (6 + st0 * 0.5).toFixed(1) + ' in per side · ' + (22.4 + st0).toFixed(1) + ' in span';
     document.querySelectorAll('[data-tc-ext]').forEach(function(x){ var s = {condensed: 0, standard: 4, extended: 8}[x.getAttribute('data-tc-ext')]; x.setAttribute('aria-pressed', Math.round(spanCur) === s ? 'true' : 'false'); });
+    var on = PLATFORM_OPTION && (playing ? cur.plat > 0.5 : S.platOn);
+    if (sidesName) sidesName.textContent = PLATFORM_OPTION && on ? 'Platform border (half-moon wings)' : 'Base rib (left, right, curved back)';
+    if (spanName) spanName.textContent = PLATFORM_OPTION && on ? 'Platform extension' : 'Footprint width';
+    platBtns.forEach(function(x){ x.setAttribute('aria-pressed', (x.getAttribute('data-tc-plat') === 'on') === S.platOn ? 'true' : 'false'); });
   }
   function stopPlay(){ playing = false; playBtn.textContent = '\u25B6 Play setup'; playBtn.setAttribute('aria-pressed', 'false'); }
   function startPlay(){ playing = true; pt = 0; playBtn.textContent = '\u275A\u275A Pause'; playBtn.setAttribute('aria-pressed', 'true'); }
@@ -1201,6 +1276,9 @@ var OC = (function(){
   });
   spanIn.addEventListener('input', function(){ stopFlex(); if (pt < TOTAL || playing) deployed(); setSpan(+spanIn.value); });
   flexBtn.addEventListener('click', function(){ S.flex = !S.flex; flexBtn.setAttribute('aria-pressed', S.flex ? 'true' : 'false'); if (S.flex) { deployed(); S.flexT = 0; } else setSpan(Math.round(spanCur)); });
+  platBtns.forEach(function(b){
+    b.addEventListener('click', function(){ S.platOn = b.getAttribute('data-tc-plat') === 'on'; if (pt < TOTAL || playing) deployed(); syncInputs(); manualLabel(); });
+  });
   dimsBtn.addEventListener('click', function(){ S.dims = !S.dims; dimsBtn.setAttribute('aria-pressed', S.dims ? 'true' : 'false'); });
 
   /* ---------- camera: drag to orbit + view presets ---------- */
@@ -1232,7 +1310,7 @@ var OC = (function(){
     clock += dt;
     if (playing) {
       pt = Math.min(TOTAL, pt + dt);
-      var st = stateAt(pt); S.slide = st.slide; S.e = st.e; S.u = st.u; S.attach = st.attach;
+      var st = stateAt(pt); S.slide = st.slide; S.e = st.e; S.u = st.u; S.attach = st.attach; S.velcro = st.velcro; S.stick = st.stick; S.plat = st.plat; S.rug = st.rug;
       for (var k = STEPS.length - 1; k >= 0; k--) if (pt >= STEPS[k].t) { setLabel(k); break; }
       bar.style.width = (100 * pt / TOTAL).toFixed(1) + '%';
       syncInputs();
@@ -1240,7 +1318,7 @@ var OC = (function(){
       if (pt >= TOTAL) stopPlay();
     } else if (S.flex) {
       S.flexT = (S.flexT || 0) + dt; spanCur = 4 - 4 * Math.cos(S.flexT * 0.6); syncInputs();
-      setLabel(spanCur > 5 ? 7 : spanCur < 3 ? 8 : 4);
+      setLabel(spanCur > 5 ? stepIx('ext') : spanCur < 3 ? stepIx('con') : stepIx(S.platOn ? 'plat' : 'stick'));
     } else if (!playing && pt >= TOTAL) { bar.style.width = '100%'; }
 
     // clear-interior outline follows the extension setting (1 in span step = ½ in rail click per side)
@@ -1254,17 +1332,31 @@ var OC = (function(){
     cur.u = playing ? S.u : damp(cur.u, S.u, dt, 7);
     if (!playing) S.attach = (S.e > 0.97 || S.u > 0.02) ? 1 : 0;
     cur.attach = playing ? S.attach : damp(cur.attach, S.attach, dt, 4);
+    // optional platform (soft floors) vs Velcro-only (hard floors)
+    if (!playing) { S.plat = S.rug = (PLATFORM_OPTION && S.platOn) ? 1 : 0; S.velcro = S.stick = (S.e > 0.5 || S.u > 0.02) ? 1 : 0; }
+    if (!PLATFORM_OPTION) S.plat = S.rug = 0;
+    cur.plat = playing ? S.plat : damp(cur.plat, S.plat, dt, 4);
+    cur.rug = playing ? S.rug : damp(cur.rug, S.rug, dt, 4);
+    cur.velcro = playing ? S.velcro : damp(cur.velcro, S.velcro, dt, 5);
+    cur.stick = playing ? S.stick : damp(cur.stick, S.stick, dt, 5);
 
-    // folded kit moves in from the front around the fixed clear-interior outline (no platform)
+    // folded kit moves in from the front around the fixed clear-interior outline (no deck inside it)
     var sl = cur.slide;
     plat.position.z = lerp(48, 0, sl);
     if (zoneLine) zoneLine.material.opacity = 0.55 + 0.35 * Math.sin(PI * sat01(sl));
 
-    // wings + rails
-    wL.g.position.x = -cur.xs; wR.g.position.x = cur.xs; wB.g.position.z = -cur.zb;
+    // optional platform: half-moon border wings slide in from outside (soft floors) or stay off (hard floors)
+    var po = 14 * (1 - sstep(0, 1, cur.plat)), pv = cur.plat > 0.01;
+    wL.g.position.x = -(cur.xs + po); wR.g.position.x = cur.xs + po; wB.g.position.z = -(cur.zb + po);
+    wings.forEach(function(w){ w.g.visible = pv; });
+    wingMat.opacity = loopMat.opacity = leverMat.opacity = sat01(cur.plat * 1.2);
+    pFrame.visible = pv; frameMat.opacity = sat01(cur.plat * 1.2); frameMat.emissiveIntensity = loopMat.emissiveIntensity;
+    var fs = 1 + po / 28; pFrame.scale.set(fs, 1, fs);
+    setRibbon(pFrame, function(k){ var q = hoopPts[k], n = hoopNormal(k); return [q[0] - n[0] * 2.4, 0.5, q[1] - n[1] * 2.4, q[0] + n[0] * 2.4, 0.5, q[1] + n[1] * 2.4]; });
+    rug.visible = cur.rug > 0.01; rugMat.opacity = 0.92 * cur.rug;
     placeRails(wL, cur.xs); placeRails(wR, cur.xs); placeRails(wB, cur.zb);
     var cleared = cur.xs >= xsFit - 0.3 && cur.zb >= zbFit - 0.3;
-    var seat = playing && pt > 19 && pt < 23;
+    var seat = playing && pt > SEAT[0] && pt < SEAT[1];
     loopMat.emissiveIntensity = 0.12 + ((cleared && cur.u < 0.05) || seat ? 0.35 + 0.25 * Math.sin(clock * 4) : 0);
     leverMat.emissiveIntensity = Math.abs(xsT - cur.xs) > 0.05 ? 0.8 : 0.15;
 
@@ -1273,7 +1365,8 @@ var OC = (function(){
     if (hk !== hoopKey) { hoopPts = computeHoop(cur.xs, cur.zb); hoopKey = hk; G.KF = Math.min(0.80, solveKF(hoopPts)); }
     hubs.forEach(function(h){ h.g.position.set(h.s * (cur.xs + 0.2), G.Y0 + 0.3, G.ZH); });
     sockets.forEach(function(h){ h.g.position.set(h.s * (cur.xs + 0.2), 0.75, G.ZH); });
-    canopyG.position.y = (1 - sstep(0, 1, cur.attach)) * 16; canopyG.visible = cur.attach > 0.01;
+    // with the platform the canopy drops onto the wing hubs (as in V3); Velcro-only, the folded canopy is the kit
+    canopyG.position.y = (1 - sstep(0, 1, cur.attach)) * 16 * sstep(0, 1, cur.plat); canopyG.visible = cur.attach > 0.01 || cur.plat < 0.5;
     var locked = cur.u > 0.985, midLock = Math.abs(cur.u - 0.5) < 0.012, detent = locked || midLock;
     hubRingMat.color.setHex(detent ? 0x5fe0b5 : 0xffb547); hubRingMat.emissive.setHex(detent ? 0x5fe0b5 : 0xffb547); hubRingMat.emissiveIntensity = detent ? 0.7 : 0.25;
     frontHoopMat.emissiveIntensity = (!detent && cur.u > 0.01 && cur.u < 0.99) ? 0.35 : 0;
@@ -1300,16 +1393,22 @@ var OC = (function(){
     handle.rotation.set(phiF - PI / 2, 0, 0); handle.position.copy(tmpV); handle.translateY(0.3);
     knuckles.forEach(function(k){ var rf = (k.j + 0.5) / 8 * (ROWS - 1), bi2 = Math.min(NB - 2, Math.floor(rf / SUB)), f2 = (rf - bi2 * SUB) / SUB; canopyPt(hoopPts[k.col], lerp(ang[bi2], ang[bi2 + 1], f2), tmpV); k.m.position.set(tmpV.x, tmpV.y + 0.25, tmpV.z); });
 
+    // Velcro strips under the bottom rib (left, curved back, right): reach the floor (Velcro-only) or land on the platform's loop rim
+    var vb = sstep(0, 1, cur.velcro), yTop = G.Y0 + 0.35, yLand = lerp(0.04, 0.5, sstep(0, 1, cur.plat)), yBot = lerp(yTop, yLand, vb);
+    setRibbon(vBand, function(k){ var q = hoopPts[k]; return [q[0], yTop, q[1], q[0], yBot, q[1]]; });
+    setRibbon(vFoot, function(k){ var q = hoopPts[k], n = hoopNormal(k); return [q[0] - n[0] * 1.3, 0.07, q[1] - n[1] * 1.3, q[0] + n[0] * 1.3, 0.07, q[1] + n[1] * 1.3]; });
+    vBand.visible = cur.velcro > 0.01; hookMat.opacity = sat01(cur.velcro * 1.5);
+    var pressing = playing && pt > STICK[0] && pt < STICK[1];
+    hookMat.emissiveIntensity = 0.25 + (pressing ? 0.45 + 0.3 * Math.sin(clock * 5) : 0);
+    var fo = cur.stick * (1 - sstep(0, 1, cur.plat)); vFoot.visible = fo > 0.01;
+    footMat.opacity = fo * (pressing ? 0.7 + 0.25 * Math.sin(clock * 5) : 0.6);
+    var showVel = cur.velcro > 0.3 && cur.slide > 0.95, onRim = cur.plat > 0.5 || cur.rug > 0.5;
+    VSEG.forEach(function(sg){ var el = velEls[sg[2]], tx = 'Velcro · ' + (sg[2] === 'back' ? 'curved back' : sg[2] + ' side') + (onRim ? ' → platform rim' : ' → floor'); if (el && el.textContent !== tx) el.textContent = tx; });
+    VSEG.forEach(function(sg){ var k = Math.round((sg[0] + sg[1]) / 2), q = hoopPts[k], n = hoopNormal(k); placeTag(velEls[sg[2]], q[0] - n[0] * 4, 1.4, q[1] - n[1] * 4, showVel); });
+
     // warm-air retention: shown once the canopy is locked (closed left, right, back)
     var heat = sstep(0.9, 1, cur.u), trapped = locked ? 1 : 0;
     warm.position.set(0, REF + 8, 0); warm.intensity = heat * (0.4 + 0.55 * trapped + 0.15 * Math.sin(clock * 1.6));
-    var roof = G.Y0 + hoopPts[HN / 2][2] * G.KF - 2.5;
-    motes.forEach(function(m){
-      var q = (clock * 0.16 + m.userData.off) % 1, top = trapped ? roof : roof + 22;
-      m.position.set(m.userData.x + Math.sin(clock + m.userData.off * 9) * 1.2, lerp(REF + 2, top, q), m.userData.z);
-      if (trapped && q > 0.75) { m.position.x += (q - 0.75) * 30 * (m.userData.x > 0 ? 1 : -1) * 0.4; }
-      m.material.opacity = heat * 0.85 * Math.sin(PI * q); m.visible = m.material.opacity > 0.02;
-    });
 
     // readout
     var travelS = cur.xs - G.XS0, travelB = cur.zb - G.ZB0, maxW = 0;
@@ -1330,14 +1429,17 @@ var OC = (function(){
     placeTag(dimEls.clr, 1.4, deckTop + clr * 0.42, G.ZH + 3, showDims);
     placeTag(dimEls.gn, 0, ghostN.top + 2.0, G.ZH + 0.9, showDims);
     placeTag(dimEls.gw, cur.xs + 9, ghostW.top - 4, G.ZH + 0.9, showDims);
-    var railOut = travelS; // rail travel per side: 6.0 in condensed .. 10.0 in extended
-    if (extEl) { extEl.innerHTML = 'Platform extension <b>' + railOut.toFixed(1) + ' in / side</b> · ' + Math.round(railOut / 0.5) + ' clicks'; }
-    placeTag(extEl, -(cur.xs + G.WING_B + 1), 2.2, G.WING_ZC - 6, showDims || (cur.slide > 0.95 && cur.e > 0.05));
-    var cfg = 'OVERCOVER · ' + (span > 29 ? 'EXTENDED · LOW, FLAT ARC' : span < 23.5 ? 'CONDENSED · HIGH, TIGHT ARC' : 'MID SETTING · ' + Math.round(frontH * 10) / 10 + ' IN ARC');
-    if (cfgEl) { cfgEl.style.opacity = showDims ? '1' : '0'; if (cfgEl.textContent !== cfg) cfgEl.textContent = cfg; }
-    var txt = 'OverCover inverse arc: fixed ' + RIB_L.toFixed(1) + ' in front rib · platform extension ' + railOut.toFixed(1) + ' in per side · hub span ' + fmt(span) + ' · arc height ' + fmt(frontH) + ' · clear interior height above floor ' + fmt(clr) + (clr >= 18 ? ' (≥ 18.0 in design minimum ✓)' : '') + ' · bottom platform: none · interior footprint ' + Math.round(2 * (xsFit - GAP)) + ' × ' + Math.round(cur.D / 2 + zbFit - GAP) + ' in: empty' + ' · side wings out ' + travelS.toFixed(1) + ' in from fold (' + Math.round(travelS / 0.5) + ' clicks) · back wing out ' + travelB.toFixed(1) + ' in (' + Math.round(travelB / 0.5) + ' clicks) · wings ' +
-      (cleared ? 'clear of the interior outline' : 'not yet clear of the interior outline') + ' · front opening ≈ ' + Math.round(frontH) + ' in tall, ' + Math.round(2 * cur.xs) + ' in wide at the floor, ' + Math.round(2 * maxW) + ' in at its widest';
-    if (!cleared && cur.u > 0.03 && cur.slide > 0.9) txt += ' — ⚠ wings not fully extended yet: extend the half-moon wings outside the outline before raising the canopy.';
+    var railOut = travelS; // travel per side: 6.0 in condensed .. 10.0 in extended
+    var platIn = cur.plat > 0.5 || (playing && cur.rug > 0.5);
+    if (extEl) { extEl.innerHTML = (platIn ? 'Platform extension' : 'Base rib out') + ' <b>' + railOut.toFixed(1) + ' in / side</b>' + (platIn ? ' · ' + Math.round(railOut / 0.5) + ' clicks' : ''); }
+    placeTag(extEl, -(cur.xs + G.WING_B + 1), 2.2, G.WING_ZC - 6, showDims || (cur.slide > 0.95 && cur.e > 0.05 && cur.e < 0.98));
+    var cfg = 'OVERCOVER · ' + (platIn ? 'OPTIONAL PLATFORM (SOFT FLOOR)' : 'VELCRO-ONLY (HARD FLOOR)') + ' · ' + (span > 29 ? 'EXTENDED · LOW ARC' : span < 23.5 ? 'CONDENSED · TALL ARC' : Math.round(frontH * 10) / 10 + ' IN ARC');
+    if (cfgEl) { cfgEl.style.opacity = (showDims || cur.u > 0.9) ? '1' : '0'; if (cfgEl.textContent !== cfg) cfgEl.textContent = cfg; }
+    var modeTxt = platIn
+      ? 'optional platform ON (rug / carpet): half-moon border wings with loop-tape rims sit under the bottom rib, so the Velcro strips land on a firm panel instead of carpet pile'
+      : 'Velcro-only (hard floor, no platform): hook strips on the left, right and curved back of the bottom rib stick straight to the floor';
+    var txt = 'OverCover: ' + modeTxt + ' · fixed ' + RIB_L.toFixed(1) + ' in front rib · ' + (platIn ? 'platform extension ' : 'base rib out ') + railOut.toFixed(1) + ' in per side · hub span ' + fmt(span) + ' · arc height ' + fmt(frontH) + ' · clear interior height above floor ' + fmt(clr) + (clr >= 18 ? ' (≥ 18.0 in design minimum ✓)' : '') + ' · interior footprint ' + Math.round(2 * (xsFit - GAP)) + ' × ' + Math.round(cur.D / 2 + zbFit - GAP) + ' in: empty, a bed fits' + ' · front opening ≈ ' + Math.round(frontH) + ' in tall, ' + Math.round(2 * cur.xs) + ' in wide at the floor, ' + Math.round(2 * maxW) + ' in at its widest';
+    if (!cleared && cur.u > 0.03 && cur.slide > 0.9) txt += platIn ? ' — ⚠ platform wings not fully extended yet: extend them outside the outline before raising the canopy.' : ' — ⚠ base rib not fully open yet: open it before raising the canopy.';
     if (readout.textContent !== txt) readout.textContent = txt;
 
     // camera
