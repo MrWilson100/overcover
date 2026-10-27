@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OverCover V4: Manufacturer Build Document (Rev D), Fixed-Size Three-Panel Canopy System</title>
-<meta name="description" content="OverCover V4 manufacturer build document, Revision D. Detachable dog bed canopy in three fixed sizes (Small, Medium, Large): three-panel house-profile arc with hinge knuckles, 0.250 in spring-steel ribs, flat base panel with peel-and-stick hook strips, geometry and clearance table, bill of materials, build sequence, tolerances, QC plan, failure modes and 3D modeling reference.">
+<meta name="description" content="OverCover V4 manufacturer build document, Revision D. Universal detachable canopy cover on a flat base panel, in three fixed sizes (Small, Medium, Large): three-panel house-profile arc with hinge knuckles, 0.250 in spring-steel ribs, flat base panel with peel-and-stick hook strips, geometry and clearance table, bill of materials, build sequence, tolerances, QC plan, failure modes and 3D modeling reference.">
 <style>
 :root{
   --bg:#0b0f14; --bg2:#10161e; --card:#141c26; --card2:#18222e; --line:#243142;
@@ -170,7 +170,7 @@ footer strong{color:var(--text)}
     <div>
       <span class="eyebrow">V4 · Manufacturer build document · Revision D</span>
       <h1 id="hero-title">OverCover V4</h1>
-      <p class="pitch">Detachable dog bed canopy in three fixed sizes. It has a three-panel house-profile arc, spring-steel ribs, and a flat base panel with peel-and-stick hook strips.</p>
+      <p class="pitch">Fixed-size three-panel detachable canopy system, built in three sizes. It has a three-panel house-profile arc, spring-steel ribs, and a flat base panel with peel-and-stick hook strips.</p>
       <ul class="chips" aria-label="Key build features">
         <li class="star">★ Three fixed sizes S / M / L (no telescoping rib)</li>
         <li>Two side wings + center dome, hinge knuckles</li>
@@ -295,7 +295,7 @@ footer strong{color:var(--text)}
       <li><i style="background:#ffd08a"></i>Hinge knuckle rows</li>
       <li><i style="background:#c7a0ff"></i>Ridge tape across center panel</li>
       <li><i style="background:transparent;border:1px dashed #5fe0b5"></i>20.0 in clearance envelope</li>
-      <li><i style="background:transparent;border:1px dashed #9aa8b8"></i>Bed zone (end-user item, not supplied)</li>
+      <li><i style="background:transparent;border:1px dashed #9aa8b8"></i>Load zone (reference only, not supplied)</li>
     </ul>
   </div>
 </section>
@@ -381,8 +381,8 @@ footer strong{color:var(--text)}
       </table>
     </div>
     <div class="rules">
-      <article class="note"><h3>Engineering clearance requirement</h3><p>Every SKU must hold an inner-face center clearance of <strong>≥ 20.0 in</strong> across the full center chord C and the full rib-station depth. The requirement is sized so a 20-lb terrier can walk in and lie down without contacting the canopy. The Large SKU is at the floor by design, so its geometry tolerances are one-sided (see <a href="#tolerances">tolerances</a>).</p></article>
-      <article class="note"><h3>Why not one 68 in kit on all spans</h3><p>On a 24 in span, a 25 in wing stands at 83° (nearly vertical), with a 97° knuckle and 24.8 in of height. That uses excess fabric and steel, makes a tall, narrow shape that racks easily, and leaves little clear width at bed height. The per-SKU rule keeps all three sizes within 20.1–20.5 in of rib height.</p></article>
+      <article class="note"><h3>Engineering clearance requirement</h3><p>Every SKU must hold an inner-face center clearance of <strong>≥ 20.0 in</strong> across the full center chord C and the full rib-station depth. The Large SKU is at the floor by design, so its geometry tolerances are one-sided (see <a href="#tolerances">tolerances</a>).</p></article>
+      <article class="note"><h3>Why not one 68 in kit on all spans</h3><p>On a 24 in span, a 25 in wing stands at 83° (nearly vertical), with a 97° knuckle and 24.8 in of height. That uses excess fabric and steel, makes a tall, narrow shape that racks easily, and leaves little clear width near the base plane. The per-SKU rule keeps all three sizes within 20.1–20.5 in of rib height.</p></article>
       <article class="note"><h3>Why not proportional scaling</h3><p>Scaling the whole Large profile by 0.75 (Medium) or 0.50 (Small) also scales h: 15.0 in and 10.0 in. <strong>Both fail the 20.0 in floor.</strong> So the center chord and wings are resized per SKU rather than scaled.</p></article>
     </div>
   </div>
@@ -392,11 +392,11 @@ footer strong{color:var(--text)}
   <div class="wrap">
     <p class="kicker">Canopy-to-base interface · peel-and-stick hook strips</p>
     <h2 id="att-title">Flat base panel: hook side up, loop on the canopy hem</h2>
-    <p class="lead">The base panel is a flat sheet. The bed sits on it; the bed is the end user's item and is not supplied. <strong>Peel-and-stick hook strips</strong> with a high-tack acrylic adhesive go around the perimeter of the top face, <strong>hook side up</strong>. The canopy's bottom edge is a 2.0 in inward-turned flange carrying <strong>sewn loop tape</strong>. That flange lies flat on the strips, so the cover detaches for washing and the base stays put. V3's slide-under platform, half-moon wings, ratchet rails and hubs are all deleted.</p>
+    <p class="lead">The base panel is a flat sheet. The load rests on its top face; the load is not supplied. <strong>Peel-and-stick hook strips</strong> with a high-tack acrylic adhesive go around the perimeter of the top face, <strong>hook side up</strong>. The canopy's bottom edge is a 2.0 in inward-turned flange carrying <strong>sewn loop tape</strong>. That flange lies flat on the strips, so the cover detaches for washing and the base stays put. V3's slide-under platform, half-moon wings, ratchet rails and hubs are all deleted.</p>
     <div class="feature" style="margin-bottom:1.6rem">
       <figure class="demo">
         <svg id="stripSvg" viewBox="0 0 420 300" role="img" aria-labelledby="strip-t">
-          <title id="strip-t">Top view of the Large base panel, 48 by 36 in, showing hook strip segments: three per side on left and right (9.5 in), four along the back (10.0 in), and one at each front corner, with the front entry zone left bare. A dashed outline marks the bed zone.</title>
+          <title id="strip-t">Top view of the Large base panel, 48 by 36 in, showing hook strip segments: three per side on left and right (9.5 in), four along the back (10.0 in), and one at each front corner, with the front entry zone left bare. A dashed outline marks the load zone.</title>
           <g id="stripG"></g>
         </svg>
         <figcaption><span id="stripCap">Large base · top view · front ↓</span>
@@ -414,7 +414,7 @@ footer strong{color:var(--text)}
           <li><strong>At least 2 strips per side.</strong> Strips are segmented with equal gaps ≥ 1.0 in and 2.0 in corner setbacks (measured from the perpendicular edge, which clears the adjoining strip band), so a peel front stops at a gap instead of running the whole side.</li>
           <li>Die-cut strip corners at <code>R 0.25 in</code>. Square corners start peels.</li>
           <li><strong>Load path in shear, not peel.</strong> The loop flange lies flat on the hook, parallel to the base. Ribs are formed 0.50 in wider than S, so each rib foot pushes outward in the plane of the strip (shear). Canopy weight presses the flange down.</li>
-          <li>The front entry zone between the corner strips is left bare. There is no exposed hook where the dog steps. When the cover is off, loop guard covers (A6) go over all hook.</li>
+          <li>The front entry zone between the corner strips is left bare. There is no exposed hook in the entry traffic path. When the cover is off, loop guard covers (A6) go over all hook.</li>
           <li>Loop tape on the canopy is <strong>sewn</strong>, never adhesive, so it survives washing.</li>
         </ul>
       </div>
@@ -643,11 +643,11 @@ footer strong{color:var(--text)}
         <caption>Failure modes, causes, effects, mitigations and verification</caption>
         <thead><tr><th scope="col">Failure mode</th><th scope="col">Cause</th><th scope="col">Effect</th><th scope="col">Mitigation (designed in)</th><th scope="col">Verified by</th></tr></thead>
         <tbody>
-          <tr><td>Rib buckling / center mid-sag</td><td>Point load on the center panel; rib legs pushed together so the rib is loaded in compression; stations drifting apart</td><td>Center drops below 20.0 in; canopy contacts the dog; rib snap-through</td><td><strong>Ridge tape across the center panel</strong> ties all stations at a fixed pitch and shares load. <strong>0.250 in steel</strong> (stiffness ∝ d⁴; 2.4× the 0.200 in alternative). 0.50 in center crown so the center sheds load in bending, not inversion. Rib feet anchored by the shear-loaded flange and formed <strong>S + 0.50 in free span</strong>, so installed feet push outward and the rib is never forced into column compression.</td><td>Center-panel sag; rib buckling / rack; center clearance</td></tr>
+          <tr><td>Rib buckling / center mid-sag</td><td>Point load on the center panel; rib legs pushed together so the rib is loaded in compression; stations drifting apart</td><td>Center drops below 20.0 in; canopy contacts the load; clearance lost; rib snap-through</td><td><strong>Ridge tape across the center panel</strong> ties all stations at a fixed pitch and shares load. <strong>0.250 in steel</strong> (stiffness ∝ d⁴; 2.4× the 0.200 in alternative). 0.50 in center crown so the center sheds load in bending, not inversion. Rib feet anchored by the shear-loaded flange and formed <strong>S + 0.50 in free span</strong>, so installed feet push outward and the rib is never forced into column compression.</td><td>Center-panel sag; rib buckling / rack; center clearance</td></tr>
           <tr><td>Channel / sleeve wear</td><td>Coated rib sliding and flexing against the sleeve, especially at the knuckle bends and at insertion</td><td>Sleeve wear-through; steel exposed; fabric tears at the bends</td><td><strong>UHMW-PE (or nylon 6,6) liner</strong> on the bearing face, full length. Bend radius <strong>≥ 1.5 in</strong>, so there is no sharp contact line. Nylon-11 coated, chamfered rib ends. Full-length placket for removal, so no lengthwise drag through the bends. No quilt stitching in the liner lane.</td><td>Channel / liner wear; wash durability</td></tr>
           <tr><td>Keeper O-ring set / UV / ozone cracking</td><td>Compression set over time; ozone and UV attack on nitrile; petroleum grease swelling Buna</td><td>Foot cap or FRP elbow loosens and falls off; steel end exposed</td><td><strong>Dual O-rings</strong> per cap or socket (one failure keeps retention). <strong>EPDM 70A</strong> on the outdoor variant (ozone/UV resistant). <strong>User-replaceable spares</strong> in every kit. <strong>Silicone grease only</strong>; the kit and label carry no petroleum lubricant, and petroleum is never used on Buna or EPDM.</td><td>Foot cap retention; compression set; ozone/UV</td></tr>
           <tr><td>Hook strip peel / adhesive release</td><td>Low-surface-energy PP, contaminated substrate, short dwell, peel-direction loading, square strip corners</td><td>Strip lifts from the base; canopy shifts or detaches</td><td><strong>High-tack acrylic adhesive</strong> (LSE grade) plus a corona-treated skin and adhesion promoter. IPA-clean substrate, 15 psi roll-down, 72 h dwell. <strong>Load in shear, not peel</strong>: the flange lies flat and the rib preload is in-plane. <strong>≥ 2 strips per side</strong>, segmented so peels arrest at the gaps. R 0.25 in strip corners. Sewn (not adhesive) loop on the canopy.</td><td>Strip peel; static shear; attach/detach life</td></tr>
-          <tr><td>Exposed hook snag</td><td>Hook strip uncovered where the dog steps or lies, or when the canopy is off</td><td>Fur or bedding snag; strip pulled off</td><td>No hook in the front entry zone. The 2.0 in loop flange covers the full strip width. Hook guard covers (A6) are supplied for when the canopy is off.</td><td>Visual (100%); attach/detach life</td></tr>
+          <tr><td>Exposed hook snag</td><td>Hook strip uncovered in the entry traffic or occupant-contact zone, or when the canopy is off</td><td>Fiber or soft-goods textile snag; strip pulled off</td><td>No hook in the front entry zone. The 2.0 in loop flange covers the full strip width. Hook guard covers (A6) are supplied for when the canopy is off.</td><td>Visual (100%); attach/detach life</td></tr>
           <tr><td>Rib forming crack</td><td>Bend radius too tight; no stress relief; tool marks</td><td>Rib fracture at the knuckle bend</td><td>Inside R ≥ 1.5 in (6 × d). Polished bend tooling. Stress relief after forming.</td><td>Rib forming integrity; rib profile</td></tr>
           <tr><td>FRP fiber bloom (alternate only)</td><td>Cut ends or overstrain on fiberglass segments</td><td>Splinters through the sleeve</td><td>No FRP bending: fixed-angle elbows take the knuckle angle. Ends capped and sleeved.</td><td>Edge and end safety; channel wear</td></tr>
           <tr><td>Cross-size parts mix</td><td>S / M / L ribs or covers look alike</td><td>Clearance below the floor, or a poor fit</td><td>Size-coded cap color and a laser-marked rib ID. Cover label and base label both carry the size.</td><td>Center clearance (100%)</td></tr>
@@ -677,7 +677,7 @@ footer strong{color:var(--text)}
           <tr><td>Knuckle rows</td><td>Axis parallel to z through each mid-fillet point. Groups of 3 knuckles (Ø 0.375 × 0.75 in, 2.0 in on center) centered between stations.</td></tr>
           <tr><td>Ridge tape</td><td>1.0 × 0.06 in section at x = 0, along z, on top of the center panel</td></tr>
           <tr><td>Clearance envelope</td><td>Dashed box x ∈ [−C/2, +C/2], y ∈ [0, 20.0], z ∈ [−D/2 + 1, +D/2 − 1]. The canopy inner face must not enter it.</td></tr>
-          <tr><td>Bed zone</td><td>Dashed rectangle inset 2.5 in from the panel edges at y = 0. Reference only; not modeled as a part.</td></tr>
+          <tr><td>Load zone</td><td>Dashed rectangle inset 2.5 in from the panel edges at y = 0. Reference only; not modeled as a part.</td></tr>
         </tbody>
       </table>
     </div>
@@ -688,7 +688,7 @@ footer strong{color:var(--text)}
 
 <footer>
   <div class="wrap">
-    <div><strong>OverCover V4</strong>: fixed-size three-panel dog bed canopy system, Small / Medium / Large</div>
+    <div><strong>OverCover V4</strong>: fixed-size three-panel detachable canopy system, Small / Medium / Large</div>
     <div>Manufacturer build document, Rev D · companion to the OverCover V4 spec sheet (Rev D)</div>
   </div>
 </footer>
@@ -809,7 +809,7 @@ var OC = (function(){
     el('rect', {x:X(-g.S/2 + 2.5), y:Z(-g.D/2 + 2.5), width:((g.S - 5)*sc).toFixed(1), height:((g.D - 5)*sc).toFixed(1), fill:'none', stroke:'#9aa8b8', 'stroke-dasharray':'5 4'});
     OC.strips(k).forEach(function(r){
       el('rect', {x:X(r[0]), y:Z(r[1]), width:((r[2]-r[0])*sc).toFixed(1), height:((r[3]-r[1])*sc).toFixed(1), rx:(0.25*sc).toFixed(1), fill:'#ffb547'}); });
-    el('text', {x:cx, y:cz + 4, fill:'#9aa8b8', 'font-size':11, 'text-anchor':'middle', 'font-family':'ui-monospace,Menlo,monospace'}, 'bed zone (not supplied)');
+    el('text', {x:cx, y:cz + 4, fill:'#9aa8b8', 'font-size':11, 'text-anchor':'middle', 'font-family':'ui-monospace,Menlo,monospace'}, 'load zone (not supplied)');
     el('text', {x:cx, y:Z(g.D/2) - 6, fill:'#e8eef5', 'font-size':10, 'text-anchor':'middle', 'font-family':'ui-monospace,Menlo,monospace'}, 'front entry · no hook');
     el('text', {x:cx, y:Z(-g.D/2) - 6, fill:'#9aa8b8', 'font-size':10, 'text-anchor':'middle', 'font-family':'ui-monospace,Menlo,monospace'}, 'back (gable) · ' + g.S + ' in');
     cap.textContent = g.name + ' base ' + g.S + ' × ' + g.D + ' in · top view · front ↓';
@@ -885,7 +885,7 @@ var OC = (function(){
     root.add(box(S, 0.236, D, new THREE.MeshStandardMaterial({color:0x3b4450, roughness:0.85, metalness:0.05}), 0, -0.118, 0));
     var hookMat = new THREE.MeshStandardMaterial({color:0xffb547, roughness:0.6, emissive:0x3a2200});
     OC.strips(k).forEach(function(r){ root.add(box(r[2]-r[0], 0.08, r[3]-r[1], hookMat, (r[0]+r[2])/2, 0.04, (r[1]+r[3])/2)); });
-    /* bed zone */
+    /* load zone */
     var bx = S/2 - 2.5, bz = D/2 - 2.5, by = 0.03;
     root.add(dashedLines([[[-bx,by,-bz],[bx,by,-bz]],[[bx,by,-bz],[bx,by,bz]],[[bx,by,bz],[-bx,by,bz]],[[-bx,by,bz],[-bx,by,-bz]]], 0x9aa8b8, 1.2));
     /* clearance envelope */
