@@ -219,6 +219,26 @@ footer strong{color:var(--text)}
   section{padding:3.2rem 0}
   .hero{padding:3rem 0 2.5rem}
 }
+/* ---- Platform-canopy demo controls + explainer ---- */
+#see-it-in-action .tc-cap{display:block}
+#see-it-in-action .tc-controls{display:grid;gap:.6rem;width:100%}
+#see-it-in-action .tc-row{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:space-between;align-items:center}
+#see-it-in-action .tc-lbl{font-size:.8rem;color:var(--muted);align-self:center;margin-right:.1rem}
+#see-it-in-action .tc-slider{display:grid;grid-template-columns:minmax(11rem,auto) 1fr;gap:.8rem;align-items:center;font-size:.88rem;color:#cdd6e0}
+#see-it-in-action .tc-slider b{font-family:var(--mono);font-weight:600;font-size:.78rem;color:var(--amber);margin-left:.3rem}
+#see-it-in-action .tc-slider input{width:100%;accent-color:var(--amber);height:28px;margin:0;cursor:pointer}
+#see-it-in-action .tc-readout{margin:0;font-family:var(--mono);font-size:.76rem;line-height:1.5;color:#b8c4d2;background:rgba(11,15,20,.55);border:1px solid var(--line);border-radius:9px;padding:.45rem .65rem;min-height:2.4em}
+#see-it-in-action .tc-readout:empty{display:none}
+#platform-how .ph-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin:0 0 1.6rem;padding:0;list-style:none;counter-reset:ph}
+#platform-how .ph-steps li{counter-increment:ph;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.8rem .9rem;color:#cdd6e0;font-size:.92rem}
+#platform-how .ph-steps li::before{content:counter(ph);display:inline-grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:7px;background:var(--amber);color:#1a0e02;font:700 .78rem var(--mono);margin-right:.45rem}
+#platform-how .ph-steps b{color:var(--text)}
+#platform-how .ph-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+#platform-how .ph-grid .note{margin:0}
+#platform-how .ph-grid h3{font-size:1.02rem;color:var(--amber)}
+#platform-how .ph-grid p{margin:0;color:#cdd6e0;font-size:.92rem;line-height:1.55}
+@media (max-width:900px){#platform-how .ph-steps{grid-template-columns:repeat(2,1fr)}#platform-how .ph-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){#platform-how .ph-steps,#platform-how .ph-grid{grid-template-columns:1fr}#see-it-in-action .tc-slider{grid-template-columns:1fr;gap:.2rem}}
 /* ============ SEE IT IN ACTION (Three.js 3D) ============ */
 #see-it-in-action{background:radial-gradient(900px 420px at 50% 0%,rgba(255,122,26,.10),transparent 70%)}
 #see-it-in-action .sia-figure{padding:.8rem .8rem .7rem}
@@ -261,7 +281,11 @@ footer strong{color:var(--text)}
 #mode-platform .pf-scissor{transform-box:fill-box;transform-origin:center;animation:pfSc 8s cubic-bezier(.4,0,.2,1) infinite}
 #mode-platform .pf-lock{animation:pfLock 8s ease-in-out infinite}
 #mode-platform .pf-canopy{animation:pfCan 8s ease-in-out infinite}
+#mode-platform .pf-slidef{animation:pfSlideF 8s cubic-bezier(.4,0,.2,1) infinite}
+#mode-platform .pf-wb{animation:pfWB 8s cubic-bezier(.4,0,.2,1) infinite}
 #mode-platform .pf-dog{transform-box:fill-box;transform-origin:center;animation:pfDog 8s ease-in-out infinite}
+@keyframes pfSlideF{0%,4%{transform:translateY(120px)}24%,100%{transform:translateY(0)}}
+@keyframes pfWB{0%,28%{transform:translateY(22px)}52%,100%{transform:translateY(0)}}
 @keyframes pfIn{0%{opacity:0}5%,100%{opacity:1}}
 @keyframes pfSlide{0%,4%{transform:translateY(-120px)}24%,100%{transform:translateY(0)}}
 @keyframes pfWL{0%,28%{transform:translateX(26px)}52%,100%{transform:translateX(0)}}
@@ -321,7 +345,7 @@ footer strong{color:var(--text)}
         <li>$15 summer mesh swap</li>
         <li>$29.99 target retail</li>
       </ul>
-      <p class="lead-mode"><strong>Lead mode: the slide-under platform.</strong> It slides under any bed with a flat underside. There are no rim-thickness or surface-texture requirements, the dog's weight holds it, and the canopy sizes itself to the bed through the platform's outer arc. It can even ship pre-attached for zero assembly.</p>
+      <p class="lead-mode"><strong>Lead mode: the slide-under platform.</strong> It slides under any bed with a flat underside. There are no rim-thickness or surface-texture requirements, the dog's weight holds it, and its three half-moon sides slide out to fit the bed. A stroller-style canopy then swings up from the back, closed on the left, right, and back and open only at the front.</p>
       <div class="cta">
         <a class="btn primary" href="#modes">See the 5 attach modes</a>
         <a class="btn" href="#see-it-in-action">Watch the 3D demo</a>
@@ -382,64 +406,101 @@ footer strong{color:var(--text)}
   </div>
 </section>
 
-<!-- ================= SEE IT IN ACTION (3D) ================= -->
-<!-- ================= SEE IT IN ACTION (Three.js 3D) ================= -->
+<!-- ================= SEE IT IN ACTION (Three.js 3D) — platform canopy ================= -->
 <section id="see-it-in-action" aria-labelledby="sia-title">
   <div class="wrap">
-    <p class="kicker">3D product demo</p>
+    <p class="kicker">3D product demo · platform version</p>
     <h2 id="sia-title">See it in action</h2>
-    <p class="lead">One continuous loop shows the whole story. A ~20 lb terrier mix naps under the canopy through all five attachment modes, led by the <strong>slide-under platform</strong>, where the dog's own weight is the fastener. The wire-ribbed arc flexes from a round bolster bed to a rectangular bed, and the canopy peels off its Velcro and presses back on.</p>
+    <p class="lead">A low platform slides under your dog's bed. Its <strong>left, right, and back sides are half-moon wings</strong> that slide out until they clear the bed. Then a <strong>stroller-style canopy</strong>, folded flat at the back and bottom, pulls up and over the top and clicks into place. The left, right, and back are closed to hold in your dog's body heat. <strong>Only the front is open</strong>, so your dog can hop in and out.</p>
     <figure class="demo sia-figure">
       <div class="sia-stage" id="siaStage">
-        <canvas id="siaCanvas" role="img" aria-label="Animated 3D model: a small terrier-mix dog lies in a dog bed under the three-panel ThermoCanopy. The loop shows spring clamps, elastic straps with cam buckles, tuck-under flaps, and suction discs, and a slide-under platform held by the dog's weight. The canopy flexes from a 120 degree curve on a round bed to a nearly flat 175 degree span on a rectangular bed, then peels off its Velcro and presses back on."></canvas>
-        <div class="sia-label" id="siaLabel" aria-hidden="true">
+        <canvas id="siaCanvas" role="img" aria-label="Interactive 3D model of the ThermoCanopy platform version. A low platform sits under a rectangular dog bed. Three half-moon shaped wings slide out from the platform's left, right, and back edges on ratcheting rails until they clear the bed. A stroller-style canopy with five hoops pivots on hubs at the front of the side wings. It starts folded flat around the back and bottom, swings up and over the bed, and locks with its front hoop upright. The canopy closes the left, right, and back sides. Only the front is open, and a terrier-mix dog hops in through it."></canvas>
+        <div class="sia-label is-in" id="siaLabel" aria-hidden="true">
           <span class="sia-tag" id="siaTag">1</span>
           <div>
-            <strong id="siaTitle">Round bolster bed</strong>
+            <strong id="siaTitle">Start with your own bed</strong>
             <p id="siaDesc"></p>
-            <p class="sia-step" id="siaStep"></p>
           </div>
         </div>
-        <span class="sia-badge" id="siaBadge" aria-hidden="true">Step 1 / 9</span>
+        <span class="sia-badge" id="siaBadge" aria-hidden="true">Drag to rotate</span>
         <div class="sia-progress" aria-hidden="true"><span id="siaBar"></span></div>
-        <div class="sia-fallback" id="siaFallback" hidden>This 3D demo needs WebGL and the Three.js library. The 2D animations below show the same features.</div>
+        <div class="sia-fallback" id="siaFallback" hidden>This 3D demo needs WebGL and the Three.js library. The explainer below describes the same platform and canopy.</div>
       </div>
-      <figcaption>
-        <span>Loops automatically, about 68 seconds per cycle. Pick a step to jump to it.</span>
-        <span class="controls" role="group" aria-label="3D demo steps">
-          <button class="btn" type="button" data-sia-play aria-pressed="false">Pause</button>
-          <button class="btn" type="button" data-sia-step="0" aria-pressed="true">Round bed</button>
-          <button class="btn" type="button" data-sia-step="1" aria-pressed="false">Flex 175°</button>
-          <button class="btn" type="button" data-sia-step="2" aria-pressed="false">E · Platform ★</button>
-          <button class="btn" type="button" data-sia-step="3" aria-pressed="false">C · Flaps</button>
-          <button class="btn" type="button" data-sia-step="4" aria-pressed="false">D · Suction</button>
-          <button class="btn" type="button" data-sia-step="5" aria-pressed="false">Flex 120°</button>
-          <button class="btn" type="button" data-sia-step="6" aria-pressed="false">A · Clamps</button>
-          <button class="btn" type="button" data-sia-step="7" aria-pressed="false">B · Straps</button>
-          <button class="btn" type="button" data-sia-step="8" aria-pressed="false">Velcro</button>
-        </span>
+      <figcaption class="tc-cap">
+        <div class="tc-controls">
+          <div class="tc-row">
+            <span class="controls" role="group" aria-label="Demo">
+              <button class="btn primary" type="button" id="tcPlay">▶ Play setup</button>
+              <button class="btn" type="button" id="tcSeeThru" aria-pressed="false">See-through fabric</button>
+            </span>
+            <span class="controls" role="group" aria-label="Camera view">
+              <button class="btn" type="button" data-tc-view="34" aria-pressed="true">3/4 view</button>
+              <button class="btn" type="button" data-tc-view="front" aria-pressed="false">Front</button>
+              <button class="btn" type="button" data-tc-view="side" aria-pressed="false">Side</button>
+              <button class="btn" type="button" data-tc-view="top" aria-pressed="false">Top</button>
+            </span>
+          </div>
+          <label class="tc-slider" for="tcSides"><span>Half-moon sides <b id="tcSidesOut">0%</b></span>
+            <input id="tcSides" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
+          </label>
+          <label class="tc-slider" for="tcCanopy"><span>Canopy <b id="tcCanopyOut">folded</b></span>
+            <input id="tcCanopy" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
+          </label>
+          <div class="tc-row">
+            <span class="controls" role="group" aria-label="Try a different bed">
+              <span class="tc-lbl">Bed:</span>
+              <button class="btn" type="button" data-tc-bed="narrow" aria-pressed="false">Narrow 30×24 in</button>
+              <button class="btn" type="button" data-tc-bed="standard" aria-pressed="true">Standard 34×26 in</button>
+              <button class="btn" type="button" data-tc-bed="wide" aria-pressed="false">Wide 38×28 in</button>
+            </span>
+            <span class="controls" role="group" aria-label="Dog">
+              <button class="btn" type="button" id="tcDog" aria-pressed="false">Dog hops in</button>
+            </span>
+          </div>
+          <p class="tc-readout" id="tcReadout" aria-live="polite"></p>
+        </div>
       </figcaption>
     </figure>
     <ul class="sia-key" aria-label="Color key">
-      <li><i style="background:#ffb547"></i>Center dome</li>
-      <li><i style="background:#ff9a3c"></i>Side wings</li>
-      <li><i style="background:#e8eef5"></i>Steel wire ribs in channels</li>
-      <li><i style="background:#2a3542;border:1px solid #ffd08a"></i>Hinge knuckles</li>
-      <li><i style="background:#ffcf7a"></i>Loop tape on Rim Strip</li>
-      <li><i style="background:#5a6676"></i>Hook tape on canopy edge</li>
-      <li><i style="background:#3b4450;border:1px solid #5fe0b5"></i>Platform grip layer</li>
+      <li><i style="background:#3b4450;border:1px solid #5fe0b5"></i>Center platform (grip top, goes under the bed)</li>
+      <li><i style="background:#56708a"></i>Half-moon wings (left, right, back)</li>
+      <li><i style="background:#cfd6de"></i>Telescoping ratchet rails</li>
+      <li><i style="background:#ffcf7a"></i>Loop tape on wing rims</li>
+      <li><i style="background:#e8eef5"></i>Canopy hoops</li>
+      <li><i style="background:#2a3542;border:1px solid #ffb547"></i>Hinge hubs (turn mint when locked)</li>
+      <li><i style="background:#e8762a"></i>Insulated canopy fabric</li>
     </ul>
     <ol class="sia-sr">
-      <li>Round bolster bed: the canopy curls to a 120 degree hinge angle over a sleeping terrier mix.</li>
-      <li>Flex: the hinge knuckles and wire ribs open to a nearly flat 175 degrees as the bed changes to a rectangular bed.</li>
-      <li>Mode E, the lead mode, is the slide-under platform. A collapsed platform with a grippy top slides under the bed, then expands evenly on a scissor linkage until its curved rear cuffs clear the bed's rear corners, and locks. The bed settles back down with the dog on it, and the canopy presses onto the Velcro on the cuffs. The dog's weight is the fastener.</li>
-      <li>Mode C, tuck-under flaps: stiffened tongues slide under the bed's raised base lip.</li>
-      <li>Mode D, suction discs: the discs press flat onto a smooth plastic crate tray and seal.</li>
-      <li>Flex back: the canopy returns to 120 degrees for the round bed.</li>
-      <li>Mode A, spring-loaded clamps: the jaws slide onto a rigid rim edge and close. They fit edges from 0.25 to 1.5 inches thick.</li>
-      <li>Mode B, elastic straps with cam buckles: the straps wrap under the bed body and the buckles lock.</li>
-      <li>Velcro: the canopy's hook tape peels off the loop tape on the Rim Strip, lifts away, then presses back on.</li>
+      <li>Start with your own bed on the floor.</li>
+      <li>Lift the front edge of the bed and slide the folded platform under it. The center plate has a grippy top.</li>
+      <li>Pull the left, right, and back half-moon wings outward. Each one rides on two telescoping rails that click every half inch, until its curved edge clears the bed by about 2 inches.</li>
+      <li>Lay the folded canopy flat around the back and bottom of the bed and snap its two hubs onto the front tips of the side wings. Grab the front hoop and swing it up and over the top. The other hoops follow as the fabric pulls tight.</li>
+      <li>When the front hoop stands upright, the hubs at the front of each side wing click and lock. The left, right, and back are closed. Only the front is open.</li>
+      <li>The dog hops in through the open front. Its body heat is held under the closed canopy.</li>
     </ol>
+  </div>
+</section>
+
+<!-- ================= HOW THE PLATFORM CANOPY WORKS (plain-language explainer) ================= -->
+<section id="platform-how" aria-labelledby="ph-title">
+  <div class="wrap">
+    <p class="kicker">Plain-language explainer</p>
+    <h2 id="ph-title">How the platform canopy works</h2>
+    <p class="lead"><strong>The idea in one sentence:</strong> a flat platform goes under the bed, its three curved half-moon sides slide out until they clear the bed, and a stroller-style hood swings up from the back to cover the bed. It's closed on the left, right, and back, and open at the front. The bed and your dog sit on the platform, so their weight holds everything in place. Nothing clamps or straps to the bed itself.</p>
+    <ol class="ph-steps">
+      <li><b>Slide under.</b> Lift the front of the bed an inch or two and push the folded platform underneath, with the grippy side up.</li>
+      <li><b>Size it.</b> Pull out the left, right, and back half-moon wings until each curved edge sticks out about 2 inches past the bed. They click as they go.</li>
+      <li><b>Pull the canopy over.</b> Lay the folded canopy flat around the back and sides and snap its two hubs onto the front tips of the side wings. Then grab the front hoop's handle and swing it up and over until it clicks upright at the front.</li>
+      <li><b>Done.</b> Your dog walks in through the open front.</li>
+    </ol>
+    <div class="ph-grid">
+      <article class="note"><h3>1 · How the half-moon sides adjust</h3><p>The center plate stays under the bed. Each of the three half-moon wings rides on <strong>two telescoping rails</strong> (tube inside tube) that run into the center plate. A spring pawl on each rail clicks over <strong>ratchet teeth every ½ inch</strong>, so a wing slides out easily but can't creep back in. To pull a wing in, press its thumb lever. Each side sets on its own, so an off-center bed still gets even clearance. The rails give 6 to 10 inches of side travel, enough for the narrow, standard, and wide beds shown above.</p></article>
+      <article class="note"><h3>2 · How the canopy hinges and locks</h3><p>The canopy works like a stroller hood. It has <strong>five hoops that share one pivot hub on each side</strong>, that snaps into a socket at the front tip of the left and right wings once the sides are sized. The hubs can stay snapped on between uses. The bottom hoop stays down and sits in a Velcro channel along the wing rims. The other four fold flat on top of it, around the back and bottom of the bed. When you pull the front hoop up and over, the fabric lifts each hoop in turn. Once the front hoop is upright, a <strong>spring pin in each hub drops into a notch and locks</strong> it. To fold it, squeeze both hub buttons. Each hoop has a telescoping sleeve at the top center, so it widens and narrows as the hubs move out with the wings.</p></article>
+      <article class="note"><h3>3 · Why it stays put</h3><p>The center plate carries the full weight of the bed and the dog, and its grip top and silicone feet keep it from sliding. Each wing is held to that plate by two rails, so the canopy's load runs from the hubs to the wings, through the rails, and into the weighted plate. The whole platform is under half an inch tall and lies flat on the floor, so it has no tipping point. The canopy is light, about 1½ lb, and its weight sits inside the footprint. Leaning on it or bumping it pushes against the bed's weight, not a clamp.</p></article>
+      <article class="note"><h3>4 · Sizing the front opening</h3><p>The front hoop is the doorway. Its <strong>width follows the hub spacing</strong>, so it widens automatically when you widen the sides. Its <strong>height is about 25 inches</strong> on all three sample beds, which lets a small-to-medium dog walk in without ducking. There is no crossbar on the floor, only the half-inch wing tips, so nothing trips your dog at the entrance. The hubs sit about 2 to 4 inches in front of the bed, so the hoop never presses on the front bolster.</p></article>
+      <article class="note"><h3>5 · Washing it</h3><p>The fabric is one piece. Its bottom hem has hook tape that presses onto the <strong>loop tape on the wing rims</strong>, and soft Velcro tabs wrap around each hoop. To wash it, fold the canopy down, <strong>peel the tabs and the hem</strong>, and lift the fabric off. The hoops and hubs stay snapped on the platform. Machine wash the fabric cold on gentle and air dry. Wipe or rinse the platform. Press the fabric back on the same way.</p></article>
+      <article class="note"><h3>6 · Why closed on three sides</h3><p>A curled-up dog gives off heat, and warm air rises and drifts. With the <strong>left, right, and back closed down to the platform</strong>, that warm air pools under the hood instead of escaping. The open front lets your dog get in and out, gives them a view, and lets stale air out.</p></article>
+    </div>
   </div>
 </section>
 
@@ -448,48 +509,51 @@ footer strong{color:var(--text)}
   <div class="wrap">
     <p class="kicker">The core innovation</p>
     <h2 id="modes-title">One canopy, five attachment modes</h2>
-    <p class="lead"><strong>Start with Mode E, the slide-under platform.</strong> It is the most universal mode. It works on any bed with a flat underside and needs no rim thickness, lip, or surface texture. It expands until its curved outer arc clears the bed's rear corners and locks, so the canopy footprint follows the bed's size automatically. The dog's own weight is the fastener. You can order it with the canopy pre-attached as one piece, so there is nothing to assemble.</p>
+    <p class="lead"><strong>Start with Mode E, the slide-under platform.</strong> It is the most universal mode. It works on any bed with a flat underside and needs no rim thickness, lip, or surface texture. Its left, right, and back half-moon sides slide out and click until they clear the bed, so the canopy footprint follows the bed's size. The dog's own weight is the fastener. Its stroller-style canopy pulls up from the back and over the top, closing the left, right, and back and leaving only the front open.</p>
     <p class="lead">For travel, crates, or beds that get dragged around, use Modes A–D. Two included <strong>Rim Strips</strong> stay on the bed. Their underside ports take any of four tool-free hardware types with a quarter-turn bayonet, so you choose whatever fits your bed and can mix modes on the same bed. The canopy then presses onto the Rim Strips' Velcro loop face.</p>
     <div class="modes">
 
       <article class="mode mode-lead" id="mode-platform" aria-labelledby="mE">
         <div class="art">
           <svg viewBox="0 0 320 210" role="img" aria-labelledby="mE-svg">
-            <title id="mE-svg">Top-down view: a platform slides under the dog bed, expands evenly on a scissor frame until its curved rear cuffs clear the bed's back corners, locks, and the canopy attaches to the cuffs</title>
-            <text x="160" y="16" text-anchor="middle" font-size="10" fill="#9aa8b8" font-family="ui-monospace,Menlo,monospace">top view · rear of bed ↑</text>
+            <title id="mE-svg">Top-down view: a platform slides under the dog bed from the front. Its left, right, and back half-moon wings slide out until they clear the bed. The stroller canopy then covers the left, right, and back, with only the front open.</title>
+            <text x="160" y="14" text-anchor="middle" font-size="10" fill="#9aa8b8" font-family="ui-monospace,Menlo,monospace">top view · back of bed ↑</text>
             <g class="pf-all">
-              <g class="pf-slide">
-                <g class="pf-scissor"><polyline points="100,40 120,26 140,40 160,26 180,40 200,26 220,40" fill="none" stroke="#cfd6de" stroke-width="3"/><polyline points="100,26 120,40 140,26 160,40 180,26 200,40 220,26" fill="none" stroke="#cfd6de" stroke-width="3"/></g>
-                <rect x="112" y="44" width="96" height="140" rx="6" fill="#2a3542"/>
+              <g class="pf-slidef">
+                <g class="pf-wb">
+                  <path d="M96 62 C104 22 216 22 224 62 Z" fill="#56708a"/>
+                  <path d="M100 52 C112 26 208 26 220 52" fill="none" stroke="#c98a2c" stroke-width="5" stroke-linecap="round"/>
+                </g>
                 <g class="pf-wl">
-                  <rect x="62" y="44" width="56" height="140" rx="10" fill="#2d3640" stroke="#3f5a52" stroke-width="2" stroke-dasharray="2 4"/>
-                  <path d="M62 78 A30 30 0 0 1 92 46" fill="none" stroke="#c98a2c" stroke-width="7" stroke-linecap="round"/>
+                  <path d="M110 56 C70 58 60 92 60 120 C60 148 70 178 110 182 Z" fill="#56708a"/>
+                  <path d="M96 60 C74 66 66 96 66 120 C66 146 74 172 96 178" fill="none" stroke="#c98a2c" stroke-width="5" stroke-linecap="round"/>
                 </g>
                 <g class="pf-wr">
-                  <rect x="202" y="44" width="56" height="140" rx="10" fill="#2d3640" stroke="#3f5a52" stroke-width="2" stroke-dasharray="2 4"/>
-                  <path d="M258 78 A30 30 0 0 0 228 46" fill="none" stroke="#c98a2c" stroke-width="7" stroke-linecap="round"/>
+                  <path d="M210 56 C250 58 260 92 260 120 C260 148 250 178 210 182 Z" fill="#56708a"/>
+                  <path d="M224 60 C246 66 254 96 254 120 C254 146 246 172 224 178" fill="none" stroke="#c98a2c" stroke-width="5" stroke-linecap="round"/>
                 </g>
-                <circle class="pf-lock" cx="104" cy="40" r="7" fill="none" stroke="#ffb547" stroke-width="3"/>
-                <circle class="pf-lock" cx="216" cy="40" r="7" fill="none" stroke="#ffb547" stroke-width="3"/>
+                <rect x="106" y="64" width="108" height="112" rx="6" fill="#2a3542" stroke="#3f5a52" stroke-width="2" stroke-dasharray="2 4"/>
+                <circle class="pf-lock" cx="70" cy="180" r="7" fill="none" stroke="#5fe0b5" stroke-width="3"/>
+                <circle class="pf-lock" cx="250" cy="180" r="7" fill="none" stroke="#5fe0b5" stroke-width="3"/>
               </g>
-              <rect x="84" y="54" width="152" height="122" rx="14" fill="#3d4957" fill-opacity=".92" stroke="#4a5868" stroke-width="6"/>
-              <ellipse class="pf-dog" cx="160" cy="118" rx="34" ry="18" fill="#c58b52"/>
-              <circle class="pf-dog" cx="128" cy="112" r="10" fill="#d69a5e"/>
-              <g class="pf-canopy"><path d="M66 70 Q160 30 254 70" fill="none" stroke="#ffb547" stroke-width="5" stroke-linecap="round"/><path d="M66 70 L66 168 M254 70 L254 168" stroke="#ff9a3c" stroke-width="3" stroke-dasharray="5 5"/></g>
+              <rect x="84" y="60" width="152" height="116" rx="14" fill="#3d4957" fill-opacity=".92" stroke="#4a5868" stroke-width="6"/>
+              <ellipse class="pf-dog" cx="160" cy="122" rx="34" ry="18" fill="#c58b52"/>
+              <circle class="pf-dog" cx="160" cy="150" r="10" fill="#d69a5e"/>
+              <g class="pf-canopy"><path d="M66 182 L64 112 C64 30 256 30 256 112 L254 182" fill="rgba(232,118,42,.18)" stroke="#e8762a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M70 182 L250 182" stroke="#ffb547" stroke-width="2" stroke-dasharray="6 5"/><text x="160" y="194" text-anchor="middle" font-size="9" fill="#ffb547" font-family="ui-monospace,Menlo,monospace">open front ↓</text></g>
             </g>
-            <text x="160" y="202" text-anchor="middle" font-size="10" fill="#ffb547" font-family="ui-monospace,Menlo,monospace">slide under → expand → lock → attach</text>
+            <text x="160" y="207" text-anchor="middle" font-size="10" fill="#ffb547" font-family="ui-monospace,Menlo,monospace">slide under → sides out → canopy over → lock</text>
           </svg>
         </div>
         <div>
           <span class="badge">★ Lead mode · most universal</span>
           <h3 id="mE"><span class="tag hero">E</span>Slide-under platform</h3>
-          <p>A flat wire or plastic sheet, oval or rectangular, slides under the bed. The canopy attaches to its back edge with Velcro on the rear-left and rear-right cuffs, or with a rear flap, then drapes forward. <strong>The dog's weight is the fastener.</strong></p>
+          <p>A low center plate slides under the bed. Three half-moon wings on its left, right, and back edges slide out until they clear the bed. A stroller-style canopy then pulls from the back and bottom, up and over the top. <strong>Left, right, and back are closed. Only the front is open.</strong> <strong>The dog's weight is the fastener.</strong></p>
           <ul>
             <li><strong>Any bed with a flat underside.</strong> It needs no rim thickness, lip, or surface texture.</li>
-            <li><strong>Self-sizing.</strong> The platform expands until its curved outer edges clear the rear corners, then locks. The canopy follows the bed size through the platform's outer arc.</li>
+            <li><strong>Self-sizing.</strong> Each half-moon wing rides on two telescoping rails that click every ½ in. Pull each side out until its curved edge clears the bed by about 2 in. Press the thumb lever to bring a side back in.</li>
             <li><strong>Grip layer</strong> on the bed side: a rubberized coating or a yoga-mat or shelf-liner type fabric.</li>
-            <li><strong>Frame options:</strong> telescoping wire arms, a <strong>scissor pantograph</strong> (recommended, because it keeps the arc centered), or a flexible plastic ring with a ratchet slider. The lock is light duty with no spring-back: a friction collar, a pin-in-slot, or a ratchet.</li>
-            <li><strong>Pre-attached option:</strong> the canopy ships on the platform as one piece, so there is nothing to assemble.</li>
+            <li><strong>Stroller canopy:</strong> five hoops on a hub at the front tip of each side wing. Swing the front hoop up and over and spring pins lock it upright. Squeeze both hub buttons to fold it.</li>
+            <li><strong>Washable:</strong> the fabric's hook-tape hem presses onto loop tape on the wing rims. Peel it off to machine wash.</li>
           </ul>
           <p class="meta"><span class="spec">≈ $0.42 hardware (PP sheet)</span> · cheapest complete attach system (no Rim Strips) · indoor, calm use · not for travel or beds that get dragged</p>
         </div>
@@ -884,7 +948,7 @@ footer strong{color:var(--text)}
     </div>
     <div class="notes two">
       <div class="note"><strong>Why the platform leads.</strong> It is the cheapest complete attachment system, at about $0.42 versus $0.49–0.97 for A–D once their Rim Strips are counted, and it fits the most beds. Its only penalty is size and weight (6–9 oz), which adds about $0.15 inbound freight. That puts its landed cost within a few cents of the flaps. The clamps are the most expensive mode because of the springs, jaws, and pads. For suction, quality TPU discs cost about $0.17 more per set than cheap PVC cups, but cheap cups harden and lose their seal within weeks.</div>
-      <div class="note"><strong>Pre-attached, one-piece option.</strong> The canopy can ship already Velcroed to the platform's rear cuffs, folded down onto the collapsed platform. The buyer slides it under the bed, expands it, and locks it, with no assembly. The trade-off is a pack of about 15 × 12 × 1.25–1.5 in, which goes past the 0.75 in cliff into large standard (about +$1.06 FBA, plus about $0.10 for a card insert). That leaves a margin of about 50% at $29.99, or price it at $34.99. See spec 6.5–6.6.</div>
+      <div class="note"><strong>Pre-attached, one-piece option.</strong> The canopy can ship folded flat in the same box as the collapsed platform. The buyer slides the platform under the bed, pulls out the half-moon sides, snaps the canopy hubs onto the wing tips, and swings the canopy over, with no tools. The trade-off is a pack of about 15 × 12 × 1.25–1.5 in, which goes past the 0.75 in cliff into large standard (about +$1.06 FBA, plus about $0.10 for a card insert). That leaves a margin of about 50% at $29.99, or price it at $34.99. See spec 6.5–6.6.</div>
     </div>
 
     <div class="notes">
@@ -902,7 +966,7 @@ footer strong{color:var(--text)}
     <h2 id="guide-title">Which attachment mode fits your bed?</h2>
     <p class="lead">Start with the floor. If the bed has a flat underside and stays put indoors, slide the platform under it (Mode E). For travel or crates, check the rim. If it's rigid, clamp it. If it's soft, strap it. If it has a lip, tuck it. If it's slick plastic, use suction. Modes can be mixed per corner.</p>
     <div class="guide">
-      <div class="gcard m5"><h3>★ E · Platform</h3><p class="sub">Any flat underside (lead mode)</p><ul><li>Almost every indoor bed</li><li>No rim or texture needs</li><li>Canopy sizes itself to the bed</li></ul></div>
+      <div class="gcard m5"><h3>★ E · Platform</h3><p class="sub">Any flat underside (lead mode)</p><ul><li>Almost every indoor bed</li><li>No rim or texture needs</li><li>Half-moon sides fit the bed</li></ul></div>
       <div class="gcard"><h3>A · Clamp</h3><p class="sub">Rigid edge 0.25–1.5 in thick</p><ul><li>Firm bolster rims</li><li>Crate bars and wire doors</li><li>Wood or metal bed frames</li></ul></div>
       <div class="gcard m2"><h3>B · Strap</h3><p class="sub">Soft or squishy body</p><ul><li>Plush bolsters and donuts</li><li>Foam and pillow beds</li><li>Beds with handle loops</li></ul></div>
       <div class="gcard m3"><h3>C · Tuck flap</h3><p class="sub">Raised base lip or shell</p><ul><li>Molded plastic shells</li><li>Orthopedic beds with a lipped base</li><li>Crate pads in lipped trays</li></ul></div>
@@ -981,7 +1045,7 @@ footer strong{color:var(--text)}
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-/* ===== See It In Action: Three.js r128 product-in-use scene (scoped to #see-it-in-action) ===== */
+/* ===== See It In Action: Three.js r128 platform-canopy scene (scoped to #see-it-in-action) ===== */
 (function(){
   var stage = document.getElementById('siaStage');
   var canvas = document.getElementById('siaCanvas');
@@ -998,496 +1062,479 @@ footer strong{color:var(--text)}
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   var scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x0d131a, 110, 230);
-  var camera = new THREE.PerspectiveCamera(36, 16/9, 0.5, 500);
+  scene.fog = new THREE.Fog(0x0d131a, 140, 280);
+  var camera = new THREE.PerspectiveCamera(36, 16/9, 0.5, 600);
 
   /* ---------- helpers ---------- */
-  var PI = Math.PI;
+  var PI = Math.PI, i;
   function clamp01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
   function sstep(a, b, x){ x = clamp01((x - a) / (b - a)); return x * x * (3 - 2 * x); }
   function lerp(a, b, k){ return a + (b - a) * k; }
-  function fadeIn(u){ return sstep(0, 0.08, u) * (1 - sstep(0.92, 1, u)); }
   function mat(color, o){
     o = o || {};
-    var m = new THREE.MeshStandardMaterial({
+    return new THREE.MeshStandardMaterial({
       color: color, roughness: o.r != null ? o.r : 0.75, metalness: o.m || 0,
       transparent: (o.o != null && o.o < 1), opacity: o.o != null ? o.o : 1,
       side: o.side || THREE.FrontSide, map: o.map || null,
       emissive: o.e != null ? o.e : 0x000000, emissiveIntensity: o.ei || 0
     });
-    m.userData.base = m.opacity;
-    return m;
   }
   function mesh(geo, m, cast){ var x = new THREE.Mesh(geo, m); x.castShadow = cast !== false; x.receiveShadow = true; return x; }
-  function setOpacity(obj, o){
-    obj.visible = o > 0.01;
-    if (!obj.visible) return;
-    obj.traverse(function(c){
-      if (!c.material) return;
-      var m = c.material, b = m.userData.base != null ? m.userData.base : 1;
-      m.opacity = b * o; m.transparent = m.opacity < 0.999; m.depthWrite = m.opacity > 0.35;
-    });
-  }
   function dotTex(bg, dot, step, rad){
     var c = document.createElement('canvas'); c.width = c.height = 64;
     var g = c.getContext('2d'); g.fillStyle = bg; g.fillRect(0, 0, 64, 64); g.fillStyle = dot;
-    for (var i = 0; i < 64; i += step) for (var j = 0; j < 64; j += step) {
-      g.beginPath(); g.arc(i + step / 2 + ((j / step) % 2) * step / 4, j + step / 2, rad, 0, 7); g.fill();
+    for (var a = 0; a < 64; a += step) for (var b = 0; b < 64; b += step) {
+      g.beginPath(); g.arc(a + step / 2 + ((b / step) % 2) * step / 4, b + step / 2, rad, 0, 7); g.fill();
     }
     var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+  }
+  function quiltTex(){
+    var c = document.createElement('canvas'); c.width = c.height = 128;
+    var g = c.getContext('2d'); g.fillStyle = '#e8762a'; g.fillRect(0, 0, 128, 128);
+    g.strokeStyle = 'rgba(255,214,150,.55)'; g.lineWidth = 2; g.setLineDash([6, 5]);
+    g.beginPath(); g.moveTo(0, 0); g.lineTo(128, 128); g.moveTo(128, 0); g.lineTo(0, 128); g.stroke();
+    g.setLineDash([]); g.strokeStyle = 'rgba(120,40,0,.25)'; g.lineWidth = 1;
+    g.beginPath(); g.moveTo(0, 64); g.lineTo(64, 0); g.lineTo(128, 64); g.lineTo(64, 128); g.closePath(); g.stroke();
+    var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(14, 5); return t;
   }
   function tube(points, r, segs, closed){
     var v = points.map(function(p){ return new THREE.Vector3(p[0], p[1], p[2] || 0); });
     return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(v, !!closed), segs || 48, r, 8, !!closed);
   }
-  function panelGeo(pts, th){
-    var s = new THREE.Shape(), i;
-    s.moveTo(pts[0][0], pts[0][1] + th / 2);
-    for (i = 1; i < pts.length; i++) s.lineTo(pts[i][0], pts[i][1] + th / 2);
-    for (i = pts.length - 1; i >= 0; i--) s.lineTo(pts[i][0], pts[i][1] - th / 2);
-    var g = new THREE.ExtrudeGeometry(s, {depth: 1, bevelEnabled: false, steps: 1});
-    g.translate(0, 0, -0.5); return g;
+  // rounded-rectangle outline as [x, z] points (CCW seen from above), corner radius rc
+  function roundRect(hw, hd, rc, perCorner){
+    var pts = [], cs = [[hw - rc, hd - rc, 0], [-(hw - rc), hd - rc, PI / 2], [-(hw - rc), -(hd - rc), PI], [hw - rc, -(hd - rc), 1.5 * PI]];
+    cs.forEach(function(c){ for (var k = 0; k <= perCorner; k++) { var a = c[2] + (PI / 2) * k / perCorner; pts.push([c[0] + rc * Math.cos(a), c[1] + rc * Math.sin(a)]); } });
+    return pts;
   }
+  function shapeFromXZ(pts){ var s = new THREE.Shape(); s.moveTo(pts[0][0], -pts[0][1]); for (var k = 1; k < pts.length; k++) s.lineTo(pts[k][0], -pts[k][1]); s.closePath(); return s; }
+  function slabGeo(pts, h){ var g = new THREE.ExtrudeGeometry(shapeFromXZ(pts), {depth: h, bevelEnabled: false, steps: 1}); g.rotateX(-PI / 2); return g; }
   var SPH = new THREE.SphereGeometry(1, 24, 16);
 
+  /* ---------- design constants (inches) ---------- */
+  var G = {CORE_W: 24, CORE_D: 20, WING_L: 36, WING_B: 6, WING_ZC: -1, BACK_L: 34, BACK_B: 6, N: 2.4, C: 2, Y0: 0.9, KF: 0.7, XS0: 5, ZB0: 4, PT: 0.55};
+  G.ZH = G.WING_ZC + G.WING_L / 2 - 0.6;           // hub axis z (front tips of the side wings)
+  var BEDS = {narrow: {W: 30, D: 24}, standard: {W: 34, D: 26}, wide: {W: 38, D: 28}};
+  function sup(t, n){ t = Math.min(1, Math.abs(t)); return Math.pow(1 - Math.pow(t, n), 1 / n); }
+  function inUnion(x, z, xs, zb){
+    var ax = Math.abs(x);
+    if (ax <= G.CORE_W / 2 && Math.abs(z) <= G.CORE_D / 2) return true;
+    var dz = (z - G.WING_ZC) / (G.WING_L / 2);
+    if (Math.abs(dz) <= 1) { var ox = xs + G.WING_B * sup(dz, G.N); if (ax <= ox && ax >= Math.min(xs - 3, G.CORE_W / 2 - 0.1)) return true; }
+    var dx = x / (G.BACK_L / 2);
+    if (Math.abs(dx) <= 1 && z <= 0) { var oz = zb + G.BACK_B * sup(dx, G.N); if (-z <= oz && -z >= Math.min(zb - 3, G.CORE_D / 2 - 0.1)) return true; }
+    return false;
+  }
+  var HN = 96;
+  // base hoop: outer envelope of the three wings, from left hub, around the back, to right hub
+  function computeHoop(xs, zb){
+    var a0 = Math.atan2(G.ZH, -xs), a1 = Math.atan2(G.ZH, xs) + 2 * PI, pts = [], k, d;
+    for (k = 0; k <= HN; k++) {
+      var a = a0 + (a1 - a0) * k / HN, ca = Math.cos(a), sa = Math.sin(a), t = 0;
+      for (d = 45; d > 0; d -= 0.2) { if (inUnion(ca * d, sa * d, xs, zb)) { t = d; break; } }
+      pts.push([ca * t, sa * t]);
+    }
+    pts[0] = [-xs, G.ZH]; pts[HN] = [xs, G.ZH];
+    for (var it = 0; it < 3; it++) {
+      var q = pts.map(function(p){ return p.slice(); });
+      for (k = 1; k < HN; k++) { q[k][0] = (pts[k - 1][0] + 2 * pts[k][0] + pts[k + 1][0]) / 4; q[k][1] = (pts[k - 1][1] + 2 * pts[k][1] + pts[k + 1][1]) / 4; }
+      pts = q;
+    }
+    // vertical reach per point: running max from each hub toward the back centre (no "horns" at the back corners).
+    // rv >= r, so the shell only grows outward and bed clearance is preserved.
+    var rv = pts.map(function(p){ return G.ZH - p[1]; }), out = rv.slice();
+    for (k = 1; k <= HN / 2; k++) { out[k] = Math.max(out[k], out[k - 1]); out[HN - k] = Math.max(out[HN - k], out[HN - k + 1]); }
+    for (it = 0; it < 24; it++) { var o2 = out.slice(); for (k = 1; k < HN; k++) o2[k] = Math.max(out[k], (out[k - 1] + 2 * out[k] + out[k + 1]) / 4); out = o2; }
+    for (k = 0; k <= HN; k++) pts[k][2] = Math.max(rv[k], out[k]);
+    return pts;
+  }
+  function kOf(phi){ var c = Math.cos(phi), s = Math.sin(phi); return 1 / Math.sqrt(c * c + s * s / (G.KF * G.KF)); }
+  // a point of the canopy: hoop sample p rotated up by phi about the hub axis (radius scaled by k)
+  function canopyPt(p, phi, out){
+    var kk = kOf(phi);
+    out.x = p[0]; out.y = G.Y0 + p[2] * kk * Math.sin(phi); out.z = G.ZH - (G.ZH - p[1]) * kk * Math.cos(phi);
+    return out;
+  }
+
   /* ---------- lights, floor ---------- */
-  scene.add(new THREE.HemisphereLight(0xbfd6ff, 0x1a1208, 0.6));
+  scene.add(new THREE.HemisphereLight(0xbfd6ff, 0x1a1208, 0.62));
   var key = new THREE.DirectionalLight(0xffe2bf, 0.95);
-  key.position.set(30, 70, 45); key.castShadow = true; key.shadow.mapSize.set(1024, 1024);
-  var sc = key.shadow.camera; sc.left = -50; sc.right = 50; sc.top = 50; sc.bottom = -50; sc.near = 10; sc.far = 200;
+  key.position.set(35, 80, 55); key.castShadow = true; key.shadow.mapSize.set(1024, 1024);
+  var sc = key.shadow.camera; sc.left = -55; sc.right = 55; sc.top = 55; sc.bottom = -55; sc.near = 10; sc.far = 220;
   key.shadow.bias = -0.0008; scene.add(key);
   var rimL = new THREE.DirectionalLight(0x5cc8ff, 0.35); rimL.position.set(-50, 30, -50); scene.add(rimL);
-  var warm = new THREE.PointLight(0xff7a1a, 0.8, 45, 2); scene.add(warm);
-  var floor = mesh(new THREE.CircleGeometry(160, 64), mat(0x10171f, {r: 1}), false);
-  floor.rotation.x = -PI / 2; floor.position.y = -0.35; scene.add(floor);
-  var grid = new THREE.GridHelper(240, 60, 0x1d2734, 0x161e28); grid.position.y = -0.33;
-  grid.material.transparent = true; grid.material.opacity = 0.55; scene.add(grid);
+  var warm = new THREE.PointLight(0xff7a1a, 0.0, 40, 2); scene.add(warm);
+  var floor = mesh(new THREE.CircleGeometry(170, 64), mat(0x10171f, {r: 1}), false);
+  floor.rotation.x = -PI / 2; floor.position.y = -0.02; scene.add(floor);
+  var grid = new THREE.GridHelper(260, 65, 0x1d2734, 0x161e28); grid.position.y = 0;
+  grid.material.transparent = true; grid.material.opacity = 0.5; scene.add(grid);
 
-  var loopTex = dotTex('#c98a2c', '#ffd08a', 8, 2.4); loopTex.repeat.set(1, 8);
-  var hookTex = dotTex('#3a4452', '#7d8a9a', 6, 1.1); hookTex.repeat.set(1, 10);
-  var gripTex = dotTex('#2d3640', '#3f5a52', 7, 2.2); gripTex.repeat.set(5, 5);
-  function loopMat(){ return mat(0xffffff, {map: loopTex, r: 1, e: 0xffb547, ei: 0}); }
+  var loopTex = dotTex('#c98a2c', '#ffd08a', 8, 2.4); loopTex.repeat.set(40, 1);
+  var gripTex = dotTex('#2d3640', '#3f5a52', 7, 2.2); gripTex.repeat.set(6, 5);
 
-  /* ---------- ROUND bolster bed (rigid shell + plush bolster) ---------- */
-  var roundBed = new THREE.Group(); scene.add(roundBed);
-  var shellPts = [[16.7,0],[17.5,0],[17.5,4.8],[17.3,5.15],[16.9,5.15],[16.7,4.8],[16.7,0]].map(function(p){ return new THREE.Vector2(p[0], p[1]); });
-  roundBed.add(mesh(new THREE.LatheGeometry(shellPts, 72), mat(0x3a4656, {r: 0.35, m: 0.1})));
-  var shellFloor = mesh(new THREE.CylinderGeometry(17.5, 17.5, 0.6, 64), mat(0x333e4c, {r: 0.4})); shellFloor.position.y = 0.3; roundBed.add(shellFloor);
-  var torG = new THREE.TorusGeometry(13.2, 3.4, 24, 80); torG.rotateX(PI / 2);
-  var bolster = mesh(torG, mat(0x4a5868, {r: 0.95})); bolster.position.y = 4.8; roundBed.add(bolster);
-  var cush = mesh(new THREE.CylinderGeometry(10.6, 10.6, 1.6, 48), mat(0x2f3a47, {r: 0.95})); cush.position.y = 1.4; roundBed.add(cush);
-  var roundLoopMats = [];
-  [0, PI].forEach(function(rot){
-    var g = new THREE.TorusGeometry(13.2, 0.75, 6, 40, 1.4); g.rotateZ(-0.7); g.rotateX(PI / 2);
-    var lm = loopMat(); roundLoopMats.push(lm);
-    var strip = mesh(g, lm, false); strip.scale.y = 0.25; strip.position.y = 8.25; strip.rotation.y = rot; roundBed.add(strip);
-  });
+  /* ---------- the dog bed (rebuilt per size) ---------- */
+  var bedGroup = new THREE.Group(); scene.add(bedGroup);
+  var bedBaseMat = mat(0x3d4957, {r: 0.6}), bolMat = mat(0x4a5868, {r: 0.95}), cushMat = mat(0x2f3a47, {r: 0.95});
+  function clearGroup(g){ while (g.children.length) { var c = g.children.pop(); c.traverse(function(o){ if (o.geometry) o.geometry.dispose(); }); } }
+  function buildBed(W, D){
+    clearGroup(bedGroup);
+    var base = mesh(slabGeo(roundRect(W / 2, D / 2, 6, 8), 3.5), bedBaseMat); bedGroup.add(base);
+    // U-shaped bolster on left, back, right
+    var hw = W / 2 - 3, hd = D / 2 - 3, rc = 3.2, path = [], k, a;
+    path.push([-hw, hd - 2.2]);
+    for (k = 0; k <= 6; k++) { a = PI + (PI / 2) * k / 6; path.push([-(hw - rc) + rc * Math.cos(a), -(hd - rc) + rc * Math.sin(a)]); }
+    for (k = 0; k <= 6; k++) { a = 1.5 * PI + (PI / 2) * k / 6; path.push([(hw - rc) + rc * Math.cos(a), -(hd - rc) + rc * Math.sin(a)]); }
+    path.push([hw, hd - 2.2]);
+    var by = 3.5 + 1.6;
+    bedGroup.add(mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(path.map(function(p){ return new THREE.Vector3(p[0], by, p[1]); }), false, 'catmullrom', 0.2), 90, 3, 14, false), bolMat));
+    [-1, 1].forEach(function(s){ var cap = mesh(SPH, bolMat); cap.scale.setScalar(3); cap.position.set(s * hw, by, hd - 2.2); bedGroup.add(cap); });
+    var lip = mesh(new THREE.CylinderGeometry(1.8, 1.8, 2 * hw, 18), bolMat); lip.rotation.z = PI / 2; lip.position.set(0, 3.5 + 1.2, D / 2 - 2.2); bedGroup.add(lip);
+    var cush = mesh(slabGeo(roundRect(W / 2 - 5.6, D / 2 - 4.8, 2.5, 4), 1.2), cushMat); cush.position.set(0, 3.5, 0.6); bedGroup.add(cush);
+  }
 
-  /* ---------- RECTANGULAR bed on a plastic crate tray ---------- */
-  var rectSet = new THREE.Group(); scene.add(rectSet);
-  var tray = mesh(new THREE.BoxGeometry(54, 0.75, 38), mat(0x4f5f70, {r: 0.22, m: 0.1})); tray.position.y = 0.025; rectSet.add(tray);
-  var rectBed = new THREE.Group(); rectBed.position.y = 0.4; rectSet.add(rectBed);
-  var plinth = mesh(new THREE.BoxGeometry(36, 1.2, 25), mat(0x232c36)); plinth.position.y = 0.6; rectBed.add(plinth);
-  var slab = mesh(new THREE.BoxGeometry(44, 2.6, 30), mat(0x3d4957, {r: 0.55})); slab.position.y = 2.5; rectBed.add(slab);
-  var rcush = mesh(new THREE.BoxGeometry(29, 0.8, 23), mat(0x2f3a47, {r: 0.95})); rcush.position.y = 4.2; rectBed.add(rcush);
-  var bolMat = mat(0x4a5868, {r: 0.95});
-  [-1, 1].forEach(function(s){
-    var c = mesh(new THREE.CylinderGeometry(3.5, 3.5, 29, 28), bolMat); c.rotation.x = PI / 2; c.position.set(s * 18, 7.7, 0.5); rectBed.add(c);
-    var cap = mesh(SPH, bolMat); cap.scale.set(3.5, 3.5, 3.5); cap.position.set(s * 18, 7.7, 15); rectBed.add(cap);
-  });
-  var back = mesh(new THREE.CylinderGeometry(3.5, 3.5, 32, 28), bolMat); back.rotation.z = PI / 2; back.position.set(0, 7.7, -12); rectBed.add(back);
-  var rectLoopMats = [];
-  [-1, 1].forEach(function(s){
-    var lm = loopMat(); rectLoopMats.push(lm);
-    var rs = mesh(new THREE.BoxGeometry(2.2, 0.3, 27), lm, false); rs.position.set(s * 18, 11.35, 0.5); rectBed.add(rs);
-  });
-
-  /* ---------- canopy: center dome + two hinged wings ---------- */
-  var WC = 7, LW = 11;
-  var pivot = new THREE.Group(); scene.add(pivot);
-  var canopy = new THREE.Group(); pivot.add(canopy);
-  var domePts = [], wingPtsL = [], wingPtsR = [], i;
-  for (i = 0; i <= 16; i++) { var x = -WC + 2 * WC * i / 16; domePts.push([x, 1.6 * (1 - (x / WC) * (x / WC))]); }
-  for (i = 0; i <= 12; i++) { var s0 = i / 12; wingPtsL.push([-LW * s0, 0.7 * Math.sin(PI * s0)]); wingPtsR.push([LW * s0, 0.7 * Math.sin(PI * s0)]); }
-  var depthScaled = [], zPlaced = [];
-  var dome = mesh(panelGeo(domePts, 0.5), mat(0xffb547, {r: 0.6, o: 0.88})); canopy.add(dome); depthScaled.push([dome, 1]);
-  var ribMat = mat(0xe8eef5, {r: 0.25, m: 0.85}), chanMat = mat(0xfff3df, {r: 0.6, o: 0.4});
-  var RIBF = [-0.36, -0.12, 0.12, 0.36];
-  function trim(pts){ return pts.slice(1, pts.length - 1); }
-  function addRibs(parent, pts){
-    var ribG = tube(trim(pts).map(function(p){ return [p[0], p[1] + 0.3]; }), 0.16, 40);
-    var chG = tube(trim(pts).map(function(p){ return [p[0], p[1] + 0.22]; }), 0.42, 40);
-    RIBF.forEach(function(f){
-      var r = mesh(ribG, ribMat); parent.add(r); zPlaced.push([r, f]);
-      var c = mesh(chG, chanMat, false); parent.add(c); zPlaced.push([c, f]);
+  /* ---------- platform (slides in from the front) ---------- */
+  var plat = new THREE.Group(); scene.add(plat);
+  var coreSideMat = mat(0x2a3542, {r: 0.6}), gripMat = mat(0xffffff, {map: gripTex, r: 1});
+  var core = mesh(slabGeo(roundRect(G.CORE_W / 2, G.CORE_D / 2, 3, 6), 0.5), [gripMat, coreSideMat]);
+  core.position.y = 0.05; plat.add(core);
+  var wingMat = mat(0x56708a, {r: 0.5, m: 0.05}), loopMat = mat(0xffffff, {map: loopTex, r: 1, e: 0xffb547, ei: 0});
+  var railMat = mat(0xcfd6de, {r: 0.3, m: 0.7}), railInMat = mat(0xe8eef5, {r: 0.25, m: 0.8});
+  var leverMat = mat(0xffb547, {r: 0.5, e: 0xffb547, ei: 0.15});
+  var toothGeo = new THREE.BoxGeometry(0.12, 0.12, 0.5);
+  // half-moon wing: local x outward from the chord (0), z along the bed side
+  function halfMoon(len, bulge, tongue, n){
+    var pts = [], k, m = 40;
+    for (k = 0; k <= m; k++) { var t = -1 + 2 * k / m; pts.push([bulge * sup(t, G.N), t * len / 2]); }
+    pts.push([-tongue, len / 2 - 3]); pts.push([-tongue, -len / 2 + 3]);
+    return pts;
+  }
+  function rimCurve(len, bulge){ var pts = [], k; for (k = 0; k <= 40; k++) { var t = -1 + 2 * k / 40; pts.push([bulge * sup(t, G.N) - 0.35, 0.47, t * len / 2 * 0.985]); } return pts; }
+  var wings = [];
+  function makeWing(kind, s){
+    var w = new THREE.Group(), side = kind === 'side', L = side ? G.WING_L : G.BACK_L, B = side ? G.WING_B : G.BACK_B;
+    var outline = halfMoon(L, B, 3);
+    var inner = new THREE.Group(); w.add(inner);
+    // orient: side wings bulge along ±x; the back wing bulges along -z
+    var g = slabGeo(outline, 0.42);
+    var m = mesh(g, wingMat); inner.add(m);
+    var rim = mesh(tube(rimCurve(L, B), 0.34, 60), loopMat, false); rim.scale.y = 0.5; rim.position.y = 0.24; inner.add(rim);
+    var lever = mesh(new THREE.BoxGeometry(1.2, 0.35, 2.4), leverMat); lever.position.set(-1.2, 0.6, 0); inner.add(lever);
+    if (side) { inner.rotation.y = s > 0 ? 0 : PI; inner.position.z = G.WING_ZC; }
+    else { inner.rotation.y = PI / 2; }
+    // two telescoping rails per wing
+    var rails = [];
+    [-1, 1].forEach(function(o){
+      var outer = mesh(new THREE.CylinderGeometry(0.42, 0.42, 1, 12), railMat), inr = mesh(new THREE.CylinderGeometry(0.3, 0.3, 1, 12), railInMat);
+      outer.rotation.z = PI / 2; inr.rotation.z = PI / 2; plat.add(outer); plat.add(inr);
+      var teeth = new THREE.InstancedMesh(toothGeo, railMat, 24); plat.add(teeth);
+      rails.push({o: o, outer: outer, inner: inr, teeth: teeth});
+    });
+    plat.add(w);
+    var rec = {g: w, inner: inner, kind: kind, s: s, rails: rails};
+    wings.push(rec); return rec;
+  }
+  var wL = makeWing('side', -1), wR = makeWing('side', 1), wB = makeWing('back', -1);
+  wB.g.position.y = 0.03;
+  var dummy = new THREE.Object3D();
+  function placeRails(rec, pos){
+    rec.rails.forEach(function(r){
+      var a, b, y = 0.3, along = r.o * (rec.kind === 'side' ? 8 : 7);
+      if (rec.kind === 'side') { a = rec.s * 3.5; b = rec.s * (pos - 0.5); }
+      else { a = -3.5; b = -(pos - 0.5); }
+      var len = Math.abs(b - a), mid = (a + b) / 2, outerLen = Math.min(len, 7.5), oMid = a + Math.sign(b - a) * outerLen / 2;
+      if (rec.kind === 'side') {
+        r.outer.position.set(oMid, y, G.WING_ZC + along); r.outer.scale.y = outerLen; r.outer.rotation.set(0, 0, PI / 2);
+        r.inner.position.set(mid, y, G.WING_ZC + along); r.inner.scale.y = len; r.inner.rotation.set(0, 0, PI / 2);
+      } else {
+        r.outer.position.set(along, y, oMid); r.outer.scale.y = outerLen; r.outer.rotation.set(PI / 2, 0, 0);
+        r.inner.position.set(along, y, mid); r.inner.scale.y = len; r.inner.rotation.set(PI / 2, 0, 0);
+      }
+      // ratchet teeth every 1/2 in along the inner tube, outside the core
+      for (var t = 0; t < 24; t++) {
+        var d = 3.5 + 0.5 * t, show = d < Math.abs(b - 0) - 0.4;
+        if (rec.kind === 'side') dummy.position.set(rec.s * d, show ? y + 0.3 : -5, G.WING_ZC + along); else dummy.position.set(along, show ? y + 0.3 : -5, -d);
+        dummy.rotation.set(0, rec.kind === 'side' ? 0 : PI / 2, 0); dummy.updateMatrix(); r.teeth.setMatrixAt(t, dummy.matrix);
+      }
+      r.teeth.instanceMatrix.needsUpdate = true;
     });
   }
-  addRibs(canopy, domePts);
-  var hookMats = [];
-  function makeWing(sign, pts){
-    var hinge = new THREE.Group(); hinge.position.set(sign * WC, 0, 0); canopy.add(hinge);
-    var w = mesh(panelGeo(pts, 0.5), mat(0xff9a3c, {r: 0.6, o: 0.88})); hinge.add(w); depthScaled.push([w, 1]);
-    addRibs(hinge, pts);
-    var hm = mat(0xffffff, {map: hookTex, r: 0.9, e: 0x5cc8ff, ei: 0}); hookMats.push(hm);
-    var hook = mesh(new THREE.BoxGeometry(1.5, 0.25, 1), hm); hook.position.set(sign * (LW - 0.8), -0.38, 0); hinge.add(hook); depthScaled.push([hook, 0.94]);
-    return hinge;
-  }
-  var hingeL = makeWing(-1, wingPtsL), hingeR = makeWing(1, wingPtsR);
-  var knG = new THREE.CylinderGeometry(0.48, 0.48, 1.0, 12); knG.rotateX(PI / 2);
-  var knMat = mat(0x2a3542, {r: 0.4, m: 0.5, e: 0xffb547, ei: 0.12});
-  var pinG = new THREE.CylinderGeometry(0.12, 0.12, 1, 8); pinG.rotateX(PI / 2);
-  [-WC, WC].forEach(function(x){
-    for (var k = 0; k < 8; k++) {
-      var f = (k < 4 ? -0.47 + k * 0.11 : 0.14 + (k - 4) * 0.11);
-      var kn = mesh(knG, knMat); kn.position.set(x, 0, 0); canopy.add(kn); zPlaced.push([kn, f]);
-    }
-    var pin = mesh(pinG, ribMat, false); pin.position.set(x, 0, 0); canopy.add(pin); depthScaled.push([pin, 0.96]);
+
+  /* ---------- hubs ---------- */
+  var hubMat = mat(0x2a3542, {r: 0.4, m: 0.3}), hubRingMat = mat(0xffb547, {r: 0.4, e: 0xffb547, ei: 0.25});
+  var canopyG = new THREE.Group(); plat.add(canopyG);
+  var sockets = [-1, 1].map(function(s){ var f = mesh(new THREE.BoxGeometry(2.4, 0.7, 3.4), wingMat); plat.add(f); return {g: f, s: s}; });
+  var hubs = [-1, 1].map(function(s){
+    var h = new THREE.Group();
+    var disc = mesh(new THREE.CylinderGeometry(1.7, 1.7, 0.9, 28), hubMat); disc.rotation.z = PI / 2; h.add(disc);
+    var ring = mesh(new THREE.TorusGeometry(1.25, 0.22, 8, 28), hubRingMat, false); ring.rotation.y = PI / 2; ring.position.x = s * 0.5; h.add(ring);
+    var btn = mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.5, 16), mat(0x8e9aa8, {r: 0.4, m: 0.5})); btn.rotation.z = PI / 2; btn.position.x = s * 0.6; h.add(btn);
+    canopyG.add(h); return {g: h, s: s};
   });
 
-  /* ---------- dog: ~20 lb terrier mix, lying down ---------- */
+  /* ---------- canopy: 5 hoops + fabric ---------- */
+  var NB = 5, SUB = 6, ROWS = (NB - 1) * SUB + 1, COLS = HN + 1;
+  var DEP = [0, 22.5, 45, 67.5, 90].map(function(d){ return d * PI / 180; });
+  var STOW = [0, 1.4, 2.8, 4.2, 5.6].map(function(d){ return d * PI / 180; });
+  var fabricMat = mat(0xffffff, {map: quiltTex(), r: 0.92, side: THREE.DoubleSide, o: 0.94});
+  var fabGeo = new THREE.BufferGeometry();
+  var fPos = new Float32Array(ROWS * COLS * 3), fUv = new Float32Array(ROWS * COLS * 2), idx = [];
+  for (var rr = 0; rr < ROWS; rr++) for (var cc = 0; cc < COLS; cc++) {
+    fUv[(rr * COLS + cc) * 2] = cc / (COLS - 1); fUv[(rr * COLS + cc) * 2 + 1] = rr / (ROWS - 1);
+    if (rr < ROWS - 1 && cc < COLS - 1) { var a = rr * COLS + cc, b = a + COLS; idx.push(a, b, a + 1, b, b + 1, a + 1); }
+  }
+  fabGeo.setAttribute('position', new THREE.BufferAttribute(fPos, 3));
+  fabGeo.setAttribute('uv', new THREE.BufferAttribute(fUv, 2));
+  fabGeo.setIndex(idx);
+  var fabric = mesh(fabGeo, fabricMat); fabric.frustumCulled = false; canopyG.add(fabric);
+  var hoopMat = mat(0xe8eef5, {r: 0.3, m: 0.6}), frontHoopMat = mat(0xffffff, {r: 0.3, m: 0.5, e: 0xffb547, ei: 0});
+  var bows = []; for (i = 0; i < NB; i++) { var bm = mesh(new THREE.BufferGeometry(), i === NB - 1 ? frontHoopMat : hoopMat); canopyG.add(bm); bows.push(bm); }
+  var handle = mesh(new THREE.TorusGeometry(1.3, 0.28, 8, 20, PI), mat(0xffb547, {r: 0.5})); canopyG.add(handle);
+  var tmpV = new THREE.Vector3(), tmpV2 = new THREE.Vector3();
+
+  /* ---------- dog: ~20 lb terrier mix, lying down (head toward the open front) ---------- */
   var dog = new THREE.Group(); scene.add(dog);
+  var dogInner = new THREE.Group(); dog.add(dogInner);
   var tan = mat(0xc58b52, {r: 0.9}), light = mat(0xd69a5e, {r: 0.9}), dark = mat(0x8e5c33, {r: 0.9}), ink = mat(0x24160b, {r: 0.5});
-  function blob(m, p, sc){ var b = mesh(SPH, m); b.position.set(p[0], p[1], p[2]); b.scale.set(sc[0], sc[1], sc[2]); dog.add(b); return b; }
+  function blob(m, p, s, parent){ var b = mesh(SPH, m); b.position.set(p[0], p[1], p[2]); b.scale.set(s[0], s[1], s[2]); (parent || dogInner).add(b); return b; }
   var body = blob(tan, [1.5, 3.0, 0], [7.2, 2.9, 3.6]);
-  var saddle = blob(dark, [2.6, 3.9, 0], [5.4, 1.9, 3.1]);
-  var chest = blob(light, [-4.6, 3.2, 0], [3.2, 2.9, 3.3]);
+  blob(dark, [2.6, 3.9, 0], [5.4, 1.9, 3.1]);
+  blob(light, [-4.6, 3.2, 0], [3.2, 2.9, 3.3]);
   [-1, 1].forEach(function(s){
     blob(tan, [5.6, 2.6, s * 2.5], [3.0, 2.3, 1.3]);
     blob(light, [2.6, 0.75, s * 3.1], [2.2, 0.7, 0.9]);
     blob(light, [-8.6, 0.9, s * 1.7], [3.6, 0.85, 0.9]);
     blob(light, [-12.0, 0.8, s * 1.7], [1.1, 0.7, 1.0]);
   });
-  var head = new THREE.Group(); head.position.set(-8.6, 4.3, 0); dog.add(head);
-  function hb(m, p, sc){ var b = mesh(SPH, m); b.position.set(p[0], p[1], p[2]); b.scale.set(sc[0], sc[1], sc[2]); head.add(b); return b; }
-  hb(light, [0, 0, 0], [2.7, 2.4, 2.5]);
-  hb(light, [-2.6, -0.7, 0], [1.8, 1.15, 1.3]);
-  hb(tan, [-3.0, -1.4, 0], [1.2, 0.8, 1.1]);
-  hb(ink, [-4.25, -0.35, 0], [0.45, 0.38, 0.45]);
-  hb(ink, [-1.6, 0.75, 1.15], [0.12, 0.3, 0.3]);
-  hb(ink, [-1.6, 0.75, -1.15], [0.12, 0.3, 0.3]);
-  hb(tan, [-1.2, 1.6, 0.9], [0.9, 0.45, 0.6]);
-  hb(tan, [-1.2, 1.6, -0.9], [0.9, 0.45, 0.6]);
+  var head = new THREE.Group(); head.position.set(-8.6, 4.3, 0); dogInner.add(head);
+  blob(light, [0, 0, 0], [2.7, 2.4, 2.5], head); blob(light, [-2.6, -0.7, 0], [1.8, 1.15, 1.3], head); blob(tan, [-3.0, -1.4, 0], [1.2, 0.8, 1.1], head);
+  blob(ink, [-4.25, -0.35, 0], [0.45, 0.38, 0.45], head); blob(ink, [-1.6, 0.75, 1.15], [0.12, 0.3, 0.3], head); blob(ink, [-1.6, 0.75, -1.15], [0.12, 0.3, 0.3], head);
   [-1, 1].forEach(function(s){
-    var ear = mesh(new THREE.ConeGeometry(1.25, 2.6, 4), dark);
-    ear.position.set(0.4, 1.9, s * 1.9); ear.rotation.set(s * 0.35, 0, 1.9); ear.scale.set(1, 1, 0.35); head.add(ear);
+    blob(tan, [-1.2, 1.6, s * 0.9], [0.9, 0.45, 0.6], head);
+    var ear = mesh(new THREE.ConeGeometry(1.25, 2.6, 4), dark); ear.position.set(0.4, 1.9, s * 1.9); ear.rotation.set(s * 0.35, 0, 1.9); ear.scale.set(1, 1, 0.35); head.add(ear);
   });
-  var tail = mesh(tube([[8.4, 3.6, 0], [10.6, 3.4, 1.2], [11.4, 2.3, 3.4], [10.0, 1.4, 4.8]], 0.55, 24), tan); dog.add(tail);
-  dog.scale.setScalar(0.85); dog.rotation.y = 0.35;
-  var dogBaseX = 0.8;
+  var tail = mesh(tube([[8.4, 3.6, 0], [10.6, 3.4, 1.2], [11.4, 2.3, 3.4], [10.0, 1.4, 4.8]], 0.55, 24), tan); dogInner.add(tail);
+  dogInner.scale.setScalar(0.78); dogInner.rotation.y = PI / 2 + 0.12;
 
   /* heat motes */
   var motes = [];
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < 12; i++) {
     var mm = mesh(new THREE.SphereGeometry(0.45, 10, 8), mat(0xffb547, {e: 0xff7a1a, ei: 0.9, o: 0}), false);
-    mm.userData = {x: -6 + (i * 37 % 13), z: -4 + (i * 23 % 9), off: i / 8};
+    mm.userData = {x: -7 + (i * 37 % 15), z: -6 + (i * 23 % 11), off: i / 12};
     scene.add(mm); motes.push(mm);
   }
 
-  /* ---------- Mode A: spring-loaded clamps on the rigid shell rim ---------- */
-  var clamps = new THREE.Group(); scene.add(clamps);
-  var clampParts = [];
-  var cDark = mat(0x1b2430, {r: 0.4, m: 0.3}), cSteel = mat(0xcfd6de, {r: 0.3, m: 0.8}), cAmber = mat(0xffb547, {r: 0.5});
-  var cPad = mat(0x6b7888, {r: 0.9, e: 0xffb547, ei: 0}), cTether = mat(0xc96a1f, {r: 0.8});
-  [0.44, -0.44, PI - 0.44, PI + 0.44].forEach(function(phi){
-    var g = new THREE.Group(); g.rotation.y = -phi;
-    var R = 17.1;
-    g.userData.base = new THREE.Vector3(R * Math.cos(phi), 5.15, R * Math.sin(phi));
-    g.position.copy(g.userData.base);
-    var headB = mesh(new THREE.BoxGeometry(2.0, 0.7, 1.2), cDark); headB.position.set(0, 1.75, 0); g.add(headB);
-    [-0.62, 0.62].forEach(function(z){ var coil = mesh(new THREE.TorusGeometry(0.42, 0.13, 8, 16), cSteel); coil.position.set(0, 1.75, z); g.add(coil); });
-    [-1, 1].forEach(function(s){ var lev = mesh(new THREE.BoxGeometry(0.25, 1.4, 1.0), cAmber); lev.position.set(s * 0.6, 2.6, 0); lev.rotation.z = -s * 0.4; g.add(lev); });
-    function jaw(s){
-      var pv = new THREE.Group(); pv.position.set(s * 0.72, 1.45, 0); g.add(pv);
-      var j = mesh(new THREE.BoxGeometry(0.3, 2.4, 1.1), cDark); j.position.set(0, -1.2, 0); pv.add(j);
-      var pad = mesh(new THREE.BoxGeometry(0.12, 1.7, 0.95), cPad); pad.position.set(-s * 0.21, -1.35, 0); pv.add(pad);
-      return pv;
-    }
-    var jIn = jaw(-1), jOut = jaw(1);
-    var th = mesh(tube([[0, 2.0, 0], [-1.6, 3.4, 0], [-3.9, 3.35, 0]], 0.22, 16), cTether); g.add(th);
-    clamps.add(g); clampParts.push({g: g, jIn: jIn, jOut: jOut});
-  });
-
-  /* ---------- Mode B: elastic straps + cam buckles wrapping the bed body ---------- */
-  var straps = new THREE.Group(); scene.add(straps);
-  var levers = [];
-  var sMat = mat(0xff7a1a, {r: 0.85}), bMat = mat(0x1b2430, {r: 0.4, m: 0.3}), lMat = mat(0xffb547, {r: 0.5});
-  [-5, 5].forEach(function(z){
-    var half = [[12.2, 8.5], [14.6, 8.1], [16.3, 6.4], [17.1, 5.0], [17.15, 0.6], [16.6, -0.12], [10, -0.2]];
-    var pts = half.slice().concat([[0, -0.2]]).concat(half.slice().reverse().map(function(p){ return [-p[0], p[1]]; }));
-    var st = mesh(tube(pts.map(function(p){ return [p[0], p[1], 0]; }), 0.5, 120), sMat); st.scale.z = 0.3; st.position.z = z; straps.add(st);
-    var buckle = mesh(new THREE.BoxGeometry(0.6, 1.4, 1.4), bMat); buckle.position.set(17.45, 3.0, z); straps.add(buckle);
-    var lp = new THREE.Group(); lp.position.set(17.8, 3.7, z); straps.add(lp);
-    var lev = mesh(new THREE.BoxGeometry(0.25, 1.5, 1.2), lMat); lev.position.set(0, -0.75, 0); lp.add(lev); levers.push(lp);
-  });
-
-  /* ---------- Mode C: tuck-under flaps (rect bed, base lip) ---------- */
-  var flaps = new THREE.Group(); rectBed.add(flaps);
-  var tongues = [];
-  var fMat = mat(0xe2651a, {r: 0.85}), tMat = mat(0xffd08a, {r: 0.6});
-  [-1, 1].forEach(function(s){
-    var pts = [[18.9, 11.45], [20.6, 10.9], [21.9, 9.4], [22.35, 7.5], [22.35, 1.6], [22.4, 0.75]].map(function(p){ return [s * p[0], p[1]]; });
-    var drop = mesh(panelGeo(pts, 0.18), fMat); drop.scale.z = 16; drop.position.z = 0.5; flaps.add(drop);
-    var tg = mesh(new THREE.BoxGeometry(3.6, 0.2, 16), tMat); tg.position.set(s * 24.2, 0.7, 0.5); tg.userData.s = s; flaps.add(tg); tongues.push(tg);
-  });
-
-  /* ---------- Mode D: suction discs on the crate tray ---------- */
-  var suction = new THREE.Group(); rectBed.add(suction);
-  var discs = [], puffs = [], seals = [];
-  var dMat = mat(0x5cc8ff, {r: 0.25, o: 0.8}), stMat = mat(0x1b2430, {r: 0.5}), tetMat = mat(0xc96a1f, {r: 0.8});
-  var sealMat = mat(0x5cc8ff, {e: 0x5cc8ff, ei: 1, o: 0.9}), puffMat = mat(0xa8e3ff, {e: 0x5cc8ff, ei: 0.6, o: 0.8});
-  var discG = new THREE.CylinderGeometry(0.55, 1.05, 0.7, 28); discG.translate(0, 0.35, 0);
-  var stemG = new THREE.CylinderGeometry(0.2, 0.2, 1, 10); stemG.translate(0, 0.5, 0);
-  [-1, 1].forEach(function(s){ [-10, 10].forEach(function(z){
-    var tet = mesh(tube([[s * 18.9, 11.5, z], [s * 21.4, 10.6, z], [s * 22.7, 8, z], [s * 23.7, 3.6, z], [s * 24.6, 1.5, z]], 0.2, 24), tetMat); suction.add(tet);
-    var d = mesh(discG, dMat); d.position.set(s * 24.6, 0, z); suction.add(d);
-    var stem = mesh(stemG, stMat); stem.position.set(s * 24.6, 0.5, z); suction.add(stem);
-    var sealG = new THREE.TorusGeometry(1.25, 0.09, 6, 32); sealG.rotateX(PI / 2);
-    var sl = mesh(sealG, sealMat, false); sl.position.set(s * 24.6, 0.06, z); suction.add(sl); seals.push(sl);
-    discs.push({d: d, stem: stem});
-    for (var k = 0; k < 6; k++) { var pf = mesh(new THREE.SphereGeometry(0.18, 8, 6), puffMat, false); pf.userData = {cx: s * 24.6, cz: z, a: k / 6 * PI * 2}; suction.add(pf); puffs.push(pf); }
-  }); });
-
-  /* ---------- Mode E (LEAD): slide-under platform, grip layer, pantograph, rear cuffs ---------- */
-  var plat = new THREE.Group(); scene.add(plat);
-  var pFrame = mat(0x2a3542, {r: 0.55, m: 0.3}), pGrip = mat(0xffffff, {map: gripTex, r: 1});
-  var center = mesh(new THREE.BoxGeometry(28, 0.5, 32), pFrame); center.position.y = -0.1; plat.add(center);
-  var cGrip = mesh(new THREE.BoxGeometry(27.4, 0.25, 31.4), pGrip); cGrip.position.y = 0.275; plat.add(cGrip);
-  var pWings = [], cuffs = [], cuffLoopMats = [], cuffBands = [], locks = [];
-  var lockMat = mat(0xffb547, {r: 0.4, m: 0.4, e: 0xffb547, ei: 0});
-  [-1, 1].forEach(function(s){
-    var w = new THREE.Group(); w.userData.s = s; plat.add(w);
-    var wp = mesh(new THREE.BoxGeometry(9, 0.45, 32), pFrame); wp.position.set(s * 4.5, -0.13, 0); w.add(wp);
-    var wg = mesh(new THREE.BoxGeometry(8.6, 0.22, 31.4), pGrip); wg.position.set(s * 4.5, 0.2, 0); w.add(wg);
-    var t0 = s > 0 ? PI / 2 : PI;
-    var cuffG = new THREE.CylinderGeometry(3, 3, 1, 24, 1, true, t0, PI / 2); cuffG.translate(0, 0.5, 0);
-    var cuff = mesh(cuffG, mat(0x3b4450, {r: 0.6, side: THREE.DoubleSide})); cuff.position.set(s * 4, 0.1, -13); w.add(cuff); cuffs.push(cuff);
-    var lm = loopMat(); lm.side = THREE.DoubleSide; cuffLoopMats.push(lm);
-    var band = mesh(new THREE.CylinderGeometry(3.12, 3.12, 0.7, 24, 1, true, t0, PI / 2), lm, false); band.position.set(s * 4, 1, -13); w.add(band); cuffBands.push(band);
-    pWings.push(w);
-    var lk = mesh(new THREE.CylinderGeometry(0.55, 0.55, 1.4, 16), lockMat); lk.rotation.z = PI / 2; plat.add(lk); locks.push(lk);
-  });
-  var bars = [];
-  var barMat = mat(0xcfd6de, {r: 0.35, m: 0.8});
-  for (i = 0; i < 8; i++) { var bar = mesh(new THREE.BoxGeometry(1, 0.28, 0.32), barMat); plat.add(bar); bars.push(bar); }
-  function placeBar(b, x1, z1, x2, z2){ b.position.set((x1 + x2) / 2, 0.2 + (bars.indexOf(b) % 2) * 0.12, (z1 + z2) / 2); b.rotation.y = Math.atan2(-(z2 - z1), x2 - x1); b.scale.x = Math.hypot(x2 - x1, z2 - z1); }
-
-  /* ---------- timeline ---------- */
-  var PH = [
-    {d: 6,  tag: '1', key: 'intro', title: 'Round bolster bed · arc at 120°', desc: 'Two side wings and a center dome curl tight over a round bed while a ~20 lb terrier mix naps in its own trapped warmth.', steps: [[0, 'Hinge knuckles hold 120° · wire ribs hold the curl']], cam: [[0, 30, 66], [0, 7, 0]]},
-    {d: 6,  tag: '↔', key: 'flexOut', title: 'Hinge knuckles flex 120° → 175°', desc: 'Wire ribs in the panel channels bend with the knuckles, so the same canopy spans a rectangular bed nearly flat.', steps: [[0, 'Round bed · 120°'], [0.5, 'Rectangular bed · 175°']], cam: [[0, 28, 70], [0, 7, 0]]},
-    {d: 13, tag: 'E', key: 'plat', title: 'Lead mode · Slide-under platform', desc: 'Works on any bed with a flat underside, with no rim, lip, or surface requirements. The platform\u2019s outer arc sizes the canopy to the bed, and the dog\u2019s weight is the fastener.', steps: [[0, 'Lift the canopy off · tip the bed up'], [0.12, 'Slide the platform under, grip layer up'], [0.34, 'Scissor frame expands evenly'], [0.52, 'Rear cuffs clear the corners · lock'], [0.62, 'Bed down · the dog\u2019s weight holds it'], [0.74, 'Canopy presses onto the cuff Velcro']], cam: [[-58, 74, -100], [-12, 7, -16]]},
-    {d: 7,  tag: 'C', key: 'flap', title: 'Tuck-under flaps', desc: 'A stiffened HDPE tongue slides under the bed\u2019s raised base lip, and the dog\u2019s weight pinches it in place.', steps: [[0, 'Flap drops over the side'], [0.15, 'Tongue slides under the base lip'], [0.6, 'Pinched by the dog\u2019s weight']], cam: [[54, 12, 36], [17, 3, 0]]},
-    {d: 7,  tag: 'D', key: 'suck', title: 'Suction discs', desc: 'On a smooth plastic crate tray, the Ø1.75 in discs press flat, push the air out, and seal.', steps: [[0, 'Line up on the smooth tray'], [0.2, 'Press flat · air out'], [0.48, 'Sealed']], cam: [[46, 22, 46], [19, 2, 5]]},
-    {d: 6,  tag: '↔', key: 'flexIn', title: 'Back to 120° for a round bed', desc: 'The annealed steel ribs keep whatever angle you set without sagging onto the dog.', steps: [[0, 'Rectangular · 175°'], [0.5, 'Round · 120°']], cam: [[0, 28, 70], [0, 7, 0]]},
-    {d: 7,  tag: 'A', key: 'clamp', title: 'Spring-loaded clamps', desc: 'Torsion-spring jaws bite rigid edges 0.25\u20131.5 in thick, such as this bed\u2019s shell rim, crate bars, or frames.', steps: [[0, 'Squeeze the lever · slide onto the rim'], [0.4, 'Release · the jaws bite and hold']], cam: [[42, 20, 40], [14, 5, 3]]},
-    {d: 7,  tag: 'B', key: 'strap', title: 'Elastic straps + cam buckles', desc: 'For soft beds, wrap the strap under the bed body or thread it through handle loops, and the cam buckle locks the tension.', steps: [[0, 'Wrap under the bed body'], [0.5, 'Pull the tail · the cam buckle locks']], cam: [[-26, 14, 54], [4, 4, 0]]},
-    {d: 9,  tag: 'V', key: 'velcro', title: 'Industrial Velcro peel-off', desc: 'Hook tape on the canopy\u2019s bottom edge peels off the loop tape on the Rim Strip, and the hardware stays on the bed.', steps: [[0, 'Hook on the canopy · loop on the Rim Strip'], [0.08, 'Peel'], [0.3, 'Lift off to wash'], [0.62, 'Line up'], [0.84, 'Press back on']], cam: [[-14, 34, 80], [0, 12, 0]]}
-  ];
-  var starts = [], total = 0;
-  PH.forEach(function(p){ starts.push(total); total += p.d; });
-  function phaseAt(t){ for (var k = PH.length - 1; k >= 0; k--) if (t >= starts[k]) return {i: k, u: clamp01((t - starts[k]) / PH[k].d)}; return {i: 0, u: 0}; }
-
   /* ---------- UI ---------- */
-  var label = document.getElementById('siaLabel'), tagEl = document.getElementById('siaTag'), titleEl = document.getElementById('siaTitle'),
-      descEl = document.getElementById('siaDesc'), stepEl = document.getElementById('siaStep'), bar = document.getElementById('siaBar'),
-      badge = document.getElementById('siaBadge');
-  var chips = Array.prototype.slice.call(document.querySelectorAll('[data-sia-step]'));
-  var playBtn = document.querySelector('[data-sia-play]');
-  var shownPhase = -1, shownStep = '', labelTimer = null, stepTimer = null;
-  function showPhase(i){
-    shownPhase = i; var p = PH[i];
-    label.classList.remove('is-in');
-    clearTimeout(labelTimer);
-    labelTimer = setTimeout(function(){
-      tagEl.textContent = p.tag; titleEl.textContent = p.title; descEl.textContent = p.desc;
-      label.classList.add('is-in');
-    }, 260);
-    chips.forEach(function(c){ c.setAttribute('aria-pressed', +c.getAttribute('data-sia-step') === i ? 'true' : 'false'); });
-    if (badge) badge.textContent = 'Step ' + (i + 1) + ' / ' + PH.length;
-  }
-  function showStep(txt){
-    if (txt === shownStep) return; shownStep = txt;
-    stepEl.classList.add('is-swap'); clearTimeout(stepTimer);
-    stepTimer = setTimeout(function(){ stepEl.textContent = txt; stepEl.classList.remove('is-swap'); }, 220);
-  }
+  function $(id){ return document.getElementById(id); }
+  var sidesIn = $('tcSides'), canIn = $('tcCanopy'), sidesOut = $('tcSidesOut'), canOut = $('tcCanopyOut'), readout = $('tcReadout');
+  var playBtn = $('tcPlay'), seeBtn = $('tcSeeThru'), dogBtn = $('tcDog');
+  var labTag = $('siaTag'), labTitle = $('siaTitle'), labDesc = $('siaDesc'), label = $('siaLabel'), bar = $('siaBar'), badge = $('siaBadge');
 
   /* ---------- state ---------- */
-  var reduceMQ = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
-  var reduced = !!(reduceMQ && reduceMQ.matches);
-  var playing = !reduced, onScreen = true, dirty = true, snapCam = true;
-  var t = reduced ? PH[0].d * 0.6 : 0, clock = 0;
-  var camPos = new THREE.Vector3(), camLook = new THREE.Vector3(), tmpP = new THREE.Vector3(), tmpL = new THREE.Vector3();
+  var S = {bed: 'standard', slide: 0, e: 0, u: 0, dog: 0, attach: 0, seeThru: false};
+  var cur = {xs: G.XS0, zb: G.ZB0, slide: 0, u: 0, dog: 0, attach: 0, W: 34, D: 26};
+  buildBed(34, 26);
+  var hoopPts = computeHoop(cur.xs, cur.zb), hoopKey = '';
+  var playing = false, pt = 0, onScreen = false, autoStarted = false, lastStep = -1;
 
-  function setPlaying(v){
-    playing = v; dirty = true;
-    if (playBtn) { playBtn.textContent = v ? 'Pause' : 'Play'; playBtn.setAttribute('aria-pressed', v ? 'false' : 'true'); }
+  var STEPS = [
+    {t: 0,  d: 2.5, tag: '1', title: 'Start with your own bed', desc: 'Any bed with a flat bottom. Nothing attaches to the bed itself.'},
+    {t: 2.5, d: 4, tag: '2', title: 'Slide the platform under', desc: 'Lift the front edge an inch or two and push the folded platform under it, grip side up. The folded canopy waits beside the bed for now.'},
+    {t: 6.5, d: 5, tag: '3', title: 'Pull out the half-moon sides', desc: 'The left, right, and back wings slide out on telescoping rails. They click every ½ in and can\u2019t creep back. Stop when each curved edge clears the bed by about 2 in.'},
+    {t: 11.5, d: 5.5, tag: '4', title: 'Pull the canopy up and over', desc: 'The folded canopy lies flat around the back and bottom, and its two hubs snap onto the front tips of the side wings. Grab the front hoop and swing it up over the top. The fabric lifts the other hoops in turn, like a stroller hood.'},
+    {t: 17, d: 2, tag: '5', title: 'Click: locked upright', desc: 'Spring pins in both hubs drop into their notches. The left, right, and back are now closed. Only the front is open.'},
+    {t: 19, d: 4, tag: '6', title: 'Your dog hops in the front', desc: 'There\u2019s no crossbar on the floor, so nothing to trip on. The bed and the dog\u2019s weight hold the platform in place.'},
+    {t: 23, d: 5, tag: '7', title: 'Body heat stays in', desc: 'Warm air rises and pools under the closed hood instead of escaping. The open front lets stale air out and keeps the view.'}
+  ];
+  var TOTAL = 28;
+  function stateAt(t){
+    return {
+      slide: sstep(2.7, 6.2, t),
+      e: sstep(6.8, 11.0, t),
+      attach: sstep(11.3, 12.5, t),
+      u: sstep(12.7, 17.0, t),
+      dog: sstep(19.2, 22.6, t)
+    };
   }
-  if (playBtn) playBtn.addEventListener('click', function(){ setPlaying(!playing); });
-  chips.forEach(function(c){
-    c.addEventListener('click', function(){
-      var k = +c.getAttribute('data-sia-step');
-      t = starts[k] + (playing ? 0.001 : PH[k].d * 0.62);
-      if (!playing) snapCam = true;
-      dirty = true;
+  function setLabel(k){
+    if (k === lastStep) return; lastStep = k;
+    var st = STEPS[k];
+    labTag.textContent = st.tag; labTitle.textContent = st.title; labDesc.textContent = st.desc;
+    label.classList.remove('is-in'); void label.offsetWidth; label.classList.add('is-in');
+  }
+  function manualLabel(){
+    var k = S.u > 0.97 ? (S.dog > 0.5 ? 6 : 4) : S.u > 0.02 ? 3 : S.e > 0.02 ? 2 : S.slide > 0.5 ? 1 : 0;
+    setLabel(k);
+  }
+  function syncInputs(){
+    sidesIn.value = Math.round(S.e * 100); canIn.value = Math.round(S.u * 100);
+    sidesOut.textContent = Math.round(S.e * 100) + '%';
+    canOut.textContent = S.u < 0.02 ? 'folded at back' : S.u > 0.98 ? 'locked · front open' : Math.round(S.u * 90) + '° up';
+    dogBtn.setAttribute('aria-pressed', S.dog > 0.5 ? 'true' : 'false'); dogBtn.textContent = S.dog > 0.5 ? 'Dog hops out' : 'Dog hops in';
+  }
+  function stopPlay(){ playing = false; playBtn.textContent = '\u25B6 Play setup'; playBtn.setAttribute('aria-pressed', 'false'); }
+  function startPlay(){ playing = true; pt = 0; S.dog = 0; playBtn.textContent = '\u275A\u275A Pause'; playBtn.setAttribute('aria-pressed', 'true'); }
+  playBtn.addEventListener('click', function(){ if (playing) stopPlay(); else { if (pt >= TOTAL - 0.01 || pt === 0) startPlay(); else { playing = true; playBtn.textContent = '\u275A\u275A Pause'; } } });
+  sidesIn.addEventListener('input', function(){ stopPlay(); S.slide = 1; S.e = sidesIn.value / 100; pt = TOTAL; syncInputs(); manualLabel(); });
+  canIn.addEventListener('input', function(){ stopPlay(); S.slide = 1; S.u = canIn.value / 100; if (S.u < 0.95 && S.dog > 0.5) S.dog = 0; pt = TOTAL; syncInputs(); manualLabel(); });
+  dogBtn.addEventListener('click', function(){ stopPlay(); S.slide = 1; S.dog = S.dog > 0.5 ? 0 : 1; pt = TOTAL; syncInputs(); manualLabel(); });
+  seeBtn.addEventListener('click', function(){ S.seeThru = !S.seeThru; seeBtn.setAttribute('aria-pressed', S.seeThru ? 'true' : 'false'); fabricMat.opacity = S.seeThru ? 0.38 : 0.94; fabricMat.depthWrite = !S.seeThru; });
+  document.querySelectorAll('[data-tc-bed]').forEach(function(b){
+    b.addEventListener('click', function(){
+      S.bed = b.getAttribute('data-tc-bed');
+      document.querySelectorAll('[data-tc-bed]').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      var bd = BEDS[S.bed]; cur.W = bd.W; cur.D = bd.D; buildBed(bd.W, bd.D);
     });
   });
-  if (reduceMQ && reduceMQ.addEventListener) reduceMQ.addEventListener('change', function(e){ if (e.matches) setPlaying(false); });
-  setPlaying(playing);
+
+  /* ---------- camera: drag to orbit + view presets ---------- */
+  var VIEWS = {'34': [-0.62, 0.42, 1], front: [0, 0.2, 1], side: [-PI / 2, 0.16, 1], top: [-0.0001, 1.38, 1.05]};
+  var cam = {az: -0.62, el: 0.42, zoom: 1}, camT = {az: -0.62, el: 0.42, zoom: 1}, camLook = new THREE.Vector3(0, 9, 0);
+  document.querySelectorAll('[data-tc-view]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var v = VIEWS[b.getAttribute('data-tc-view')]; camT.az = v[0]; camT.el = v[1]; camT.zoom = v[2];
+      while (cam.az - camT.az > PI) cam.az -= 2 * PI; while (camT.az - cam.az > PI) cam.az += 2 * PI;
+      document.querySelectorAll('[data-tc-view]').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    });
+  });
+  canvas.style.touchAction = 'pan-y';
+  var drag = null;
+  canvas.addEventListener('pointerdown', function(ev){ drag = {x: ev.clientX, y: ev.clientY, id: ev.pointerId}; try { canvas.setPointerCapture(ev.pointerId); } catch (e) {} if (badge) badge.style.opacity = '0'; });
+  canvas.addEventListener('pointermove', function(ev){
+    if (!drag || ev.pointerId !== drag.id) return;
+    var dx = ev.clientX - drag.x, dy = ev.clientY - drag.y; drag.x = ev.clientX; drag.y = ev.clientY;
+    camT.az -= dx * 0.009; camT.el = Math.max(0.04, Math.min(1.45, camT.el + dy * 0.006)); cam.az = camT.az; cam.el = camT.el;
+    document.querySelectorAll('[data-tc-view]').forEach(function(x){ x.setAttribute('aria-pressed', 'false'); });
+  });
+  function endDrag(){ drag = null; }
+  canvas.addEventListener('pointerup', endDrag); canvas.addEventListener('pointercancel', endDrag); canvas.addEventListener('lostpointercapture', endDrag);
 
   /* ---------- per-frame update ---------- */
+  var clock = 0;
+  function damp(a, b, dt, r){ return a + (b - a) * (1 - Math.exp(-dt * r)); }
   function update(dt){
-    var ph = phaseAt(t), i = ph.i, u = ph.u, key = PH[i].key;
-    if (i !== shownPhase) showPhase(i);
-    var st = PH[i].steps, txt = st[0][1];
-    for (var k = 0; k < st.length; k++) if (u >= st[k][0]) txt = st[k][1];
-    showStep(txt);
-    bar.style.width = (t / total * 100).toFixed(2) + '%';
+    clock += dt;
+    if (playing) {
+      pt = Math.min(TOTAL, pt + dt);
+      var st = stateAt(pt); S.slide = st.slide; S.e = st.e; S.u = st.u; S.dog = st.dog; S.attach = st.attach;
+      for (var k = STEPS.length - 1; k >= 0; k--) if (pt >= STEPS[k].t) { setLabel(k); break; }
+      bar.style.width = (100 * pt / TOTAL).toFixed(1) + '%';
+      syncInputs();
+      if (pt >= TOTAL) stopPlay();
+    } else if (!playing && pt >= TOTAL) { bar.style.width = '100%'; }
 
-    // bed morph: 0 = round, 1 = rectangular
-    var m = 0;
-    if (key === 'flexOut') m = sstep(0.1, 0.9, u);
-    else if (key === 'plat' || key === 'flap' || key === 'suck') m = 1;
-    else if (key === 'flexIn') m = 1 - sstep(0.1, 0.9, u);
-    var a = lerp(60, 5, m) * PI / 180;
-    var Rh = lerp(8.45, 11.9, m), D = lerp(16, 26, m);
-    var tipX = WC + LW * Math.cos(a), H = Rh + LW * Math.sin(a);
-    hingeL.rotation.z = a; hingeR.rotation.z = -a;
-    depthScaled.forEach(function(e){ e[0].scale.z = D * e[1]; });
-    zPlaced.forEach(function(e){ e[0].position.z = D * e[1]; });
+    // targets → ratchet-stepped wing positions (½ in clicks)
+    var xsFit = cur.W / 2 + G.C - G.WING_B, zbFit = cur.D / 2 + G.C - G.BACK_B;
+    var xsT = G.XS0 + Math.round((xsFit - G.XS0) * S.e / 0.5) * 0.5, zbT = G.ZB0 + Math.round((zbFit - G.ZB0) * S.e / 0.5) * 0.5;
+    cur.xs = damp(cur.xs, xsT, dt, playing ? 14 : 9); cur.zb = damp(cur.zb, zbT, dt, playing ? 14 : 9);
+    cur.slide = playing ? S.slide : damp(cur.slide, S.slide, dt, 5);
+    cur.u = playing ? S.u : damp(cur.u, S.u, dt, 7);
+    cur.dog = playing ? S.dog : damp(cur.dog, S.dog, dt, 2.2);
+    if (!playing) S.attach = (S.e > 0.97 || S.u > 0.02) ? 1 : 0;
+    cur.attach = playing ? S.attach : damp(cur.attach, S.attach, dt, 4);
 
-    var roundO = 1 - sstep(0.3, 0.7, m);
-    setOpacity(roundBed, roundO); roundBed.scale.setScalar(0.94 + 0.06 * roundO);
-    setOpacity(rectSet, 1 - roundO); rectSet.scale.setScalar(0.94 + 0.06 * (1 - roundO));
+    // platform slide + bed lift
+    var sl = cur.slide;
+    plat.position.z = lerp(48, 0, sl);
+    var lift = Math.sin(PI * clamp01(sl * 1.08)) * 2.4 * (sl < 0.99 ? 1 : 0);
+    bedGroup.position.y = lerp(0, G.PT, sstep(0.75, 1, sl)) + lift;
+    bedGroup.rotation.x = -lift * 0.035;
 
-    // canopy lift / peel (Velcro + platform phases)
-    var peel = 0, lift = 0, press = 0, bedLift = 0, settle = 0, loopGlow = 0, hookGlow = 0;
-    if (key === 'velcro') {
-      var p1 = sstep(0.08, 0.28, u), p2 = sstep(0.62, 0.84, u);
-      peel = 0.38 * p1 * (1 - p2); lift = 10 * sstep(0.26, 0.44, u) * (1 - p2);
-      press = sstep(0.84, 0.88, u) * (1 - sstep(0.9, 0.98, u));
-      loopGlow = 0.6 * sstep(0.26, 0.36, u) * (1 - sstep(0.6, 0.7, u)) + 1.2 * press; hookGlow = loopGlow;
+    // wings + rails
+    wL.g.position.x = -cur.xs; wR.g.position.x = cur.xs; wB.g.position.z = -cur.zb;
+    placeRails(wL, cur.xs); placeRails(wR, cur.xs); placeRails(wB, cur.zb);
+    var cleared = (cur.xs + G.WING_B - cur.W / 2) >= G.C - 0.3 && (cur.zb + G.BACK_B - cur.D / 2) >= G.C - 0.3;
+    loopMat.emissiveIntensity = 0.12 + (cleared && cur.u < 0.05 ? 0.35 + 0.2 * Math.sin(clock * 4) : 0);
+    leverMat.emissiveIntensity = Math.abs(xsT - cur.xs) > 0.05 ? 0.8 : 0.15;
+
+    // hoop + hubs
+    var hk = cur.xs.toFixed(3) + '|' + cur.zb.toFixed(3);
+    if (hk !== hoopKey) { hoopPts = computeHoop(cur.xs, cur.zb); hoopKey = hk; }
+    hubs.forEach(function(h){ h.g.position.set(h.s * (cur.xs + 0.2), G.Y0 + 0.3, G.ZH); });
+    sockets.forEach(function(h){ h.g.position.set(h.s * (cur.xs + 0.2), 0.75, G.ZH); });
+    canopyG.position.y = (1 - sstep(0, 1, cur.attach)) * 16; canopyG.visible = cur.attach > 0.01;
+    var locked = cur.u > 0.985;
+    hubRingMat.color.setHex(locked ? 0x5fe0b5 : 0xffb547); hubRingMat.emissive.setHex(locked ? 0x5fe0b5 : 0xffb547); hubRingMat.emissiveIntensity = locked ? 0.7 : 0.25;
+    frontHoopMat.emissiveIntensity = (!locked && cur.u > 0.01 && cur.u < 0.99) ? 0.35 : 0;
+
+    // bow angles: the front hoop leads, fabric pulls the others up in turn
+    var phiF = lerp(STOW[NB - 1], DEP[NB - 1], cur.u), ang = [];
+    for (var b = 0; b < NB; b++) ang.push(b === 0 ? 0 : Math.max(STOW[b], Math.min(DEP[b], phiF - (NB - 1 - b) * (DEP[1] - DEP[0]))));
+    ang[NB - 1] = phiF;
+    // fabric
+    var p = 0;
+    for (var r = 0; r < ROWS; r++) {
+      var bi = Math.min(NB - 2, Math.floor(r / SUB)), f = (r - bi * SUB) / SUB, phi = lerp(ang[bi], ang[bi + 1], f), lift2 = r === 0 ? 0 : 0.12;
+      for (var c = 0; c < COLS; c++) { canopyPt(hoopPts[c], phi, tmpV); fPos[p++] = tmpV.x; fPos[p++] = tmpV.y + lift2 * (1 - cur.u); fPos[p++] = tmpV.z; }
     }
-    var platCuffGlow = 0;
-    if (key === 'plat') {
-      peel = 0.25 * sstep(0, 0.05, u) * (1 - sstep(0.06, 0.12, u));
-      lift = 9 * sstep(0.01, 0.09, u) * (1 - sstep(0.74, 0.86, u));
-      press = sstep(0.86, 0.89, u) * (1 - sstep(0.92, 0.99, u));
-      bedLift = 2.6 * sstep(0.06, 0.13, u) * (1 - sstep(0.6, 0.69, u));
-      settle = Math.sin(PI * sstep(0.68, 0.78, u)) * 0.5;
-      platCuffGlow = 1.3 * press; hookGlow = platCuffGlow;
+    fabGeo.attributes.position.needsUpdate = true; fabGeo.computeVertexNormals(); fabGeo.computeBoundingSphere();
+    // hoops (rebuilt tubes)
+    for (b = 0; b < NB; b++) {
+      var pts = [];
+      for (c = 0; c < COLS; c += 3) { canopyPt(hoopPts[c], ang[b], tmpV); pts.push(tmpV.clone()); }
+      bows[b].geometry.dispose();
+      bows[b].geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 64, b === NB - 1 ? 0.42 : 0.3, 6, false);
     }
-    pivot.position.set(-tipX, Rh + lift, 0); pivot.rotation.z = peel;
-    canopy.position.set(tipX, H - Rh - press * 0.35, 0);
-    roundLoopMats.concat(rectLoopMats).forEach(function(lm){ lm.emissiveIntensity = loopGlow; });
-    hookMats.forEach(function(hm){ hm.emissiveIntensity = hookGlow * 0.5; });
-    rectBed.position.y = 0.4 + bedLift;
+    canopyPt(hoopPts[HN / 2], phiF, tmpV);
+    handle.rotation.set(phiF - PI / 2, 0, 0); handle.position.copy(tmpV); handle.translateY(0.3);
 
-    // dog: breathing + ride along with bed height
-    var breath = Math.sin(clock * 2 * PI / 3.4);
-    body.scale.y = 2.9 * (1 + 0.035 * breath); saddle.scale.y = 1.9 * (1 + 0.035 * breath); chest.scale.y = 2.9 * (1 + 0.03 * breath);
-    head.rotation.z = 0.03 * Math.sin(clock * 0.7);
-    dog.position.set(dogBaseX, lerp(2.2, 5.0, m) + bedLift - settle, 0);
+    // dog: hops in through the open front
+    var dg = cur.dog, bedTop = bedGroup.position.y + 3.5 + 1.2 - 0.15;
+    var dz = lerp(36, 1.2, dg), hop = Math.sin(PI * sstep(0.45, 0.92, dg)) * 7;
+    dog.position.set(0.6, lerp(0, bedTop, sstep(0.55, 0.85, dg)) + hop, dz);
+    var breathe = 1 + 0.025 * Math.sin(clock * 1.7); body.scale.y = 2.9 * breathe;
+    dog.visible = true;
 
-    // heat motes rise under the canopy
-    var dogTop = dog.position.y + 5.5, roof = H + lift - 1.2;
-    motes.forEach(function(mt){
-      var q = (clock * 0.16 + mt.userData.off) % 1;
-      mt.position.set(mt.userData.x, lerp(dogTop, Math.max(dogTop + 1.5, roof), q), mt.userData.z);
-      mt.material.opacity = Math.sin(PI * q) * 0.75; mt.material.transparent = true;
+    // heat: trapped when the canopy is closed with the dog inside
+    var heat = sstep(0.85, 1, dg), trapped = locked ? 1 : 0;
+    warm.position.set(0, bedTop + 8, 0); warm.intensity = heat * (0.4 + 0.55 * trapped + 0.15 * Math.sin(clock * 1.6));
+    var roof = G.Y0 + hoopPts[HN / 2][2] * G.KF - 2.5;
+    motes.forEach(function(m){
+      var q = (clock * 0.16 + m.userData.off) % 1, top = trapped ? roof : roof + 22;
+      m.position.set(m.userData.x + Math.sin(clock + m.userData.off * 9) * 1.2, lerp(bedTop + 4, top, q), m.userData.z);
+      if (trapped && q > 0.75) { m.position.x += (q - 0.75) * 30 * (m.userData.x > 0 ? 1 : -1) * 0.4; }
+      m.material.opacity = heat * 0.85 * Math.sin(PI * q); m.visible = m.material.opacity > 0.02;
     });
-    warm.position.set(0, dog.position.y + 7, 0); warm.intensity = 0.7 + 0.25 * Math.sin(clock * 1.6);
 
-    // Mode A clamps (also shown installed during the Velcro step: hardware stays on the bed)
-    var cO = key === 'clamp' ? fadeIn(u) : (key === 'velcro' ? 0.85 * fadeIn(u) : 0);
-    setOpacity(clamps, cO);
-    if (cO > 0) {
-      var slide = key === 'clamp' ? sstep(0.1, 0.38, u) : 1, close = key === 'clamp' ? sstep(0.4, 0.5, u) : 1;
-      clampParts.forEach(function(c){
-        c.g.position.set(c.g.userData.base.x, c.g.userData.base.y + 3 * (1 - slide), c.g.userData.base.z);
-        c.jIn.rotation.z = -0.5 * (1 - close); c.jOut.rotation.z = 0.5 * (1 - close);
-      });
-      cPad.emissiveIntensity = key === 'clamp' ? 0.9 * sstep(0.5, 0.56, u) * (1 - sstep(0.8, 0.9, u)) : 0;
-    }
-    // Mode B straps
-    var sO = key === 'strap' ? fadeIn(u) : 0;
-    setOpacity(straps, sO);
-    if (sO > 0) {
-      var cinch = 1 - sstep(0.15, 0.5, u);
-      straps.scale.set(1 + 0.1 * cinch, 1 + 0.06 * cinch, 1);
-      levers.forEach(function(l){ l.rotation.z = 0.9 * (1 - sstep(0.52, 0.64, u)); });
-    }
-    // Mode C flaps
-    var fO = key === 'flap' ? fadeIn(u) : 0;
-    setOpacity(flaps, fO);
-    if (fO > 0) tongues.forEach(function(tg){ tg.position.x = tg.userData.s * lerp(24.2, 20.4, sstep(0.15, 0.55, u)); });
-    // Mode D suction
-    var dO = key === 'suck' ? fadeIn(u) : 0;
-    setOpacity(suction, dO);
-    if (dO > 0) {
-      var pr = sstep(0.2, 0.45, u), sy = lerp(1.7, 0.4, pr), top = 0.7 * sy;
-      discs.forEach(function(d){ d.d.scale.set(1 + 0.15 * pr, sy, 1 + 0.15 * pr); d.stem.position.y = top; d.stem.scale.y = Math.max(0.05, 1.5 - top); });
-      var q = sstep(0.28, 0.56, u);
-      puffs.forEach(function(pf){ var r = 1.2 + q * 3.2; pf.position.set(pf.userData.cx + Math.cos(pf.userData.a) * r, 0.25, pf.userData.cz + Math.sin(pf.userData.a) * r); pf.material.opacity = (q > 0 && q < 1) ? Math.sin(PI * q) * 0.85 * dO : 0; pf.visible = pf.material.opacity > 0.01; });
-      var so = sstep(0.45, 0.55, u) * (1 - sstep(0.88, 1, u));
-      seals.forEach(function(sl){ sl.visible = so > 0.01; });
-      sealMat.opacity = so * dO;
-    }
-    // Mode E platform
-    var pO = key === 'plat' ? sstep(0.08, 0.14, u) * (1 - sstep(0.95, 1, u)) : 0;
-    setOpacity(plat, pO);
-    tray.visible = rectSet.visible;
-    if (key === 'plat') {
-      var trayO = 1 - sstep(0.02, 0.1, u) * (1 - sstep(0.95, 1, u));
-      tray.material.opacity = trayO; tray.material.transparent = trayO < 0.999; tray.visible = trayO > 0.01;
-    }
-    if (pO > 0) {
-      plat.position.z = lerp(-48, 0, sstep(0.12, 0.32, u));
-      var e = sstep(0.34, 0.52, u), xin = 8 + 8 * e;
-      pWings.forEach(function(w){ w.position.x = w.userData.s * xin; });
-      var ch = lerp(0.8, 11.7, sstep(0.69, 0.78, u));
-      cuffs.forEach(function(c){ c.scale.y = ch; });
-      cuffBands.forEach(function(b){ b.position.y = 0.1 + ch - 0.35; });
-      cuffLoopMats.forEach(function(lm){ lm.emissiveIntensity = platCuffGlow + 0.5 * sstep(0.74, 0.8, u) * (1 - sstep(0.84, 0.88, u)); });
-      locks.forEach(function(lk, n){ lk.position.set((n ? 1 : -1) * xin, 0.55, -16.4); });
-      lockMat.emissiveIntensity = 1.4 * sstep(0.52, 0.55, u) * (1 - sstep(0.6, 0.66, u));
-      // lazy-tongs pantograph along the rear edge: 4 cells spanning -xin..xin
-      var w4 = xin / 2, Lb = 9.2, h = Math.sqrt(Math.max(0.5, Lb * Lb - w4 * w4)), z0 = -16.3, z1 = z0 - h;
-      for (var c4 = 0; c4 < 4; c4++) {
-        var xa = -xin + c4 * w4, xb = xa + w4;
-        placeBar(bars[c4 * 2], xa, z0, xb, z1); placeBar(bars[c4 * 2 + 1], xa, z1, xb, z0);
-      }
-    }
+    // readout
+    var sideClr = cur.xs + G.WING_B - cur.W / 2, backClr = cur.zb + G.BACK_B - cur.D / 2;
+    var travelS = cur.xs - G.XS0, travelB = cur.zb - G.ZB0, maxW = 0;
+    for (c = 0; c < COLS; c++) maxW = Math.max(maxW, Math.abs(hoopPts[c][0]));
+    var frontH = G.Y0 + hoopPts[HN / 2][2] * G.KF;
+    var txt = 'Side wings out ' + travelS.toFixed(1) + ' in (' + Math.round(travelS / 0.5) + ' clicks) · back wing out ' + travelB.toFixed(1) + ' in (' + Math.round(travelB / 0.5) + ' clicks) · clearance ' +
+      (sideClr >= 0 ? sideClr.toFixed(1) + ' in' : 'touching bed') + ' sides / ' + (backClr >= 0 ? backClr.toFixed(1) + ' in' : 'touching bed') + ' back · front opening ≈ ' + Math.round(frontH) + ' in tall, ' + Math.round(2 * cur.xs) + ' in wide at the floor, ' + Math.round(2 * maxW) + ' in at its widest';
+    if (!cleared && cur.u > 0.03 && cur.slide > 0.9) txt += ' — ⚠ sides not cleared yet: pull the half-moon wings out first or the canopy will rub the bed.';
+    if (readout.textContent !== txt) readout.textContent = txt;
 
     // camera
-    var cp = PH[i].cam, aspect = camera.aspect, kk = aspect < 1.3 ? Math.pow(1.3 / aspect, 0.85) : 1;
-    tmpL.set(cp[1][0], cp[1][1], cp[1][2]);
-    tmpP.set(cp[0][0], cp[0][1], cp[0][2]).sub(tmpL).multiplyScalar(kk);
-    tmpP.applyAxisAngle(new THREE.Vector3(0, 1, 0), 0.1 * Math.sin(clock * 0.18)).add(tmpL);
-    if (snapCam || dt == null) { camPos.copy(tmpP); camLook.copy(tmpL); snapCam = false; }
-    else { var f = 1 - Math.exp(-dt * 1.1); camPos.lerp(tmpP, f); camLook.lerp(tmpL, f); }
-    camera.position.copy(camPos); camera.lookAt(camLook);
+    cam.az = damp(cam.az, camT.az, dt, 3); cam.el = damp(cam.el, camT.el, dt, 3); cam.zoom = damp(cam.zoom, camT.zoom, dt, 3);
+    var aspect = camera.aspect, kk = aspect < 1.3 ? Math.pow(1.3 / aspect, 0.8) : 1, dist = 108 * cam.zoom * kk;
+    var lookZ = lerp(18, 0, sl);
+    camLook.set(0, 8, lookZ);
+    camera.position.set(Math.sin(cam.az) * Math.cos(cam.el) * dist, 8 + Math.sin(cam.el) * dist, lookZ + Math.cos(cam.az) * Math.cos(cam.el) * dist);
+    camera.lookAt(camLook);
   }
 
   /* ---------- sizing / visibility / loop ---------- */
   function resize(){
     var w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
-    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); snapCam = !playing; dirty = true;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
   }
   if (window.ResizeObserver) new ResizeObserver(resize).observe(stage); else window.addEventListener('resize', resize);
   resize();
-  if (window.IntersectionObserver) new IntersectionObserver(function(en){ onScreen = en[0].isIntersecting; }, {rootMargin: '80px'}).observe(stage);
+  if (window.IntersectionObserver) new IntersectionObserver(function(en){
+    onScreen = en[0].isIntersecting;
+    if (onScreen && !autoStarted) { autoStarted = true; startPlay(); }
+  }, {rootMargin: '0px', threshold: 0.35}).observe(stage); else { onScreen = true; autoStarted = true; startPlay(); }
+  setLabel(0); syncInputs();
   var last = performance.now();
   function frame(now){
     requestAnimationFrame(frame);
     var dt = Math.min(0.05, (now - last) / 1000); last = now;
     if (!onScreen || document.hidden) return;
-    if (playing) { t = (t + dt) % total; clock += dt; }
-    else if (!dirty) return;
-    update(playing ? dt : (snapCam ? null : 0.2));
+    update(dt);
     renderer.render(scene, camera);
-    if (!playing) { dirty = !(camPos.distanceTo(tmpP) < 0.05); }
   }
-  update(null); renderer.render(scene, camera);
+  update(0.016); renderer.render(scene, camera);
   requestAnimationFrame(frame);
 })();
 </script>
