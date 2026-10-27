@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OverCover V4: Manufacturer Build Document (Rev D), Fixed-Size Three-Panel Canopy System</title>
+<meta name="description" content="OverCover V4 manufacturer build document, Revision D. Detachable dog bed canopy in three fixed sizes (Small, Medium, Large): three-panel house-profile arc with hinge knuckles, 0.250 in spring-steel ribs, flat base panel with peel-and-stick hook strips, geometry and clearance table, bill of materials, build sequence, tolerances, QC plan, failure modes and 3D modeling reference.">
+<style>
+:root{
+  --bg:#0b0f14; --bg2:#10161e; --card:#141c26; --card2:#18222e; --line:#243142;
+  --text:#e9eef4; --muted:#9aa8b8; --amber:#ffb547; --orange:#ff7a1a;
+  --cool:#5cc8ff; --mint:#5fe0b5; --red:#ff8a73;
+  --radius:18px; --maxw:1180px;
+  --font: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}
+.skip{position:absolute;left:-999px;top:0;background:var(--amber);color:#000;padding:.5rem 1rem;z-index:99}
+.skip:focus{left:1rem}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.25rem}
+.nav{position:sticky;top:0;z-index:20;background:rgba(11,15,20,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:60px}
+.brand{font-weight:800;letter-spacing:.02em;font-size:1.1rem;text-decoration:none;color:var(--text)}
+.brand span{color:var(--amber)}
+.brand small{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-left:.5rem;font-weight:600}
+.nav ul{display:flex;gap:1.05rem;list-style:none;margin:0;padding:0;font-size:.88rem}
+.nav ul a{color:var(--muted);text-decoration:none}
+.nav ul a:hover,.nav ul a:focus{color:var(--amber)}
+.hero{position:relative;overflow:hidden;padding:4.5rem 0 3.5rem;
+  background:radial-gradient(1000px 500px at 75% 30%,rgba(255,122,26,.16),transparent 60%),radial-gradient(700px 400px at 10% 90%,rgba(92,200,255,.07),transparent 60%)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:center}
+.eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(255,181,71,.35);padding:.3rem .7rem;border-radius:999px;background:rgba(255,181,71,.07)}
+h1{font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.02;margin:.9rem 0 .8rem;letter-spacing:-.02em;
+  background:linear-gradient(90deg,#fff 0%,#ffd08a 45%,var(--orange) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pitch{font-size:clamp(1.05rem,2.1vw,1.28rem);color:#d6dde6;max-width:40ch;margin:0 0 1.4rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.6rem;padding:0;list-style:none}
+.chips li{font-size:.85rem;background:var(--card);border:1px solid var(--line);padding:.35rem .75rem;border-radius:999px;color:#cfd8e3}
+.chips li.star{border-color:rgba(255,181,71,.55);color:var(--amber)}
+.cta{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.4rem;font:inherit;font-weight:650;font-size:.95rem;padding:.7rem 1.15rem;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer;text-decoration:none}
+.btn:hover,.btn:focus-visible{border-color:var(--amber)}
+.btn.primary{background:linear-gradient(135deg,var(--amber),var(--orange));color:#1a0e02;border-color:transparent}
+.btn[aria-pressed="true"]{border-color:var(--amber);background:rgba(255,181,71,.14);color:var(--amber)}
+.hero-art{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:24px;padding:1rem;box-shadow:0 30px 80px -30px rgba(255,122,26,.35)}
+.lead-mode{margin:-.6rem 0 1.4rem;padding:.7rem .9rem;border:1px solid rgba(255,181,71,.35);background:rgba(255,181,71,.07);border-radius:12px;font-size:.92rem;color:#e6edf5;max-width:60ch}
+.lead-mode strong{color:var(--amber)}
+svg{display:block;width:100%;height:auto}
+section{padding:4.5rem 0;border-top:1px solid rgba(36,49,66,.6)}
+h2{font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15;margin:0 0 .6rem;letter-spacing:-.01em}
+h3{font-size:1.2rem;margin:0 0 .4rem}
+.lead{color:var(--muted);max-width:75ch;margin:0 0 2.2rem;font-size:1.05rem}
+.lead strong{color:#dfe6ee}
+.kicker{font-family:var(--mono);font-size:.78rem;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin:0 0 .4rem}
+.feature{display:grid;grid-template-columns:1fr 1.1fr;gap:2.4rem;align-items:center}
+.feature.flip .copy{order:2}
+.copy p{color:#cdd6e0}
+.copy ul{padding-left:1.1rem;color:#cdd6e0}
+.copy li{margin:.25rem 0}
+.demo{margin:0;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1rem .8rem}
+.demo figcaption{font-size:.85rem;color:var(--muted);padding:.5rem .3rem 0;display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap;align-items:center}
+.controls{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.controls .btn{padding:.4rem .75rem;font-size:.82rem;border-radius:9px}
+.spec{font-family:var(--mono);font-size:.8rem;color:var(--amber);background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.25);padding:.1rem .45rem;border-radius:6px;white-space:nowrap}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.93rem}
+caption{text-align:left;padding:1rem 1.1rem .2rem;color:var(--muted);font-size:.85rem}
+th,td{padding:.7rem 1.05rem;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+tbody th{font-weight:500}
+thead th{color:var(--muted);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;background:var(--card2)}
+thead th.primary{color:var(--amber)}
+td.primary{background:rgba(255,181,71,.06);font-weight:650}
+tr.ref td,tr.ref th{color:var(--muted);font-style:italic}
+tr.floor td,tr.floor th{color:var(--mint);font-weight:700}
+.note{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;font-size:.92rem;color:#cdd6e0}
+.note strong{color:var(--text)}
+.note h3{font-size:1rem;color:var(--amber);margin:0 0 .35rem}
+.note p{margin:.2rem 0}
+.note .id{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.sub-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.2rem}
+.callout{margin:1.2rem 0 0;padding:.8rem 1rem;border:1px solid rgba(95,224,181,.4);background:rgba(95,224,181,.06);border-radius:12px;color:#d9efe7;font-size:.93rem}
+.callout.warn{border-color:rgba(255,138,115,.45);background:rgba(255,138,115,.06);color:#f3dcd6}
+.callout code,.bom code,.tol code,.note code{font-family:var(--mono);font-size:.82rem;color:#ffd08a}
+.bom table{min-width:860px;font-size:.86rem}
+.bom td,.bom th{text-align:left;vertical-align:top}
+.bom td.q{text-align:right;font-family:var(--mono);white-space:nowrap}
+.bom tr.grp th{background:var(--card2);color:var(--amber);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.tol td,.tol th{text-align:left;vertical-align:top}
+.build{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;padding:0;margin:0;list-style:none}
+.build>li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;color:#cdd6e0;font-size:.92rem}
+.build h3{font-size:1rem;color:var(--amber);margin:0 0 .4rem}
+.build ol{margin:.2rem 0 0;padding-left:1.3rem}
+.build ol li{margin:.3rem 0}
+.fm td,.fm th{text-align:left;vertical-align:top;font-size:.88rem}
+.fm td:first-child{font-weight:650;color:var(--text)}
+.yes{color:var(--mint);font-weight:700}
+footer{border-top:1px solid var(--line);padding:2.4rem 0;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer strong{color:var(--text)}
+/* ============ 3D ============ */
+#see-it-in-action{background:radial-gradient(900px 420px at 50% 0%,rgba(255,122,26,.10),transparent 70%)}
+.sia-figure{padding:.8rem .8rem .7rem}
+.sia-stage{position:relative;width:100%;aspect-ratio:16/9;min-height:300px;border-radius:14px;overflow:hidden;background:#0d131a;border:1px solid var(--line);touch-action:none;cursor:grab}
+.sia-stage:active{cursor:grabbing}
+.sia-stage canvas{display:block;width:100%;height:100%}
+.sia-badge{position:absolute;right:14px;top:14px;font-family:var(--mono);font-size:.72rem;color:var(--muted);background:rgba(11,15,20,.72);border:1px solid var(--line);border-radius:999px;padding:.2rem .65rem;pointer-events:none}
+.tc-cfg{position:absolute;right:14px;bottom:14px;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.04em;color:#1a0e02;background:var(--amber);border-radius:8px;padding:.25rem .6rem;pointer-events:none}
+.tc-dim{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font-family:var(--mono);font-size:.72rem;line-height:1.25;white-space:nowrap;padding:.18rem .45rem;border-radius:7px;background:rgba(11,15,20,.86);border:1px solid currentColor;pointer-events:none;transition:opacity .3s ease}
+.tc-dim.span{color:#5cc8ff}.tc-dim.arc{color:#ffb547}.tc-dim.clr{color:#5fe0b5}.tc-dim.wg{color:#ffd08a}
+.sia-fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:2rem;color:var(--muted);font-size:.95rem}
+.sia-fallback[hidden]{display:none}
+.tc-controls{display:grid;gap:.6rem;width:100%}
+.tc-row{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:space-between;align-items:center}
+.tc-lbl{font-size:.8rem;color:var(--muted);margin-right:.1rem}
+.tc-readout{margin:0;font-family:var(--mono);font-size:.78rem;line-height:1.55;color:#b8c4d2;background:rgba(11,15,20,.55);border:1px solid var(--line);border-radius:9px;padding:.5rem .7rem;min-height:2.4em}
+.tc-readout b{color:var(--mint)}
+.sia-key{display:flex;flex-wrap:wrap;gap:.35rem .9rem;margin:1rem 0 0;padding:0;list-style:none;font-size:.82rem;color:var(--muted)}
+.sia-key i{display:inline-block;width:.8rem;height:.8rem;border-radius:3px;margin-right:.35rem;vertical-align:-1px}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.profile-fig svg text{font-family:ui-monospace,Menlo,monospace}
+@media (max-width:960px){
+  .hero .wrap,.feature{grid-template-columns:1fr}
+  .feature.flip .copy{order:0}
+  .sub-grid,.rules,.build{grid-template-columns:1fr 1fr}
+  .nav ul{display:none}
+}
+@media (max-width:640px){
+  .sub-grid,.rules,.build{grid-template-columns:1fr}
+  section{padding:3.2rem 0}
+  .hero{padding:3rem 0 2.5rem}
+  .sia-stage{aspect-ratio:4/5}
+  .sia-badge{display:none}
+  .tc-dim{font-size:.6rem;padding:.1rem .3rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0s!important;animation-iteration-count:1!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Over<span>Cover</span><small>V4 · Rev D</small></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#system">System</a></li>
+        <li><a href="#see-it-in-action">3D model</a></li>
+        <li><a href="#geometry">Geometry</a></li>
+        <li><a href="#sizes">Sizes</a></li>
+        <li><a href="#attach">Base attach</a></li>
+        <li><a href="#bom">Materials</a></li>
+        <li><a href="#build">Build</a></li>
+        <li><a href="#qc">QC</a></li>
+        <li><a href="#failure">Failure modes</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="top" aria-labelledby="hero-title" style="border-top:0">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">V4 · Manufacturer build document · Revision D</span>
+      <h1 id="hero-title">OverCover V4</h1>
+      <p class="pitch">Detachable dog bed canopy in three fixed sizes. It has a three-panel house-profile arc, spring-steel ribs, and a flat base panel with peel-and-stick hook strips.</p>
+      <ul class="chips" aria-label="Key build features">
+        <li class="star">★ Three fixed sizes S / M / L (no telescoping rib)</li>
+        <li>Two side wings + center dome, hinge knuckles</li>
+        <li>0.250 in A229 / A228 spring-steel ribs</li>
+        <li>Flat base, hook-side-up adhesive strips</li>
+        <li>Hard floor: 20.0 in center clearance</li>
+        <li>Summer mesh panel: separate item</li>
+      </ul>
+      <p class="lead-mode"><strong>What you are building.</strong> Each SKU has a flat base panel with high-tack acrylic adhesive hook strips (hook up) around its perimeter. A canopy cover is built from a left wing panel, a center dome panel and a right wing panel, joined by two rows of hinge knuckles. Formed 0.250 in spring-steel ribs in lined channels hold the house profile. The canopy's bottom-edge loop tape presses onto the base hook strips, so the cover can be removed for washing. Rib length, panel widths and base span are <strong>fixed per size</strong>. Nothing adjusts in the field.</p>
+      <div class="cta">
+        <a class="btn primary" href="#see-it-in-action">Open the 3D model</a>
+        <a class="btn" href="#sizes">Size table</a>
+        <a class="btn" href="#bom">Bill of materials</a>
+        <a class="btn" href="#build">Build sequence</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 600 360" role="img" aria-labelledby="hero-svg-t">
+        <title id="hero-svg-t">Front elevation of the OverCover V4 Large SKU at 8 px per inch. A flat base panel 48 in wide carries amber hook strips at each edge. Two straight side wing panels, 25 in long, rise from the base edges to two hinge knuckle lines 18 in apart at 20.0 in height, and a lightly crowned center dome panel spans between them. A dashed mint rectangle under the center panel marks the 20.0 in clearance envelope.</title>
+        <defs><linearGradient id="canopyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc061"/><stop offset="1" stop-color="#e2651a"/></linearGradient></defs>
+        <rect x="0" y="306" width="600" height="54" fill="#0d1218"/>
+        <rect x="108" y="300" width="384" height="6" rx="2" fill="#3b4450" stroke="#56708a"/>
+        <rect x="108" y="295" width="22" height="5" fill="#ffb547"/>
+        <rect x="470" y="295" width="22" height="5" fill="#ffb547"/>
+        <rect x="228" y="140" width="144" height="158" fill="rgba(95,224,181,.05)" stroke="#5fe0b5" stroke-width="1.6" stroke-dasharray="7 6"/>
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M110 298 L228 140" stroke="url(#canopyG)" stroke-width="14"/>
+          <path d="M490 298 L372 140" stroke="url(#canopyG)" stroke-width="14"/>
+          <path d="M228 140 Q300 128 372 140" stroke="#ffb547" stroke-width="14"/>
+          <path d="M110 298 L228 140 Q300 128 372 140 L490 298" stroke="#e8eef5" stroke-width="2" stroke-dasharray="3 6" opacity=".8"/>
+        </g>
+        <circle cx="228" cy="140" r="8" fill="#1b2430" stroke="#ffd08a" stroke-width="3"/>
+        <circle cx="372" cy="140" r="8" fill="#1b2430" stroke="#ffd08a" stroke-width="3"/>
+        <line x1="540" y1="300" x2="540" y2="140" stroke="#ffb547" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <line x1="532" y1="140" x2="548" y2="140" stroke="#ffb547" stroke-width="1.5"/>
+        <line x1="108" y1="326" x2="492" y2="326" stroke="#5cc8ff" stroke-width="1.5"/>
+        <line x1="228" y1="112" x2="372" y2="112" stroke="#ffd08a" stroke-width="1.2"/>
+        <g font-size="12" fill="#9aa8b8" font-family="ui-monospace,Menlo,monospace">
+          <text x="300" y="104" text-anchor="middle" fill="#ffd08a">C = 18.0 in center dome</text>
+          <text x="128" y="206" fill="#ffd08a">Wg = 25.0 in</text>
+          <text x="404" y="206" fill="#ffd08a">Wg = 25.0 in</text>
+          <text x="228" y="160" text-anchor="middle" font-size="10">knuckle</text>
+          <text x="372" y="160" text-anchor="middle" font-size="10">knuckle</text>
+          <text x="300" y="230" text-anchor="middle" fill="#5fe0b5">clearance envelope</text>
+          <text x="300" y="246" text-anchor="middle" fill="#5fe0b5">≥ 20.0 in</text>
+          <text x="548" y="226" fill="#ffb547">h</text>
+          <text x="300" y="344" text-anchor="middle" fill="#5cc8ff">S = 48.0 in base span · flat base panel</text>
+          <text x="20" y="30" fill="#9aa8b8">LARGE · front elevation · 1 in = 8 px</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SYSTEM ================= -->
+<section id="system" aria-labelledby="sys-title">
+  <div class="wrap">
+    <p class="kicker">System overview · what ships per SKU</p>
+    <h2 id="sys-title">Three subassemblies per size, one separate mesh item</h2>
+    <p class="lead">Each OverCover V4 SKU (Small, Medium, Large) ships with three subassemblies built for that size only. Parts are <strong>not interchangeable across sizes</strong>: the rib form, the panel pattern and the base strip layout are all sized to one fixed base span S. <strong>V4 has no telescoping rib, slide-under platform, ratchet rail or hub.</strong> The Large SKU is the reference geometry: a 68 in arc (18 in center + 2 × 25 in wings) over a 48 in span. Dimensions are inches, with millimetres where useful (1 in = 25.4 mm exactly).</p>
+    <div class="sub-grid">
+      <article class="note"><span class="id">SUBASSEMBLY A</span><h3>Flat base panel</h3><p>A 6 mm corona-treated PP twin-wall panel (alternate: 0.125 in ABS) with sealed edges and anti-slip underside dots. High-tack acrylic adhesive hook strips are applied <strong>hook side up</strong> around the perimeter, with at least 2 strips per side.</p></article>
+      <article class="note"><span class="id">SUBASSEMBLY B</span><h3>Formed rib set</h3><p>0.250 in oil-tempered spring steel (ASTM A229; ASTM A228 music wire allowed), CNC-formed to the SKU's house profile with two <strong>R 1.5 in</strong> knuckle bends. Nylon-11 coated, with end caps retained by dual O-rings. 3 / 4 / 5 ribs for S / M / L.</p></article>
+      <article class="note"><span class="id">SUBASSEMBLY C</span><h3>Three-panel canopy cover</h3><p>Left wing, center dome and right wing panels, joined by two rows of hinge knuckles, plus a back gable panel. Rib channels have UHMW liners and removal plackets. A ridge tape runs across the center panel. The bottom-edge flange carries <strong>sewn loop tape</strong>.</p></article>
+      <article class="note"><span class="id">SEPARATE ITEM</span><h3>Summer mesh panel</h3><p>A complete three-panel cover plus gable in 3D spacer mesh, one per size. It uses the same pattern, knuckles, lined channels and loop flange. The ribs transfer from the standard cover, so the mesh item ships without ribs.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3D ================= -->
+<section id="see-it-in-action" aria-labelledby="sia-title">
+  <div class="wrap">
+    <p class="kicker">Interactive 3D · canopy + flat base panel · fixed sizes</p>
+    <h2 id="sia-title">3D modeling reference: pick a size</h2>
+    <p class="lead">Choose <strong>Small, Medium or Large</strong> to rebuild the model at that SKU's fixed geometry. The model shows the flat base panel with its hook strips (amber), the formed ribs, the hinge knuckle rows, the ridge tape, and a <span style="color:#5fe0b5">dashed clearance envelope</span> that is 20.0 in tall across the center panel chord. Labels show base span S, center chord C, wing length Wg and rib-centerline height h. The readout gives the inner-face headroom over the 20.0 in floor. <strong>Detach</strong> lifts the cover off the base to show the strip layout. Drag to rotate.</p>
+    <figure class="demo sia-figure">
+      <div class="sia-stage" id="siaStage">
+        <canvas id="siaCanvas" role="img" aria-label="Interactive 3D model of an OverCover V4 canopy on its flat base panel. A three-panel house-profile canopy (two straight side wing panels and a lightly crowned center dome joined by hinge knuckle rows) is held by formed steel ribs and closed at the back by a gable panel. Amber hook strips sit around the base perimeter. A dashed box under the center panel shows the 20 inch clearance envelope. The size buttons switch between Small 24 in, Medium 36 in and Large 48 in base spans."></canvas>
+        <span class="sia-badge" aria-hidden="true">Drag to rotate</span>
+        <span class="tc-dim span" id="dimS" aria-hidden="true"></span>
+        <span class="tc-dim arc" id="dimH" aria-hidden="true"></span>
+        <span class="tc-dim wg" id="dimC" aria-hidden="true"></span>
+        <span class="tc-dim wg" id="dimW" aria-hidden="true"></span>
+        <span class="tc-dim clr" id="dimClr" aria-hidden="true"></span>
+        <span class="tc-cfg" id="tcCfg" aria-hidden="true">OVERCOVER V4 · LARGE</span>
+        <div class="sia-fallback" id="siaFallback" hidden>This 3D model needs WebGL and the Three.js library. The geometry section below shows the same profiles as 2D drawings.</div>
+      </div>
+      <figcaption>
+        <div class="tc-controls">
+          <div class="tc-row">
+            <span class="controls" role="group" aria-label="Size">
+              <span class="tc-lbl">Size:</span>
+              <button class="btn" type="button" data-size="S" aria-pressed="false">Small · S 24 in</button>
+              <button class="btn" type="button" data-size="M" aria-pressed="false">Medium · S 36 in</button>
+              <button class="btn" type="button" data-size="L" aria-pressed="true">Large · S 48 in</button>
+            </span>
+            <span class="controls" role="group" aria-label="Camera view">
+              <button class="btn" type="button" data-view="34" aria-pressed="true">3/4</button>
+              <button class="btn" type="button" data-view="front" aria-pressed="false">Front</button>
+              <button class="btn" type="button" data-view="side" aria-pressed="false">Side</button>
+              <button class="btn" type="button" data-view="top" aria-pressed="false">Top</button>
+            </span>
+          </div>
+          <div class="tc-row">
+            <span class="controls" role="group" aria-label="Display">
+              <button class="btn" type="button" id="tcSee" aria-pressed="true">See-through fabric</button>
+              <button class="btn" type="button" id="tcDetach" aria-pressed="false">Detach cover (wash)</button>
+              <button class="btn" type="button" id="tcDims" aria-pressed="true">Measurements</button>
+              <button class="btn" type="button" id="tcClr" aria-pressed="true">Clearance envelope</button>
+            </span>
+          </div>
+          <p class="tc-readout" id="tcReadout" aria-live="polite"></p>
+        </div>
+      </figcaption>
+    </figure>
+    <ul class="sia-key" aria-label="Color key">
+      <li><i style="background:#3b4450;border:1px solid #56708a"></i>Flat base panel</li>
+      <li><i style="background:#ffb547"></i>Hook strips, hook side up (adhesive)</li>
+      <li><i style="background:#ffe2ad"></i>Loop flange on canopy hem</li>
+      <li><i style="background:#e8762a"></i>Wing panels (darker) / center dome (lighter)</li>
+      <li><i style="background:#e8eef5"></i>0.250 in formed steel ribs</li>
+      <li><i style="background:#ffd08a"></i>Hinge knuckle rows</li>
+      <li><i style="background:#c7a0ff"></i>Ridge tape across center panel</li>
+      <li><i style="background:transparent;border:1px dashed #5fe0b5"></i>20.0 in clearance envelope</li>
+      <li><i style="background:transparent;border:1px dashed #9aa8b8"></i>Bed zone (end-user item, not supplied)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= GEOMETRY ================= -->
+<section id="geometry" aria-labelledby="geo-title">
+  <div class="wrap">
+    <p class="kicker">Three-panel geometry · house / barn profile · inverse arc</p>
+    <h2 id="geo-title">House-profile geometry and the 20.0 in clearance floor</h2>
+    <p class="lead">The canopy profile is a house shape. Two straight wing panels of length <strong>Wg</strong> rise from the rib feet at the base edges (span <strong>S</strong>) to two hinge-knuckle lines a chord <strong>C</strong> apart, and the center dome panel spans the knuckles. Treating the knuckles as sharp corners and the center as a flat chord, the rib-centerline height at the center is:</p>
+    <p class="callout" style="font-family:var(--mono);font-size:1.02rem;text-align:center;margin:0 0 1.4rem">h = √( Wg² − ((S − C) / 2)² )</p>
+    <div class="feature">
+      <figure class="demo profile-fig">
+        <svg id="profileSvg" viewBox="0 0 420 260" role="img" aria-labelledby="prof-t">
+          <title id="prof-t">Front-elevation profile of the selected OverCover V4 size drawn to scale, with the base span, center chord, wing length, height and the 20 in clearance line labeled.</title>
+          <g id="profileG"></g>
+        </svg>
+        <figcaption>
+          <span id="profileCap">Large · drawn to scale · 1 in = 7 px</span>
+          <span class="controls" role="group" aria-label="Profile size">
+            <button class="btn" type="button" data-psize="S" aria-pressed="false">S</button>
+            <button class="btn" type="button" data-psize="M" aria-pressed="false">M</button>
+            <button class="btn" type="button" data-psize="L" aria-pressed="true">L</button>
+            <button class="btn" type="button" data-psize="ALL" aria-pressed="false">Overlay</button>
+          </span>
+        </figcaption>
+      </figure>
+      <div class="copy">
+        <h3>Inverse arc: span is the enemy of height</h3>
+        <p>For a fixed wing length, a wider span tilts each wing further from vertical, so the knuckle line drops. The relationship is the same inverse arc used in V3: <strong>dh/dS = −(S − C) / (4h)</strong>. That is −0.375 in per inch of span on the Large SKU. Holding Wg = 25 in and C = 18 in and sweeping the span:</p>
+        <ul>
+          <li>S = 48 in → h = <span class="spec">20.0 in</span> (the hard floor)</li>
+          <li>S = 36 in → h ≈ <span class="spec">23.3 in</span></li>
+          <li>S = 24 in → h ≈ <span class="spec">24.8 in</span></li>
+        </ul>
+        <p>V4 removes the adjustable span. Each SKU's rib is formed for exactly one S, so h is fixed at manufacture. The floor is therefore checked at each size's own span, which is also that size's largest span.</p>
+        <p><strong>Credited vs uncredited height.</strong> The formula gives the rib-centerline height at the knuckle line. The center rib segment is formed with a <code>0.50 in</code> crown, and rib radius + liner + lining remove about <code>0.25 in</code>. That leaves an inner-face center clearance of h + 0.25 in. QC passes on the <strong>inner face ≥ 20.0 in</strong>.</p>
+      </div>
+    </div>
+    <div class="table-wrap" style="margin-top:1.6rem">
+      <table>
+        <caption>Reference sweep: the Large 68 in panel kit (C = 18.0 in, Wg = 25.0 in) on three spans. This is for understanding only; Small and Medium are not built this way (see <a href="#sizes">Size variants</a>).</caption>
+        <thead><tr><th scope="col">Span S</th><th scope="col">(S − C)/2</th><th scope="col" class="primary">h (rib CL)</th><th scope="col">Wing angle from horizontal</th><th scope="col">Knuckle interior angle</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr class="floor"><th scope="row">48.0 in</th><td>15.0 in</td><td class="primary">20.00 in / 508 mm</td><td>53.1°</td><td>126.9°</td><td>Large SKU · at floor</td></tr>
+          <tr class="ref"><th scope="row">36.0 in</th><td>9.0 in</td><td class="primary">23.32 in / 592 mm</td><td>68.9°</td><td>111.1°</td><td>reference only</td></tr>
+          <tr class="ref"><th scope="row">24.0 in</th><td>3.0 in</td><td class="primary">24.82 in / 630 mm</td><td>83.1°</td><td>96.9°</td><td>reference only</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIZES ================= -->
+<section id="sizes" aria-labelledby="sizes-title">
+  <div class="wrap">
+    <p class="kicker">Size variants · three fixed SKUs</p>
+    <h2 id="sizes-title">Size table: each SKU has its own fixed rib and panel set</h2>
+    <p class="lead"><strong>Chosen approach: three SKUs, each with a fixed rib length matched to its own span.</strong> The center chord follows <code>C = 6 + S/4</code>. The wing length is the smallest whole inch that holds h ≥ 20.0 in at that span: <code>Wg = ceil(√(20² + ((S − C)/2)²))</code>. Large lands exactly on the reference geometry (68 in arc, h = 20.0 in). Medium and Small use shorter arcs that still clear the floor.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>OverCover V4 size table (all inches unless noted). h = rib-centerline height at the knuckle line. Inner-face clearance = h + 0.50 in crown − 0.25 in rib/liner/lining. Developed rib length = 2·Wg + C − bend correction (R 1.5 in) + crown − 2 × 0.50 in cap seats.</caption>
+        <thead><tr><th scope="col">Parameter</th><th scope="col">Small</th><th scope="col">Medium</th><th scope="col" class="primary">Large (reference)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Base span S (rib-foot span = panel width)</th><td>24.0</td><td>36.0</td><td class="primary">48.0</td></tr>
+          <tr><th scope="row">Base depth D (front to back)</th><td>20.0</td><td>28.0</td><td class="primary">36.0</td></tr>
+          <tr><th scope="row">Center dome chord C</th><td>12.0</td><td>15.0</td><td class="primary">18.0</td></tr>
+          <tr><th scope="row">Wing length Wg (each)</th><td>21.0</td><td>23.0</td><td class="primary">25.0</td></tr>
+          <tr><th scope="row">Total arc L = 2·Wg + C</th><td>54.0</td><td>61.0</td><td class="primary">68.0</td></tr>
+          <tr><th scope="row">Wing horizontal offset (S − C)/2</th><td>6.0</td><td>10.5</td><td class="primary">15.0</td></tr>
+          <tr><th scope="row">h, rib centerline at the knuckle</th><td>20.12 / 511 mm</td><td>20.46 / 520 mm</td><td class="primary">20.00 / 508 mm</td></tr>
+          <tr class="floor"><th scope="row">Inner-face center clearance (QC ≥ 20.0)</th><td>20.37</td><td>20.71</td><td class="primary">20.25</td></tr>
+          <tr><th scope="row">Wing angle from horizontal θ</th><td>73.4°</td><td>62.8°</td><td class="primary">53.1°</td></tr>
+          <tr><th scope="row">Knuckle interior angle (180° − θ)</th><td>106.6°</td><td>117.2°</td><td class="primary">126.9°</td></tr>
+          <tr><th scope="row">Clear width at 12 in height</th><td>16.8</td><td>23.7</td><td class="primary">30.0</td></tr>
+          <tr><th scope="row">Clear width at 16 in height</th><td>14.5</td><td>19.6</td><td class="primary">24.0</td></tr>
+          <tr><th scope="row">Sensitivity dh/dS · dh/dC · dh/dWg</th><td>−0.15 · +0.15 · +1.04</td><td>−0.26 · +0.26 · +1.12</td><td class="primary">−0.38 · +0.38 · +1.25</td></tr>
+          <tr><th scope="row">Rib stations (ribs per SKU) · pitch</th><td>3 · 9.00</td><td>4 · 8.67</td><td class="primary">5 · 8.50</td></tr>
+          <tr><th scope="row">Developed rib length (cut length)</th><td>52.43</td><td>59.67</td><td class="primary">66.82</td></tr>
+          <tr><th scope="row">Bend tangent point from rib end</th><td>19.38</td><td>21.58</td><td class="primary">23.75</td></tr>
+          <tr><th scope="row">Rib mass each (0.250 in steel)</th><td>0.73 lb</td><td>0.83 lb</td><td class="primary">0.93 lb</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="rules">
+      <article class="note"><h3>Engineering clearance requirement</h3><p>Every SKU must hold an inner-face center clearance of <strong>≥ 20.0 in</strong> across the full center chord C and the full rib-station depth. The requirement is sized so a 20-lb terrier can walk in and lie down without contacting the canopy. The Large SKU is at the floor by design, so its geometry tolerances are one-sided (see <a href="#tolerances">tolerances</a>).</p></article>
+      <article class="note"><h3>Why not one 68 in kit on all spans</h3><p>On a 24 in span, a 25 in wing stands at 83° (nearly vertical), with a 97° knuckle and 24.8 in of height. That uses excess fabric and steel, makes a tall, narrow shape that racks easily, and leaves little clear width at bed height. The per-SKU rule keeps all three sizes within 20.1–20.5 in of rib height.</p></article>
+      <article class="note"><h3>Why not proportional scaling</h3><p>Scaling the whole Large profile by 0.75 (Medium) or 0.50 (Small) also scales h: 15.0 in and 10.0 in. <strong>Both fail the 20.0 in floor.</strong> So the center chord and wings are resized per SKU rather than scaled.</p></article>
+    </div>
+  </div>
+</section>
+<!-- ================= ATTACH ================= -->
+<section id="attach" aria-labelledby="att-title">
+  <div class="wrap">
+    <p class="kicker">Canopy-to-base interface · peel-and-stick hook strips</p>
+    <h2 id="att-title">Flat base panel: hook side up, loop on the canopy hem</h2>
+    <p class="lead">The base panel is a flat sheet. The bed sits on it; the bed is the end user's item and is not supplied. <strong>Peel-and-stick hook strips</strong> with a high-tack acrylic adhesive go around the perimeter of the top face, <strong>hook side up</strong>. The canopy's bottom edge is a 2.0 in inward-turned flange carrying <strong>sewn loop tape</strong>. That flange lies flat on the strips, so the cover detaches for washing and the base stays put. V3's slide-under platform, half-moon wings, ratchet rails and hubs are all deleted.</p>
+    <div class="feature" style="margin-bottom:1.6rem">
+      <figure class="demo">
+        <svg id="stripSvg" viewBox="0 0 420 300" role="img" aria-labelledby="strip-t">
+          <title id="strip-t">Top view of the Large base panel, 48 by 36 in, showing hook strip segments: three per side on left and right (9.5 in), four along the back (10.0 in), and one at each front corner, with the front entry zone left bare. A dashed outline marks the bed zone.</title>
+          <g id="stripG"></g>
+        </svg>
+        <figcaption><span id="stripCap">Large base · top view · front ↓</span>
+          <span class="controls" role="group" aria-label="Strip layout size">
+            <button class="btn" type="button" data-ssize="S" aria-pressed="false">S</button>
+            <button class="btn" type="button" data-ssize="M" aria-pressed="false">M</button>
+            <button class="btn" type="button" data-ssize="L" aria-pressed="true">L</button>
+          </span>
+        </figcaption>
+      </figure>
+      <div class="copy">
+        <h3>Strip layout rules</h3>
+        <ul>
+          <li><strong>Hook side up</strong>, 1.5 in / 38 mm wide nylon hook with high-tack acrylic PSA (low-surface-energy grade for PP). Outer edge inset <code>0.25 in</code> from the panel edge.</li>
+          <li><strong>At least 2 strips per side.</strong> Strips are segmented with equal gaps ≥ 1.0 in and 2.0 in corner setbacks (measured from the perpendicular edge, which clears the adjoining strip band), so a peel front stops at a gap instead of running the whole side.</li>
+          <li>Die-cut strip corners at <code>R 0.25 in</code>. Square corners start peels.</li>
+          <li><strong>Load path in shear, not peel.</strong> The loop flange lies flat on the hook, parallel to the base. Ribs are formed 0.50 in wider than S, so each rib foot pushes outward in the plane of the strip (shear). Canopy weight presses the flange down.</li>
+          <li>The front entry zone between the corner strips is left bare. There is no exposed hook where the dog steps. When the cover is off, loop guard covers (A6) go over all hook.</li>
+          <li>Loop tape on the canopy is <strong>sewn</strong>, never adhesive, so it survives washing.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="table-wrap tol">
+      <table>
+        <caption>Hook strip schedule per SKU. All strips 1.5 in wide, hook up, high-tack acrylic adhesive.</caption>
+        <thead><tr><th scope="col">SKU · base S × D</th><th scope="col">Left / right sides (each)</th><th scope="col">Back edge</th><th scope="col">Front corners</th><th scope="col">Strips / total hook run</th></tr></thead>
+        <tbody>
+          <tr><td>Small · 24 × 20 in</td><td>2 × 7.0 in</td><td>2 × 9.0 in</td><td>2 × 3.0 in</td><td>8 strips · 52 in</td></tr>
+          <tr><td>Medium · 36 × 28 in</td><td>2 × 11.0 in</td><td>3 × 9.5 in</td><td>2 × 3.5 in</td><td>9 strips · 79.5 in</td></tr>
+          <tr><td>Large · 48 × 36 in</td><td>3 × 9.5 in</td><td>4 × 10.0 in</td><td>2 × 4.0 in</td><td>12 strips · 105 in</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="callout"><strong>Substrate prep is a controlled step, not a suggestion.</strong> PP twin-wall must be corona- or flame-treated to <code>≥ 42 dyn/cm</code> (dyne-pen check on every lot). Wipe with 70% IPA and let it flash off. Apply polyolefin adhesion promoter to the strip footprint only. Lay the strips in a locating jig, then roll at about 15 psi (4.5 lb roller, 2 passes). Allow a <strong>72 h dwell at ≥ 65 °F / 18 °C</strong> before peel/shear QC; 24 h minimum before pack-out. The ABS alternate base skips the promoter but keeps the IPA wipe and roll-down.</p>
+  </div>
+</section>
+
+<!-- ================= RIBS + KNUCKLES ================= -->
+<section id="ribs" aria-labelledby="ribs-title">
+  <div class="wrap">
+    <p class="kicker">Frame · ribs, channels, knuckles</p>
+    <h2 id="ribs-title">Formed spring-steel ribs through lined panel channels</h2>
+    <p class="lead">Each rib station is one continuous <strong>0.250 in oil-tempered spring-steel</strong> rib (ASTM A229; ASTM A228 music wire is an allowed equal). It is CNC-formed to the SKU's house profile: a straight wing leg, an <strong>R 1.5 in bend at the knuckle line</strong>, a center segment with a 0.50 in crown, a second R 1.5 in bend, and a second wing leg. The rib runs inside a sewn channel across all three panels. The channel crosses each knuckle row through a gap in the knuckles.</p>
+    <div class="rules" style="margin-top:0">
+      <article class="note"><h3>Steel rib (standard)</h3><p>A229 or A228, Ø <code>0.250 in ±0.002</code>. Cut to the developed length. Ends chamfered 0.03 in × 45° and deburred. Two bends, <strong>inside radius ≥ 1.5 in</strong> (6 × d; no cracking or surface checking). Stress-relieve after forming per the wire supplier's schedule (typically 450 °F / 232 °C, 30 min). Zinc-phosphate pretreat, then nylon-11 powder coat <code>0.010–0.015 in</code>. The free span is formed to <code>S + 0.50 in</code> to give an outward shear preload.</p></article>
+      <article class="note"><h3>Fiberglass rib (alternate)</h3><p>Pultruded fiberglass rod Ø <code>0.312 in</code>. FRP <strong>cannot be bent to R 1.5 in</strong>: at an allowable strain of about 1.5%, its minimum elastic radius is about 10 in. So the FRP option uses <strong>three straight segments per station</strong> (two wings + one center) joined at each knuckle by a molded PA66-GF30 fixed-angle elbow set to that SKU's knuckle angle. The internal guide radius stays ≥ 1.5 in. Rod ends seat in the elbow sockets and are retained by dual O-rings. Segment ends are capped and sleeved against fiber bloom.</p></article>
+      <article class="note"><h3>Hinge knuckles</h3><p>Molded PA6-GF15 knuckles (OD 0.375 × 0.75 in long) on 0.75 in webbing tabs, with alternating panel ownership, on a Ø 0.125 in 304 stainless pin. They run in groups of 3 between rib stations at 2.0 in on center, with one pin per group. The knuckles locate the seam line and let the cover fold flat when the ribs are out. In use, the formed rib sets the knuckle angle (106.6° / 117.2° / 126.9° for S / M / L), so the knuckles carry no structural moment.</p></article>
+    </div>
+    <div class="rules">
+      <article class="note"><h3>Lined channels and removal placket</h3><p>Each channel is a 1.0 in flat sleeve with a <code>0.010 in</code> UHMW-PE tape liner (alternate: woven nylon 6,6 liner) on the outer-face bearing side, full length. The ribs come out for washing through an inner-face <strong>1.0 in hook-and-loop placket</strong> running the full channel length. A formed rib cannot be pulled lengthwise through its own bends.</p></article>
+      <article class="note"><h3>Rib feet and keeper O-rings</h3><p>Each rib end carries a molded PA66 foot cap (OD 0.50 in, 1.25 in long, 0.50 in seat depth). Two internal glands hold <strong>dual O-rings</strong>, AS568-010 (0.239 ID × 0.070 CS): Buna-N 70A for the indoor standard, <strong>EPDM 70A for the outdoor variant</strong>. Assemble with <strong>silicone grease only</strong>, never petroleum products on Buna. User-replaceable spares ship in the kit. The cap sits in a reinforced foot pocket at the hem.</p></article>
+      <article class="note"><h3>Ridge tape across center panel</h3><p>1.0 in PP webbing runs on the center-panel centerline from the front rib station to the back gable. It is bar-tacked to every rib channel at the exact station pitch (±0.06 in). It keeps the stations parallel and spaced, stops mid-sag of the center panel between ribs, and resists racking. It shares mid-span load between ribs, so no single rib is pushed into buckling.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOM ================= -->
+<section id="bom" aria-labelledby="bom-title">
+  <div class="wrap">
+    <p class="kicker">Materials needed · per SKU</p>
+    <h2 id="bom-title">Bill of materials</h2>
+    <p class="lead">Rev D baseline. You may substitute an equivalent material if it holds the <a href="#tolerances">tolerances</a> and passes the <a href="#qc">QC plan</a>. Quantities are listed per kit for Small / Medium / Large.</p>
+    <div class="table-wrap bom">
+      <table>
+        <caption>OverCover V4 bill of materials (Rev D). Qty columns: S / M / L.</caption>
+        <thead><tr><th scope="col">ID</th><th scope="col">Part</th><th scope="col">Material</th><th scope="col">Key specification</th><th scope="col">Qty S</th><th scope="col">Qty M</th><th scope="col">Qty L</th></tr></thead>
+        <tbody>
+          <tr class="grp"><th colspan="7" scope="rowgroup">A · Flat base panel</th></tr>
+          <tr><td>A1</td><td>Base panel</td><td>PP twin-wall 6 mm (0.236 in), corona-treated top skin ≥ 42 dyn/cm. Alternate: ABS sheet 0.125 in</td><td>S × D: <code>24 × 20</code> / <code>36 × 28</code> / <code>48 × 36 in</code>, +0 / −0.12 in. Flatness ≤ 0.12 in over the diagonal. Corners R 1.0 in.</td><td class="q">1</td><td class="q">1</td><td class="q">1</td></tr>
+          <tr><td>A2</td><td>Edge seal / trim</td><td>Ultrasonic edge seal or PP U-channel trim, 0.25 in</td><td>Full perimeter 2(S + D): 88 / 128 / 168 in. Closes the flutes against fluid wicking.</td><td class="q">1 set</td><td class="q">1 set</td><td class="q">1 set</td></tr>
+          <tr><td>A3</td><td>Anti-slip dots</td><td>TPE, adhesive-backed</td><td>Ø 0.75 in × 0.06 in, on a 6 in grid on the underside</td><td class="q">12</td><td class="q">20</td><td class="q">30</td></tr>
+          <tr><td>A4</td><td>Hook strips (hook up)</td><td>Nylon hook, 1.5 in, high-tack acrylic PSA, LSE grade</td><td>Die-cut segments, R 0.25 in corners, per the strip schedule. ≥ 2 per side.</td><td class="q">8 (52 in)</td><td class="q">9 (79.5 in)</td><td class="q">12 (105 in)</td></tr>
+          <tr><td>A5</td><td>Adhesion promoter</td><td>Polyolefin primer (PP base only)</td><td>Strip footprint only; flash time per the supplier</td><td class="q">a/r</td><td class="q">a/r</td><td class="q">a/r</td></tr>
+          <tr><td>A6</td><td>Hook guard covers</td><td>Nylon loop strip on a PET carrier</td><td>Covers all hook when the canopy is off; also the shipping liner</td><td class="q">8</td><td class="q">9</td><td class="q">12</td></tr>
+          <tr class="grp"><th colspan="7" scope="rowgroup">B · Formed rib set</th></tr>
+          <tr><td>B1</td><td>Formed rib, standard</td><td>Oil-tempered spring steel ASTM A229 (or music wire ASTM A228), Ø 0.250 in</td><td>Cut length <code>52.43</code> / <code>59.67</code> / <code>66.82 in</code> ±0.06. Two bends, inside R ≥ 1.5 in. Center crown 0.50 in. Free span S + 0.50 in. Zinc phosphate + nylon-11 coat 0.010–0.015 in.</td><td class="q">3</td><td class="q">4</td><td class="q">5</td></tr>
+          <tr><td>B1-F</td><td>Rib, fiberglass alternate</td><td>Pultruded FRP rod Ø 0.312 in + PA66-GF30 fixed-angle elbows</td><td>3 straight segments per station: wings Wg − 1.6 in, center C − 1.6 in (elbow take-up, finalize with the elbow supplier). Elbow angle per SKU knuckle angle; guide R ≥ 1.5 in.</td><td class="q">3 st.</td><td class="q">4 st.</td><td class="q">5 st.</td></tr>
+          <tr><td>B2</td><td>Rib foot cap</td><td>PA66, black, UV-stabilized</td><td>OD 0.50 × 1.25 in long, bore 0.27 in, 0.50 in seat, two internal O-ring glands, domed foot</td><td class="q">6</td><td class="q">8</td><td class="q">10</td></tr>
+          <tr><td>B3</td><td>Keeper O-rings</td><td>Buna-N 70A (indoor std) / EPDM 70A (outdoor variant)</td><td>AS568-010, 0.239 ID × 0.070 CS. Two per cap.</td><td class="q">12</td><td class="q">16</td><td class="q">20</td></tr>
+          <tr><td>B4</td><td>Spares pack</td><td>O-rings (as B3) + silicone grease sachet 2 g</td><td>User-replaceable. Label: "silicone grease only".</td><td class="q">4 + 1</td><td class="q">4 + 1</td><td class="q">4 + 1</td></tr>
+          <tr class="grp"><th colspan="7" scope="rowgroup">C · Three-panel canopy cover</th></tr>
+          <tr><td>C1</td><td>Outer shell</td><td>300D recycled polyester oxford, PU-free DWR</td><td>Left wing Wg, center dome C, right wing Wg (+0.5 in seam allowance per edge), × depth D. Plus back gable panel.</td><td class="q">4 pcs</td><td class="q">4 pcs</td><td class="q">4 pcs</td></tr>
+          <tr><td>C2</td><td>Insulation</td><td>100 g/m² hollow-fiber polyester batting</td><td>Quilted on a 2.0 in diamond grid; keep quilt lines out of the rib channels</td><td class="q">4</td><td class="q">4</td><td class="q">4</td></tr>
+          <tr><td>C3</td><td>Lining</td><td>Short-pile microfleece</td><td>Inner face</td><td class="q">4</td><td class="q">4</td><td class="q">4</td></tr>
+          <tr><td>C4</td><td>Rib channel sleeve</td><td>Nylon 6,6 210D packcloth, 1.0 in flat</td><td>Full rib run, foot pocket to foot pocket. Crosses knuckle rows through 1.5 in gaps.</td><td class="q">3</td><td class="q">4</td><td class="q">5</td></tr>
+          <tr><td>C5</td><td>Channel liner</td><td>UHMW-PE tape 0.010 × 0.75 in (alt: woven nylon 6,6 liner)</td><td>Outer-face bearing side, full channel length, stitched at both ends + every 6 in</td><td class="q">3</td><td class="q">4</td><td class="q">5</td></tr>
+          <tr><td>C6</td><td>Removal placket</td><td>1.0 in sew-on hook-and-loop</td><td>Inner face of each channel, full length</td><td class="q">3</td><td class="q">4</td><td class="q">5</td></tr>
+          <tr><td>C7</td><td>Hinge knuckles</td><td>Molded PA6-GF15</td><td>OD 0.375 × 0.75 in, bore 0.135 in, 2.0 in on center, on 0.75 in webbing tabs; groups of 3 between stations</td><td class="q">12</td><td class="q">18</td><td class="q">24</td></tr>
+          <tr><td>C8</td><td>Knuckle pins</td><td>304 stainless, Ø 0.125 in</td><td>One per knuckle group; ends peened and covered by the binding</td><td class="q">4</td><td class="q">6</td><td class="q">8</td></tr>
+          <tr><td>C9</td><td>Ridge tape</td><td>1.0 in PP webbing</td><td>Center-panel centerline, length D − 1.0 in; bar-tacked at each station at the exact pitch</td><td class="q">1</td><td class="q">1</td><td class="q">1</td></tr>
+          <tr><td>C10</td><td>Hem flange + loop tape</td><td>Shell fabric flange 2.0 in + sewn nylon loop 1.5 in</td><td>Left, right and back hems turned inward; full run. Two front corner tabs sized to the front corner strips (3.0 / 3.5 / 4.0 in).</td><td class="q">1 set</td><td class="q">1 set</td><td class="q">1 set</td></tr>
+          <tr><td>C11</td><td>Foot pockets</td><td>500D nylon + TPU-laminated patch</td><td>At each rib foot in the hem; holds cap B2</td><td class="q">6</td><td class="q">8</td><td class="q">10</td></tr>
+          <tr><td>C12</td><td>Edge binding</td><td>1.0 in polyester grosgrain</td><td>All raw edges, front opening, gable seam</td><td class="q">1 set</td><td class="q">1 set</td><td class="q">1 set</td></tr>
+          <tr><td>C13</td><td>Pull tabs</td><td>Grosgrain 1.0 × 1.25 in</td><td>At each front hem corner</td><td class="q">2</td><td class="q">2</td><td class="q">2</td></tr>
+          <tr class="grp"><th colspan="7" scope="rowgroup">M · Summer mesh panel (separate item, one per size)</th></tr>
+          <tr><td>M1</td><td>Mesh shell</td><td>3D spacer mesh 2.0 mm over an open-knit liner</td><td>Same pattern as C1 (3 panels + gable); no batting, no fleece</td><td class="q">4 pcs</td><td class="q">4 pcs</td><td class="q">4 pcs</td></tr>
+          <tr><td>M2</td><td>Mesh hardware</td><td>Same as C4–C13</td><td>Same lined channels, knuckles, ridge tape, loop flange. Ribs (B1) transfer from the standard cover and are not included.</td><td class="q">1 set</td><td class="q">1 set</td><td class="q">1 set</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUILD ================= -->
+<section id="build" aria-labelledby="build-title">
+  <div class="wrap">
+    <p class="kicker">Factory build sequence</p>
+    <h2 id="build-title">How to build it</h2>
+    <p class="lead">Build A, B and C in parallel and join them at final assembly. Every kit is checked on its own size's QC base before pack-out. Do not mix parts across sizes. Each part is marked S, M or L at the point it is made.</p>
+    <ol class="build">
+      <li><h3>A · Base panel</h3><ol>
+        <li>Cut or rout the panel (A1) to S × D, +0 / −0.12 in, with R 1.0 in corners. Seal the edges (A2).</li>
+        <li>Dyne-pen check the top skin: ≥ 42 dyn/cm (PP). Re-treat or reject below that.</li>
+        <li>Wipe the strip footprints with 70% IPA and let them flash. Apply adhesion promoter (A5) to the footprints only (PP).</li>
+        <li>Place the hook strips (A4) <strong>hook side up</strong> in a locating jig: 0.25 in edge inset, equal gaps ≥ 1.0 in, 2.0 in corner setbacks, per the strip schedule. Roll down at about 15 psi, 2 passes.</li>
+        <li>Fit the anti-slip dots (A3) on the underside on a 6 in grid.</li>
+        <li>Dwell 24 h minimum (72 h for QC samples) at ≥ 65 °F. Fit the guard covers (A6) for shipping.</li>
+      </ol></li>
+      <li><h3>B · Rib set</h3><ol>
+        <li>Cut A229/A228 0.250 in wire to the cut length (52.43 / 59.67 / 66.82 in ±0.06). Chamfer and deburr both ends.</li>
+        <li>CNC-bend: bend tangent points at 19.38 / 21.58 / 23.75 in from each end, inside radius 1.5 in. Form the 0.50 in center crown. Compensate for springback so the free span reads S + 0.50 in.</li>
+        <li>Stress-relieve per the wire supplier's schedule (typically 450 °F / 232 °C, 30 min). Air cool.</li>
+        <li>Zinc-phosphate pretreat, then nylon-11 powder coat at 0.010–0.015 in. Holiday-check sample ribs.</li>
+        <li>Gauge every rib on the SKU profile fixture: free span, height, bend radius gauge, and planarity ≤ 0.12 in.</li>
+        <li>Lightly coat the O-rings (B3) with <strong>silicone grease only</strong>, seat two per cap (B2), and press the caps onto the rib ends to the 0.50 in seat.</li>
+      </ol></li>
+      <li><h3>C · Canopy cover</h3><ol>
+        <li>Cut the shell, batting and lining for the left wing, center dome, right wing and back gable to the SKU pattern. Quilt on a 2.0 in diamond grid, keeping the channel lanes clear.</li>
+        <li>Sew the rib channel sleeves (C4) at each station position (1.0 in inset from front and back, then equal pitch). Stitch the UHMW liner (C5) on the outer-face side. Sew the full-length placket (C6) on the inner face.</li>
+        <li>Sew the knuckle tabs (C7) into the two wing-to-dome seams in groups of 3 between stations, alternating panel ownership. Leave a 1.5 in channel gap at each station. Thread the pins (C8) and peen the ends.</li>
+        <li>Sew the back gable to the three panels. Turn the left, right and back hems inward into the 2.0 in flange and sew the loop tape (C10) to it. Add the front corner tabs and pull tabs (C13).</li>
+        <li>Sew the foot pockets (C11) at each rib foot. Bar-tack the ridge tape (C9) on the center-panel centerline at each station, at the exact pitch.</li>
+        <li>Bind all edges (C12). Trim threads. Check that no needle holes are left in the liner bearing lane.</li>
+      </ol></li>
+      <li><h3>D · Final assembly, test and pack-out</h3><ol>
+        <li>Insert each capped rib into its channel through the placket. Seat the feet in the foot pockets and close the placket.</li>
+        <li>Place the canopy on the size's QC base. Press the loop flange onto the hook strips with a hand roller.</li>
+        <li>Measure the inner-face center clearance at every rib station with a height gauge. It must be <strong>≥ 20.0 in</strong> (nominal 20.37 / 20.71 / 20.25 in). Reject anything below 20.0 in.</li>
+        <li>Visual check: knuckle rows straight, ridge tape taut, no rib cap exposed, no hook exposed outside the flange.</li>
+        <li>Remove the ribs. Nest the ribs (same profile stacks). Fold the cover at the knuckle seams. Pack the base flat with guard covers on, the cover, the nested ribs and the spares pack (B4) in one carton.</li>
+      </ol></li>
+    </ol>
+
+    <div class="table-wrap tol" id="tolerances" style="margin-top:1.4rem">
+      <table>
+        <caption>Critical dimensions and tolerances. One-sided tolerances keep h from dropping below the floor (dh/dWg &gt; 0, dh/dC &gt; 0, dh/dS &lt; 0).</caption>
+        <thead><tr><th scope="col">Feature</th><th scope="col">Nominal (S / M / L)</th><th scope="col">Tolerance</th><th scope="col">Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Inner-face center clearance</td><td><code>20.37 / 20.71 / 20.25 in</code></td><td><strong>≥ 20.0 in, hard floor</strong></td><td>Engineering clearance requirement</td></tr>
+          <tr><td>Rib wing leg (foot datum to knuckle)</td><td><code>21.0 / 23.0 / 25.0 in</code></td><td>+0.12 / −0 in</td><td>dh/dWg = +1.04 to +1.25; shorter legs lower h</td></tr>
+          <tr><td>Rib center chord (knuckle to knuckle)</td><td><code>12.0 / 15.0 / 18.0 in</code></td><td>+0.12 / −0 in</td><td>A narrower chord lowers h (dh/dC &gt; 0)</td></tr>
+          <tr><td>Base span S (panel width)</td><td><code>24.0 / 36.0 / 48.0 in</code></td><td>+0 / −0.12 in</td><td>A wider span lowers h (dh/dS &lt; 0)</td></tr>
+          <tr><td>Rib free span (unloaded)</td><td><code>S + 0.50 in</code></td><td>+0.25 / −0 in</td><td>Outward foot preload puts the strips in shear</td></tr>
+          <tr><td>Knuckle bend inside radius</td><td><code>1.5 in</code></td><td>≥ 1.5 in (min), ≤ 1.75 in</td><td>Coating and steel integrity; channel wear</td></tr>
+          <tr><td>Center crown</td><td><code>0.50 in</code></td><td>±0.12 in</td><td>Sheds load; adds clearance headroom</td></tr>
+          <tr><td>Rib wire diameter</td><td><code>0.250 in</code> (FRP 0.312 in)</td><td>±0.002 in (FRP ±0.005)</td><td>Stiffness ∝ d⁴</td></tr>
+          <tr><td>Rib planarity</td><td>flat</td><td>≤ 0.12 in out of plane</td><td>Even knuckle line; no twist in the cover</td></tr>
+          <tr><td>Rib station pitch / ridge tape bar-tacks</td><td><code>9.00 / 8.67 / 8.50 in</code></td><td>±0.06 in</td><td>Parallel stations, no racking</td></tr>
+          <tr><td>Hook strip edge inset / gap / corner setback</td><td><code>0.25 / ≥ 1.0 / 2.0 in</code></td><td>±0.06 in</td><td>Flange covers all hook</td></tr>
+          <tr><td>Loop flange width</td><td><code>2.0 in</code></td><td>±0.12 in</td><td>Full hook coverage at strip inset</td></tr>
+          <tr><td>Foot cap seat depth</td><td><code>0.50 in</code></td><td>±0.03 in</td><td>Rib height datum</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MESH ================= -->
+<section id="mesh" aria-labelledby="mesh-title">
+  <div class="wrap feature flip">
+    <div class="copy">
+      <p class="kicker">Separate item · summer mesh panel</p>
+      <h2 id="mesh-title">Summer mesh panel swap</h2>
+      <p>The summer mesh panel is built, labeled and packed as its own item, one per size (S / M / L). It is a complete three-panel cover plus back gable in 3D spacer mesh. It uses the <strong>same pattern, hinge knuckles, lined rib channels, ridge tape and loop flange</strong> as the standard cover. To swap, peel the standard cover off the hook strips, move the ribs through the plackets, and press the mesh cover on. The base is not touched.</p>
+      <ul>
+        <li>3D spacer mesh, 2.0 mm, over an open-knit liner. No batting and no fleece.</li>
+        <li>The channel liner (UHMW) and plackets are identical, so the ribs transfer one-for-one.</li>
+        <li>The mesh item must pass the same clearance, wash and channel-wear QC.</li>
+      </ul>
+    </div>
+    <figure class="demo">
+      <svg viewBox="0 0 400 220" role="img" aria-labelledby="mesh-svg">
+        <title id="mesh-svg">The standard cover and the mesh cover share one house profile on the same base. The ribs move from one cover to the other.</title>
+        <defs><pattern id="meshP" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#0f2430"/><path d="M0 0 L8 8 M8 0 L0 8" stroke="#5cc8ff" stroke-width="1"/></pattern></defs>
+        <rect x="0" y="196" width="400" height="24" fill="#0d1218"/>
+        <rect x="20" y="190" width="160" height="6" rx="2" fill="#3b4450"/><rect x="220" y="190" width="160" height="6" rx="2" fill="#3b4450"/>
+        <path d="M22 188 L62 110 Q100 100 138 110 L178 188" fill="none" stroke="#ff9a3c" stroke-width="10" stroke-linejoin="round"/>
+        <path d="M222 188 L262 110 Q300 100 338 110 L378 188" fill="none" stroke="url(#meshP)" stroke-width="10" stroke-linejoin="round"/>
+        <path d="M222 188 L262 110 Q300 100 338 110 L378 188" fill="none" stroke="#5cc8ff" stroke-width="10" stroke-linejoin="round" opacity=".35"/>
+        <path d="M150 60 Q200 30 250 60" fill="none" stroke="#e8eef5" stroke-width="2.5" stroke-dasharray="6 5"/>
+        <path d="M244 52 L250 60 L240 62" fill="none" stroke="#e8eef5" stroke-width="2.5"/>
+        <g font-size="12" text-anchor="middle" font-family="ui-monospace,Menlo,monospace">
+          <text x="100" y="214" fill="#ffb547">standard cover</text>
+          <text x="300" y="214" fill="#5cc8ff">summer mesh panel</text>
+          <text x="200" y="24" fill="#e8eef5">ribs transfer · base untouched</text>
+        </g>
+      </svg>
+    </figure>
+  </div>
+</section>
+<!-- ================= QC ================= -->
+<section id="qc" aria-labelledby="qc-title">
+  <div class="wrap">
+    <p class="kicker">Quality control · validation and lot testing</p>
+    <h2 id="qc-title">QC test plan</h2>
+    <p class="lead">Run validation on each size (S, M, L) and on each rib material (steel standard, FRP alternate). Lot tests run on every production lot. Unless a test says otherwise, it runs at 73 °F ±4 / 23 °C ±2 on the size's own QC base, built to the same spec as the shipped base.</p>
+    <div class="table-wrap tol">
+      <table>
+        <caption>QC test plan, Rev D</caption>
+        <thead><tr><th scope="col">Test</th><th scope="col">Method</th><th scope="col">Pass criterion</th><th scope="col">Sampling</th></tr></thead>
+        <tbody>
+          <tr><td>Center clearance</td><td>Assembled canopy on the QC base; height gauge to the inner face at the center of every rib station</td><td><strong>≥ 20.0 in at every station</strong></td><td>100%</td></tr>
+          <tr><td>Rib profile</td><td>Free rib on the SKU profile fixture: free span, height, radius gauge at both bends, planarity</td><td>Free span S + 0.50 (+0.25/−0); R ≥ 1.5 in; planarity ≤ 0.12 in</td><td>100%</td></tr>
+          <tr><td>Rib forming integrity</td><td>10× visual inspection of the bend outer fiber after forming and stress relief</td><td>No cracks, seams or surface checking</td><td>5 per lot</td></tr>
+          <tr><td>Center-panel sag</td><td>2.0 lb (0.9 kg) distributed load on the center panel between the middle two stations for 1 h</td><td>Deflection ≤ 0.25 in; permanent set ≤ 0.06 in; clearance still ≥ 20.0 in after unload</td><td>Validation + 1 per lot</td></tr>
+          <tr><td>Rib buckling / rack</td><td>5 lbf lateral push at the front-station knuckle, then 10 lbf downward at the center apex, 1 min each</td><td>No snap-through or inversion; return within 0.12 in; flange does not release</td><td>Validation</td></tr>
+          <tr><td>Strip adhesion: peel</td><td>90° peel of hook strip from base after 72 h dwell, 12 in/min</td><td>≥ adhesive supplier's minimum for the substrate; cohesive or tape failure (no clean substrate release)</td><td>Validation + 3 per lot</td></tr>
+          <tr><td>Strip adhesion: static shear</td><td>1 in² hook-and-loop lap on base coupon, 2.2 lb (1 kg) hanging load, 24 h at 120 °F / 49 °C</td><td>Creep ≤ 0.06 in; no release</td><td>Validation</td></tr>
+          <tr><td>Hem attach/detach life</td><td>Peel and re-press the full canopy 1,000 cycles</td><td>Shear ≥ 70% of initial; no strip lift at the corners</td><td>Validation</td></tr>
+          <tr><td>Upward hold / breakaway</td><td>Vertical pull at the center apex</td><td>No release at 15 lbf for 10 s; the flange releases progressively at ≤ 40 lbf with no rib permanent set</td><td>Validation + 1 per lot</td></tr>
+          <tr><td>Channel / liner wear</td><td>500 rib insert/remove cycles, then 10,000 ±5° flex cycles at the knuckle bend</td><td>No liner wear-through; no sleeve abrasion holes; placket still closes</td><td>Validation</td></tr>
+          <tr><td>Wash durability</td><td>25 cold gentle cycles, ribs removed, plackets and guard flaps closed, line dry</td><td>No channel, knuckle or loop-flange failure; shrink ≤ 2%; clearance ≥ 20.0 in re-assembled</td><td>Validation</td></tr>
+          <tr><td>Foot cap retention</td><td>Axial pull-off of the cap from the rib end</td><td>≥ 20 N with dual O-rings; no O-ring extrusion</td><td>Validation + 5 per lot</td></tr>
+          <tr><td>O-ring compression set</td><td>ASTM D395 Method B, 22 h at 70 °C</td><td>≤ 25%</td><td>Per O-ring lot (CoC accepted)</td></tr>
+          <tr><td>O-ring ozone / UV (outdoor EPDM)</td><td>ASTM D1149, 50 pphm, 40 °C, 20% strain, 72 h; UV exposure per ASTM G154, 500 h</td><td>No cracking at 7×; retention still ≥ 20 N</td><td>Validation (outdoor variant)</td></tr>
+          <tr><td>Rib coating corrosion</td><td>ASTM B117 neutral salt spray 96 h, scribed sample</td><td>No red rust away from the scribe; no coating lift &gt; 0.06 in</td><td>Validation + quarterly</td></tr>
+          <tr><td>Knuckle fold</td><td>2,000 fold/unfold cycles of each seam (ribs out)</td><td>No knuckle crack, pin walk or tab tear</td><td>Validation</td></tr>
+          <tr><td>Edge and end safety</td><td>Visual + tactile check of rib caps, pin ends and base corners</td><td>No exposed steel, burrs or sharp corners</td><td>100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="callout">Care label (cover only): remove the ribs through the plackets and close all plackets. Fit the hook guard covers on the base. Wash the cover cold and gentle in a laundry bag with no softener, then line dry or tumble low. Wipe the base clean; do not soak it. Lubricate the O-rings with <strong>silicone grease only</strong>.</p>
+  </div>
+</section>
+
+<!-- ================= FAILURE MODES ================= -->
+<section id="failure" aria-labelledby="fm-title">
+  <div class="wrap">
+    <p class="kicker">Design FMEA summary · Rev D</p>
+    <h2 id="fm-title">Failure modes and mitigations</h2>
+    <p class="lead">Removing the V3 telescoping rib takes out its slip-joint and ratchet failure modes. The modes below remain with fixed-size ribs, lined channels, keeper O-rings and adhesive strips. Each one maps to a QC test above.</p>
+    <div class="table-wrap fm">
+      <table>
+        <caption>Failure modes, causes, effects, mitigations and verification</caption>
+        <thead><tr><th scope="col">Failure mode</th><th scope="col">Cause</th><th scope="col">Effect</th><th scope="col">Mitigation (designed in)</th><th scope="col">Verified by</th></tr></thead>
+        <tbody>
+          <tr><td>Rib buckling / center mid-sag</td><td>Point load on the center panel; rib legs pushed together so the rib is loaded in compression; stations drifting apart</td><td>Center drops below 20.0 in; canopy contacts the dog; rib snap-through</td><td><strong>Ridge tape across the center panel</strong> ties all stations at a fixed pitch and shares load. <strong>0.250 in steel</strong> (stiffness ∝ d⁴; 2.4× the 0.200 in alternative). 0.50 in center crown so the center sheds load in bending, not inversion. Rib feet anchored by the shear-loaded flange and formed <strong>S + 0.50 in free span</strong>, so installed feet push outward and the rib is never forced into column compression.</td><td>Center-panel sag; rib buckling / rack; center clearance</td></tr>
+          <tr><td>Channel / sleeve wear</td><td>Coated rib sliding and flexing against the sleeve, especially at the knuckle bends and at insertion</td><td>Sleeve wear-through; steel exposed; fabric tears at the bends</td><td><strong>UHMW-PE (or nylon 6,6) liner</strong> on the bearing face, full length. Bend radius <strong>≥ 1.5 in</strong>, so there is no sharp contact line. Nylon-11 coated, chamfered rib ends. Full-length placket for removal, so no lengthwise drag through the bends. No quilt stitching in the liner lane.</td><td>Channel / liner wear; wash durability</td></tr>
+          <tr><td>Keeper O-ring set / UV / ozone cracking</td><td>Compression set over time; ozone and UV attack on nitrile; petroleum grease swelling Buna</td><td>Foot cap or FRP elbow loosens and falls off; steel end exposed</td><td><strong>Dual O-rings</strong> per cap or socket (one failure keeps retention). <strong>EPDM 70A</strong> on the outdoor variant (ozone/UV resistant). <strong>User-replaceable spares</strong> in every kit. <strong>Silicone grease only</strong>; the kit and label carry no petroleum lubricant, and petroleum is never used on Buna or EPDM.</td><td>Foot cap retention; compression set; ozone/UV</td></tr>
+          <tr><td>Hook strip peel / adhesive release</td><td>Low-surface-energy PP, contaminated substrate, short dwell, peel-direction loading, square strip corners</td><td>Strip lifts from the base; canopy shifts or detaches</td><td><strong>High-tack acrylic adhesive</strong> (LSE grade) plus a corona-treated skin and adhesion promoter. IPA-clean substrate, 15 psi roll-down, 72 h dwell. <strong>Load in shear, not peel</strong>: the flange lies flat and the rib preload is in-plane. <strong>≥ 2 strips per side</strong>, segmented so peels arrest at the gaps. R 0.25 in strip corners. Sewn (not adhesive) loop on the canopy.</td><td>Strip peel; static shear; attach/detach life</td></tr>
+          <tr><td>Exposed hook snag</td><td>Hook strip uncovered where the dog steps or lies, or when the canopy is off</td><td>Fur or bedding snag; strip pulled off</td><td>No hook in the front entry zone. The 2.0 in loop flange covers the full strip width. Hook guard covers (A6) are supplied for when the canopy is off.</td><td>Visual (100%); attach/detach life</td></tr>
+          <tr><td>Rib forming crack</td><td>Bend radius too tight; no stress relief; tool marks</td><td>Rib fracture at the knuckle bend</td><td>Inside R ≥ 1.5 in (6 × d). Polished bend tooling. Stress relief after forming.</td><td>Rib forming integrity; rib profile</td></tr>
+          <tr><td>FRP fiber bloom (alternate only)</td><td>Cut ends or overstrain on fiberglass segments</td><td>Splinters through the sleeve</td><td>No FRP bending: fixed-angle elbows take the knuckle angle. Ends capped and sleeved.</td><td>Edge and end safety; channel wear</td></tr>
+          <tr><td>Cross-size parts mix</td><td>S / M / L ribs or covers look alike</td><td>Clearance below the floor, or a poor fit</td><td>Size-coded cap color and a laser-marked rib ID. Cover label and base label both carry the size.</td><td>Center clearance (100%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3D MODELING REFERENCE ================= -->
+<section id="modeling" aria-labelledby="mod-title">
+  <div class="wrap">
+    <p class="kicker">CAD / 3D modeling reference</p>
+    <h2 id="mod-title">3D modeling reference</h2>
+    <div class="table-wrap tol">
+      <table>
+        <caption>Reference frame and parametric definition (matches the Three.js model above)</caption>
+        <thead><tr><th scope="col">Item</th><th scope="col">Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Origin and axes</td><td>Origin on the base-panel top surface at its center. +x = right, +y = up, +z = front (open end). Units are inches.</td></tr>
+          <tr><td>Base panel</td><td>Box S × 0.236 × D, top face at y = 0. Hook strips 1.5 in wide, 0.08 in thick, on the top face per the strip schedule.</td></tr>
+          <tr><td>Rib centerline (sharp polyline)</td><td>(−S/2, 0) → (−C/2, h) → (+C/2, h) → (+S/2, 0), with h = √(Wg² − ((S − C)/2)²).</td></tr>
+          <tr><td>Bend rounding</td><td>Fillet radius 1.5 in at both knuckle corners. Tangent setback t = R·tan(θ/2): 1.118 / 0.916 / 0.750 in (S / M / L).</td></tr>
+          <tr><td>Center crown</td><td>Parabolic, +0.50 in at x = 0, zero at the fillet tangents</td></tr>
+          <tr><td>Rib stations</td><td>z = −D/2 + 1 … +D/2 − 1, equal pitch; 3 / 4 / 5 stations. Rib tube Ø 0.250 in.</td></tr>
+          <tr><td>Panels</td><td>Left wing = foot → mid-fillet (left); center dome = mid-fillet → mid-fillet; right wing mirrored. Extruded over z ∈ [−D/2, +D/2]. Back gable = closed profile at z = −D/2.</td></tr>
+          <tr><td>Knuckle rows</td><td>Axis parallel to z through each mid-fillet point. Groups of 3 knuckles (Ø 0.375 × 0.75 in, 2.0 in on center) centered between stations.</td></tr>
+          <tr><td>Ridge tape</td><td>1.0 × 0.06 in section at x = 0, along z, on top of the center panel</td></tr>
+          <tr><td>Clearance envelope</td><td>Dashed box x ∈ [−C/2, +C/2], y ∈ [0, 20.0], z ∈ [−D/2 + 1, +D/2 − 1]. The canopy inner face must not enter it.</td></tr>
+          <tr><td>Bed zone</td><td>Dashed rectangle inset 2.5 in from the panel edges at y = 0. Reference only; not modeled as a part.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn" style="margin-top:1.2rem"><strong>Changes vs V3 (Rev C → Rev D):</strong> The slide-under platform, half-moon wings, telescoping ratchet rails and hinge hubs are deleted. So is the five-hoop frame: 8.5 mm fiberglass hoops, the rear hoops' shock-corded slip joints (the telescoping rib), and the 2.0 mm wire shaping ribs. There are three fixed sizes, each with its own formed rib set in 0.250 in A229/A228 spring steel (FRP 0.312 in segmented alternate). The attachment is now a flat base panel with adhesive hook strips (hook up) and a sewn loop flange. A ridge tape runs across the center panel. Lined channels with removal plackets and keeper O-ring foot caps are added. The variable-span inverse arc is replaced by a fixed-span house profile with a 20.0 in clearance floor checked per size.</div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>OverCover V4</strong>: fixed-size three-panel dog bed canopy system, Small / Medium / Large</div>
+    <div>Manufacturer build document, Rev D · companion to the OverCover V4 spec sheet (Rev D)</div>
+  </div>
+</footer>
+
+<script>
+/* ===== OverCover V4 shared geometry (inches) ===== */
+var OC = (function(){
+  var R = 1.5, CROWN = 0.5, RIB_R = 0.25; /* rib radius 0.125 + channel liner / inner fabric 0.125 */
+  var SK = {
+    S:{key:'S',name:'Small', S:24,D:20,C:12,W:21,n:3, side:[2,7.0], back:[2,9.0], front:3.0},
+    M:{key:'M',name:'Medium',S:36,D:28,C:15,W:23,n:4, side:[2,11.0],back:[3,9.5], front:3.5},
+    L:{key:'L',name:'Large', S:48,D:36,C:18,W:25,n:5, side:[3,9.5], back:[4,10.0],front:4.0}
+  };
+  function geo(k){
+    var g = SK[k], off = (g.S - g.C)/2;
+    var h = Math.sqrt(g.W*g.W - off*off);
+    var th = Math.atan2(h, off);
+    var t = R*Math.tan(th/2);
+    var pitch = (g.D - 2)/(g.n - 1);
+    var st = []; for (var i=0;i<g.n;i++) st.push(-g.D/2 + 1 + i*pitch);
+    return {g:g, off:off, h:h, th:th, deg:th*180/Math.PI, t:t, pitch:pitch, stations:st,
+      inner: h + CROWN - RIB_R, L: g.C + 2*g.W};
+  }
+  /* rib centerline profile, foot(-S/2,0) -> foot(+S/2,0), with R1.5 fillets and crown.
+     returns {pts:[[x,y]...], kL:index of left mid-fillet, kR:index of right mid-fillet} */
+  function profile(k, nArc){
+    nArc = nArc || 10;
+    var G = geo(k), g = G.g, h = G.h, th = G.th, t = G.t;
+    var ux = Math.cos(th), uy = Math.sin(th);
+    var P1x = -g.C/2, P1y = h;
+    var T1x = P1x - ux*t, T1y = P1y - uy*t;
+    var cx = T1x + uy*R, cy = T1y - ux*R; /* right-hand normal of u */
+    var a0 = Math.atan2(T1y - cy, T1x - cx), a1 = Math.PI/2;
+    var left = [[-g.S/2, 0]];
+    var nW = 6; for (var i=1;i<=nW;i++){ var f=i/nW; left.push([-g.S/2 + (T1x + g.S/2)*f, T1y*f]); }
+    var kL;
+    for (var j=1;j<=nArc;j++){ var a = a0 + (a1 - a0)*j/nArc; left.push([cx + R*Math.cos(a), cy + R*Math.sin(a)]); if (j===Math.round(nArc/2)) kL = left.length-1; }
+    var xt = P1x + t; /* left tangent of center segment (negative) */
+    var center = []; var nC = 12;
+    for (var m=1;m<nC;m++){ var x = xt + (-2*xt)*m/nC; center.push([x, h + CROWN*(1 - (x/xt)*(x/xt))]); }
+    var right = left.slice().reverse().map(function(p){ return [-p[0], p[1]]; });
+    var pts = left.concat(center).concat(right);
+    var kR = pts.length - 1 - kL;
+    return {pts:pts, kL:kL, kR:kR, G:G};
+  }
+  function strips(k){
+    var g = SK[k], out = [], i, n, L, gap, s;
+    /* rectangles in plan: x across (-S/2..S/2), z depth (-D/2 back .. +D/2 front); [x0,z0,x1,z1] */
+    n = g.side[0]; L = g.side[1]; gap = (g.D - 4 - n*L)/(n - 1);
+    for (i=0;i<n;i++){ s = -g.D/2 + 2 + i*(L + gap);
+      out.push([-g.S/2 + 0.25, s, -g.S/2 + 1.75, s + L]);
+      out.push([ g.S/2 - 1.75, s,  g.S/2 - 0.25, s + L]); }
+    n = g.back[0]; L = g.back[1]; gap = (g.S - 4 - n*L)/(n - 1);
+    for (i=0;i<n;i++){ s = -g.S/2 + 2 + i*(L + gap); out.push([s, -g.D/2 + 0.25, s + L, -g.D/2 + 1.75]); }
+    out.push([-g.S/2 + 2, g.D/2 - 1.75, -g.S/2 + 2 + g.front, g.D/2 - 0.25]);
+    out.push([ g.S/2 - 2 - g.front, g.D/2 - 1.75, g.S/2 - 2, g.D/2 - 0.25]);
+    return out;
+  }
+  return {SK:SK, geo:geo, profile:profile, strips:strips, R:R, CROWN:CROWN};
+})();
+
+/* ===== 2D profile drawing (geometry section) ===== */
+(function(){
+  var NS = 'http://www.w3.org/2000/svg', G = document.getElementById('profileG');
+  if (!G) return;
+  var cap = document.getElementById('profileCap');
+  var COL = {S:'#5cc8ff', M:'#5fe0b5', L:'#ffb547'};
+  var PX = 7, OX = 210, OY = 222;
+  function el(tag, at, txt){ var e = document.createElementNS(NS, tag); for (var a in at) e.setAttribute(a, at[a]); if (txt != null) e.textContent = txt; G.appendChild(e); return e; }
+  function X(x){ return (OX + x*PX).toFixed(1); } function Y(y){ return (OY - y*PX).toFixed(1); }
+  function drawOne(k, solo){
+    var P = OC.profile(k, 10), G0 = P.G, g = G0.g, c = COL[k];
+    el('rect', {x:X(-g.S/2), y:OY, width:(g.S*PX).toFixed(1), height:(0.236*PX + 1).toFixed(1), fill:'#3b4450', opacity: solo ? 1 : .55});
+    var d = P.pts.map(function(p, i){ return (i ? 'L' : 'M') + X(p[0]) + ' ' + Y(p[1]); }).join(' ');
+    el('path', {d:d, fill:'none', stroke:c, 'stroke-width': solo ? 4 : 2.5, 'stroke-linejoin':'round', 'stroke-linecap':'round'});
+    [P.kL, P.kR].forEach(function(i){ el('circle', {cx:X(P.pts[i][0]), cy:Y(P.pts[i][1]), r: solo ? 4 : 3, fill:'#ffd08a', stroke:'#0b0f14', 'stroke-width':1}); });
+    if (solo){
+      el('rect', {x:X(-g.C/2), y:Y(20), width:(g.C*PX).toFixed(1), height:(20*PX).toFixed(1), fill:'rgba(95,224,181,.07)', stroke:'#5fe0b5', 'stroke-dasharray':'5 4', 'stroke-width':1.2});
+      el('line', {x1:X(g.S/2 + 2), y1:OY, x2:X(g.S/2 + 2), y2:Y(G0.h), stroke:'#ffb547', 'stroke-width':1});
+      el('text', {x:X(g.S/2 + 2.4), y:Y(G0.h + 1.6), fill:'#ffb547', 'font-size':11, 'text-anchor':'end'}, 'h ' + G0.h.toFixed(2));
+      el('text', {x:OX, y:Y(G0.h + 2.4), fill:'#ffd08a', 'font-size':11, 'text-anchor':'middle'}, 'C ' + g.C + ' · crown +0.50');
+      el('text', {x:OX, y:Y(10), fill:'#5fe0b5', 'font-size':11, 'text-anchor':'middle'}, '20.0 in floor');
+      el('text', {x:X(-g.S/2 + G0.off/2 - 3), y:Y(G0.h/2), fill:'#ffd08a', 'font-size':11, 'text-anchor':'end'}, 'Wg ' + g.W);
+      el('text', {x:OX, y:OY + 16, fill:'#5cc8ff', 'font-size':11, 'text-anchor':'middle'}, 'S ' + g.S + ' in · θ ' + G0.deg.toFixed(1) + '°');
+    }
+  }
+  function draw(k){
+    while (G.firstChild) G.removeChild(G.firstChild);
+    el('line', {x1:10, y1:Y(20), x2:410, y2:Y(20), stroke:'#5fe0b5', 'stroke-dasharray':'3 5', 'stroke-width':1, opacity:.7});
+    if (k === 'ALL'){
+      ['L','M','S'].forEach(function(s){ drawOne(s, false); });
+      var y0 = 18; ['S','M','L'].forEach(function(s, i){ var G0 = OC.geo(s);
+        el('text', {x:12, y:y0 + i*14, fill:COL[s], 'font-size':11}, OC.SK[s].name + ' S' + OC.SK[s].S + ' · h ' + G0.h.toFixed(2) + ' · clr ' + G0.inner.toFixed(2)); });
+      cap.textContent = 'All three sizes overlaid · same 20.0 in floor · 1 in = 7 px';
+    } else {
+      drawOne(k, true);
+      cap.textContent = OC.SK[k].name + ' · drawn to scale · 1 in = 7 px';
+    }
+  }
+  var btns = document.querySelectorAll('[data-psize]');
+  Array.prototype.forEach.call(btns, function(b){ b.addEventListener('click', function(){
+    Array.prototype.forEach.call(btns, function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    draw(b.getAttribute('data-psize')); }); });
+  draw('L');
+})();
+
+/* ===== Strip layout plan view (attach section) ===== */
+(function(){
+  var NS = 'http://www.w3.org/2000/svg', G = document.getElementById('stripG');
+  if (!G) return;
+  var cap = document.getElementById('stripCap');
+  function el(tag, at, txt){ var e = document.createElementNS(NS, tag); for (var a in at) e.setAttribute(a, at[a]); if (txt != null) e.textContent = txt; G.appendChild(e); return e; }
+  function draw(k){
+    while (G.firstChild) G.removeChild(G.firstChild);
+    var g = OC.SK[k], sc = Math.min(380/g.S, 240/g.D), cx = 210, cz = 145;
+    function X(x){ return (cx + x*sc).toFixed(1); } function Z(z){ return (cz + z*sc).toFixed(1); }
+    el('rect', {x:X(-g.S/2), y:Z(-g.D/2), width:(g.S*sc).toFixed(1), height:(g.D*sc).toFixed(1), rx:(1*sc).toFixed(1), fill:'#3b4450', stroke:'#56708a'});
+    el('rect', {x:X(-g.S/2 + 2.5), y:Z(-g.D/2 + 2.5), width:((g.S - 5)*sc).toFixed(1), height:((g.D - 5)*sc).toFixed(1), fill:'none', stroke:'#9aa8b8', 'stroke-dasharray':'5 4'});
+    OC.strips(k).forEach(function(r){
+      el('rect', {x:X(r[0]), y:Z(r[1]), width:((r[2]-r[0])*sc).toFixed(1), height:((r[3]-r[1])*sc).toFixed(1), rx:(0.25*sc).toFixed(1), fill:'#ffb547'}); });
+    el('text', {x:cx, y:cz + 4, fill:'#9aa8b8', 'font-size':11, 'text-anchor':'middle', 'font-family':'ui-monospace,Menlo,monospace'}, 'bed zone (not supplied)');
+    el('text', {x:cx, y:Z(g.D/2) - 6, fill:'#e8eef5', 'font-size':10, 'text-anchor':'middle', 'font-family':'ui-monospace,Menlo,monospace'}, 'front entry · no hook');
+    el('text', {x:cx, y:Z(-g.D/2) - 6, fill:'#9aa8b8', 'font-size':10, 'text-anchor':'middle', 'font-family':'ui-monospace,Menlo,monospace'}, 'back (gable) · ' + g.S + ' in');
+    cap.textContent = g.name + ' base ' + g.S + ' × ' + g.D + ' in · top view · front ↓';
+  }
+  var btns = document.querySelectorAll('[data-ssize]');
+  Array.prototype.forEach.call(btns, function(b){ b.addEventListener('click', function(){
+    Array.prototype.forEach.call(btns, function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    draw(b.getAttribute('data-ssize')); }); });
+  draw('L');
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+<script>
+/* ===== Three.js r128 interactive model, 1 unit = 1 in ===== */
+(function(){
+  var stage = document.getElementById('siaStage'), canvas = document.getElementById('siaCanvas');
+  var fb = document.getElementById('siaFallback');
+  function fail(){ if (fb) fb.hidden = false; }
+  if (!stage || !canvas) return;
+  if (typeof THREE === 'undefined') { fail(); return; }
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:false}); }
+  catch(e){ fail(); return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x0d131a, 1);
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x0d131a, 160, 320);
+  var camera = new THREE.PerspectiveCamera(35, 16/9, 0.5, 1000);
+  scene.add(new THREE.HemisphereLight(0xdfe9f5, 0x1a1208, 0.75));
+  var dl = new THREE.DirectionalLight(0xffffff, 0.75); dl.position.set(40, 80, 60); scene.add(dl);
+  var dl2 = new THREE.DirectionalLight(0xffb070, 0.25); dl2.position.set(-60, 30, -40); scene.add(dl2);
+  var grid = new THREE.GridHelper(140, 28, 0x24313f, 0x18222e); grid.position.y = -0.25; scene.add(grid);
+
+  var state = {size:'L', see:true, detach:false, dims:true, clr:true, lift:0,
+    az:0.62, el:0.38, dist:120, tAz:0.62, tEl:0.38, tDist:120, auto:true};
+  var root = null, cover = null, clrGroup = null, fabricMats = [], G = null, P = null;
+  var labels = {S:document.getElementById('dimS'), H:document.getElementById('dimH'), C:document.getElementById('dimC'),
+    W:document.getElementById('dimW'), CL:document.getElementById('dimClr')};
+  var anchors = {};
+  var cfg = document.getElementById('tcCfg'), readout = document.getElementById('tcReadout');
+
+  function disposeTree(o){ o.traverse(function(c){ if (c.geometry) c.geometry.dispose(); if (c.material){ (Array.isArray(c.material) ? c.material : [c.material]).forEach(function(m){ m.dispose(); }); } }); }
+  function box(w, h, d, mat, x, y, z){ var m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); m.position.set(x, y, z); return m; }
+  function dashedLines(pairs, color, dash){
+    var arr = []; pairs.forEach(function(p){ arr.push(p[0][0], p[0][1], p[0][2], p[1][0], p[1][1], p[1][2]); });
+    var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(arr, 3));
+    var l = new THREE.LineSegments(g, new THREE.LineDashedMaterial({color:color, dashSize:dash, gapSize:dash*0.7, transparent:true, opacity:0.95}));
+    l.computeLineDistances(); return l;
+  }
+  function panelGeo(pts, i0, i1, D){
+    var pos = [], idx = [], n = i1 - i0 + 1;
+    for (var i=0;i<n;i++){ var p = pts[i0 + i]; pos.push(p[0], p[1], -D/2, p[0], p[1], D/2); }
+    for (var j=0;j<n-1;j++){ var a = j*2; idx.push(a, a+1, a+2, a+1, a+3, a+2); }
+    var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); return g;
+  }
+  function offsetPts(pts, d){ /* offset outward (normal pointing away from interior) */
+    var out = [];
+    for (var i=0;i<pts.length;i++){
+      var a = pts[Math.max(0, i-1)], b = pts[Math.min(pts.length-1, i+1)];
+      var tx = b[0]-a[0], ty = b[1]-a[1], L = Math.sqrt(tx*tx + ty*ty) || 1;
+      out.push([pts[i][0] - ty/L*d, pts[i][1] + tx/L*d]);
+    }
+    return out;
+  }
+
+  function build(k){
+    if (root){ scene.remove(root); disposeTree(root); }
+    fabricMats = [];
+    P = OC.profile(k, 12); G = P.G; var g = G.g, D = g.D, S = g.S;
+    root = new THREE.Group(); cover = new THREE.Group(); clrGroup = new THREE.Group();
+    root.add(cover); root.add(clrGroup); scene.add(root);
+    /* base panel */
+    root.add(box(S, 0.236, D, new THREE.MeshStandardMaterial({color:0x3b4450, roughness:0.85, metalness:0.05}), 0, -0.118, 0));
+    var hookMat = new THREE.MeshStandardMaterial({color:0xffb547, roughness:0.6, emissive:0x3a2200});
+    OC.strips(k).forEach(function(r){ root.add(box(r[2]-r[0], 0.08, r[3]-r[1], hookMat, (r[0]+r[2])/2, 0.04, (r[1]+r[3])/2)); });
+    /* bed zone */
+    var bx = S/2 - 2.5, bz = D/2 - 2.5, by = 0.03;
+    root.add(dashedLines([[[-bx,by,-bz],[bx,by,-bz]],[[bx,by,-bz],[bx,by,bz]],[[bx,by,bz],[-bx,by,bz]],[[-bx,by,bz],[-bx,by,-bz]]], 0x9aa8b8, 1.2));
+    /* clearance envelope */
+    var cx = g.C/2, y0 = 0.24, y1 = 20.24, z0 = -D/2 + 1, z1 = D/2 - 1, E = [];
+    var corners = [[-cx,y0],[cx,y0],[cx,y1],[-cx,y1]];
+    for (var i=0;i<4;i++){ var a = corners[i], b = corners[(i+1)%4];
+      E.push([[a[0],a[1],z0],[b[0],b[1],z0]]); E.push([[a[0],a[1],z1],[b[0],b[1],z1]]); E.push([[a[0],a[1],z0],[a[0],a[1],z1]]); }
+    clrGroup.add(dashedLines(E, 0x5fe0b5, 0.9));
+    var clrFill = new THREE.Mesh(new THREE.BoxGeometry(g.C, 20, D - 2), new THREE.MeshBasicMaterial({color:0x5fe0b5, transparent:true, opacity:0.05, depthWrite:false}));
+    clrFill.position.set(0, 10.24, 0); clrGroup.add(clrFill);
+    /* cover: fabric (inner face of fabric sits outside rib) */
+    var pts = offsetPts(P.pts, 0.35);
+    var wingMat = new THREE.MeshStandardMaterial({color:0xc85a1c, roughness:0.9, side:THREE.DoubleSide, transparent:true, opacity:0.55, depthWrite:false});
+    var domeMat = new THREE.MeshStandardMaterial({color:0xff9a3c, roughness:0.9, side:THREE.DoubleSide, transparent:true, opacity:0.55, depthWrite:false});
+    var gabMat = new THREE.MeshStandardMaterial({color:0xa94a16, roughness:0.95, side:THREE.DoubleSide, transparent:true, opacity:0.5, depthWrite:false});
+    fabricMats = [wingMat, domeMat, gabMat];
+    cover.add(new THREE.Mesh(panelGeo(pts, 0, P.kL, D), wingMat));
+    cover.add(new THREE.Mesh(panelGeo(pts, P.kL, P.kR, D), domeMat));
+    cover.add(new THREE.Mesh(panelGeo(pts, P.kR, pts.length-1, D), wingMat));
+    var shp = new THREE.Shape(); shp.moveTo(pts[0][0], 0.2);
+    pts.forEach(function(p){ shp.lineTo(p[0], Math.max(p[1], 0.2)); }); shp.lineTo(pts[0][0], 0.2);
+    var gab = new THREE.Mesh(new THREE.ShapeGeometry(shp), gabMat); gab.position.z = -D/2; cover.add(gab);
+    /* loop flange (left, right, back) */
+    var flMat = new THREE.MeshStandardMaterial({color:0xffe2ad, roughness:0.9});
+    cover.add(box(2.0, 0.08, D, flMat, -S/2 + 1.0, 0.12, 0));
+    cover.add(box(2.0, 0.08, D, flMat,  S/2 - 1.0, 0.12, 0));
+    cover.add(box(S - 4, 0.08, 2.0, flMat, 0, 0.12, -D/2 + 1.0));
+    /* ribs */
+    var ribMat = new THREE.MeshStandardMaterial({color:0xe8eef5, roughness:0.35, metalness:0.6});
+    var capMat = new THREE.MeshStandardMaterial({color:0x1b1f24, roughness:0.6});
+    G.stations.forEach(function(z){
+      var v = P.pts.map(function(p){ return new THREE.Vector3(p[0], p[1], z); });
+      var curve = new THREE.CatmullRomCurve3(v, false, 'catmullrom', 0.0);
+      cover.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 160, 0.16, 8, false), ribMat));
+      [-1, 1].forEach(function(sgn){ var c = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 1.25, 12), capMat);
+        var ux = Math.cos(G.th)*0.625, uy = Math.sin(G.th)*0.625;
+        c.position.set(sgn < 0 ? -S/2 + ux : S/2 - ux, uy, z); c.rotation.z = sgn*(Math.PI/2 - G.th); cover.add(c); });
+    });
+    /* knuckles: groups of 3 between stations */
+    var kMat = new THREE.MeshStandardMaterial({color:0xffd08a, roughness:0.5});
+    var kp = offsetPts(P.pts, 0.45);
+    [P.kL, P.kR].forEach(function(i){
+      for (var s=0;s<G.stations.length-1;s++){
+        var zm = (G.stations[s] + G.stations[s+1])/2;
+        for (var q=-1;q<=1;q++){ var kn = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.19, 0.75, 12), kMat);
+          kn.rotation.x = Math.PI/2; kn.position.set(kp[i][0], kp[i][1], zm + q*2.0); cover.add(kn); }
+      }
+    });
+    /* ridge tape */
+    cover.add(box(1.0, 0.08, D - 1, new THREE.MeshStandardMaterial({color:0xc7a0ff, roughness:0.7}), 0, G.h + OC.CROWN + 0.42, 0.5));
+    /* dimension lines */
+    var dimMat = function(c){ return new THREE.LineBasicMaterial({color:c}); };
+    function line(a, b, c){ var gg = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(a[0],a[1],a[2]), new THREE.Vector3(b[0],b[1],b[2])]); return new THREE.Line(gg, dimMat(c)); }
+    var dims = new THREE.Group(); dims.name = 'dims';
+    var fz = D/2 + 3;
+    dims.add(line([-S/2, 0, fz], [S/2, 0, fz], 0x5cc8ff));
+    dims.add(line([-S/2, -0.5, fz], [-S/2, 0.5, fz], 0x5cc8ff)); dims.add(line([S/2, -0.5, fz], [S/2, 0.5, fz], 0x5cc8ff));
+    dims.add(line([0, 0, D/2 + 0.6], [0, G.h, D/2 + 0.6], 0xffb547));
+    root.add(dims);
+    anchors = {S:[0, -1.6, fz], H:[1.8, G.h*0.55, D/2 + 0.6], C:[0, G.h + 3.4, D/2], W:[S/2 - G.off/2 + 2.6, G.h/2, D/2], CL:[-g.C/2 - 0.4, 12, D/2 - 1]};
+    labels.S.textContent = 'S ' + g.S.toFixed(1) + ' in';
+    labels.H.textContent = 'h ' + G.h.toFixed(2) + ' in';
+    labels.C.textContent = 'C ' + g.C.toFixed(1) + ' in';
+    labels.W.textContent = 'Wg ' + g.W.toFixed(1) + ' in';
+    labels.CL.textContent = '20.0 in floor · clr ' + G.inner.toFixed(2);
+    cfg.textContent = 'OVERCOVER V4 · ' + g.name.toUpperCase();
+    var headroom = G.inner - 20;
+    readout.innerHTML = g.name.toUpperCase() + ' · base S ' + g.S.toFixed(1) + ' × D ' + g.D.toFixed(1) + ' in · center C ' + g.C.toFixed(1) +
+      ' · wings Wg ' + g.W.toFixed(1) + ' · arc L ' + G.L.toFixed(1) + ' in<br>h (rib CL) ' + G.h.toFixed(2) + ' in · θ ' + G.deg.toFixed(1) +
+      '° · inner-face clearance <b>' + G.inner.toFixed(2) + ' in</b> (+' + headroom.toFixed(2) + ' over 20.0 floor) · ' + g.n + ' ribs @ ' + G.pitch.toFixed(2) + ' in';
+    state.tDist = Math.max(S, D)*1.9 + 34;
+    applyToggles();
+  }
+  function applyToggles(){
+    fabricMats.forEach(function(m){ m.opacity = state.see ? 0.5 : 0.97; m.depthWrite = !state.see; m.needsUpdate = true; });
+    if (clrGroup) clrGroup.visible = state.clr;
+    var d = root && root.getObjectByName('dims'); if (d) d.visible = state.dims;
+  }
+  function views(v){
+    var m = {'34':[0.62,0.38], front:[0,0.12], side:[Math.PI/2,0.12], top:[0,1.45]}[v];
+    state.tAz = m[0]; state.tEl = m[1]; state.auto = false;
+  }
+  function press(sel, on){ Array.prototype.forEach.call(document.querySelectorAll(sel), function(b){ b.setAttribute('aria-pressed', on(b) ? 'true' : 'false'); }); }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-size]'), function(b){ b.addEventListener('click', function(){
+    state.size = b.getAttribute('data-size'); press('[data-size]', function(x){ return x === b; }); build(state.size); }); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-view]'), function(b){ b.addEventListener('click', function(){
+    press('[data-view]', function(x){ return x === b; }); views(b.getAttribute('data-view')); }); });
+  function toggle(id, key){ var b = document.getElementById(id); if (!b) return; b.addEventListener('click', function(){
+    state[key] = !state[key]; b.setAttribute('aria-pressed', state[key] ? 'true' : 'false'); applyToggles(); }); }
+  toggle('tcSee', 'see'); toggle('tcDetach', 'detach'); toggle('tcDims', 'dims'); toggle('tcClr', 'clr');
+
+  /* pointer orbit */
+  var drag = null;
+  stage.addEventListener('pointerdown', function(e){ drag = {x:e.clientX, y:e.clientY, az:state.tAz, el:state.tEl}; state.auto = false; try { stage.setPointerCapture(e.pointerId); } catch(_){}
+    press('[data-view]', function(){ return false; }); });
+  stage.addEventListener('pointermove', function(e){ if (!drag) return;
+    state.tAz = drag.az - (e.clientX - drag.x)*0.008;
+    state.tEl = Math.max(0.02, Math.min(1.5, drag.el + (e.clientY - drag.y)*0.006)); });
+  function end(){ drag = null; }
+  stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
+
+  function resize(){ var w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix(); }
+  window.addEventListener('resize', resize);
+
+  var visible = true;
+  if ('IntersectionObserver' in window){ new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }).observe(stage); }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var v3 = new THREE.Vector3();
+  function placeLabels(){
+    var w = stage.clientWidth, h = stage.clientHeight;
+    for (var k in labels){ var el = labels[k], a = anchors[k]; if (!el || !a) continue;
+      var lift = (k === 'S' || k === 'CL') ? 0 : state.lift;
+      v3.set(a[0], a[1] + lift, a[2]); v3.project(camera);
+      var on = state.dims && v3.z < 1 && Math.abs(v3.x) < 1.1 && Math.abs(v3.y) < 1.1;
+      if (k === 'CL') on = state.clr && v3.z < 1;
+      el.style.opacity = on ? '1' : '0';
+      el.style.transform = 'translate(' + ((v3.x*0.5 + 0.5)*w).toFixed(0) + 'px,' + ((-v3.y*0.5 + 0.5)*h).toFixed(0) + 'px) translate(-50%,-50%)';
+    }
+  }
+  function frame(){
+    requestAnimationFrame(frame);
+    if (!visible) return;
+    if (state.auto && !reduce) state.tAz += 0.0022;
+    state.az += (state.tAz - state.az)*0.12; state.el += (state.tEl - state.el)*0.12; state.dist += (state.tDist - state.dist)*0.12;
+    var tgt = state.detach ? 7 : 0; state.lift += (tgt - state.lift)*0.1;
+    if (cover) cover.position.y = state.lift;
+    var ty = 9;
+    camera.position.set(Math.sin(state.az)*Math.cos(state.el)*state.dist, ty + Math.sin(state.el)*state.dist, Math.cos(state.az)*Math.cos(state.el)*state.dist);
+    camera.lookAt(0, ty, 0);
+    renderer.render(scene, camera);
+    placeLabels();
+  }
+  try { build('L'); resize(); frame(); } catch(e){ fail(); }
+})();
+</script>
+</body>
+</html>
