@@ -266,16 +266,16 @@ footer strong{color:var(--text)}
 <!-- ================= 3D ================= -->
 <section id="see-it-in-action" aria-labelledby="sia-title">
   <div class="wrap">
-    <p class="kicker">Interactive 3D · stroller-fold canopy + sliding platform + floor hook-strip panel</p>
-    <h2 id="sia-title">3D build demo: setup, canopy locks and span</h2>
-    <p class="lead">Press <strong>Play setup</strong> to run the full sequence. Press it again to <strong>Pause</strong>, or drive the model with the three sliders. First the <strong>sliding platform</strong> runs out on its rails and the <strong>telescoping bottom rib</strong> opens to span S. Then <strong>three hook strips</strong> are placed on the flat panel under the bottom rib: <strong>left side, right side and curved back</strong>. The panel presses down onto the mating loop strips already stuck to the floor, so the unit can be fixed wherever it is needed. The three-panel canopy (two wing panels and a center dome, joined by hinge knuckles) swings up like a stroller canopy. It clicks into a <strong>midway lock</strong> and then a <strong>full-extension lock</strong>. Finally it releases, falls toward the back and <strong>collapses flat onto itself</strong>. The <strong>Span</strong> slider shows the house-profile height change. Wing length Wg and center chord C are fixed, so <span style="color:#ffb547">h = √(Wg² − ((S − C)/2)²)</span>: a wider span gives a lower arc and a narrower span gives a taller one. Dashed ghost curves mark the 24 in and 48 in extremes.</p>
+    <p class="kicker">Interactive 3D · canopy structure + perimeter half-moon wings · no bottom platform · clear interior</p>
+    <h2 id="sia-title">3D build demo: attachment and inverse arc</h2>
+    <p class="lead">Press <strong>Play setup</strong> to watch the setup sequence (press again to <strong>Pause</strong>), or drive it with the sliders. V4 has <strong>no bottom platform</strong>: the folded kit moves into place around the fixed <span style="color:#5fe0b5">dashed clear-interior outline</span>, the left, right and back half-moon wings extend out to the perimeter, and the canopy mounts on the side-wing hubs. Like a stroller canopy it swings up from the back, clicks into a <strong>midway detent</strong>, then locks at <strong>full extension</strong>; dragged back down it falls toward the back and folds flat onto itself. Nothing sits or crosses inside the outline, so the interior footprint stays empty. The <strong>Platform extension</strong> slider (or <strong>↔ Extend / condense</strong>) sets the wing extension per side and shows the inverse arc. The hoops are fixed-length, so <strong>extending the platform lowers and flattens the arc, and condensing it raises and tightens the arc</strong>. Live labels show the platform extension per side, the hub span, the arc height and the clearance. Dashed ghost curves mark the condensed maximum and the extended minimum.</p>
     <figure class="demo sia-figure">
       <div class="sia-stage" id="siaStage">
-        <canvas id="siaCanvas" role="img" aria-label="Interactive 3D model of the OverCover V4 canopy. A sliding platform with a telescoping bottom rib sets the base span. A thin flat panel lies under the bottom rib. Three hook strips (left side, right side and curved back) are placed on that panel and pressed onto mating loop strips on the floor. A five-rib three-panel canopy (left wing panel, center dome, right wing panel, joined by hinge knuckle rows) pivots on hubs at the front of the platform. It rises like a stroller canopy, locks at midway and at full extension, and folds back flat onto itself. Labels show span, center height and clearance."></canvas>
+        <canvas id="siaCanvas" role="img" aria-label="Interactive 3D model of the OverCover V4 canopy with no bottom platform. A dashed rounded-rectangle outline on the floor marks the clear interior footprint, which stays empty. Three half-moon wings sit around the outside of that outline on the left, right and back and extend outward. A five-hoop canopy with a three-panel cover (left wing panel, center dome, right wing panel, joined by rows of hinge knuckles) mounts on hubs at the front tips of the side wings, swings up from the back like a stroller canopy, clicks into a midway detent and locks with the front hoop upright at full extension. The hoops run left to right, hub to hub. The cover closes the left, right and back; only the front is open. The hoops are fixed length, so extending the wings gives a lower, flatter arc and condensing them gives a taller, tighter arc. Labels show extension per side, hub span, arc height and clear interior height."></canvas>
         <div class="sia-label is-in" id="siaLabel" aria-hidden="true">
           <span class="sia-tag" id="siaTag">1</span>
           <div>
-            <strong id="siaTitle">OverCover kit: folded</strong>
+            <strong id="siaTitle">OverCover kit: folded wings + canopy</strong>
             <p id="siaDesc"></p>
           </div>
         </div>
@@ -284,11 +284,11 @@ footer strong{color:var(--text)}
         <span class="tc-dim arc" id="dimArc" aria-hidden="true"></span>
         <span class="tc-dim clr" id="dimClr" aria-hidden="true"></span>
         <span class="tc-dim span" id="dimExt" aria-hidden="true" style="color:#9fd0ff"></span>
-        <span class="tc-dim gh arc" id="dimGhostN" aria-hidden="true">S 24 in · h 24.8 in</span>
-        <span class="tc-dim gh span" id="dimGhostW" aria-hidden="true">S 48 in · h 20.0 in</span>
-        <span class="tc-cfg" id="tcCfg" aria-hidden="true">OVERCOVER · S 36 IN</span>
+        <span class="tc-dim gh arc" id="dimGhostN" aria-hidden="true">condensed max 28.8 in / 731 mm</span>
+        <span class="tc-dim gh span" id="dimGhostW" aria-hidden="true">extended min 24.3 in / 617 mm</span>
+        <span class="tc-cfg" id="tcCfg" aria-hidden="true">OVERCOVER · STANDARD</span>
         <div class="sia-progress" aria-hidden="true"><span id="siaBar"></span></div>
-        <div class="sia-fallback" id="siaFallback" hidden>This 3D demo needs WebGL and the Three.js library. The geometry and attachment sections below describe the same canopy, platform and hook-strip panel.</div>
+        <div class="sia-fallback" id="siaFallback" hidden>This 3D demo needs WebGL and the Three.js library. The sections below describe the same canopy.</div>
       </div>
       <figcaption class="tc-cap">
         <div class="tc-controls">
@@ -304,21 +304,21 @@ footer strong{color:var(--text)}
               <button class="btn" type="button" data-tc-view="top" aria-pressed="false">Top</button>
             </span>
           </div>
-          <label class="tc-slider" for="tcSides"><span>Sliding platform + hook strips <b id="tcSidesOut">0%</b></span>
+          <label class="tc-slider" for="tcSides"><span>Half-moon wings <b id="tcSidesOut">0%</b></span>
             <input id="tcSides" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
           </label>
-          <label class="tc-slider" for="tcCanopy"><span>Canopy <b id="tcCanopyOut">folded flat</b></span>
+          <label class="tc-slider" for="tcCanopy"><span>Canopy <b id="tcCanopyOut">folded</b></span>
             <input id="tcCanopy" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
           </label>
-          <label class="tc-slider" for="tcSpan"><span>Span S (telescoping bottom rib) <b id="tcSpanOut">36.0 in · h 23.3 in</b></span>
-            <input id="tcSpan" type="range" min="24" max="48" step="1" value="36" aria-describedby="tcReadout">
+          <label class="tc-slider" for="tcSpan"><span>Platform extension <b id="tcSpanOut">8.0 in per side · 26.4 in span</b></span>
+            <input id="tcSpan" type="range" min="0" max="8" step="1" value="4" aria-describedby="tcReadout">
           </label>
           <div class="tc-row">
-            <span class="controls" role="group" aria-label="Span setting">
-              <span class="tc-lbl">Span:</span>
-              <button class="btn" type="button" data-tc-ext="condensed" aria-pressed="false">Condensed 24 in · tall arc</button>
-              <button class="btn" type="button" data-tc-ext="standard" aria-pressed="true">Standard 36 in</button>
-              <button class="btn" type="button" data-tc-ext="extended" aria-pressed="false">Extended 48 in · low arc</button>
+            <span class="controls" role="group" aria-label="Platform setting">
+              <span class="tc-lbl">Platform:</span>
+              <button class="btn" type="button" data-tc-ext="condensed" aria-pressed="false">Condensed 6.0 in/side · tall arc</button>
+              <button class="btn" type="button" data-tc-ext="standard" aria-pressed="true">Standard 8.0 in/side</button>
+              <button class="btn" type="button" data-tc-ext="extended" aria-pressed="false">Extended 10.0 in/side · low arc</button>
             </span>
             <span class="controls" role="group" aria-label="Inverse arc demo">
               <button class="btn" type="button" id="tcFlex" aria-pressed="false">↔ Extend / condense demo</button>
@@ -330,27 +330,28 @@ footer strong{color:var(--text)}
       </figcaption>
     </figure>
     <ul class="sia-key" aria-label="Color key">
-      <li><i style="background:#cfd6de"></i>Sliding platform rails + sleds</li>
-      <li><i style="background:#e8eef5"></i>Telescoping bottom rib + canopy ribs</li>
-      <li><i style="background:#3b4450;border:1px solid #56708a"></i>Flat panel under the bottom rib</li>
-      <li><i style="background:#ffb547"></i>Hook strips ×3 (left, right, curved back)</li>
-      <li><i style="background:#f3e3c4"></i>Mating loop strips stuck to the floor</li>
-      <li><i style="background:#2a3542;border:1px solid #ffb547"></i>Hinge hubs (mint at a lock position)</li>
+            <li><i style="background:transparent;border:1px dashed #5fe0b5"></i>Clear interior footprint (outline only, kept empty)</li>
+      <li><i style="background:#56708a"></i>Half-moon wings (left, right, back)</li>
+            <li><i style="background:#ffcf7a"></i>Loop tape on wing upper rim</li>
+      <li><i style="background:#e8eef5"></i>Fixed-length hoops</li>
+      <li><i style="background:#2a3542;border:1px solid #ffb547"></i>Hinge hubs (mint at midway detent and full lock)</li>
       <li><i style="background:#ffd08a"></i>Hinge knuckles (panel seams)</li>
-      <li><i style="background:#e8762a"></i>Cover: wing panels darker, center dome lighter</li>
-      <li><i style="background:#5cc8ff"></i>Span S</li>
-      <li><i style="background:#ffb547"></i>Center height h</li>
-      <li><i style="background:#5fe0b5"></i>Inner-face clearance</li>
+      <li><i style="background:#e8762a"></i>Insulated cover: wing panels darker, dome lighter</li>
+      <li><i style="background:#9fd0ff"></i>Platform extension per side (wing travel)</li>
+      <li><i style="background:#5cc8ff"></i>Hub span</li>
+      <li><i style="background:#ffb547"></i>Arc height (floor to front-hoop apex)</li>
+      <li><i style="background:#5fe0b5"></i>Clear interior height above floor</li>
     </ul>
     <ol class="sia-sr">
-      <li>The kit arrives folded: the sliding platform is retracted and the canopy lies flat at the back. Three loop strips are already stuck to the floor where the unit will sit.</li>
-      <li>The sliding platform runs out on its rails, and the telescoping bottom rib opens to the selected span S.</li>
-      <li>Three hook strips are placed on the flat panel under the bottom rib: one on the left side, one on the right side and one along the curved back.</li>
-      <li>The panel presses down so the hook strips mate with the loop strips on the floor. The unit is now fixed in place and can be peeled up and moved.</li>
-      <li>The canopy swings up from the back like a stroller canopy and clicks into the midway lock.</li>
-      <li>It continues to full extension and locks with the front rib upright. Left, right and back are closed; the front is open.</li>
-      <li>Span 48 in gives a center height of 20.0 in. Span 24 in gives 24.8 in. The wing length and center chord stay the same.</li>
-      <li>The locks release. The canopy falls toward the back and collapses flat onto itself, then rises again to the full lock.</li>
+      <li>The kit: three folded half-moon wings and a folded canopy. There is no bottom platform. A dashed outline marks the clear interior footprint, which stays empty.</li>
+      <li>The folded kit moves into place around the outline. Nothing is placed inside it.</li>
+      <li>The left, right and back half-moon wings extend outward in half-inch clicks until each wing sits outside the outline.</li>
+      <li>The canopy hubs snap onto sockets at the front tips of the side wings. The front hoop swings up from the back like a stroller canopy and clicks into the midway detent, then the other hoops follow.</li>
+      <li>Spring pins lock both hubs at full extension with the front hoop upright. Left, right and back are closed; only the front is open.</li>
+      <li>The cover's hook-tape bottom edge presses onto the loop tape on the wing upper rims.</li>
+      <li>Warm air is retained under the closed sides.</li>
+      <li>Extended to the end-stop, 10.0 inches per side: hub span 30.4 inches, arc height drops to 24.3 inches.</li>
+      <li>Condensed to 6.0 inches per side: hub span 22.4 inches, the same hoops rise to an arc height of 28.8 inches.</li>
     </ol>
   </div>
 </section>
@@ -876,9 +877,9 @@ var OC = (function(){
   draw('L');
 })();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-/* ===== OverCover V4 3D build demo: Three.js r128 stroller-fold canopy, sliding platform, floor hook-strip panel (scoped to #see-it-in-action) ===== */
+/* ===== OverCover V4 3D build demo: same scene and motion as V3, minus the bottom platform; interior footprint kept empty (scoped to #see-it-in-action) ===== */
 (function(){
   var stage = document.getElementById('siaStage');
   var canvas = document.getElementById('siaCanvas');
@@ -930,53 +931,67 @@ var OC = (function(){
     g.beginPath(); g.moveTo(0, 64); g.lineTo(64, 0); g.lineTo(128, 64); g.lineTo(64, 128); g.closePath(); g.stroke();
     var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(14, 5); return t;
   }
+  function tube(points, r, segs, closed){
+    var v = points.map(function(p){ return new THREE.Vector3(p[0], p[1], p[2] || 0); });
+    return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(v, !!closed), segs || 48, r, 8, !!closed);
+  }
+  // rounded-rectangle outline as [x, z] points (CCW seen from above), corner radius rc
+  function roundRect(hw, hd, rc, perCorner){
+    var pts = [], cs = [[hw - rc, hd - rc, 0], [-(hw - rc), hd - rc, PI / 2], [-(hw - rc), -(hd - rc), PI], [hw - rc, -(hd - rc), 1.5 * PI]];
+    cs.forEach(function(c){ for (var k = 0; k <= perCorner; k++) { var a = c[2] + (PI / 2) * k / perCorner; pts.push([c[0] + rc * Math.cos(a), c[1] + rc * Math.sin(a)]); } });
+    return pts;
+  }
   function shapeFromXZ(pts){ var s = new THREE.Shape(); s.moveTo(pts[0][0], -pts[0][1]); for (var k = 1; k < pts.length; k++) s.lineTo(pts[k][0], -pts[k][1]); s.closePath(); return s; }
   function slabGeo(pts, h){ var g = new THREE.ExtrudeGeometry(shapeFromXZ(pts), {depth: h, bevelEnabled: false, steps: 1}); g.rotateX(-PI / 2); return g; }
   var SPH = new THREE.SphereGeometry(1, 24, 16);
 
   /* ---------- design constants (inches) ---------- */
-  // V4 house profile, Large reference: center chord C, wing length Wg, base span S (24-48 in), h = sqrt(Wg^2 - ((S - C)/2)^2)
-  var G = {C: 18, WG: 25, CROWN: 0.5, ZH: 12, Y0: 0.9, PANEL_T: 0.25, STRIP_T: 0.12, BAND: 2.2, SFOLD: 20};
-  function hOf(S){ var a = (S - G.C) / 2; return Math.sqrt(Math.max(0, G.WG * G.WG - a * a)); }
-  var NL = 28, NC = 40, HN = 2 * NL + NC, COLS = HN + 1, SEAM1 = NL, SEAM2 = NL + NC;
-  // rib profile as [x, v]: v = vertical reach when the rib stands upright (= depth behind the hub when folded flat)
-  function profile(S){
-    var h = hOf(S), pts = [], k;
-    for (k = 0; k <= NL; k++) { var f = k / NL; pts.push([lerp(-S / 2, -G.C / 2, f), h * f]); }
-    for (k = 1; k <= NC; k++) { var u = -1 + 2 * k / NC; pts.push([u * G.C / 2, h + G.CROWN * (1 - u * u)]); }
-    for (k = NL - 1; k >= 0; k--) { var f2 = k / NL; pts.push([lerp(S / 2, G.C / 2, f2), h * f2]); }
-    for (var it = 0; it < 3; it++) {   // R 1.5 in formed bends at the knuckle lines
+  var G = {CORE_W: 24, CORE_D: 20, WING_L: 36, WING_B: 6, WING_ZC: -1, BACK_L: 34, BACK_B: 6, N: 2.4, C: 2, Y0: 0.9, KF: 0.7, XS0: 5, ZB0: 4, PT: 0.55};
+  G.ZH = G.WING_ZC + G.WING_L / 2 - 0.6;           // hub axis z (front tips of the side wings)
+  var RIB_L = 88.0;   // fixed front (doorway) rib length, in — arc height falls out of the hub span
+  function sup(t, n){ t = Math.min(1, Math.abs(t)); return Math.pow(1 - Math.pow(t, n), 1 / n); }
+  function inUnion(x, z, xs, zb){
+    var ax = Math.abs(x);
+    if (ax <= G.CORE_W / 2 && Math.abs(z) <= G.CORE_D / 2) return true;
+    var dz = (z - G.WING_ZC) / (G.WING_L / 2);
+    if (Math.abs(dz) <= 1) { var ox = xs + G.WING_B * sup(dz, G.N); if (ax <= ox && ax >= Math.min(xs - 3, G.CORE_W / 2 - 0.1)) return true; }
+    var dx = x / (G.BACK_L / 2);
+    if (Math.abs(dx) <= 1 && z <= 0) { var oz = zb + G.BACK_B * sup(dx, G.N); if (-z <= oz && -z >= Math.min(zb - 3, G.CORE_D / 2 - 0.1)) return true; }
+    return false;
+  }
+  var HN = 96;
+  // base hoop: outer envelope of the three wings, from left hub, around the back, to right hub
+  function computeHoop(xs, zb){
+    var a0 = Math.atan2(G.ZH, -xs), a1 = Math.atan2(G.ZH, xs) + 2 * PI, pts = [], k, d;
+    for (k = 0; k <= HN; k++) {
+      var a = a0 + (a1 - a0) * k / HN, ca = Math.cos(a), sa = Math.sin(a), t = 0;
+      for (d = 45; d > 0; d -= 0.2) { if (inUnion(ca * d, sa * d, xs, zb)) { t = d; break; } }
+      pts.push([ca * t, sa * t]);
+    }
+    pts[0] = [-xs, G.ZH]; pts[HN] = [xs, G.ZH];
+    for (var it = 0; it < 3; it++) {
       var q = pts.map(function(p){ return p.slice(); });
       for (k = 1; k < HN; k++) { q[k][0] = (pts[k - 1][0] + 2 * pts[k][0] + pts[k + 1][0]) / 4; q[k][1] = (pts[k - 1][1] + 2 * pts[k][1] + pts[k + 1][1]) / 4; }
       pts = q;
     }
+    // vertical reach per point: running max from each hub toward the back centre (no "horns" at the back corners).
+    // rv >= r, so the shell only grows outward and load-zone clearance is preserved.
+    var rv = pts.map(function(p){ return G.ZH - p[1]; }), out = rv.slice();
+    for (k = 1; k <= HN / 2; k++) { out[k] = Math.max(out[k], out[k - 1]); out[HN - k] = Math.max(out[HN - k], out[HN - k + 1]); }
+    for (it = 0; it < 24; it++) { var o2 = out.slice(); for (k = 1; k < HN; k++) o2[k] = Math.max(out[k], (out[k - 1] + 2 * out[k] + out[k + 1]) / 4); out = o2; }
+    for (k = 0; k <= HN; k++) pts[k][2] = Math.max(rv[k], out[k]);
     return pts;
   }
-  // stroller fold: every rib pivots about the common hub axis at the front of the platform
-  function ribPt(p, phi, out){ out.x = p[0]; out.y = G.Y0 + p[1] * Math.sin(phi); out.z = G.ZH - p[1] * Math.cos(phi); return out; }
-  // plan path of the bottom rib (rib 0 lying flat): left side -> curved back -> right side
-  function planPath(S){
-    var pr = profile(S), path = [[-S / 2, G.ZH + 3]];
-    pr.forEach(function(p){ path.push([p[0], G.ZH - p[1]]); });
-    path.push([S / 2, G.ZH + 3]);
-    for (var it = 0; it < 8; it++) {   // the panel and the back strip follow a softened curve
-      var q = path.map(function(p){ return p.slice(); });
-      for (var k = 2; k < path.length - 2; k++) { q[k][0] = (path[k - 1][0] + 2 * path[k][0] + path[k + 1][0]) / 4; q[k][1] = (path[k - 1][1] + 2 * path[k][1] + path[k + 1][1]) / 4; }
-      path = q;
-    }
-    return path;
+  // inverse arc: solve the vertical factor so the upright front rib keeps its fixed length RIB_L
+  function frontRibLen(pts, kf){ var L = 0; for (var k = 1; k < pts.length; k++) L += Math.hypot(pts[k][0] - pts[k - 1][0], (pts[k][2] - pts[k - 1][2]) * kf); return L; }
+  function solveKF(pts){ var lo = 0.3, hi = 1.2; for (var it = 0; it < 40; it++) { var m = (lo + hi) / 2; if (frontRibLen(pts, m) < RIB_L) lo = m; else hi = m; } return (lo + hi) / 2; }
+  function kOf(phi){ var c = Math.cos(phi), s = Math.sin(phi); return 1 / Math.sqrt(c * c + s * s / (G.KF * G.KF)); }
+  // a point of the canopy: hoop sample p rotated up by phi about the hub axis (radius scaled by k)
+  function canopyPt(p, phi, out){
+    var kk = kOf(phi);
+    out.x = p[0]; out.y = G.Y0 + p[2] * kk * Math.sin(phi); out.z = G.ZH - (G.ZH - p[1]) * kk * Math.cos(phi);
+    return out;
   }
-  function bandOutline(path, a, b, w){
-    var L = [], R = [];
-    for (var k = a; k <= b; k++) {
-      var p0 = path[Math.max(0, k - 1)], p1 = path[Math.min(path.length - 1, k + 1)], dx = p1[0] - p0[0], dz = p1[1] - p0[1], n = Math.hypot(dx, dz) || 1;
-      var nx = -dz / n, nz = dx / n;
-      L.push([path[k][0] + nx * w, path[k][1] + nz * w]); R.push([path[k][0] - nx * w, path[k][1] - nz * w]);
-    }
-    return L.concat(R.reverse());
-  }
-  // the three hook strips: path index ranges (path index = profile index + 1)
-  var STRIPS = [{name: 'left', a: 3, b: 20, dir: [-1, 0]}, {name: 'right', a: COLS - 19, b: COLS - 2, dir: [1, 0]}, {name: 'back', a: 24, b: COLS - 23, dir: [0, -1]}];
 
   /* ---------- lights, floor ---------- */
   scene.add(new THREE.HemisphereLight(0xbfd6ff, 0x1a1208, 0.62));
@@ -991,81 +1006,72 @@ var OC = (function(){
   var grid = new THREE.GridHelper(260, 65, 0x1d2734, 0x161e28); grid.position.y = 0;
   grid.material.transparent = true; grid.material.opacity = 0.5; scene.add(grid);
 
-  var hookTex = dotTex('#c98a2c', '#ffd08a', 8, 2.4); hookTex.repeat.set(0.4, 0.4);
-  var loopTex = dotTex('#d9c7a2', '#f6ead2', 6, 2.0); loopTex.repeat.set(0.5, 0.5);
+  var loopTex = dotTex('#c98a2c', '#ffd08a', 8, 2.4); loopTex.repeat.set(40, 1);
 
-  /* ---------- the unit (lifted while hook strips are placed, then pressed to the floor) ---------- */
-  var unit = new THREE.Group(); scene.add(unit);
-  var panelMat = mat(0x3b4450, {r: 0.7, o: 0.999}), hookMat = mat(0xffffff, {map: hookTex, r: 1, e: 0xffb547, ei: 0.1}), loopMat = mat(0xffffff, {map: loopTex, r: 1, e: 0xffd08a, ei: 0, o: 0.9});
-  var panelMesh = null, stripMeshes = [], padMeshes = [], panelKey = '', padKey = '';
-  var stripGroups = STRIPS.map(function(){ var g = new THREE.Group(); unit.add(g); return g; });
-  function disposeMesh(m){ if (m) { if (m.parent) m.parent.remove(m); m.geometry.dispose(); } }
-  function buildPanel(S){
-    var path = planPath(S);
-    disposeMesh(panelMesh);
-    panelMesh = mesh(slabGeo(bandOutline(path, 0, path.length - 1, G.BAND), G.PANEL_T), panelMat); unit.add(panelMesh);
-    STRIPS.forEach(function(st, k){
-      disposeMesh(stripMeshes[k]);
-      var m = mesh(slabGeo(bandOutline(path, st.a, st.b, G.BAND * 0.62), G.STRIP_T), hookMat); m.position.y = -G.STRIP_T;
-      stripGroups[k].add(m); stripMeshes[k] = m;
-    });
-  }
-  function buildPads(S){   // mating loop strips already stuck to the floor
-    var path = planPath(S);
-    STRIPS.forEach(function(st, k){
-      disposeMesh(padMeshes[k]);
-      var m = mesh(slabGeo(bandOutline(path, st.a, st.b, G.BAND * 0.72), 0.04), loopMat, false); m.position.y = 0.005; m.renderOrder = 2;
-      scene.add(m); padMeshes[k] = m;
-    });
-  }
+  function clearGroup(g){ while (g.children.length) { var c = g.children.pop(); c.traverse(function(o){ if (o.geometry) o.geometry.dispose(); }); } }
 
-  /* ---------- sliding platform: two sleds on telescoping rails ---------- */
-  var railMat = mat(0xcfd6de, {r: 0.3, m: 0.7}), railInMat = mat(0xe8eef5, {r: 0.25, m: 0.8}), sledMat = mat(0x56708a, {r: 0.5, m: 0.05});
+  /* ---------- kit group (moves in from the front). V4: NO bottom platform / center plate. ---------- */
+  var plat = new THREE.Group(); scene.add(plat);
+  /* ---------- clear interior footprint: flat dashed outline only; nothing is modeled inside it ---------- */
+  var zoneMat = new THREE.LineDashedMaterial({color: 0x5fe0b5, dashSize: 1.1, gapSize: 0.7, transparent: true, opacity: 0.9, depthTest: false});
+  var zoneLine = null, GAP = 0.5;   // wing chords sit 0.5 in outside the clear outline
+  function clearZone(W, D){ var xs = W / 2 + G.C - G.WING_B, zb = D / 2 + G.C - G.BACK_B, z0 = -(zb - GAP), z1 = D / 2; return {hw: xs - GAP, z0: z0, z1: z1}; }
+  function buildZone(W, D){
+    if (zoneLine) { scene.remove(zoneLine); zoneLine.geometry.dispose(); }
+    var cz = clearZone(W, D), zc = (cz.z0 + cz.z1) / 2;
+    var pts = roundRect(cz.hw, (cz.z1 - cz.z0) / 2, 4, 6).map(function(p){ return new THREE.Vector3(p[0], 0.06, zc + p[1]); }); pts.push(pts[0].clone());
+    zoneLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), zoneMat); zoneLine.computeLineDistances(); zoneLine.renderOrder = 8; scene.add(zoneLine);
+  }
+  var wingMat = mat(0x56708a, {r: 0.5, m: 0.05}), loopMat = mat(0xffffff, {map: loopTex, r: 1, e: 0xffb547, ei: 0});
   var leverMat = mat(0xffb547, {r: 0.5, e: 0xffb547, ei: 0.15});
-  var toothGeo = new THREE.BoxGeometry(0.5, 0.12, 0.12), dummy = new THREE.Object3D();
-  var RAILZ = [G.ZH + 1.6, G.ZH - 4.2], OUTER_HALF = 5;
-  var rails = RAILZ.map(function(z){
-    var outer = mesh(new THREE.CylinderGeometry(0.46, 0.46, 2 * OUTER_HALF, 14), railMat); outer.rotation.z = PI / 2; outer.position.set(0, 0.46, z); unit.add(outer);
-    var ins = [-1, 1].map(function(s){ var m = mesh(new THREE.CylinderGeometry(0.32, 0.32, 1, 12), railInMat); m.rotation.z = PI / 2; unit.add(m); return m; });
-    var teeth = new THREE.InstancedMesh(toothGeo, railMat, 48); unit.add(teeth);
-    return {z: z, ins: ins, teeth: teeth};
-  });
-  var sleds = [-1, 1].map(function(s){
-    var g = new THREE.Group();
-    var b = mesh(new THREE.BoxGeometry(4.2, 0.55, 9.5), sledMat); b.position.set(0, G.PANEL_T + 0.27, -1.4); g.add(b);
-    var lever = mesh(new THREE.BoxGeometry(1.1, 0.35, 2.2), leverMat); lever.position.set(s * 1.2, G.PANEL_T + 0.7, -3.8); g.add(lever);
-    var sock = mesh(new THREE.BoxGeometry(2.2, 1.0, 3.0), sledMat); sock.position.set(s * 0.9, G.PANEL_T + 0.9, 0); g.add(sock);
-    unit.add(g); return {g: g, s: s};
-  });
-  function placeRails(S){
-    var half = S / 2;
-    rails.forEach(function(r){
-      r.ins.forEach(function(m, j){ var s = j ? 1 : -1, a = OUTER_HALF - 1, b = half, len = Math.max(0.1, b - a); m.scale.y = len; m.position.set(s * (a + b) / 2, 0.46, r.z); });
-      for (var t = 0; t < 48; t++) {   // ratchet teeth every 1/2 in on the exposed inner tube
-        var d = OUTER_HALF + 0.5 * (t >> 1), s = (t & 1) ? 1 : -1, show = d < half - 0.6;
-        dummy.position.set(s * d, show ? 0.82 : -5, r.z); dummy.rotation.set(0, 0, 0); dummy.updateMatrix(); r.teeth.setMatrixAt(t, dummy.matrix);
-      }
-      r.teeth.instanceMatrix.needsUpdate = true;
-    });
-    sleds.forEach(function(sd){ sd.g.position.set(sd.s * half, 0, G.ZH); });
+  // half-moon wing: local x outward from the chord (0), z along the platform side
+  function halfMoon(len, bulge, tongue, n){
+    var pts = [], k, m = 40;
+    for (k = 0; k <= m; k++) { var t = -1 + 2 * k / m; pts.push([bulge * sup(t, G.N), t * len / 2]); }
+    if (tongue) { pts.push([-tongue, len / 2 - 3]); pts.push([-tongue, -len / 2 + 3]); }
+    return pts;
   }
+  function rimCurve(len, bulge){ var pts = [], k; for (k = 0; k <= 40; k++) { var t = -1 + 2 * k / 40; pts.push([bulge * sup(t, G.N) - 0.35, 0.47, t * len / 2 * 0.985]); } return pts; }
+  var wings = [];
+  function makeWing(kind, s){
+    var w = new THREE.Group(), side = kind === 'side', L = side ? G.WING_L : G.BACK_L, B = side ? G.WING_B : G.BACK_B;
+    var outline = halfMoon(L, B, 0);   // V4: no inward tongue, wing stays outside the clear interior
+    var inner = new THREE.Group(); w.add(inner);
+    // orient: side wings bulge along ±x; the back wing bulges along -z
+    var g = slabGeo(outline, 0.42);
+    var m = mesh(g, wingMat); inner.add(m);
+    var rim = mesh(tube(rimCurve(L, B), 0.34, 60), loopMat, false); rim.scale.y = 0.5; rim.position.y = 0.24; inner.add(rim);
+    var lever = mesh(new THREE.BoxGeometry(1.2, 0.35, 2.4), leverMat); lever.position.set(B * 0.45, 0.6, 0); inner.add(lever);
+    if (side) { inner.rotation.y = s > 0 ? 0 : PI; inner.position.z = G.WING_ZC; }
+    else { inner.rotation.y = PI / 2; }
+    // V4: no rails or sleds crossing the interior
+    var rails = [];
+    plat.add(w);
+    var rec = {g: w, inner: inner, kind: kind, s: s, rails: rails};
+    wings.push(rec); return rec;
+  }
+  var wL = makeWing('side', -1), wR = makeWing('side', 1), wB = makeWing('back', -1);
+  wB.g.position.y = 0.03;
+  function placeRails(){ /* V4: no rails */ }
 
   /* ---------- hubs ---------- */
   var hubMat = mat(0x2a3542, {r: 0.4, m: 0.3}), hubRingMat = mat(0xffb547, {r: 0.4, e: 0xffb547, ei: 0.25});
-  var canopyG = new THREE.Group(); unit.add(canopyG);
+  var canopyG = new THREE.Group(); plat.add(canopyG);
+  var sockets = [-1, 1].map(function(s){ var f = mesh(new THREE.BoxGeometry(2.4, 0.7, 3.4), wingMat); plat.add(f); return {g: f, s: s}; });
   var hubs = [-1, 1].map(function(s){
     var h = new THREE.Group();
-    var disc = mesh(new THREE.CylinderGeometry(1.6, 1.6, 0.9, 28), hubMat); disc.rotation.z = PI / 2; h.add(disc);
-    var ring = mesh(new THREE.TorusGeometry(1.2, 0.22, 8, 28), hubRingMat, false); ring.rotation.y = PI / 2; ring.position.x = s * 0.5; h.add(ring);
+    var disc = mesh(new THREE.CylinderGeometry(1.7, 1.7, 0.9, 28), hubMat); disc.rotation.z = PI / 2; h.add(disc);
+    var ring = mesh(new THREE.TorusGeometry(1.25, 0.22, 8, 28), hubRingMat, false); ring.rotation.y = PI / 2; ring.position.x = s * 0.5; h.add(ring);
     var btn = mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.5, 16), mat(0x8e9aa8, {r: 0.4, m: 0.5})); btn.rotation.z = PI / 2; btn.position.x = s * 0.6; h.add(btn);
     canopyG.add(h); return {g: h, s: s};
   });
 
-  /* ---------- canopy: 5 ribs (rib 0 = bottom rib, lies flat on the panel) + three-panel fabric ---------- */
-  var NB = 5, SUB = 6, ROWS = (NB - 1) * SUB + 1;
+  /* ---------- canopy: 5 hoops + fabric ---------- */
+  var NB = 5, SUB = 6, ROWS = (NB - 1) * SUB + 1, COLS = HN + 1;
   var DEP = [0, 22.5, 45, 67.5, 90].map(function(d){ return d * PI / 180; });
-  var STOW = [0, 1.6, 3.2, 4.8, 6.4].map(function(d){ return d * PI / 180; });
+  var STOW = [0, 1.4, 2.8, 4.2, 5.6].map(function(d){ return d * PI / 180; });
   var fabricMat = mat(0xffffff, {map: quiltTex(), r: 0.92, side: THREE.DoubleSide, o: 0.94}); fabricMat.vertexColors = true;
+  var SEAM1 = Math.round(HN * 0.28), SEAM2 = HN - SEAM1;   // three-panel arc: left wing | center dome | right wing
   var fabGeo = new THREE.BufferGeometry();
   var fPos = new Float32Array(ROWS * COLS * 3), fUv = new Float32Array(ROWS * COLS * 2), idx = [];
   for (var rr = 0; rr < ROWS; rr++) for (var cc = 0; cc < COLS; cc++) {
@@ -1079,39 +1085,42 @@ var OC = (function(){
   for (rr = 0; rr < ROWS; rr++) for (cc = 0; cc < COLS; cc++) { var dome = cc > SEAM1 && cc < SEAM2, sh = dome ? 1.0 : 0.8; fCol.set([sh, sh * (dome ? 1 : 0.97), sh * (dome ? 1 : 0.95)], (rr * COLS + cc) * 3); }
   fabGeo.setAttribute('color', new THREE.BufferAttribute(fCol, 3));
   var fabric = mesh(fabGeo, fabricMat); fabric.frustumCulled = false; canopyG.add(fabric);
-  var ribMat = mat(0xe8eef5, {r: 0.3, m: 0.6}), frontRibMat = mat(0xffffff, {r: 0.3, m: 0.5, e: 0xffb547, ei: 0});
-  var bows = []; for (i = 0; i < NB; i++) { var bm = mesh(new THREE.BufferGeometry(), i === NB - 1 ? frontRibMat : ribMat); canopyG.add(bm); bows.push(bm); }
+  var hoopMat = mat(0xe8eef5, {r: 0.3, m: 0.6}), frontHoopMat = mat(0xffffff, {r: 0.3, m: 0.5, e: 0xffb547, ei: 0});
+  var bows = []; for (i = 0; i < NB; i++) { var bm = mesh(new THREE.BufferGeometry(), i === NB - 1 ? frontHoopMat : hoopMat); canopyG.add(bm); bows.push(bm); }
   var handle = mesh(new THREE.TorusGeometry(1.3, 0.28, 8, 20, PI), mat(0xffb547, {r: 0.5})); canopyG.add(handle);
-  var tmpV = new THREE.Vector3();
+  var tmpV = new THREE.Vector3(), tmpV2 = new THREE.Vector3();
+  /* hinge knuckles: 8 per seam between each side wing and the center dome */
   var knMat = mat(0xffd08a, {r: 0.35, m: 0.2, e: 0xffb547, ei: 0.2}), knuckles = [];
   [SEAM1, SEAM2].forEach(function(col){ for (var j = 0; j < 8; j++) { var kn = mesh(SPH, knMat); kn.scale.set(0.55, 0.55, 0.55); canopyG.add(kn); knuckles.push({m: kn, col: col, j: j}); } });
 
-  /* ---------- measurement overlay ---------- */
+  /* ---------- inverse-arc measurement overlay ---------- */
   var dimMat = {span: new THREE.LineBasicMaterial({color: 0x5cc8ff, depthTest: false, transparent: true}), arc: new THREE.LineBasicMaterial({color: 0xffb547, depthTest: false, transparent: true}), clr: new THREE.LineBasicMaterial({color: 0x5fe0b5, depthTest: false, transparent: true})};
-  function segLine(m, n){ var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(n * 6), 3)); var l = new THREE.LineSegments(g, m); l.renderOrder = 10; l.frustumCulled = false; unit.add(l); return l; }
+  function segLine(m, n){ var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(n * 6), 3)); var l = new THREE.LineSegments(g, m); l.renderOrder = 10; l.frustumCulled = false; plat.add(l); return l; }
   var dimSpanL = segLine(dimMat.span, 3), dimArcL = segLine(dimMat.arc, 3), dimClrL = segLine(dimMat.clr, 3);
   function setSegs(l, segs){ var a = l.geometry.attributes.position.array, k = 0; segs.forEach(function(s){ for (var j = 0; j < 6; j++) a[k++] = s[j]; }); l.geometry.attributes.position.needsUpdate = true; }
-  function ghostProfile(S, color){
-    var v = profile(S).map(function(q){ return new THREE.Vector3(q[0], G.Y0 + q[1], G.ZH + 0.9); });
-    var l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(v), new THREE.LineDashedMaterial({color: color, dashSize: 1.2, gapSize: 0.8, depthTest: false, transparent: true, opacity: 0.85}));
-    l.computeLineDistances(); l.renderOrder = 9; unit.add(l); return {line: l, top: G.Y0 + hOf(S) + G.CROWN};
+  // ghost front-rib profiles of the two extremes (condensed = narrow, stretched = wide)
+  function ghostProfile(W, D, color){
+    var xs = W / 2 + G.C - G.WING_B, zb = D / 2 + G.C - G.BACK_B, pts = computeHoop(xs, zb), kf = solveKF(pts), v = [];
+    pts.forEach(function(q){ v.push(new THREE.Vector3(q[0], G.Y0 + q[2] * kf, G.ZH + 0.9)); });
+    var g = new THREE.BufferGeometry().setFromPoints(v), l = new THREE.Line(g, new THREE.LineDashedMaterial({color: color, dashSize: 1.2, gapSize: 0.8, depthTest: false, transparent: true, opacity: 0.85}));
+    l.computeLineDistances(); l.renderOrder = 9; plat.add(l); return {line: l, top: G.Y0 + pts[HN / 2][2] * kf};
   }
-  var ghostN = ghostProfile(24, 0xffb547), ghostW = ghostProfile(48, 0x5cc8ff);
+  var ghostN = ghostProfile(30, 24, 0xffb547), ghostW = ghostProfile(38, 28, 0x5cc8ff);
   var dimEls = {span: document.getElementById('dimSpan'), arc: document.getElementById('dimArc'), clr: document.getElementById('dimClr'), gn: document.getElementById('dimGhostN'), gw: document.getElementById('dimGhostW')}, cfgEl = document.getElementById('tcCfg');
   var projV = new THREE.Vector3();
   function placeTag(el, x, y, z, show){
-    if (!el) return; projV.set(x, y, z); unit.localToWorld(projV); projV.project(camera);
+    if (!el) return; projV.set(x, y, z); plat.localToWorld(projV); projV.project(camera);
     var vis = show && projV.z < 1 && Math.abs(projV.x) < 1.1 && Math.abs(projV.y) < 1.1;
     el.style.opacity = vis ? '1' : '0';
     if (vis) el.style.transform = 'translate(' + ((projV.x + 1) / 2 * stage.clientWidth).toFixed(1) + 'px,' + ((1 - projV.y) / 2 * stage.clientHeight).toFixed(1) + 'px) translate(-50%,-50%)';
   }
   function fmt(v){ return v.toFixed(1) + ' in / ' + Math.round(v * 25.4) + ' mm'; }
 
-  /* warm-air motes (shown at full lock) */
+  /* heat motes */
   var motes = [];
   for (i = 0; i < 12; i++) {
     var mm = mesh(new THREE.SphereGeometry(0.45, 10, 8), mat(0xffb547, {e: 0xff7a1a, ei: 0.9, o: 0}), false);
-    mm.userData = {x: -7 + (i * 37 % 15), z: -4 + (i * 23 % 11), off: i / 12};
+    mm.userData = {x: -7 + (i * 37 % 15), z: -6 + (i * 23 % 11), off: i / 12};
     scene.add(mm); motes.push(mm);
   }
 
@@ -1122,64 +1131,42 @@ var OC = (function(){
   var labTag = $('siaTag'), labTitle = $('siaTitle'), labDesc = $('siaDesc'), label = $('siaLabel'), bar = $('siaBar'), badge = $('siaBadge');
 
   /* ---------- state ---------- */
-  // base: 0..1 drives the sliding platform (0-0.55), the three hook strips (0.55-0.95) and the press to the floor (0.95-1)
-  var S = {base: 0, u: 0, seeThru: false, span: 36, flex: false, dims: true};
-  var spanCur = 36;
-  var cur = {base: 0, u: 0, S: G.SFOLD};
-  var ribPts = profile(G.SFOLD), ribKey = '';
+  var S = {slide: 0, e: 0, u: 0, attach: 0, seeThru: false, span: 4, flex: false, dims: true};
+  var spanCur = 4, zoneKey = '34x26';
+  function zoneFor(step){ return {W: 30 + step, D: 24 + step / 2}; }
+  var cur = {xs: G.XS0, zb: G.ZB0, slide: 0, u: 0, attach: 0, W: 34, D: 26};
+  var REF = 0;   // V4: no platform or deck; clearance is measured from the floor
+  buildZone(34, 26);
+  var hoopPts = computeHoop(cur.xs, cur.zb), hoopKey = '';
   var playing = false, pt = 0, onScreen = false, autoStarted = false, lastStep = -1;
-  function baseParts(b){
-    return {
-      plat: sstep(0, 0.55, b),
-      q: [sat01((b - 0.56) / 0.12), sat01((b - 0.70) / 0.12), sat01((b - 0.84) / 0.11)],
-      press: sstep(0.955, 1, b)
-    };
-  }
-  var LOCK_MID = 0.5, LOCK_FULL = 1;
-  function lockState(u){ return u > 0.985 ? 'full' : Math.abs(u - LOCK_MID) < 0.012 ? 'mid' : u < 0.015 ? 'flat' : ''; }
 
   var STEPS = [
-    {t: 0,    tag: '1',  title: 'OverCover kit: folded', desc: 'The sliding platform is retracted and the canopy lies folded flat at the back. Three loop strips (cream) are already stuck to the floor where the unit will sit.'},
-    {t: 2.5,  tag: '2',  title: 'Slide out the platform', desc: 'The two sleds run out on telescoping ratchet rails, one click per \u00bd in, until the bottom rib reaches the selected span S.'},
-    {t: 7,    tag: '3',  title: 'Place the three hook strips', desc: 'Hook strips go on the flat panel under the bottom rib: first the left side, then the right side, then the curved back.'},
-    {t: 13,   tag: '4',  title: 'Press onto the floor strips', desc: 'The panel presses down and the three hook strips mate with the loop strips on the floor. The unit stays where it is placed and peels up to move.'},
-    {t: 16,   tag: '5',  title: 'Canopy up: midway lock', desc: 'Like a stroller canopy, the front rib swings up from the back and pulls the other ribs after it. Both hubs click into the midway detent.'},
-    {t: 21,   tag: '6',  title: 'Full extension lock', desc: 'The canopy continues until the front rib stands upright and the hubs click into the full-extension lock. Left, right and back are closed; the front is open.'},
-    {t: 25,   tag: '7',  title: 'Span 48 in \u2192 lower arc', desc: 'Same 25 in wings and 18 in center chord on a wider base. h = \u221a(25\u00b2 \u2212 15\u00b2) = 20.0 in, the clearance floor.'},
-    {t: 29,   tag: '8',  title: 'Span 24 in \u2192 taller arc', desc: 'Telescope the base in and the same panels stand steeper: h = \u221a(25\u00b2 \u2212 3\u00b2) = 24.8 in.'},
-    {t: 33.5, tag: '9',  title: 'Release: fold to the back', desc: 'Press both hub buttons. The canopy falls toward the back, passes the midway detent, and collapses flat onto itself on top of the bottom rib.'},
-    {t: 39.5, tag: '10', title: 'Raise and lock again', desc: 'One pull on the front handle brings the canopy back up through the midway lock to the full-extension lock.'}
+    {t: 0,  d: 2.5, tag: '1', title: 'OverCover kit: folded wings + canopy', desc: 'Three half-moon wings retracted and the canopy folded flat at the back. There is no bottom platform. The dashed outline is the clear interior footprint and stays empty.'},
+    {t: 2.5, d: 4, tag: '2', title: 'Move the folded kit into place', desc: 'The folded kit moves in from the front and centers on the outline. No platform or plate goes under or inside the outline.'},
+    {t: 6.5, d: 5, tag: '3', title: 'Extend the half-moon wings', desc: 'Left, right, and back wings run outward, one click per \u00bd in, until each wing sits fully outside the outline. Nothing crosses the interior.'},
+    {t: 11.5, d: 5.5, tag: '4', title: 'Mount and raise the OverCover canopy', desc: 'The canopy hubs snap onto sockets at the front tips of the side wings. Like a stroller canopy, the front hoop swings up from the back, clicks into the midway detent at 45\u00b0, then continues; fabric tension lifts the other hoops in turn.'},
+    {t: 17, d: 2, tag: '5', title: 'Click: hubs lock at full extension', desc: 'Spring pins in both hubs drop into their full-extension notches. Left, right, and back are closed. Only the front is open.'},
+    {t: 19, d: 4, tag: '6', title: 'Velcro: hook hem onto loop rim', desc: 'Hook tape on the canopy bottom edge presses onto loop tape on the wings\u2019 upper rims (glowing). Peel it off the same way to wash the canopy.'},
+    {t: 23, d: 5, tag: '7', title: 'Warm air is retained', desc: 'With three sides closed down to the wing rims, rising warm air pools under the canopy. The open front vents stale air.'},
+    {t: 28, d: 4, tag: '8', title: 'Extended \u2192 lower, flatter arc', desc: 'Same fixed-length ribs, wider hub span. At the end-stop (10.0 in per side, 30.4 in span) the arc drops to 24.3 in, the design floor.'},
+    {t: 32, d: 5.5, tag: '9', title: 'Condensed \u2192 taller, tighter arc', desc: 'Retract to 6.0 in per side (22.4 in span) and the same ribs rise to 28.8 in. Pinned hub sockets, a fixed-length ridge tape, and length-matched rib channels guide the return.'}
   ];
-  var TOTAL = 44;
-  function uAt(t){
-    if (t < 16.2) return 0;
-    if (t < 19.2) return lerp(0, 0.5, sstep(16.2, 19.2, t));
-    if (t < 21.2) return 0.5;
-    if (t < 24) return lerp(0.5, 1, sstep(21.2, 24, t));
-    if (t < 34) return 1;
-    if (t < 36) return lerp(1, 0.5, sstep(34, 36, t));
-    if (t < 37) return 0.5;
-    if (t < 39.3) return lerp(0.5, 0, sstep(37, 39.3, t));
-    if (t < 39.8) return 0;
-    if (t < 41.8) return lerp(0, 0.5, sstep(39.8, 41.8, t));
-    if (t < 42.3) return 0.5;
-    return lerp(0.5, 1, sstep(42.3, 43.8, t));
-  }
-  function baseAt(t){
-    if (t < 2.7) return 0;
-    if (t < 6.8) return lerp(0, 0.55, sstep(2.7, 6.8, t));
-    if (t < 7.2) return 0.55;
-    if (t < 12.8) return lerp(0.55, 0.95, (t - 7.2) / 5.6);
-    if (t < 13.4) return 0.95;
-    return lerp(0.95, 1, sstep(13.4, 15.2, t));
-  }
+  var TOTAL = 37.5;
   function flexSpan(t, base){
-    if (t < 25) return base;
-    if (t < 27.5) return lerp(base, 48, sstep(25, 27.5, t));
-    if (t < 29) return 48;
-    if (t < 31.5) return lerp(48, 24, sstep(29, 31.5, t));
-    if (t < 32.3) return 24;
-    return lerp(24, base, sstep(32.3, 33.5, t));
+    if (t < 28) return base;
+    if (t < 30.5) return lerp(base, 8, sstep(28, 30.5, t));
+    if (t < 32) return 8;
+    if (t < 34.5) return lerp(8, 0, sstep(32, 34.5, t));
+    if (t < 35.8) return 0;
+    return lerp(0, base, sstep(35.8, 37.3, t));
+  }
+  function stateAt(t){
+    return {
+      slide: sstep(2.7, 6.2, t),
+      e: sstep(6.8, 11.0, t),
+      attach: sstep(11.3, 12.5, t),
+      u: t < 14.6 ? 0.5 * sstep(12.7, 14.6, t) : 0.5 + 0.5 * sstep(15.2, 17.0, t)   // pause at the midway detent
+    };
   }
   function setLabel(k){
     if (k === lastStep) return; lastStep = k;
@@ -1188,41 +1175,31 @@ var OC = (function(){
     label.classList.remove('is-in'); void label.offsetWidth; label.classList.add('is-in');
   }
   function manualLabel(){
-    var bp = baseParts(S.base), ls = lockState(S.u);
-    if (S.u > 0.985 && spanCur >= 46) { setLabel(6); return; }
-    if (S.u > 0.985 && spanCur <= 26) { setLabel(7); return; }
-    var k = ls === 'full' ? 5 : S.u > 0.015 ? 4 : bp.press > 0.5 ? 3 : bp.q[0] > 0 ? 2 : bp.plat > 0.02 ? 1 : 0;
+    if (S.u > 0.97 && S.span >= 7) { setLabel(7); return; }
+    if (S.u > 0.97 && S.span <= 1) { setLabel(8); return; }
+    var k = S.u > 0.97 ? 4 : S.u > 0.02 ? 3 : S.e > 0.02 ? 2 : S.slide > 0.5 ? 1 : 0;
     setLabel(k);
   }
   function syncInputs(){
-    var bp = baseParts(S.base), n = bp.q.filter(function(q){ return q >= 1; }).length;
-    sidesIn.value = Math.round(S.base * 100); canIn.value = Math.round(S.u * 100);
-    sidesOut.textContent = Math.round(bp.plat * 100) + '% out \u00b7 strips ' + n + '/3' + (bp.press > 0.98 ? ' \u00b7 pressed' : '');
-    var ls = lockState(S.u);
-    canOut.textContent = ls === 'flat' ? 'folded flat (back)' : ls === 'mid' ? 'midway lock' : ls === 'full' ? 'full lock \u00b7 front open' : Math.round(S.u * 90) + '\u00b0 up';
-    var sv = Math.round(spanCur); spanIn.value = sv; spanOut.textContent = sv.toFixed(1) + ' in \u00b7 h ' + hOf(sv).toFixed(1) + ' in';
-    document.querySelectorAll('[data-tc-ext]').forEach(function(x){ var s = {condensed: 24, standard: 36, extended: 48}[x.getAttribute('data-tc-ext')]; x.setAttribute('aria-pressed', sv === s ? 'true' : 'false'); });
+    sidesIn.value = Math.round(S.e * 100); canIn.value = Math.round(S.u * 100);
+    sidesOut.textContent = Math.round(S.e * 100) + '%';
+    canOut.textContent = S.u < 0.02 ? 'folded at back' : S.u > 0.98 ? 'locked · front open' : Math.abs(S.u - 0.5) < 0.015 ? 'midway detent · 45°' : Math.round(S.u * 90) + '° up';
+    spanIn.value = Math.round(spanCur); var st0 = Math.round(spanCur); spanOut.textContent = (6 + st0 * 0.5).toFixed(1) + ' in per side · ' + (22.4 + st0).toFixed(1) + ' in span';
+    document.querySelectorAll('[data-tc-ext]').forEach(function(x){ var s = {condensed: 0, standard: 4, extended: 8}[x.getAttribute('data-tc-ext')]; x.setAttribute('aria-pressed', Math.round(spanCur) === s ? 'true' : 'false'); });
   }
-  function setPlayUI(on){ playBtn.textContent = on ? '\u275A\u275A Pause' : '\u25B6 Play setup'; playBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); }
-  function stopPlay(){ playing = false; setPlayUI(false); }
-  function startPlay(){ playing = true; pt = 0; stopFlex(); setPlayUI(true); }
-  playBtn.addEventListener('click', function(){
-    if (playing) { stopPlay(); return; }                      // pause
-    if (pt >= TOTAL - 0.01 || pt === 0) startPlay();          // restart from the top
-    else { playing = true; stopFlex(); setPlayUI(true); }     // resume
-  });
-  // canopy detents: midway and full extension
-  function detent(v){ if (Math.abs(v - 50) <= 5) return 50; if (v >= 95) return 100; if (v <= 3) return 0; return v; }
-  sidesIn.addEventListener('input', function(){ stopPlay(); S.base = sidesIn.value / 100; pt = TOTAL; syncInputs(); manualLabel(); });
-  canIn.addEventListener('input', function(){ stopPlay(); S.u = detent(+canIn.value) / 100; pt = TOTAL; syncInputs(); manualLabel(); });
+  function stopPlay(){ playing = false; playBtn.textContent = '\u25B6 Play setup'; playBtn.setAttribute('aria-pressed', 'false'); }
+  function startPlay(){ playing = true; pt = 0; playBtn.textContent = '\u275A\u275A Pause'; playBtn.setAttribute('aria-pressed', 'true'); }
+  playBtn.addEventListener('click', function(){ if (playing) stopPlay(); else { if (pt >= TOTAL - 0.01 || pt === 0) startPlay(); else { playing = true; playBtn.textContent = '\u275A\u275A Pause'; } } });
+  sidesIn.addEventListener('input', function(){ stopPlay(); S.slide = 1; S.e = sidesIn.value / 100; pt = TOTAL; syncInputs(); manualLabel(); });
+  canIn.addEventListener('input', function(){ stopPlay(); S.slide = 1; var cv = canIn.value / 100; if (Math.abs(cv - 0.5) <= 0.04) cv = 0.5; else if (cv >= 0.96) cv = 1; S.u = cv; pt = TOTAL; syncInputs(); manualLabel(); });
   seeBtn.addEventListener('click', function(){ S.seeThru = !S.seeThru; seeBtn.setAttribute('aria-pressed', S.seeThru ? 'true' : 'false'); fabricMat.opacity = S.seeThru ? 0.38 : 0.94; fabricMat.depthWrite = !S.seeThru; });
-  function deployed(){ stopPlay(); S.base = 1; S.u = 1; pt = TOTAL; }
+  function deployed(){ stopPlay(); S.slide = 1; S.e = 1; S.u = 1; pt = TOTAL; }
   function setSpan(v){ S.span = v; spanCur = v; syncInputs(); manualLabel(); }
   function stopFlex(){ S.flex = false; flexBtn.setAttribute('aria-pressed', 'false'); }
   document.querySelectorAll('[data-tc-ext]').forEach(function(b){
-    b.addEventListener('click', function(){ stopFlex(); if (playing) stopPlay(); setSpan({condensed: 24, standard: 36, extended: 48}[b.getAttribute('data-tc-ext')]); pt = TOTAL; });
+    b.addEventListener('click', function(){ stopFlex(); if (pt < TOTAL || playing) deployed(); setSpan({condensed: 0, standard: 4, extended: 8}[b.getAttribute('data-tc-ext')]); });
   });
-  spanIn.addEventListener('input', function(){ stopFlex(); if (playing) stopPlay(); pt = TOTAL; setSpan(+spanIn.value); });
+  spanIn.addEventListener('input', function(){ stopFlex(); if (pt < TOTAL || playing) deployed(); setSpan(+spanIn.value); });
   flexBtn.addEventListener('click', function(){ S.flex = !S.flex; flexBtn.setAttribute('aria-pressed', S.flex ? 'true' : 'false'); if (S.flex) { deployed(); S.flexT = 0; } else setSpan(Math.round(spanCur)); });
   dimsBtn.addEventListener('click', function(){ S.dims = !S.dims; dimsBtn.setAttribute('aria-pressed', S.dims ? 'true' : 'false'); });
 
@@ -1249,129 +1226,126 @@ var OC = (function(){
   canvas.addEventListener('pointerup', endDrag); canvas.addEventListener('pointercancel', endDrag); canvas.addEventListener('lostpointercapture', endDrag);
 
   /* ---------- per-frame update ---------- */
-  var clock = 0, lastLock = 'flat', lockFlash = 0;
+  var clock = 0;
   function damp(a, b, dt, r){ return a + (b - a) * (1 - Math.exp(-dt * r)); }
   function update(dt){
     clock += dt;
     if (playing) {
       pt = Math.min(TOTAL, pt + dt);
-      S.base = baseAt(pt); S.u = uAt(pt);
+      var st = stateAt(pt); S.slide = st.slide; S.e = st.e; S.u = st.u; S.attach = st.attach;
       for (var k = STEPS.length - 1; k >= 0; k--) if (pt >= STEPS[k].t) { setLabel(k); break; }
       bar.style.width = (100 * pt / TOTAL).toFixed(1) + '%';
-      spanCur = flexSpan(pt, S.span);
       syncInputs();
+      spanCur = flexSpan(pt, S.span);
       if (pt >= TOTAL) stopPlay();
     } else if (S.flex) {
-      S.flexT = (S.flexT || 0) + dt; spanCur = 36 - 12 * Math.cos(S.flexT * 0.6 + PI); syncInputs();
-      setLabel(spanCur > 42 ? 6 : spanCur < 30 ? 7 : 5);
-    } else if (pt >= TOTAL) { bar.style.width = '100%'; }
+      S.flexT = (S.flexT || 0) + dt; spanCur = 4 - 4 * Math.cos(S.flexT * 0.6); syncInputs();
+      setLabel(spanCur > 5 ? 7 : spanCur < 3 ? 8 : 4);
+    } else if (!playing && pt >= TOTAL) { bar.style.width = '100%'; }
 
-    cur.base = playing ? S.base : damp(cur.base, S.base, dt, 6);
+    // clear-interior outline follows the extension setting (1 in span step = ½ in rail click per side)
+    var bs = zoneFor(Math.round(spanCur)), bk = bs.W + 'x' + bs.D;
+    if (bk !== zoneKey) { zoneKey = bk; cur.W = bs.W; cur.D = bs.D; buildZone(bs.W, bs.D); }
+    // targets → ratchet-stepped wing positions (½ in clicks)
+    var xsFit = cur.W / 2 + G.C - G.WING_B, zbFit = cur.D / 2 + G.C - G.BACK_B;
+    var xsT = G.XS0 + Math.round((xsFit - G.XS0) * S.e / 0.5) * 0.5, zbT = G.ZB0 + Math.round((zbFit - G.ZB0) * S.e / 0.5) * 0.5;
+    cur.xs = damp(cur.xs, xsT, dt, playing ? 14 : 9); cur.zb = damp(cur.zb, zbT, dt, playing ? 14 : 9);
+    cur.slide = playing ? S.slide : damp(cur.slide, S.slide, dt, 5);
     cur.u = playing ? S.u : damp(cur.u, S.u, dt, 7);
-    var bp = baseParts(cur.base);
-    // ratchet-stepped span (1/2 in clicks per side = 1 in of span)
-    var sT = G.SFOLD + Math.round((spanCur - G.SFOLD) * bp.plat);
-    if (S.flex || (playing && pt > 25 && pt < 33.6)) sT = lerp(G.SFOLD, spanCur, bp.plat);
-    cur.S = damp(cur.S, sT, dt, playing ? 14 : 9);
-    var Sx = cur.S, h = hOf(Sx);
+    if (!playing) S.attach = (S.e > 0.97 || S.u > 0.02) ? 1 : 0;
+    cur.attach = playing ? S.attach : damp(cur.attach, S.attach, dt, 4);
 
-    // unit hovers while the strips go on, then presses onto the floor strips
-    var lift = 12 * (1 - bp.press);
-    unit.position.y = G.STRIP_T + lift;
-    panelMat.opacity = lerp(0.5, 1, bp.press); panelMat.transparent = bp.press < 0.99; panelMat.depthWrite = bp.press > 0.99;
-    var pk = Sx.toFixed(2);
-    if (pk !== panelKey) { panelKey = pk; buildPanel(Sx); }
-    var padK = String(Math.round(spanCur * 4) / 4);
-    if (padK !== padKey) { padKey = padK; buildPads(Math.round(spanCur * 4) / 4); }
-    STRIPS.forEach(function(st, k){
-      var q = bp.q[k], e = sstep(0, 1, q), g = stripGroups[k];
-      g.position.set(st.dir[0] * 16 * (1 - e), -lift * (1 - e) + Math.sin(PI * e) * 2.5, st.dir[1] * 16 * (1 - e));
-      g.visible = q > 0.001;
-    });
-    var seating = bp.press > 0.02 && bp.press < 1;
-    hookMat.emissiveIntensity = 0.1 + (bp.q.some(function(q){ return q > 0 && q < 1; }) ? 0.7 + 0.3 * Math.sin(clock * 6) : 0) + (seating ? 0.5 : 0);
-    loopMat.emissiveIntensity = seating ? 0.55 + 0.3 * Math.sin(clock * 6) : (bp.press < 0.01 ? 0.12 : 0);
+    // folded kit moves in from the front around the fixed clear-interior outline (no platform)
+    var sl = cur.slide;
+    plat.position.z = lerp(48, 0, sl);
+    if (zoneLine) zoneLine.material.opacity = 0.55 + 0.35 * Math.sin(PI * sat01(sl));
 
-    placeRails(Sx);
-    leverMat.emissiveIntensity = Math.abs(sT - cur.S) > 0.05 ? 0.8 : 0.15;
+    // wings + rails
+    wL.g.position.x = -cur.xs; wR.g.position.x = cur.xs; wB.g.position.z = -cur.zb;
+    placeRails(wL, cur.xs); placeRails(wR, cur.xs); placeRails(wB, cur.zb);
+    var cleared = cur.xs >= xsFit - 0.3 && cur.zb >= zbFit - 0.3;
+    var seat = playing && pt > 19 && pt < 23;
+    loopMat.emissiveIntensity = 0.12 + ((cleared && cur.u < 0.05) || seat ? 0.35 + 0.25 * Math.sin(clock * 4) : 0);
+    leverMat.emissiveIntensity = Math.abs(xsT - cur.xs) > 0.05 ? 0.8 : 0.15;
 
-    // ribs
-    var rk = Sx.toFixed(3);
-    if (rk !== ribKey) { ribPts = profile(Sx); ribKey = rk; }
-    hubs.forEach(function(hb){ hb.g.position.set(hb.s * (Sx / 2 + 0.7), G.Y0, G.ZH); });
-    var ls = lockState(cur.u), locked = ls === 'full' || ls === 'mid';
-    if (ls !== lastLock) { if (locked) lockFlash = 1; lastLock = ls; }
-    lockFlash = Math.max(0, lockFlash - dt * 1.8);
-    hubRingMat.color.setHex(locked ? 0x5fe0b5 : 0xffb547); hubRingMat.emissive.setHex(locked ? 0x5fe0b5 : 0xffb547); hubRingMat.emissiveIntensity = (locked ? 0.7 : 0.25) + lockFlash * 1.2;
-    hubs.forEach(function(hb){ var s = 1 + lockFlash * 0.25; hb.g.scale.set(s, s, s); });
-    frontRibMat.emissiveIntensity = (!locked && cur.u > 0.015 && cur.u < 0.985) ? 0.35 : 0;
+    // hoop + hubs
+    var hk = cur.xs.toFixed(3) + '|' + cur.zb.toFixed(3);
+    if (hk !== hoopKey) { hoopPts = computeHoop(cur.xs, cur.zb); hoopKey = hk; G.KF = Math.min(0.80, solveKF(hoopPts)); }
+    hubs.forEach(function(h){ h.g.position.set(h.s * (cur.xs + 0.2), G.Y0 + 0.3, G.ZH); });
+    sockets.forEach(function(h){ h.g.position.set(h.s * (cur.xs + 0.2), 0.75, G.ZH); });
+    canopyG.position.y = (1 - sstep(0, 1, cur.attach)) * 16; canopyG.visible = cur.attach > 0.01;
+    var locked = cur.u > 0.985, midLock = Math.abs(cur.u - 0.5) < 0.012, detent = locked || midLock;
+    hubRingMat.color.setHex(detent ? 0x5fe0b5 : 0xffb547); hubRingMat.emissive.setHex(detent ? 0x5fe0b5 : 0xffb547); hubRingMat.emissiveIntensity = detent ? 0.7 : 0.25;
+    frontHoopMat.emissiveIntensity = (!detent && cur.u > 0.01 && cur.u < 0.99) ? 0.35 : 0;
 
-    // stroller fold: the front rib leads, the fabric pulls the others up in turn; folding drops them back onto rib 0
+    // bow angles: the front hoop leads, fabric pulls the others up in turn
     var phiF = lerp(STOW[NB - 1], DEP[NB - 1], cur.u), ang = [];
     for (var b = 0; b < NB; b++) ang.push(b === 0 ? 0 : Math.max(STOW[b], Math.min(DEP[b], phiF - (NB - 1 - b) * (DEP[1] - DEP[0]))));
     ang[NB - 1] = phiF;
+    // fabric
     var p = 0;
     for (var r = 0; r < ROWS; r++) {
-      var bi = Math.min(NB - 2, Math.floor(r / SUB)), f = (r - bi * SUB) / SUB, phi = lerp(ang[bi], ang[bi + 1], f), lift2 = r === 0 ? 0 : 0.14;
-      for (var c = 0; c < COLS; c++) { ribPt(ribPts[c], phi, tmpV); fPos[p++] = tmpV.x; fPos[p++] = tmpV.y + lift2 * (1 - cur.u); fPos[p++] = tmpV.z; }
+      var bi = Math.min(NB - 2, Math.floor(r / SUB)), f = (r - bi * SUB) / SUB, phi = lerp(ang[bi], ang[bi + 1], f), lift2 = r === 0 ? 0 : 0.12;
+      for (var c = 0; c < COLS; c++) { canopyPt(hoopPts[c], phi, tmpV); fPos[p++] = tmpV.x; fPos[p++] = tmpV.y + lift2 * (1 - cur.u); fPos[p++] = tmpV.z; }
     }
     fabGeo.attributes.position.needsUpdate = true; fabGeo.computeVertexNormals(); fabGeo.computeBoundingSphere();
+    // hoops (rebuilt tubes)
     for (b = 0; b < NB; b++) {
       var pts = [];
-      for (c = 0; c < COLS; c += 2) { ribPt(ribPts[c], ang[b], tmpV); pts.push(tmpV.clone()); }
+      for (c = 0; c < COLS; c += 3) { canopyPt(hoopPts[c], ang[b], tmpV); pts.push(tmpV.clone()); }
       bows[b].geometry.dispose();
-      bows[b].geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 72, b === NB - 1 ? 0.42 : b === 0 ? 0.38 : 0.3, 6, false);
+      bows[b].geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 64, b === NB - 1 ? 0.42 : 0.3, 6, false);
     }
-    ribPt(ribPts[HN / 2], phiF, tmpV);
+    canopyPt(hoopPts[HN / 2], phiF, tmpV);
     handle.rotation.set(phiF - PI / 2, 0, 0); handle.position.copy(tmpV); handle.translateY(0.3);
-    knuckles.forEach(function(kn){ var rf = (kn.j + 0.5) / 8 * (ROWS - 1), bi2 = Math.min(NB - 2, Math.floor(rf / SUB)), f2 = (rf - bi2 * SUB) / SUB; ribPt(ribPts[kn.col], lerp(ang[bi2], ang[bi2 + 1], f2), tmpV); kn.m.position.set(tmpV.x, tmpV.y + 0.25, tmpV.z); });
+    knuckles.forEach(function(k){ var rf = (k.j + 0.5) / 8 * (ROWS - 1), bi2 = Math.min(NB - 2, Math.floor(rf / SUB)), f2 = (rf - bi2 * SUB) / SUB; canopyPt(hoopPts[k.col], lerp(ang[bi2], ang[bi2 + 1], f2), tmpV); k.m.position.set(tmpV.x, tmpV.y + 0.25, tmpV.z); });
 
-    // warm air retained at full lock
-    var heat = sstep(0.9, 1, cur.u) * bp.press, trapped = ls === 'full' ? 1 : 0;
-    var apexY = G.Y0 + h + G.CROWN;
-    warm.position.set(0, apexY * 0.5, G.ZH - h * 0.5); warm.intensity = heat * (0.4 + 0.55 * trapped + 0.15 * Math.sin(clock * 1.6));
+    // warm-air retention: shown once the canopy is locked (closed left, right, back)
+    var heat = sstep(0.9, 1, cur.u), trapped = locked ? 1 : 0;
+    warm.position.set(0, REF + 8, 0); warm.intensity = heat * (0.4 + 0.55 * trapped + 0.15 * Math.sin(clock * 1.6));
+    var roof = G.Y0 + hoopPts[HN / 2][2] * G.KF - 2.5;
     motes.forEach(function(m){
-      var q = (clock * 0.16 + m.userData.off) % 1, top = trapped ? apexY - 2.5 : apexY + 20;
-      m.position.set(m.userData.x + Math.sin(clock + m.userData.off * 9) * 1.2, lerp(2, top, q), m.userData.z + G.ZH - h * 0.55);
+      var q = (clock * 0.16 + m.userData.off) % 1, top = trapped ? roof : roof + 22;
+      m.position.set(m.userData.x + Math.sin(clock + m.userData.off * 9) * 1.2, lerp(REF + 2, top, q), m.userData.z);
+      if (trapped && q > 0.75) { m.position.x += (q - 0.75) * 30 * (m.userData.x > 0 ? 1 : -1) * 0.4; }
       m.material.opacity = heat * 0.85 * Math.sin(PI * q); m.visible = m.material.opacity > 0.02;
     });
 
-    // measurements
-    var clr = h + 0.25, heightFloor = G.STRIP_T + G.Y0 + h + G.CROWN;
-    var showDims = S.dims && cur.u > 0.97 && bp.press > 0.97;
+    // readout
+    var travelS = cur.xs - G.XS0, travelB = cur.zb - G.ZB0, maxW = 0;
+    for (c = 0; c < COLS; c++) maxW = Math.max(maxW, Math.abs(hoopPts[c][0]));
+    var frontH = G.Y0 + hoopPts[HN / 2][2] * G.KF;
+    var span = 2 * (cur.xs + 0.2), deckTop = REF, clr = frontH - 0.42 - deckTop;   // to the inner face of the front hoop
+    var showDims = S.dims && cur.u > 0.9 && cur.slide > 0.95;
     [dimSpanL, dimArcL, dimClrL, ghostN.line, ghostW.line].forEach(function(l){ l.visible = showDims; });
     if (showDims) {
-      var zf = G.ZH + 3, hx = Sx / 2;
+      var zf = G.ZH + 3, hx = cur.xs + 0.2;
       setSegs(dimSpanL, [[-hx, 0.6, zf, hx, 0.6, zf], [-hx, 0.1, zf, -hx, 2.4, zf], [hx, 0.1, zf, hx, 2.4, zf]]);
-      setSegs(dimArcL, [[-1.2, G.Y0, zf, -1.2, G.Y0 + h, zf], [-2.6, G.Y0 + h, zf, 0.2, G.Y0 + h, zf], [-2.6, G.Y0, zf, 0.2, G.Y0, zf]]);
-      setSegs(dimClrL, [[1.4, G.Y0, zf, 1.4, G.Y0 + clr, zf], [0.2, G.Y0, zf, 2.8, G.Y0, zf], [0.2, G.Y0 + clr, zf, 2.8, G.Y0 + clr, zf]]);
-      dimEls.span.innerHTML = 'Span S <b>' + fmt(Sx) + '</b>'; dimEls.arc.innerHTML = 'Center height h <b>' + fmt(h) + '</b>'; dimEls.clr.innerHTML = 'Inner-face clearance <b>' + fmt(clr) + '</b>';
+      setSegs(dimArcL, [[-1.2, 0, zf, -1.2, frontH, zf], [-2.6, frontH, zf, 0.2, frontH, zf], [-2.6, 0.05, zf, 0.2, 0.05, zf]]);
+      setSegs(dimClrL, [[1.4, deckTop, zf, 1.4, frontH, zf], [0.2, deckTop, zf, 2.8, deckTop, zf], [0.2, frontH, zf, 2.8, frontH, zf]]);
+      dimEls.span.innerHTML = 'Hub span <b>' + fmt(span) + '</b>'; dimEls.arc.innerHTML = 'Arc height <b>' + fmt(frontH) + '</b>'; dimEls.clr.innerHTML = 'Clear interior height <b>' + fmt(clr) + '</b>';
     }
     placeTag(dimEls.span, 0, 3.2, G.ZH + 3, showDims);
-    placeTag(dimEls.arc, -1.2, G.Y0 + h * 0.72, G.ZH + 3, showDims);
-    placeTag(dimEls.clr, 1.4, G.Y0 + clr * 0.4, G.ZH + 3, showDims);
+    placeTag(dimEls.arc, -1.2, frontH * 0.78, G.ZH + 3, showDims);
+    placeTag(dimEls.clr, 1.4, deckTop + clr * 0.42, G.ZH + 3, showDims);
     placeTag(dimEls.gn, 0, ghostN.top + 2.0, G.ZH + 0.9, showDims);
-    placeTag(dimEls.gw, 24 + 5, G.Y0 + 6, G.ZH + 0.9, showDims);
-    if (extEl) extEl.innerHTML = 'Sliding platform <b>' + Math.round(bp.plat * 100) + '%</b> \u00b7 S ' + Sx.toFixed(1) + ' in';
-    placeTag(extEl, -(Sx / 2 + 6), 2.2, G.ZH - 2, bp.plat > 0.02 && !showDims);
-    var cfg = 'OVERCOVER \u00b7 S ' + Sx.toFixed(0) + ' IN \u00b7 h ' + h.toFixed(1) + ' IN' + (ls === 'mid' ? ' \u00b7 MIDWAY LOCK' : ls === 'full' ? ' \u00b7 FULL LOCK' : ls === 'flat' ? ' \u00b7 FOLDED FLAT' : '');
-    if (cfgEl) { cfgEl.style.opacity = '1'; if (cfgEl.textContent !== cfg) cfgEl.textContent = cfg; }
-    var nStrips = bp.q.filter(function(q){ return q >= 1; }).length;
-    var txt = 'OverCover V4 \u00b7 C ' + G.C.toFixed(1) + ' in \u00b7 Wg ' + G.WG.toFixed(1) + ' in \u00b7 span S ' + fmt(Sx) + ' \u00b7 h = \u221a(Wg\u00b2 \u2212 ((S \u2212 C)/2)\u00b2) = ' + fmt(h) +
-      ' \u00b7 inner-face clearance ' + fmt(clr) + (clr >= 20 ? ' (\u2265 20.0 in floor \u2713)' : '') + ' \u00b7 apex ' + heightFloor.toFixed(1) + ' in above floor' +
-      ' \u00b7 sliding platform ' + Math.round(bp.plat * 100) + '% \u00b7 hook strips ' + nStrips + '/3 placed (left, right, curved back)' + (bp.press > 0.98 ? ', pressed to floor' : '') +
-      ' \u00b7 canopy ' + (ls === 'flat' ? 'folded flat at the back' : ls === 'mid' ? 'midway lock' : ls === 'full' ? 'full-extension lock, front open' : Math.round(cur.u * 90) + '\u00b0 up');
-    if (bp.press < 0.97 && cur.u > 0.03) txt += ' \u2014 \u26a0 press the hook strips onto the floor strips before raising the canopy.';
+    placeTag(dimEls.gw, cur.xs + 9, ghostW.top - 4, G.ZH + 0.9, showDims);
+    var railOut = travelS; // rail travel per side: 6.0 in condensed .. 10.0 in extended
+    if (extEl) { extEl.innerHTML = 'Platform extension <b>' + railOut.toFixed(1) + ' in / side</b> · ' + Math.round(railOut / 0.5) + ' clicks'; }
+    placeTag(extEl, -(cur.xs + G.WING_B + 1), 2.2, G.WING_ZC - 6, showDims || (cur.slide > 0.95 && cur.e > 0.05));
+    var cfg = 'OVERCOVER · ' + (span > 29 ? 'EXTENDED · LOW, FLAT ARC' : span < 23.5 ? 'CONDENSED · HIGH, TIGHT ARC' : 'MID SETTING · ' + Math.round(frontH * 10) / 10 + ' IN ARC');
+    if (cfgEl) { cfgEl.style.opacity = showDims ? '1' : '0'; if (cfgEl.textContent !== cfg) cfgEl.textContent = cfg; }
+    var txt = 'OverCover inverse arc: fixed ' + RIB_L.toFixed(1) + ' in front rib · platform extension ' + railOut.toFixed(1) + ' in per side · hub span ' + fmt(span) + ' · arc height ' + fmt(frontH) + ' · clear interior height above floor ' + fmt(clr) + (clr >= 18 ? ' (≥ 18.0 in design minimum ✓)' : '') + ' · bottom platform: none · interior footprint ' + Math.round(2 * (xsFit - GAP)) + ' × ' + Math.round(cur.D / 2 + zbFit - GAP) + ' in: empty' + ' · side wings out ' + travelS.toFixed(1) + ' in from fold (' + Math.round(travelS / 0.5) + ' clicks) · back wing out ' + travelB.toFixed(1) + ' in (' + Math.round(travelB / 0.5) + ' clicks) · wings ' +
+      (cleared ? 'clear of the interior outline' : 'not yet clear of the interior outline') + ' · front opening ≈ ' + Math.round(frontH) + ' in tall, ' + Math.round(2 * cur.xs) + ' in wide at the floor, ' + Math.round(2 * maxW) + ' in at its widest';
+    if (!cleared && cur.u > 0.03 && cur.slide > 0.9) txt += ' — ⚠ wings not fully extended yet: extend the half-moon wings outside the outline before raising the canopy.';
     if (readout.textContent !== txt) readout.textContent = txt;
 
     // camera
     cam.az = damp(cam.az, camT.az, dt, 3); cam.el = damp(cam.el, camT.el, dt, 3); cam.zoom = damp(cam.zoom, camT.zoom, dt, 3);
-    var aspect = camera.aspect, kk = aspect < 1.3 ? Math.pow(1.3 / aspect, 0.8) : 1, dist = 80 * cam.zoom * kk;
-    camLook.set(0, 7, 2);
-    // during autoplay strip placement, dip the camera low so the underside of the panel is in view
-    var peek = (pt > 0 && pt < TOTAL) ? sstep(6.6, 7.8, pt) * (1 - sstep(12.8, 14.2, pt)) : 0, elE = lerp(cam.el, 0.0, peek), azE = cam.az + peek * 0.25;
-    camLook.y = lerp(7, 5.5, peek); dist *= 1 - 0.18 * peek;
-    camera.position.set(Math.sin(azE) * Math.cos(elE) * dist, camLook.y + Math.sin(elE) * dist, Math.cos(azE) * Math.cos(elE) * dist);
+    var aspect = camera.aspect, kk = aspect < 1.3 ? Math.pow(1.3 / aspect, 0.8) : 1, dist = 108 * cam.zoom * kk;
+    var lookZ = lerp(18, 0, sl);
+    camLook.set(0, 8, lookZ);
+    camera.position.set(Math.sin(cam.az) * Math.cos(cam.el) * dist, 8 + Math.sin(cam.el) * dist, lookZ + Math.cos(cam.az) * Math.cos(cam.el) * dist);
     camera.lookAt(camLook);
   }
 
