@@ -215,6 +215,7 @@ footer strong{color:var(--text)}
     <div>
       <span class="eyebrow">V5 · Velcro-only, no platform · Manufacturer build document · Revision E</span>
       <h1 id="hero-title">OverCover V5 · Velcro-Only Canopy</h1>
+      <p class="callout"><strong>Sharing this document.</strong> This is a manufacturer build pack (factory quote and production), not retail copy. The end-use case is not named anywhere in this document — there is no dog, pet, or animal mention in the title, headings, body, or meta. When you send it to a manufacturer, use the HTTPS deployed copy, not a local workspace file: <a href="https://mrwilson100.github.io/overcover/v5/">https://mrwilson100.github.io/overcover/v5/</a> (HTTP 200).</p>
       <p class="pitch">Same fixed-size three-panel canopy and stroller-style fold, with <strong>no platform at all</strong>. Velcro strips along the <strong>left side, right side and curved back</strong> of the bottom rib grip the canopy and stick to the floor wherever you put it. The interior stays empty, so a bed fits.</p>
       <ul class="chips" aria-label="Key build features">
         <li class="star">★ Three fixed sizes S / M / L (no telescoping rib)</li>
@@ -391,9 +392,6 @@ footer strong{color:var(--text)}
               <button class="btn" type="button" data-tc-view="top" aria-pressed="false">Top</button>
             </span>
           </div>
-          <label class="tc-slider" for="tcSides"><span><span id="tcSidesName">Base rib (left, right, curved back)</span> <b id="tcSidesOut">0%</b></span>
-            <input id="tcSides" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
-          </label>
           <label class="tc-slider" for="tcCanopy"><span>Canopy <b id="tcCanopyOut">folded</b></span>
             <input id="tcCanopy" type="range" min="0" max="100" step="1" value="0" aria-describedby="tcReadout">
           </label>
@@ -1236,13 +1234,13 @@ var OC = (function(){
 
   /* ---------- UI ---------- */
   function $(id){ return document.getElementById(id); }
-  var sidesIn = $('tcSides'), canIn = $('tcCanopy'), sidesOut = $('tcSidesOut'), canOut = $('tcCanopyOut'), readout = $('tcReadout');
+  var canIn = $('tcCanopy'), canOut = $('tcCanopyOut'), readout = $('tcReadout');
   var playBtn = $('tcPlay'), seeBtn = $('tcSeeThru'), extEl = $('dimExt'), spanIn = $('tcSpan'), spanOut = $('tcSpanOut'), flexBtn = $('tcFlex'), dimsBtn = $('tcDims');
-  var platBtns = document.querySelectorAll('[data-tc-plat]'), sidesName = $('tcSidesName'), spanName = $('tcSpanName');
+  var platBtns = document.querySelectorAll('[data-tc-plat]'), spanName = $('tcSpanName');
   var labTag = $('siaTag'), labTitle = $('siaTitle'), labDesc = $('siaDesc'), label = $('siaLabel'), bar = $('siaBar'), badge = $('siaBadge');
 
   /* ---------- state ---------- */
-  var S = {slide: 0, e: 0, u: 0, attach: 0, seeThru: false, span: 4, flex: false, dims: true, platOn: false, velcro: 0, stick: 0, plat: 0, rug: 0};
+  var S = {slide: 0, e: 1, u: 0, attach: 0, seeThru: false, span: 4, flex: false, dims: true, platOn: false, velcro: 0, stick: 0, plat: 0, rug: 0};
   var spanCur = 4, zoneKey = '34x26';
   function zoneFor(step){ return {W: 30 + step, D: 24 + step / 2}; }
   var cur = {xs: G.XS0, zb: G.ZB0, slide: 0, u: 0, attach: 0, W: 34, D: 26, plat: 0, rug: 0, velcro: 0, stick: 0};
@@ -1296,20 +1294,19 @@ var OC = (function(){
     setLabel(stepIx(S.u > 0.02 ? 'raise' : S.e > 0.02 ? 'open' : S.slide > 0.5 ? 'move' : 'kit'));
   }
   function syncInputs(){
-    sidesIn.value = Math.round(S.e * 100); canIn.value = Math.round(S.u * 100);
-    sidesOut.textContent = Math.round(S.e * 100) + '%';
+    /* Base rib locked fully open (straight); open-amount slider removed. */
+    S.e = 1;
+    canIn.value = Math.round(S.u * 100);
     canOut.textContent = S.u < 0.02 ? 'folded at back' : S.u > 0.98 ? 'locked · front open' : Math.abs(S.u - 0.5) < 0.015 ? 'midway detent · 45°' : Math.round(S.u * 90) + '° up';
     spanIn.value = Math.round(spanCur); var st0 = Math.round(spanCur); spanOut.textContent = (6 + st0 * 0.5).toFixed(1) + ' in per side · ' + (22.4 + st0).toFixed(1) + ' in span';
     document.querySelectorAll('[data-tc-ext]').forEach(function(x){ var s = {condensed: 0, standard: 4, extended: 8}[x.getAttribute('data-tc-ext')]; x.setAttribute('aria-pressed', Math.round(spanCur) === s ? 'true' : 'false'); });
     var on = PLATFORM_OPTION && (playing ? cur.plat > 0.5 : S.platOn);
-    if (sidesName) sidesName.textContent = PLATFORM_OPTION && on ? 'Platform border (half-moon wings)' : 'Base rib (left, right, curved back)';
     if (spanName) spanName.textContent = PLATFORM_OPTION && on ? 'Platform extension' : 'Footprint width';
     platBtns.forEach(function(x){ x.setAttribute('aria-pressed', (x.getAttribute('data-tc-plat') === 'on') === S.platOn ? 'true' : 'false'); });
   }
   function stopPlay(){ playing = false; playBtn.textContent = '\u25B6 Play setup'; playBtn.setAttribute('aria-pressed', 'false'); }
   function startPlay(){ playing = true; pt = 0; playBtn.textContent = '\u275A\u275A Pause'; playBtn.setAttribute('aria-pressed', 'true'); }
   playBtn.addEventListener('click', function(){ if (playing) stopPlay(); else { if (pt >= TOTAL - 0.01 || pt === 0) startPlay(); else { playing = true; playBtn.textContent = '\u275A\u275A Pause'; } } });
-  sidesIn.addEventListener('input', function(){ stopPlay(); S.slide = 1; S.e = sidesIn.value / 100; pt = TOTAL; syncInputs(); manualLabel(); });
   canIn.addEventListener('input', function(){ stopPlay(); S.slide = 1; var cv = canIn.value / 100; if (Math.abs(cv - 0.5) <= 0.04) cv = 0.5; else if (cv >= 0.96) cv = 1; S.u = cv; pt = TOTAL; syncInputs(); manualLabel(); });
   seeBtn.addEventListener('click', function(){ S.seeThru = !S.seeThru; seeBtn.setAttribute('aria-pressed', S.seeThru ? 'true' : 'false'); fabricMat.opacity = S.seeThru ? 0.38 : 0.94; fabricMat.depthWrite = !S.seeThru; });
   function deployed(){ stopPlay(); S.slide = 1; S.e = 1; S.u = 1; pt = TOTAL; }
@@ -1354,7 +1351,7 @@ var OC = (function(){
     clock += dt;
     if (playing) {
       pt = Math.min(TOTAL, pt + dt);
-      var st = stateAt(pt); S.slide = st.slide; S.e = st.e; S.u = st.u; S.attach = st.attach; S.velcro = st.velcro; S.stick = st.stick; S.plat = st.plat; S.rug = st.rug;
+      var st = stateAt(pt); S.slide = st.slide; S.e = 1; /* base rib locked straight (fully open) */ S.u = st.u; S.attach = st.attach; S.velcro = st.velcro; S.stick = st.stick; S.plat = st.plat; S.rug = st.rug;
       for (var k = STEPS.length - 1; k >= 0; k--) if (pt >= STEPS[k].t) { setLabel(k); break; }
       bar.style.width = (100 * pt / TOTAL).toFixed(1) + '%';
       syncInputs();
